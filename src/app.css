@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    /*     font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem); */
+    background-color: var(--colors-elevation-0);
+    /*     overflow-y: scroll; */
+    /*     overflow: hidden; */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--colors-elevation-0);
+    container-name: body;
+    container-type: inline-size;
+    /*     overflow: hidden; */
+    transition: var(--colors-animation);
+   --site-width: 75rem;
+}
+
+b {
+    font-weight: var(--font-weights-bold);
+}
+
+p {
+    hyphens: auto;
+    max-width: 45rem;
+    line-height: 1.5;
+    font-weight: var(--font-weights-normal);
+    padding: 0;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 h6 {
+    margin: 0;
+    /*     margin: .5em 0; */
+    margin-top: .75em;
+    margin-bottom: .5em;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/* @media (min-width: calc(70rem)) {
+    @supports (scrollbar-gutter: stable both-edges) {
+        html {
+            scrollbar-gutter: stable both-edges;
+        }
+    }
+
+    @supports ((not (scrollbar-gutter: stable both-edges)) and (overflow-y: overlay)) {
+        html {
+            overflow-y: auto;
+            scrollbar-gutter: unset;
+        }
+    }
+} */
+
+::view-transition-group(root) {
+    animation-duration: .4s;
+}
+
+#portal-root {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    pointer-events: none;
+}

@@ -1,0 +1,161 @@
+<script lang="ts">
+  import { page } from "$app/stores";
+
+  // Svelte 5 rune for mobile menu state
+  let isOpen = $state(false);
+
+  function toggleMenu() {
+    isOpen = !isOpen;
+  }
+
+  function closeMenu() {
+    isOpen = false;
+  }
+
+  // Helper to check if a route is currently active
+  function isActive(path: string): boolean {
+    return $page.url.pathname === path;
+  }
+</script>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <!-- Brand / Logo -->
+    <a href="/" class="brand" onclick={closeMenu}>
+      <span class="logo-text">Juuso Luttinen</span>
+    </a>
+
+    <!-- Mobile Hamburger Button -->
+    <button
+      class="hamburger"
+      onclick={toggleMenu}
+      aria-label="Toggle navigation menu"
+      aria-expanded={isOpen}
+    >
+      <span class="bar" class:open={isOpen}></span>
+      <span class="bar" class:open={isOpen}></span>
+      <span class="bar" class:open={isOpen}></span>
+    </button>
+
+    <!-- Navigation Links -->
+    <ul class="nav-links" class:open={isOpen}>
+      <li>
+        <a href="/" class:active={isActive("/")} onclick={closeMenu}>Home</a>
+      </li>
+      <li>
+        <a href="/about" class:active={isActive("/about")} onclick={closeMenu}
+          >About</a
+        >
+      </li>
+      <li>
+        <a
+          href="/projects"
+          class:active={isActive("/projects")}
+          onclick={closeMenu}>Projects</a
+        >
+      </li>
+      <li>
+        <a
+          href="/contact"
+          class:active={isActive("/contact")}
+          onclick={closeMenu}>Contact</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    top: 0;
+    z-index: 100;
+    color: var(--colors-text);
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+  }
+
+  .nav-container {
+    max-width: var(--site-width);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand {
+    font-size: var(--font-sizes-sm);
+    font-weight: var(--font-weights-bold);
+    text-decoration: none;
+    color: inherit;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+  }
+
+  .nav-links a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: #38bdf8; /* Highlight color */
+  }
+
+  /* Mobile Toggle Button */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 1.75rem;
+    height: 1.25rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .bar {
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+  }
+
+  /* Responsive Mobile Menu */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background-color: #1a1a1a;
+      padding: 1.5rem;
+      gap: 1rem;
+      border-top: 1px solid #333;
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+  }
+</style>
