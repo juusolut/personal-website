@@ -40,25 +40,25 @@
     <!-- Navigation Links -->
     <ul class="nav-links" class:open={isOpen}>
       <li>
-        <a href="/" class:active={isActive("/")} onclick={closeMenu}>Home</a>
+        <a href="/" class:active={isActive("/")} onclick={closeMenu}>Etusivu</a>
       </li>
       <li>
         <a href="/about" class:active={isActive("/about")} onclick={closeMenu}
-          >About</a
+          >Minä</a
         >
       </li>
       <li>
         <a
           href="/projects"
           class:active={isActive("/projects")}
-          onclick={closeMenu}>Projects</a
+          onclick={closeMenu}>Projektit</a
         >
       </li>
       <li>
         <a
           href="/contact"
           class:active={isActive("/contact")}
-          onclick={closeMenu}>Contact</a
+          onclick={closeMenu}>Yhteystiedot</a
         >
       </li>
     </ul>
