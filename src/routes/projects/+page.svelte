@@ -1,6 +1,5 @@
 <script>
   import ProjectItem from "$lib/components/ProjectItem.svelte";
-  import screenshot from "$lib/assets/screenshot.png";
 
   let {data} = $props();
 </script>

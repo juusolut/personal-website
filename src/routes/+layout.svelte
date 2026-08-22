@@ -6,9 +6,6 @@
   import Navbar from "$lib/components/Navbar.svelte";
   import { onNavigate } from "$app/navigation";
 
-  export const prerender = true;
-  export const trailingSlash = "never";
-
   // Trigger native View Transitions on page navigation
   onNavigate((navigation) => {
     // Fallback for browsers that don't support View Transitions
