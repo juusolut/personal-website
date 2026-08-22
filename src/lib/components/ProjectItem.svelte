@@ -10,17 +10,17 @@
   } = $props();
 </script>
 
-<article class="grid-item" style="view-transition-name: project-bg-{id};">
+<article class="grid-item" style="view-transition-name: project-bg-{id}; view-transition-class: project-morph project-bg">
   <a {href} class="grid-item__link">
     <div
       class="grid-item__image-wrapper"
-      style="view-transition-name: project-img-{id};"
+      style="view-transition-name: project-img-{id}; view-transition-class: project-morph project-img"
     >
       <img src={imageSrc} alt={imageAlt} loading="lazy" />
     </div>
     <div class="grid-item__content">
-      <h4 style="view-transition-name: project-title-{id};">{title}</h4>
-      <p style="view-transition-name: project-desc-{id};">{description}</p>
+      <h4 style="view-transition-name: project-title-{id}; view-transition-class: project-morph project-title">{title}</h4>
+      <p style="view-transition-name: project-desc-{id}; view-transition-class: project-morph project-desc">{description}</p>
     </div>
   </a>
 </article>

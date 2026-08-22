@@ -7,7 +7,7 @@
 
 <section class="projects">
   <h2>Projektit</h2>
-  <p>Alta löydät minun projektejani</p>
+  <p>Tässä on projekteja, joita olen vuosien varrella työstänyt.</p>
   <div class="projects__grid">
     {#each data.projects as item (item.slug)}
       <ProjectItem
@@ -51,7 +51,7 @@
   }
   .projects__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
     gap: 1rem;
   }
 </style>

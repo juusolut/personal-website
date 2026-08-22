@@ -1,34 +1,47 @@
 <script>
   let { data } = $props();
-    let Content = $derived(data.content);
+  let Content = $derived(data.content);
 </script>
 
-<section class="project" style="view-transition-name: project-bg-{data.meta.slug};">
+<article
+  class="project"
+  style="view-transition-name: project-bg-{data.meta
+    .slug}; view-transition-class: project-morph project-bg"
+>
+  <a href="/projects" class="back-link"> Takaisin projekteihin </a>
   <div class="project__inner">
     <div
       class="grid-item__image-wrapper"
-      style="view-transition-name: project-img-{data.meta.slug};"
+      style="view-transition-name: project-img-{data.meta
+        .slug}; view-transition-class: project-morph project-img"
     >
       <img src={data.meta.thumbnail} loading="lazy" />
     </div>
 
-    <h3 style="view-transition-name: project-title-{data.meta.slug};">
+    <h3
+      style="view-transition-name: project-title-{data.meta
+        .slug}; view-transition-class: project-morph project-title"
+    >
       {data.meta.title}
     </h3>
-    <p class="undertext" style="view-transition-name: project-desc-{data.meta.slug};">
+    <p
+      class="undertext"
+      style="view-transition-name: project-desc-{data.meta
+        .slug}; view-transition-class: project-morph project-desc"
+    >
       {data.meta.description}
     </p>
 
-    <Content/>
+    <Content />
   </div>
-</section>
+</article>
 
 <style>
   .project {
     max-width: var(--site-width);
     margin: 0 auto;
-    padding: 2rem;
-/*     min-height: 50rem; */
+    padding: 1rem 2rem;
+    /*     min-height: 50rem; */
     background-color: var(--colors-elevation-2);
     border-radius: var(--border-radiuses-lg);
     font-weight: var(--font-weights-bold);
@@ -69,5 +82,16 @@
     background-color: #f3f4f6;
     border-radius: var(--border-radiuses-lg);
     overflow: hidden;
+  }
+  .back-link {
+    color: var(--colors-text);
+    font-weight: var(--font-weights-medium);
+    padding: 1rem 0rem;
+    display: inline-block;
+    text-decoration: none;
+    &::before {
+      content: "← ";
+      margin-right: 0.5rem;
+    }
   }
 </style>

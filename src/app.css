@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200..800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap");
+
+.mr-dafoe-regular {
+  font-family: "Mr Dafoe", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
 
 code {
   font-family:
@@ -111,26 +118,23 @@ button:hover {
 } */
 
 ::view-transition-group(*) {
-  animation-duration: .15s;
+  animation-duration: 0.15s;
 }
 
-::view-transition-group([style*="view-transition-name: project-bg-"]),
-::view-transition-group([style*="view-transition-name: project-title-"]),
-::view-transition-group([style*="view-transition-name: project-desc-"]),
-::view-transition-group([style*="view-transition-name: project-img-"]) {
+::view-transition-group(.project-morph) {
   /*   z-index: 1; */
   /*   border-radius: var(--border-radiuses-lg) !important; */
   z-index: 999;
-  animation-duration: 2600ms !important;
-  animation-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+  animation-duration: 260ms !important;
+  animation-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1);
 }
 
 /* ::view-transition-group(project-title-1) {
   animation-duration: 1s;
 } */
 
-::view-transition-old([style*="view-transition-name: project-title-"]),
-::view-transition-new([style*="view-transition-name: project-title-"]) {
+::view-transition-old(.project-title),
+::view-transition-new(.project-title) {
   mix-blend-mode: normal;
   width: max-content;
   height: 100%;
@@ -138,15 +142,15 @@ button:hover {
   transform-origin: left top;
 }
 
-::view-transition-old([style*="view-transition-name: project-desc-"]),
-::view-transition-new([style*="view-transition-name: project-desc-"]) {
+::view-transition-old(.project-desc),
+::view-transition-new(.project-desc) {
   mix-blend-mode: normal;
   width: max-content;
   height: auto;
 }
 
-::view-transition-old([style*="view-transition-name: project-bg-"]),
-::view-transition-new([style*="view-transition-name: project-bg-"]) {
+::view-transition-old(.project-bg),
+::view-transition-new(.project-bg) {
   mix-blend-mode: normal;
   height: 100%;
   width: 100%;
@@ -155,9 +159,9 @@ button:hover {
   border-radius: var(--border-radiuses-lg);
 }
 
-::view-transition-group([style*="view-transition-name: project-img-"]),
-::view-transition-old([style*="view-transition-name: project-img-"]),
-::view-transition-new([style*="view-transition-name: project-img-"]) {
+::view-transition-group(.project-img),
+::view-transition-old(.project-img),
+::view-transition-new(.project-img) {
   border-top-left-radius: var(--border-radiuses-lg);
   border-top-right-radius: var(--border-radiuses-lg);
   overflow: hidden;

@@ -57,7 +57,7 @@
 
     /* BRANDING COLORS */
     --colors-primary: oklch(0.73 0.12 68.69);
-    --colors-secondary: color-mix(in oklab, var(--colors-primary), var(--mix-shading) 30%);
+    --colors-secondary: oklch(56.513% 0.16524 348.461);
     /* --colors-primary: oklch(55.05% 0.11643 293.077); */
     /*     --colors-secondary: oklch(54.851% 0.07727 217.855); */
     --colors-note: oklch(86.589% 0.05914 86.507);

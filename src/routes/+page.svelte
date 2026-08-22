@@ -6,7 +6,7 @@
 
 <section class="nutshell">
   <div class="nutshell__info">
-    <h1>Moikka! Olen Juuso.</h1>
+    <h1>Moikka! Olen <span class="mr-dafoe-regular">Juuso.</span></h1>
     <p>Täältä löydät tietoa minusta ja projekteistani.</p>
     <img src={me} alt="Juuso Luttinen" class="nutshell__image" />
   </div>
@@ -28,13 +28,30 @@
     padding: 2rem;
     height: 25rem;
     background-color: var(--colors-elevation-2);
-    border: 1px solid var(--colors-primary);
+    border: 1px solid var(--colors-text);
     border-radius: clamp(0px, (100cqi - 100%) * 1e5, var(--border-radiuses-lg));
     font-weight: var(--font-weights-bold);
-    color: var(--colors-primary);
+    color: var(--colors-text);
     position: relative;
     overflow: hidden;
     z-index: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    justify-content: center;
+
+    h1 {
+      margin-bottom: 0;
+    }
+
+    h1 > span {
+      font-size: 1.3em;
+      color: var(--colors-primary);
+    }
+    p {
+      margin: 0;
+      padding: 0;
+    }
   }
 
   .nutshell__image {

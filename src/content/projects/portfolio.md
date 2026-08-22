@@ -1,6 +1,6 @@
 ---
 title: "Portfolio"
-slug: "personal-site"
+slug: "portfolio"
 description: "Responsiivinen nettisivu, joka on rakennettu SvelteKitillä"
 thumbnail: "/src/lib/assets/screenshot.png"
 ---
