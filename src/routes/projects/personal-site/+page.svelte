@@ -32,7 +32,7 @@
     max-width: var(--site-width);
     margin: 0 auto;
     padding: 2rem;
-    min-height: 50rem;
+/*     min-height: 50rem; */
     background-color: var(--colors-elevation-2);
     border-radius: var(--border-radiuses-lg);
     font-weight: var(--font-weights-bold);
@@ -65,11 +65,10 @@
     display: flex;
     flex-direction: column;
     /*     background-color: red; */
-    width: min-content;
   }
 
   .grid-item__image-wrapper {
-    width: 40rem;
+    width: 50%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
     background-color: #f3f4f6;

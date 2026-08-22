@@ -18,7 +18,7 @@ html {
   background-color: var(--colors-elevation-0);
   /*     overflow-y: scroll; */
   /*     overflow: hidden; */
-  scrollbar-gutter: stable both-edges;
+  scrollbar-gutter: stable /* both-edges */;
 }
 
 body {
@@ -122,6 +122,8 @@ button:hover {
   /*   border-radius: var(--border-radiuses-lg) !important; */
   z-index: 999;
   animation-duration: .3s;
+  animation-duration: 260ms !important;
+  animation-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1.0);
 }
 
 /* ::view-transition-group(project-title-1) {
