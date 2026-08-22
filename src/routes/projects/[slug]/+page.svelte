@@ -1,29 +1,25 @@
 <script>
-  import screenshot from "$lib/assets/screenshot.png";
+  let { data } = $props();
+    let Content = $derived(data.content);
 </script>
 
-<section class="project">
+<section class="project" style="view-transition-name: project-bg-{data.meta.slug};">
   <div class="project__inner">
     <div
       class="grid-item__image-wrapper"
-      style="view-transition-name: project-img-1;"
+      style="view-transition-name: project-img-{data.meta.slug};"
     >
-      <img src={screenshot} loading="lazy" />
+      <img src={data.meta.thumbnail} loading="lazy" />
     </div>
 
-    <h4 style="view-transition-name: project-title-1;">
-      Henkilökohtainen nettisivu
-    </h4>
-    <p class="undertext" style="view-transition-name: project-desc-1;">
-      Responsiivinen nettisivu, joka on rakennettu SvelteKitillä
+    <h3 style="view-transition-name: project-title-{data.meta.slug};">
+      {data.meta.title}
+    </h3>
+    <p class="undertext" style="view-transition-name: project-desc-{data.meta.slug};">
+      {data.meta.description}
     </p>
 
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
-      provident quidem similique, culpa quibusdam molestiae tenetur suscipit
-      quasi veniam ab, impedit deserunt possimus fugiat porro reprehenderit
-      sint! Delectus, iusto assumenda.
-    </p>
+    <Content/>
   </div>
 </section>
 
@@ -40,9 +36,8 @@
     overflow: hidden;
     box-shadow: var(--shadows-sm);
     z-index: 0;
-    view-transition-name: project-bg-1;
 
-    h4 {
+    h3 {
       display: inline-block;
       width: fit-content;
     }

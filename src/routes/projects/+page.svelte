@@ -2,43 +2,20 @@
   import ProjectItem from "$lib/components/ProjectItem.svelte";
   import screenshot from "$lib/assets/screenshot.png";
 
-  const items = [
-    {
-      id: 1,
-      title: "Henkilökohtainen nettisivu",
-      description:
-        "Responsiivinen nettisivu, joka on rakennettu SvelteKitillä",
-      imageSrc: screenshot,
-      href: "/projects/personal-site",
-    },
-    {
-      id: 2,
-      title: "Kuluku",
-      description: "Alusta, jolla käyttäjät voivat myydä kulkuneuvojaan. Rakennettu Reactilla.",
-      imageSrc: screenshot,
-      href: "/projects/kuluku",
-    },
-    {
-      id: 3,
-      title: "Factory",
-      description: "P2P verkkoräiskintäpeli. Rakennettu Godotilla.",
-      imageSrc: screenshot,
-      href: "/projects/factory",
-    },
-  ];
+  let {data} = $props();
 </script>
 
 <section class="projects">
   <h2>Projektit</h2>
   <p>Alta löydät minun projektejani</p>
   <div class="projects__grid">
-    {#each items as item (item.id)}
+    {#each data.projects as item (item.slug)}
       <ProjectItem
-        id={item.id}
+        id={item.slug}
         title={item.title}
         description={item.description}
-        imageSrc={item.imageSrc}
-        href={item.href}
+        imageSrc={item.thumbnail}
+        href="/projects/{item.slug}"
       />
     {/each}
   </div>
@@ -55,8 +32,21 @@
     position: relative;
     overflow: hidden;
     z-index: 0;
+
     & h2 {
-      color: var(--colors-primary);
+      color: var(--colors-text);
+      position: relative;
+      margin-left: 1rem;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -.5rem;
+        width: 4px;
+        height: 100%;
+        background-color: var(--colors-primary);
+      }
     }
   }
   .projects__grid {
