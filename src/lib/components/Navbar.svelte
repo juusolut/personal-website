@@ -73,7 +73,7 @@
     height: 5rem;
     display: flex;
     align-items: center;
-    position: absolute;
+/*     position: absolute; */
     width: 100%;
   }
 

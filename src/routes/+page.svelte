@@ -6,7 +6,7 @@
 
 <section class="nutshell">
   <div class="nutshell__info">
-    <h2>Moikka! Olen Juuso.</h2>
+    <h1>Moikka! Olen Juuso.</h1>
     <p>Täältä löydät tietoa minusta ja projekteistani.</p>
     <img src={me} alt="Juuso Luttinen" class="nutshell__image" />
   </div>
@@ -18,22 +18,23 @@
 <style>
   .nutshell {
     height: 100vh;
-    padding-top: 5rem;
+/*     padding-top: 5rem; */
     /* max-width: var(--site-width); */
   }
 
   .nutshell__info {
     max-width: var(--site-width);
     margin: 0 auto;
-    padding: 5rem 2rem;
-    background-color: rgb(255, 255, 255);
+    padding: 2rem;
+    height: 25rem;
+    background-color: var(--colors-elevation-2);
     border: 1px solid var(--colors-primary);
     border-radius: clamp(0px, (100cqi - 100%) * 1e5, var(--border-radiuses-lg));
-    font-size: var(--font-sizes-xxl);
     font-weight: var(--font-weights-bold);
     color: var(--colors-primary);
     position: relative;
     overflow: hidden;
+    z-index: 0;
   }
 
   .nutshell__image {
@@ -42,6 +43,7 @@
     position: absolute;
     bottom: -1.5rem;
     right: 2rem;
+    z-index: -1;
   }
 
   .details {

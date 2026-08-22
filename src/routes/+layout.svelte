@@ -1,9 +1,23 @@
 <script lang="ts">
-  import "../app.css";
   import "../normalize.css";
   import "../themes.css";
+  import "../app.css";
   import favicon from "$lib/assets/favicon.svg";
   import Navbar from "$lib/components/Navbar.svelte";
+  import { onNavigate } from "$app/navigation";
+
+  // Trigger native View Transitions on page navigation
+  onNavigate((navigation) => {
+    // Fallback for browsers that don't support View Transitions
+    if (!document.startViewTransition) return;
+
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
 
   let { children } = $props();
 </script>
