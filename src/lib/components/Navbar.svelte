@@ -1,7 +1,5 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import head from "$lib/assets/head.png";
-  import view from "$lib/assets/view.jpg";
   import { resolve } from '$app/paths';
   import { asset } from "$app/paths";
 
