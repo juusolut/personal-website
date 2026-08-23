@@ -3,6 +3,7 @@
   import head from "$lib/assets/head.png";
   import view from "$lib/assets/view.jpg";
   import { resolve } from '$app/paths';
+  import { asset } from "$app/paths";
 
   // Svelte 5 rune for mobile menu state
   let isOpen = $state(false);
@@ -26,7 +27,7 @@
     <!-- Brand / Logo -->
     <a href={resolve("/")} class="brand" onclick={closeMenu}>
       <img
-        src={head}
+        src={asset("/images/head.png")}
         alt="Logo"
         class="logo-image"
         style="height: 2.5rem; width: auto;"

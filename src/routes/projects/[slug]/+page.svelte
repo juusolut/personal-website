@@ -1,4 +1,5 @@
 <script>
+import { asset } from "$app/paths";
   let { data } = $props();
   let Content = $derived(data.content);
 </script>
@@ -16,7 +17,7 @@
       style="view-transition-name: project-img-{data.meta
         .slug}; view-transition-class: project-morph project-img"
     >
-      <img src={data.meta.thumbnail} loading="lazy" alt={data.meta.title} />
+      <img src={asset(data.meta.thumbnail)} loading="lazy" alt={data.meta.title} />
     </div>
 
     <h3
