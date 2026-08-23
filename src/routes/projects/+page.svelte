@@ -37,6 +37,7 @@
     position: relative;
     overflow: hidden;
     z-index: 0;
+    margin-bottom: 2rem;
 
     h2 {
       color: var(--colors-text);

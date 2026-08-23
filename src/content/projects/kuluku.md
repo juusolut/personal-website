@@ -2,5 +2,5 @@
 title: "Kuluku"
 slug: "kuluku"
 description: "Alusta, jolla käyttäjät voivat myydä kulkuneuvojaan. Rakennettu Reactilla."
-thumbnail: "/images/screenshot.png"
+thumbnail: "/images/kuluku.png"
 ---

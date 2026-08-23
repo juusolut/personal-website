@@ -2,5 +2,5 @@
 title: "friba-performance-tracker"
 slug: "friba-performance-tracker"
 description: "Frisbeegolf-tulosapplikaatio, jossa voit seurata kehittymistäsi. Dart ja Flutter."
-thumbnail: "/images/screenshot.png"
+thumbnail: "/images/friba.jpg"
 ---
