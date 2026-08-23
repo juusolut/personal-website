@@ -13,12 +13,12 @@
       </div>
       <div class="buttons">
         <a
-          href="https://www.linkedin.com/in/juuso-luttinen/"
+          href="https://www.linkedin.com/in/juusolut/"
           target="_blank"
           class="button button__linkedin">LinkedIn</a
         >
         <a
-          href="https://github.com/juusoluttinen"
+          href="https://github.com/juusolut"
           target="_blank"
           class="button button__github">GitHub</a
         >
