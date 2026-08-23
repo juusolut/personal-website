@@ -1,10 +1,15 @@
 <script>
   import ProjectItem from "$lib/components/ProjectItem.svelte";
 
-  let {data} = $props();
+  let { data } = $props();
+  let selectedId = $state(null);
+
+  const handleSelect = (id) => {
+    selectedId = id;
+  };
 </script>
 
-<section class="projects">
+<section class="projects h-padding">
   <h2>Projektit</h2>
   <p>Tässä on projekteja, joita olen vuosien varrella työstänyt.</p>
   <div class="projects__grid">
@@ -15,6 +20,8 @@
         description={item.description}
         imageSrc={item.thumbnail}
         href="/projects/{item.slug}"
+        isSelected={selectedId === item.slug}
+        onselect={handleSelect}
       />
     {/each}
   </div>
@@ -24,19 +31,18 @@
   .projects {
     max-width: var(--site-width);
     margin: 0 auto;
-/*     background-color: var(--colors-elevation-2);
+    /*     background-color: var(--colors-elevation-2);
     border: 1px solid var(--colors-primary); */
     border-radius: clamp(0px, (100cqi - 100%) * 1e5, var(--border-radiuses-lg));
     position: relative;
     overflow: hidden;
     z-index: 0;
-    padding: 0 0rem;
 
     h2 {
       color: var(--colors-text);
       position: relative;
-      padding: .5rem 0;
-      margin-left: .5rem;
+      padding: 0.5rem 0;
+      margin-left: 0.5rem;
       padding-left: 1rem;
       padding-right: 1rem;
       background-color: var(--colors-elevation-2);
@@ -54,12 +60,12 @@
     }
 
     p {
-      margin-left: .5rem;
+      margin-left: 0.5rem;
     }
   }
   .projects__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 1rem;
   }
 </style>

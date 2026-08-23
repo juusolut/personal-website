@@ -1,7 +1,6 @@
 ---
-
-title: "rn-notes"
-slug: "rn-notes"
+title: "rn-remainders"
+slug: "rn-remainders"
 description: "React-nativella tehty muistutussovellus."
 thumbnail: "/images/screenshot.png"
 ---

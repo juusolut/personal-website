@@ -22,6 +22,12 @@
   <div class="nav-container">
     <!-- Brand / Logo -->
     <a href="/" class="brand" onclick={closeMenu}>
+      <img
+        src="/images/head.png"
+        alt="Logo"
+        class="logo-image"
+        style="height: 2.5rem; width: auto;"
+      />
       <span class="logo-text">Juuso Luttinen</span>
     </a>
 
@@ -73,7 +79,7 @@
     height: 5rem;
     display: flex;
     align-items: center;
-/*     position: absolute; */
+    position: relative;
     width: 100%;
   }
 
@@ -84,7 +90,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
 
   .brand {
@@ -93,6 +99,9 @@
     text-decoration: none;
     color: inherit;
     text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   .nav-links {
@@ -101,19 +110,24 @@
     list-style: none;
     margin: 0;
     padding: 0;
-
   }
 
   .nav-links a {
     color: inherit;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: var(--font-weights-bold);
     transition: color 0.2s ease;
   }
 
   .nav-links a:hover,
   .nav-links a.active {
-    color: #38bdf8; /* Highlight color */
+    color: var(--colors-primary); /* Highlight color */
+  }
+
+  .nav-links a.active {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 3px;
   }
 
   /* Mobile Toggle Button */
@@ -132,7 +146,7 @@
   .bar {
     width: 100%;
     height: 2px;
-    background-color: #ffffff;
+    background-color: var(--colors-text);
     transition: all 0.3s ease;
   }
 
@@ -146,13 +160,15 @@
       display: none;
       position: absolute;
       top: 100%;
+      height: calc(100vh - 5rem);
       left: 0;
       right: 0;
       flex-direction: column;
-      background-color: #1a1a1a;
+      background-color: var(--colors-elevation-2);
       padding: 1.5rem;
       gap: 1rem;
-      border-top: 1px solid #333;
+      border-top: 1px solid var(--colors-text);
+      border-bottom: 1px solid var(--colors-text);
     }
 
     .nav-links.open {

@@ -1,0 +1,44 @@
+::view-transition-group(*) {
+  animation-duration: 0.15s;
+}
+
+::view-transition-group(.project-morph) {
+  animation-duration: 260ms !important;
+  animation-timing-function: ease-in-out !important;
+/*   animation-timing-function: linear; */
+  z-index: 9999;
+}
+
+::view-transition-old(.project-title),
+::view-transition-new(.project-title) {
+  mix-blend-mode: normal;
+  width: max-content;
+  height: 100%;
+  width: 100%;
+  transform-origin: left top;
+}
+
+::view-transition-old(.project-desc),
+::view-transition-new(.project-desc) {
+  mix-blend-mode: normal;
+  width: max-content;
+  height: auto;
+}
+
+::view-transition-old(.project-bg),
+::view-transition-new(.project-bg) {
+  mix-blend-mode: normal;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  background-color: var(--colors-elevation-2);
+  border-radius: var(--border-radiuses-lg);
+}
+
+::view-transition-group(.project-img),
+::view-transition-old(.project-img),
+::view-transition-new(.project-img) {
+  border-top-left-radius: var(--border-radiuses-lg);
+  border-top-right-radius: var(--border-radiuses-lg);
+  overflow: hidden;
+}

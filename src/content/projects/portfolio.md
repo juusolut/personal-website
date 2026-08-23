@@ -6,17 +6,9 @@ thumbnail: "/images/screenshot.png"
 ---
 
 <script>
+  // your code here
 </script>
 
-## The Challenge
+## Test
 
-Building a site that feels instantly responsive meant ditching heavy animations for native View Transitions. I wanted the routing to feel like a native mobile app.
-
-### Typography & Colors
-
-I utilized modern CSS properties like `oklch()` for a scalable design system.
-
-
-### Performance 
-
-By pre-rendering the static pages and leaning on Svelte 5's fine-grained reactivity, Lighthouse scores hit 100 across the board.
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, cumque ratione eligendi fugit nulla animi ab soluta, natus, tempora eos excepturi maiores! Vitae commodi reiciendis aliquid a blanditiis. Dicta, ducimus.

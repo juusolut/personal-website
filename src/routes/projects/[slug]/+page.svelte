@@ -7,6 +7,7 @@
   class="project"
   style="view-transition-name: project-bg-{data.meta
     .slug}; view-transition-class: project-morph project-bg"
+  style:z-index={true ? 9999 : "auto"}
 >
   <a href="/projects" class="back-link"> Takaisin projekteihin </a>
   <div class="project__inner">
@@ -15,7 +16,7 @@
       style="view-transition-name: project-img-{data.meta
         .slug}; view-transition-class: project-morph project-img"
     >
-      <img src={data.meta.thumbnail} loading="lazy" />
+      <img src={data.meta.thumbnail} loading="lazy" alt={data.meta.title} />
     </div>
 
     <h3

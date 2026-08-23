@@ -1,4 +1,5 @@
 <script>
+  import { preloadData, goto } from "$app/navigation";
   // Destructure properties from the $props rune
   let {
     id,
@@ -7,11 +8,24 @@
     imageSrc,
     imageAlt = title,
     href = undefined,
+    isSelected,
+    onselect,
   } = $props();
+
+  function handleClick(e) {
+    e.preventDefault();
+    // Notify parent to set this item as selected right before navigating
+    onselect?.(id);
+    goto(href);
+  }
 </script>
 
-<article class="grid-item" style="view-transition-name: project-bg-{id}; view-transition-class: project-morph project-bg">
-  <a {href} class="grid-item__link">
+<article
+  class="grid-item"
+  style="view-transition-name: project-bg-{id}; view-transition-class: project-morph project-bg"
+  style:z-index={isSelected ? 9999 : 'auto'}
+>
+  <a {href} class="grid-item__link" onclick={handleClick}>
     <div
       class="grid-item__image-wrapper"
       style="view-transition-name: project-img-{id}; view-transition-class: project-morph project-img"
@@ -19,8 +33,16 @@
       <img src={imageSrc} alt={imageAlt} loading="lazy" />
     </div>
     <div class="grid-item__content">
-      <h4 style="view-transition-name: project-title-{id}; view-transition-class: project-morph project-title">{title}</h4>
-      <p style="view-transition-name: project-desc-{id}; view-transition-class: project-morph project-desc">{description}</p>
+      <h4
+        style="view-transition-name: project-title-{id}; view-transition-class: project-morph project-title"
+      >
+        {title}
+      </h4>
+      <p
+        style="view-transition-name: project-desc-{id}; view-transition-class: project-morph project-desc"
+      >
+        {description}
+      </p>
     </div>
   </a>
 </article>
@@ -67,7 +89,7 @@
   }
 
   .grid-item:hover .grid-item__image-wrapper img {
-/*     transform: scale(1.05); */
+    /*     transform: scale(1.05); */
   }
 
   .grid-item__content {

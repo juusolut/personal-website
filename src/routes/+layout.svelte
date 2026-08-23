@@ -2,6 +2,7 @@
   import "../normalize.css";
   import "../themes.css";
   import "../app.css";
+  import "../view-transitions.css";
   import favicon from "$lib/assets/favicon.svg";
   import Navbar from "$lib/components/Navbar.svelte";
   import { onNavigate } from "$app/navigation";
