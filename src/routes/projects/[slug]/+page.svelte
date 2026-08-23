@@ -41,6 +41,7 @@
     max-width: var(--site-width);
     margin: 0 auto;
     padding: 1rem 2rem;
+    margin-bottom: 5rem;
     /*     min-height: 50rem; */
     background-color: var(--colors-elevation-2);
     border-radius: var(--border-radiuses-lg);
@@ -83,10 +84,12 @@
     border-radius: var(--border-radiuses-lg);
     overflow: hidden;
   }
+
   .back-link {
     color: var(--colors-text);
     font-weight: var(--font-weights-medium);
     padding: 1rem 0rem;
+    margin: 1rem;
     display: inline-block;
     text-decoration: none;
     &::before {

@@ -24,28 +24,37 @@
   .projects {
     max-width: var(--site-width);
     margin: 0 auto;
-    padding: 2rem;
 /*     background-color: var(--colors-elevation-2);
     border: 1px solid var(--colors-primary); */
     border-radius: clamp(0px, (100cqi - 100%) * 1e5, var(--border-radiuses-lg));
     position: relative;
     overflow: hidden;
     z-index: 0;
+    padding: 0 0rem;
 
-    & h2 {
+    h2 {
       color: var(--colors-text);
       position: relative;
-      margin-left: 1rem;
+      padding: .5rem 0;
+      margin-left: .5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      background-color: var(--colors-elevation-2);
+      width: min-content;
 
       &::before {
         content: "";
         position: absolute;
         bottom: 0;
-        left: -.5rem;
-        width: 4px;
+        left: 0;
+        width: 5px;
         height: 100%;
         background-color: var(--colors-primary);
       }
+    }
+
+    p {
+      margin-left: .5rem;
     }
   }
   .projects__grid {
