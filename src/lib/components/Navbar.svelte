@@ -2,6 +2,7 @@
   import { page } from "$app/stores";
   import head from "$lib/assets/head.png";
   import view from "$lib/assets/view.jpg";
+  import { resolve } from '$app/paths';
 
   // Svelte 5 rune for mobile menu state
   let isOpen = $state(false);
@@ -23,7 +24,7 @@
 <nav class="navbar">
   <div class="nav-container">
     <!-- Brand / Logo -->
-    <a href="./" class="brand" onclick={closeMenu}>
+    <a href={resolve("/")} class="brand" onclick={closeMenu}>
       <img
         src={head}
         alt="Logo"
@@ -48,24 +49,24 @@
     <!-- Navigation Links -->
     <ul class="nav-links" class:open={isOpen}>
       <li>
-        <a href="./" class:active={isActive("/")} onclick={closeMenu}>Etusivu</a
+        <a href={resolve("/")} class:active={isActive("/")} onclick={closeMenu}>Etusivu</a
         >
       </li>
       <li>
-        <a href="./about" class:active={isActive("/about")} onclick={closeMenu}
+        <a href={resolve("/about")} class:active={isActive("/about")} onclick={closeMenu}
           >Minä</a
         >
       </li>
       <li>
         <a
-          href="./projects"
+          href={resolve("/projects")}
           class:active={isActive("/projects")}
           onclick={closeMenu}>Projektit</a
         >
       </li>
       <li>
         <a
-          href="./contact"
+          href={resolve("/contact")}
           class:active={isActive("/contact")}
           onclick={closeMenu}>Yhteystiedot</a
         >
