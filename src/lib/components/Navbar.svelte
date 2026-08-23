@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from '$app/state';
   import { resolve } from '$app/paths';
   import { asset } from "$app/paths";
 
@@ -16,7 +16,7 @@
 
   // Helper to check if a route is currently active
   function isActive(path: string): boolean {
-    return $page.url.pathname === path;
+    return page.url.pathname === resolve(path as `/`);
   }
 </script>
 
