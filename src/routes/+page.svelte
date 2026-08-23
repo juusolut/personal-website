@@ -1,6 +1,5 @@
 <script>
-  import me from "$lib/assets/me.png";
-  import view from "$lib/assets/view.jpg";
+  import { asset } from "$app/paths";
   import FloatingHead from "$lib/components/FloatingHead.svelte";
 </script>
 
@@ -23,9 +22,9 @@
           class="button button__github">GitHub</a
         >
       </div>
-      <img src={me} alt="Juuso Luttinen" class="nutshell__image" />
+      <img src={asset("/images/me.png")} alt="Juuso Luttinen" class="nutshell__image" />
       <div class="nutshell__bg-image-container">
-        <img src={view} alt="View of the city" />
+        <img src={asset("/images/view.jpg")} alt="View of the city" />
       </div>
     </div>
   </div>

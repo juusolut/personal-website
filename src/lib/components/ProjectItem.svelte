@@ -1,5 +1,6 @@
 <script>
   import { preloadData, goto } from "$app/navigation";
+  import { asset } from "$app/paths";
   import { resolve } from '$app/paths';
   // Destructure properties from the $props rune
   let {
@@ -31,7 +32,7 @@
       class="grid-item__image-wrapper"
       style="view-transition-name: project-img-{id}; view-transition-class: project-morph project-img"
     >
-      <img src={imageSrc} alt={imageAlt} loading="lazy" />
+      <img src={asset(imageSrc)} alt={imageAlt} loading="lazy" />
     </div>
     <div class="grid-item__content">
       <h4
