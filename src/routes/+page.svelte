@@ -1,6 +1,6 @@
 <script>
   import me from "$lib/assets/me.png";
-  import head from "$lib/assets/head.png";
+  import view from "$lib/assets/view.jpg";
   import FloatingHead from "$lib/components/FloatingHead.svelte";
 </script>
 
@@ -25,7 +25,7 @@
       </div>
       <img src={me} alt="Juuso Luttinen" class="nutshell__image" />
       <div class="nutshell__bg-image-container">
-        <img src="/images/view.jpg" alt="View of the city" />
+        <img src={view} alt="View of the city" />
       </div>
     </div>
   </div>
