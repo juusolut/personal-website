@@ -17,7 +17,7 @@
     e.preventDefault();
     // Notify parent to set this item as selected right before navigating
     onselect?.(id);
-    goto(href);
+    goto(resolve(href));
   }
 </script>
 
