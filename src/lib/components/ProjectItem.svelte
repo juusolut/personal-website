@@ -1,5 +1,6 @@
 <script>
   import { preloadData, goto } from "$app/navigation";
+  import { resolve } from '$app/paths';
   // Destructure properties from the $props rune
   let {
     id,
@@ -25,7 +26,7 @@
   style="view-transition-name: project-bg-{id}; view-transition-class: project-morph project-bg"
   style:z-index={isSelected ? 9999 : 'auto'}
 >
-  <a {href} class="grid-item__link" onclick={handleClick}>
+  <a href={resolve(href)} class="grid-item__link" onclick={handleClick}>
     <div
       class="grid-item__image-wrapper"
       style="view-transition-name: project-img-{id}; view-transition-class: project-morph project-img"
