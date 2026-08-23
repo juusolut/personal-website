@@ -3,6 +3,7 @@
   import { scale, fade } from "svelte/transition";
   import { backOut } from "svelte/easing";
   import { asset } from "$app/paths";
+  import { resolve } from '$app/paths';
 
   // 1. Declare state using the $state rune
   let scrollY = $state(0);
@@ -22,7 +23,7 @@
   >
     <img src={asset("/images/head.png")} alt="Juuso Luttinen" />
     <div class="floating-head__bubble">
-      <span> Psst! Löydät yhteystietoni <a href="/contact">täältä</a>.</span>
+      <span> Psst! Löydät yhteystietoni <a href={resolve("/contact")}>täältä</a>.</span>
     </div>
   </div>
 {/if}

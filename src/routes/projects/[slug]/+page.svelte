@@ -1,5 +1,6 @@
 <script>
-import { asset } from "$app/paths";
+  import { asset } from "$app/paths";
+  import { resolve } from "$app/paths";
   let { data } = $props();
   let Content = $derived(data.content);
 </script>
@@ -10,14 +11,18 @@ import { asset } from "$app/paths";
     .slug}; view-transition-class: project-morph project-bg"
   style:z-index={true ? 9999 : "auto"}
 >
-  <a href="/projects" class="back-link"> Takaisin projekteihin </a>
+  <a href={resolve("/projects")} class="back-link"> Takaisin projekteihin </a>
   <div class="project__inner">
     <div
       class="grid-item__image-wrapper"
       style="view-transition-name: project-img-{data.meta
         .slug}; view-transition-class: project-morph project-img"
     >
-      <img src={asset(data.meta.thumbnail)} loading="lazy" alt={data.meta.title} />
+      <img
+        src={asset(data.meta.thumbnail)}
+        loading="lazy"
+        alt={data.meta.title}
+      />
     </div>
 
     <h3
