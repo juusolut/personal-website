@@ -54,7 +54,7 @@
       {#each tags as tagKey}
         {@const tag: TagConfig = getTagInfo(tagKey)}
         <li class="tag-list__tag-chip" style="--bg-color: {tag.bg};">
-          <Icon name={tag.icon} />
+          <Icon name={tag.icon} size="1.25rem" />
           <span class="tag-label">{tag.label}</span>
         </li>
       {/each}
@@ -142,8 +142,8 @@
   .tag-list__tag-chip {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.2rem 0.5rem;
+    gap: 0.25rem;
+    padding: 0.1rem 0.5rem;
     border-radius: var(--border-radiuses-full);
     font-size: var(--font-sizes-xs);
     font-weight: var(--font-weights-medium);

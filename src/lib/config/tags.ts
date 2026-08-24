@@ -31,8 +31,13 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
   },
   godot: {
     label: 'Godot',
-    bg: '#8fa5b9',
+    bg: '#8fa5b97e',
     icon: "Godot"
+  },
+  flutter: {
+    label: 'Flutter',
+    bg: '#669fd467',
+    icon: "Flutter"
   }
 };
 
