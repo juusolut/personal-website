@@ -1,6 +1,7 @@
 <script>
   import { asset } from "$app/paths";
   import { resolve } from "$app/paths";
+  import Icon from "$lib/components/Icon.svelte";
   let { data } = $props();
   let Content = $derived(data.content);
 </script>
@@ -11,7 +12,7 @@
     .slug}; view-transition-class: project-morph project-bg"
   style:z-index={true ? 9999 : "auto"}
 >
-  <a href={resolve("/projects")} class="back-link"> Takaisin projekteihin </a>
+  <a href={resolve("/projects")} class="back-link"> <Icon name="ArrowNarrowLeft" /> Takaisin projekteihin </a>
   <div class="project__inner">
     <div
       class="grid-item__image-wrapper"
@@ -98,11 +99,9 @@
     font-weight: var(--font-weights-medium);
     padding: 1rem 0rem;
     margin: 1rem;
-    display: inline-block;
+    display: inline-flex;
     text-decoration: none;
-    &::before {
-      content: "← ";
-      margin-right: 0.5rem;
-    }
+    align-items: center;
+    gap: 0.5rem;
   }
 </style>
