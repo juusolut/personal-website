@@ -57,6 +57,7 @@
     overflow: hidden;
     box-shadow: var(--shadows-sm);
     z-index: 0;
+    border: 1px solid var(--colors-text);
 
     h3 {
       display: inline-block;

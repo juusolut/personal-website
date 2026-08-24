@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
   import ProjectItem from "$lib/components/ProjectItem.svelte";
+  import Icon from "$lib/components/Icon.svelte";
+  import { getTagInfo, type TagConfig } from '$lib/config/tags';
 
   let { data } = $props();
   let selectedId = $state(null);
@@ -7,6 +9,7 @@
   const handleSelect = (id) => {
     selectedId = id;
   };
+
 </script>
 
 <section class="projects h-padding">
@@ -18,6 +21,7 @@
         id={item.slug}
         title={item.title}
         description={item.description}
+        tags={item.tags}
         imageSrc={item.thumbnail}
         href="/projects/{item.slug}"
         isSelected={selectedId === item.slug}

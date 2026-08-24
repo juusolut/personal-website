@@ -2,9 +2,29 @@ import adapter from "@sveltejs/adapter-static";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 import { mdsvex } from "mdsvex";
+import { iconsSpritesheet } from "vite-plugin-icons-spritesheet";
 
 export default defineConfig({
   plugins: [
+    iconsSpritesheet({
+      // 1. Where your .svg files are located
+      inputDir: "src/lib/assets/icons",
+
+      // 2. Where to put the final sprite (needs to be in public for easy access)
+      outputDir: "static",
+
+      // 3. File name of the generated sprite
+      fileName: "icon_spritesheet.svg",
+
+      // 4. Generate TypeScript types (The "Magic" part)
+      withTypes: true,
+
+      // 5. Where to save the generated icon name types
+      typesOutputFile: "src/types/icon-names.d.ts",
+
+      // 6. Optional: Auto-format the generated files
+      formatter: "prettier",
+    }),
     sveltekit({
       extensions: [".svelte", ".md"],
       preprocess: [

@@ -1,12 +1,16 @@
-<script>
+<script lang="ts">
   import { preloadData, goto } from "$app/navigation";
   import { asset } from "$app/paths";
-  import { resolve } from '$app/paths';
+  import { resolve } from "$app/paths";
+  import { getTagInfo, type TagConfig } from "$lib/config/tags";
+  import Icon from "$lib/components/Icon.svelte";
+
   // Destructure properties from the $props rune
   let {
     id,
     title,
     description,
+    tags = [],
     imageSrc,
     imageAlt = title,
     href = undefined,
@@ -25,7 +29,7 @@
 <article
   class="grid-item"
   style="view-transition-name: project-bg-{id}; view-transition-class: project-morph project-bg"
-  style:z-index={isSelected ? 9999 : 'auto'}
+  style:z-index={isSelected ? 9999 : "auto"}
 >
   <a href={resolve(href)} class="grid-item__link" onclick={handleClick}>
     <div
@@ -46,6 +50,18 @@
         {description}
       </p>
     </div>
+    <ul class="tag-list">
+      {#each tags as tagKey}
+        {@const tag: TagConfig = getTagInfo(tagKey)}
+        <li
+          class="tag-list__tag-chip"
+          style="--bg-color: {tag.bg};"
+        >
+          <Icon name={tag.icon} />
+          <span class="tag-label">{tag.label}</span>
+        </li>
+      {/each}
+    </ul>
   </a>
 </article>
 
@@ -60,6 +76,7 @@
       box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
+    border: 1px solid var(--colors-text);
   }
 
   .grid-item:hover {
@@ -113,5 +130,30 @@
     font-size: var(--font-sizes-sm);
     color: var(--colors-text-light);
     line-height: 1.5;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem 1.25rem 1.25rem;
+    margin: 0;
+    list-style: none;
+  }
+
+  .tag-list__tag-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--border-radiuses-full);
+    font-size: var(--font-sizes-xs);
+    font-weight: var(--font-weights-medium);
+    background-color: var(--bg-color);
+    border: 1px solid var(--colors-text);
+
+    > span {
+      color: var(--colors-text);
+    }
   }
 </style>
