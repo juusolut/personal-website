@@ -4,6 +4,7 @@ export const iconNames = [
   "ArrowNarrowLeft",
   "Default",
   "Expo",
+  "Godot",
   "React",
   "RubyOnRails",
   "Svelte",

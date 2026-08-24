@@ -28,6 +28,11 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
     label: 'Svelte',
     bg: '#cccccc',
     icon: "Svelte"
+  },
+  godot: {
+    label: 'Godot',
+    bg: '#8fa5b9',
+    icon: "Godot"
   }
 };
 

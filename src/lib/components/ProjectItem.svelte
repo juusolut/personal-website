@@ -53,10 +53,7 @@
     <ul class="tag-list">
       {#each tags as tagKey}
         {@const tag: TagConfig = getTagInfo(tagKey)}
-        <li
-          class="tag-list__tag-chip"
-          style="--bg-color: {tag.bg};"
-        >
+        <li class="tag-list__tag-chip" style="--bg-color: {tag.bg};">
           <Icon name={tag.icon} />
           <span class="tag-label">{tag.label}</span>
         </li>
@@ -104,6 +101,7 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    /*     object-position: 0% 20%; */
     object-position: top;
   }
 
@@ -150,7 +148,8 @@
     font-size: var(--font-sizes-xs);
     font-weight: var(--font-weights-medium);
     background-color: var(--bg-color);
-    border: 1px solid color-mix(in oklch, var(--colors-text) 95%, var(--bg-color));
+    border: 1px solid
+      color-mix(in oklch, var(--colors-text) 95%, var(--bg-color));
 
     > span {
       color: color-mix(in oklch, var(--colors-text) 95%, var(--bg-color));
