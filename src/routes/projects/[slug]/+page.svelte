@@ -49,9 +49,8 @@
       >
         {data.meta.description}
       </p>
-
-      <Content />
     </div>
+    <Content />
   </article>
 </div>
 
@@ -63,7 +62,7 @@
     max-width: var(--site-width);
     width: 100%;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     margin-bottom: 5rem;
     /*     min-height: 50rem; */
     background-color: var(--colors-elevation-2);
@@ -75,12 +74,14 @@
     border: 1px solid var(--colors-text);
 
     h3 {
-      display: inline-block;
       width: fit-content;
+      height: fit-content;
+      grid-area: title;
     }
 
     .undertext {
       color: var(--colors-text-light);
+      grid-area: desc;
     }
 
     img {
@@ -94,18 +95,33 @@
   }
 
   .project__inner {
-    display: flex;
-    flex-direction: column;
-    /*     background-color: red; */
+    display: grid;
+    width: 100%;
+    background-color: color-mix(
+      in oklab,
+      var(--colors-elevation-2),
+      var(--colors-primary) 15%
+    );
+    padding: 1rem;
+    border-radius: var(--border-radiuses-lg);
+
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-rows: auto max-content;
+    grid-template-areas:
+      "image"
+      "title"
+      "desc";
   }
 
   .grid-item__image-wrapper {
-    width: 50%;
+    width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
     background-color: #f3f4f6;
     border-radius: var(--border-radiuses-lg);
     overflow: hidden;
+    grid-area: image;
   }
 
   .back-link-container {
@@ -138,5 +154,34 @@
     gap: 0.5rem;
     top: 1rem;
     margin: 0.5rem 0;
+  }
+
+  .separator {
+    position: relative;
+    padding: 1rem 0;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      border-bottom: 1px solid var(--colors-text);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+      bottom: 0;
+    }
+  }
+
+  @container (width > 50rem) {
+    .project__inner {
+      grid-template-columns: 1.2fr 1fr;
+      grid-template-rows: auto max-content;
+      grid-template-areas:
+        "title image"
+        "desc image";
+    }
+
+    .project {
+      padding: 1rem 2rem;
+    }
   }
 </style>
