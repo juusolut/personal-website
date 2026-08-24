@@ -150,10 +150,10 @@
     font-size: var(--font-sizes-xs);
     font-weight: var(--font-weights-medium);
     background-color: var(--bg-color);
-    border: 1px solid var(--colors-text);
+    border: 1px solid color-mix(in oklch, var(--colors-text) 95%, var(--bg-color));
 
     > span {
-      color: var(--colors-text);
+      color: color-mix(in oklch, var(--colors-text) 95%, var(--bg-color));
     }
   }
 </style>

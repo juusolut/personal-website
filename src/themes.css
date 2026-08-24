@@ -3,6 +3,7 @@
     --border-radiuses-sm: .4rem;
     --border-radiuses-md: .8rem;
     --border-radiuses-lg: 1.2rem;
+    --border-radiuses-xl: 2rem;
     --border-radiuses-full: 9999px;
 
     /* Base: 16px */
@@ -69,10 +70,12 @@
     --border-mix-shading: oklch(0 0 0);
 
     /* BORDER STRENGHT */
-    --border-strength-1: 0%;
     --border-strength-1: 10%;
     --border-strength-2: 20%;
-    --border-strength-3: 30%;
+    --border-strength-3: 40%;
+    --border-strength-5: 60%;
+    --border-strength-6: 80%;
+    --border-strength-7: 100%;
 
     /* ELEVATION STRENGTH */
     --elevation-strength-1: 40%;

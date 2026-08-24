@@ -35,9 +35,9 @@
 
 <style>
   .nutshell {
-    height: auto;
+    height: 15rem;
     width: 100%;
-    padding-top: 2rem;
+/*     padding-top: 2rem; */
     padding-bottom: 6rem;
     border-bottom: 1px solid var(--colors-text);
   }
@@ -50,6 +50,7 @@
     border: 1px solid var(--colors-text);
     /*     border-radius: clamp(0px, (100cqi - 100%) * 1e5, var(--border-radiuses-lg)); */
     border-radius: var(--border-radiuses-lg);
+ /*    border-top-right-radius: 15rem; */
     font-weight: var(--font-weights-bold);
     color: var(--colors-text);
     position: relative;

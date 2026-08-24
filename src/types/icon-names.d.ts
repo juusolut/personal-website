@@ -3,8 +3,10 @@
 export const iconNames = [
   "ArrowNarrowLeft",
   "Default",
+  "Expo",
   "React",
   "RubyOnRails",
+  "Svelte",
 ] as const
 
 export type IconName = typeof iconNames[number]

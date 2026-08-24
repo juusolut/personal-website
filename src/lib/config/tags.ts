@@ -1,3 +1,4 @@
+import type { svelte } from "@sveltejs/vite-plugin-svelte";
 import { type IconName } from "../../types/icon-names";
 
 export interface TagConfig {
@@ -15,13 +16,18 @@ export const DEFAULT_TAG: TagConfig = {
 export const TAG_CONFIG: Record<string, TagConfig> = {
   react: {
     label: 'React',
-    bg: 'lightblue',
+    bg: '#9bbec9b6',
     icon: "React"
   },
   rubyonrails: {
     label: 'RubyOnRails',
-    bg: '#a77575',
+    bg: '#c99ba9',
     icon: "RubyOnRails"
+  },
+  svelte: {
+    label: 'Svelte',
+    bg: '#cccccc',
+    icon: "Svelte"
   }
 };
 

@@ -84,6 +84,7 @@
     align-items: center;
     position: relative;
     width: 100%;
+    margin-bottom: 2rem;
   }
 
   .nav-container {

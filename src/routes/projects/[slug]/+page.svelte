@@ -4,49 +4,64 @@
   import Icon from "$lib/components/Icon.svelte";
   let { data } = $props();
   let Content = $derived(data.content);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    history.back();
+  };
 </script>
 
-<article
-  class="project"
-  style="view-transition-name: project-bg-{data.meta
-    .slug}; view-transition-class: project-morph project-bg"
-  style:z-index={true ? 9999 : "auto"}
->
-  <a href={resolve("/projects")} class="back-link"> <Icon name="ArrowNarrowLeft" /> Takaisin projekteihin </a>
-  <div class="project__inner">
-    <div
-      class="grid-item__image-wrapper"
-      style="view-transition-name: project-img-{data.meta
-        .slug}; view-transition-class: project-morph project-img"
-    >
-      <img
-        src={asset(data.meta.thumbnail)}
-        loading="lazy"
-        alt={data.meta.title}
-      />
+<div class="project-container h-padding">
+  <article
+    class="project"
+    style="view-transition-name: project-bg-{data.meta
+      .slug}; view-transition-class: project-morph project-bg"
+    style:z-index={true ? 9999 : "auto"}
+  >
+    <div class="back-link-container">
+      <a href={resolve("/projects")} onclick={handleClick} class="back-link">
+        <Icon name="ArrowNarrowLeft" /> Takaisin projekteihin
+      </a>
     </div>
+    <div class="project__inner">
+      <div
+        class="grid-item__image-wrapper"
+        style="view-transition-name: project-img-{data.meta
+          .slug}; view-transition-class: project-morph project-img"
+      >
+        <img
+          src={asset(data.meta.thumbnail)}
+          loading="lazy"
+          alt={data.meta.title}
+        />
+      </div>
 
-    <h3
-      style="view-transition-name: project-title-{data.meta
-        .slug}; view-transition-class: project-morph project-title"
-    >
-      {data.meta.title}
-    </h3>
-    <p
-      class="undertext"
-      style="view-transition-name: project-desc-{data.meta
-        .slug}; view-transition-class: project-morph project-desc"
-    >
-      {data.meta.description}
-    </p>
+      <h3
+        style="view-transition-name: project-title-{data.meta
+          .slug}; view-transition-class: project-morph project-title"
+      >
+        {data.meta.title}
+      </h3>
+      <p
+        class="undertext"
+        style="view-transition-name: project-desc-{data.meta
+          .slug}; view-transition-class: project-morph project-desc"
+      >
+        {data.meta.description}
+      </p>
 
-    <Content />
-  </div>
-</article>
+      <Content />
+    </div>
+  </article>
+</div>
 
 <style>
+  .project-container {
+    width: 100%;
+  }
   .project {
     max-width: var(--site-width);
+    width: 100%;
     margin: 0 auto;
     padding: 1rem 2rem;
     margin-bottom: 5rem;
@@ -55,7 +70,6 @@
     border-radius: var(--border-radiuses-lg);
     font-weight: var(--font-weights-bold);
     position: relative;
-    overflow: hidden;
     box-shadow: var(--shadows-sm);
     z-index: 0;
     border: 1px solid var(--colors-text);
@@ -94,14 +108,35 @@
     overflow: hidden;
   }
 
+  .back-link-container {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background-color: var(--colors-elevation-2);
+    padding: 0rem 0;
+    border-bottom: 1px solid var(--colors-text);
+    margin-bottom: 1rem;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+      bottom: 0;
+    }
+  }
+
   .back-link {
     color: var(--colors-text);
     font-weight: var(--font-weights-medium);
     padding: 1rem 0rem;
-    margin: 1rem;
+    padding-right: 1rem;
     display: inline-flex;
     text-decoration: none;
     align-items: center;
     gap: 0.5rem;
+    top: 1rem;
+    margin: 0.5rem 0;
   }
 </style>
