@@ -6,17 +6,22 @@ thumbnail: "/images/processed/friba-thumb.webp"
 tags: ["Flutter"]
 ---
 
-<script></script>
+<script>
+  import { asset } from '$app/paths';
+</script>
 
-# Alustus
+## Alustus
 
 Osana yliopistokurssia saimme vapaat kädet tehdä jonkinlainen ohjelmisto. Opiskelijakaverin ja meikäläisen yhteisen harrastuksen perusteella päädyimme tekemään frisbeegolf-mobiilisovelluksen. Sovelluskehykseksi valikoitu Flutter (Google). Vaikkakin se oli siihen aikaan suhteellisen tuore framework, se vaikutti kiinnostavalta ja sellaiselta että kehittäminen olisi jouhevaa. Hot-reload! Uuden opettelu ja Flutterin mukanaan tuoma koodikieli, Dart, kiinnosti. Opintoja oli tässä vaiheessa jo jonkin verran takana, joten halusimme haastaa itseämme siinä miten nopeasti omaksuu uuden koodikielien syntaksin ja koodauskäytännöt.
 
-<img src="/images/processed/friba-medium.webp" alt="Frisbeegolf application preview" width="600" />
+<img src={asset('/images/processed/friba-medium.webp')} alt="Frisbeegolf application preview" width="600" />
 
-# Ohjelmistokehitys
+## Ohjelmistokehitys
 
 Profiloitiin mahdollisia käyttäjiä, yritettiin asettua heidän asemaan. Sovelluksesta haluttiin yksinkertainen, jotta se olisi aidosti hyödyllinen kierroksella.
 
-# Lopputulos
+<img src={asset('/images/processed/friba-medium.webp')} alt="Frisbeegolf application preview" width="600" />
+
+## Lopputulos
+
 Lopputulos oli toimiva ja selkä, mutta ei tietenkään täydellinen, koska kyseessä oli molempien ensikosketus mobiilisovelluskehitykseen. Aikarajojen puitteissa olimme kuitenkin tyytyväisiä tuotokseen.

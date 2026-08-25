@@ -3,18 +3,19 @@ import fs from 'fs';
 import sharp from 'sharp';
 
 export function autoImageProcessor(userOptions = {}) {
-  // Merge user options with sensible defaults
   const opts = {
     watchDir: 'static/images/raw',
     outputDir: 'static/images/processed',
-    format: 'webp', // 'webp', 'jpeg', 'png', etc.
+    cropSuffix: '_16x9',
+    format: 'webp',
     quality: 80,
+    effort: 5,
     sizes: {
-      thumb: { width: 640, height: 360 },  // 16:9
-      large: { width: 1920, height: 1080 } // 16:9
+      thumb: 640,
+      large: 1920
     },
     fit: 'cover',
-    position: 'center',
+    position: 'attention',
     ...userOptions
   };
 
@@ -25,42 +26,82 @@ export function autoImageProcessor(userOptions = {}) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  async function processImage(filePath : string) {
+  async function processImage(filePath, force = false) {
     const filename = path.basename(filePath);
     const ext = path.extname(filename);
     const nameWithoutExt = path.basename(filename, ext);
 
-    // Skip hidden files or already processed outputs
-    if (filename.startsWith('.') || Object.keys(opts.sizes).some((key) => filename.includes(`-${key}`))) {
+    if (filename.startsWith('.') || Object.keys(opts.sizes).some((k) => filename.includes(`-${k}`))) {
       return;
     }
 
+    const shouldCrop = nameWithoutExt.endsWith(opts.cropSuffix);
+    const cleanBaseName = shouldCrop
+      ? nameWithoutExt.slice(0, -opts.cropSuffix.length)
+      : nameWithoutExt;
+
     try {
-      // Loop over configured size variants dynamically
-      for (const [key, dim] of Object.entries(opts.sizes)) {
-        const outputPath = path.join(outputDir, `${nameWithoutExt}-${key}.${opts.format}`);
+      for (const [key, sizeVal] of Object.entries(opts.sizes)) {
+        const outputPath = path.join(outputDir, `${cleanBaseName}-${key}.${opts.format}`);
 
-        await sharp(filePath)
-          .resize(dim.width, dim.height, {
-            fit: opts.fit,
-            position: opts.position
-          })
-          .toFormat(opts.format, { quality: opts.quality })
-          .toFile(outputPath);
+        // If not forced and file already exists, skip processing
+        if (!force && fs.existsSync(outputPath)) {
+          continue;
+        }
+
+        const width = typeof sizeVal === 'number' ? sizeVal : sizeVal.width;
+        const targetHeight = shouldCrop ? Math.round((width * 9) / 16) : null;
+
+        const resizeOptions = {
+          withoutEnlargement: true
+        };
+
+        if (shouldCrop) {
+          resizeOptions.fit = opts.fit;
+          resizeOptions.position = opts.position;
+        } else {
+          resizeOptions.fit = 'inside';
+        }
+
+        let pipeline = sharp(filePath).resize(width, targetHeight, resizeOptions);
+
+        if (opts.format === 'avif') {
+          pipeline = pipeline.avif({ quality: opts.quality, effort: opts.effort });
+        } else {
+          pipeline = pipeline.webp({ quality: opts.quality, effort: opts.effort, smartSubsample: true });
+        }
+
+        await pipeline.toFile(outputPath);
+        console.log(`[Image Plugin] Generated: ${path.basename(outputPath)}`);
       }
-
-      console.log(`[Image Plugin] Processed ${filename} (${opts.format.toUpperCase()})`);
     } catch (err) {
       console.error(`[Image Plugin] Error processing ${filename}:`, err);
     }
   }
 
+  // Scan all existing files in /raw and process any missing outputs
+  async function syncAllImages() {
+    if (!fs.existsSync(watchDir)) return;
+
+    const files = fs.readdirSync(watchDir);
+    for (const file of files) {
+      const fullPath = path.join(watchDir, file);
+      if (fs.statSync(fullPath).isFile()) {
+        await processImage(fullPath, false);
+      }
+    }
+  }
+
   return {
     name: 'vite-plugin-auto-image-processor',
-    configureServer(server) {
+    async configureServer(server) {
+      // 1. Check for missing images when dev server starts
+      await syncAllImages();
+
+      // 2. Process images as they are added or modified
       const handleFile = (filePath) => {
         if (filePath.startsWith(watchDir)) {
-          processImage(filePath);
+          processImage(filePath, true);
         }
       };
 

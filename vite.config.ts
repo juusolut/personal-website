@@ -11,9 +11,9 @@ export default defineConfig({
       format: "webp",
       quality: 85,
       sizes: {
-        thumb: { width: 480, height: 270 }, // Custom 16:9 small
-        medium: { width: 960, height: 540 }, // Added custom variant
-        large: { width: 1920, height: 1080 }, // Custom 16:9 large
+        thumb: 640,
+        medium: 960,
+        large: 1920
       },
       position: "attention", // Smart crop using Sharp's entropy/focus detection
     }),
