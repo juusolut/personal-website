@@ -14,13 +14,13 @@ tags: ["Flutter"]
 
 Osana yliopistokurssia saimme vapaat kädet tehdä jonkinlainen ohjelmisto. Opiskelijakaverin ja meikäläisen yhteisen harrastuksen perusteella päädyimme tekemään frisbeegolf-mobiilisovelluksen. Sovelluskehykseksi valikoitu Flutter (Google). Vaikkakin se oli siihen aikaan suhteellisen tuore framework, se vaikutti kiinnostavalta ja sellaiselta että kehittäminen olisi jouhevaa. Hot-reload! Uuden opettelu ja Flutterin mukanaan tuoma koodikieli, Dart, kiinnosti. Opintoja oli tässä vaiheessa jo jonkin verran takana, joten halusimme haastaa itseämme siinä miten nopeasti omaksuu uuden koodikielien syntaksin ja koodauskäytännöt.
 
-<img src={asset('/images/processed/friba-medium.webp')} alt="Frisbeegolf application preview" width="600" />
+<img src={asset('/images/processed/friba-medium.webp')} alt="Frisbeegolf application preview" width="200" />
 
 ## Ohjelmistokehitys
 
 Profiloitiin mahdollisia käyttäjiä, yritettiin asettua heidän asemaan. Sovelluksesta haluttiin yksinkertainen, jotta se olisi aidosti hyödyllinen kierroksella.
 
-<img src={asset('/images/processed/friba-medium.webp')} alt="Frisbeegolf application preview" width="600" />
+<img src={asset('/images/processed/friba-medium.webp')} alt="Frisbeegolf application preview" width="200" />
 
 ## Lopputulos
 
