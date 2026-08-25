@@ -2,7 +2,7 @@
 title: "Factory"
 slug: "factory"
 description: "P2P verkkoräiskintäpeli. Rakennettu Godotilla."
-thumbnail: "/images/placeholder.jpg"
+thumbnail: "/images/processed/placeholder-thumb.webp"
 tags: ["Godot"]
 ---
 

@@ -38,6 +38,11 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
     label: 'Flutter',
     bg: '#669fd467',
     icon: "Flutter"
+  },
+  dotnet: {
+    label: '.Net',
+    bg: '#512bd480',
+    icon: "Dotnet"
   }
 };
 
