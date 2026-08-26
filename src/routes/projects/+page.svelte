@@ -9,7 +9,27 @@
   const handleSelect = (id) => {
     selectedId = id;
   };
+
+  import { onMount } from "svelte";
+
+  let scrollY = $state(0);
+
+  // Restore scroll position when mounting the page
+  onMount(() => {
+    const savedPosition = sessionStorage.getItem("projects_scroll_pos");
+    if (savedPosition !== null) {
+      window.scrollTo(0, parseInt(savedPosition, 10));
+      // Optionally clear it so fresh visits start at top
+      sessionStorage.removeItem("projects_scroll_pos");
+    }
+  });
+
+  function saveScrollPosition() {
+    sessionStorage.setItem("projects_scroll_pos", scrollY.toString());
+  }
 </script>
+
+<svelte:window bind:scrollY />
 
 <div class="projects-container h-padding">
   <section class="projects">
