@@ -33,8 +33,8 @@
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     border: none;
     background: none;
 

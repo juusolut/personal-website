@@ -9,7 +9,7 @@ export interface TagConfig {
 
 export const DEFAULT_TAG: TagConfig = {
   label: 'Code',
-  bg: 'rgba(107, 114, 128, 0.12)',
+  bg: 'rgba(151, 151, 151, 0.46)',
   icon: "Default"
 };
 

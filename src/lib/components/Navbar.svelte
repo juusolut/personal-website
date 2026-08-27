@@ -50,7 +50,7 @@
     </a>
 
     <button class="theme-button" onclick={toggleTheme} aria-label="Toggle theme">
-      Switch to {theme === "dark" ? "light" : "dark"} mode
+     {theme === "dark" ? "☀️ Theme" : "🌙 Theme"}
     </button>
 
     <!-- Mobile Hamburger Button -->
