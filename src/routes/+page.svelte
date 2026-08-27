@@ -36,27 +36,32 @@
 <section class="projects"><div class="projects__grid"></div></section>
 <section class="recommendation h-padding">
   <div class="recommendation__inner section-content">
+    <h1 class="toni-heading">Kaverin <!-- <br> --> suusta</h1>
     <div class="recommendation__text-box">
-      <h1 class="view-title">Kaverin suusta</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolores
+        voluptatem odit officia, explicabo quaerat repellendus facere,
+        distinctio temporibus, odio velit. Exercitationem commodi aperiam minima
+        excepturi nihil eius, beatae laboriosam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolores
         voluptatem odit officia, explicabo quaerat repellendus facere,
         distinctio temporibus, odio velit. Exercitationem commodi aperiam minima
         excepturi nihil eius, beatae laboriosam.
       </p>
     </div>
-    <div class="profile-image-container waves-pattern">
-      <img
-        class="me-sticking-out"
-        src={asset("/images/toni.png")}
-        alt="Juuso Luttinen"
-      />
-      <div class="image-crop-container">
+    <div class="toni-container">
+      <div class="profile-image-container waves-pattern">
         <img
-          class="profile-image"
+          class="me-sticking-out"
           src={asset("/images/toni.png")}
           alt="Juuso Luttinen"
         />
+        <div class="image-crop-container">
+          <img
+            class="profile-image"
+            src={asset("/images/toni.png")}
+            alt="Juuso Luttinen"
+          />
+        </div>
       </div>
       <div class="toni-introduction">
         <strong>Toni Pennanen</strong>
@@ -86,7 +91,12 @@
       bottom: 0;
       left: 0;
       background-color: var(--colors-primary);
-      border-top: 1px solid var(--colors-text);
+      border-top: 1px solid
+        color-mix(
+          in oklch,
+          var(--colors-primary),
+          var(--border-mix-shading) var(--border-strength-1)
+        );
     }
   }
 
@@ -100,7 +110,7 @@
     font-weight: var(--font-weights-bold);
     color: var(--colors-text);
     position: relative;
-/*     overflow: hidden; */
+    /*     overflow: hidden; */
     z-index: 0;
     display: flex;
     flex-direction: column;
@@ -124,7 +134,11 @@
       width: calc(100% + 2px);
       left: -1px;
       top: -1px;
-      background: linear-gradient(180deg, var(--colors-secondary), var(--colors-elevation-0) 50%);
+      background: linear-gradient(
+        180deg,
+        var(--colors-secondary),
+        var(--colors-elevation-0) 50%
+      );
       border-radius: var(--border-radiuses-lg);
     }
 
@@ -151,7 +165,7 @@
     align-items: left;
     > h1 {
       margin: 0;
-      font-size: clamp(var(--font-sizes-md), 5cqi + 0.5rem, 6cqi);
+      font-size: clamp(var(--font-sizes-md), 5cqi + 0.5rem, 4.5cqi);
     }
 
     > h1 > span {
@@ -192,14 +206,24 @@
   }
 
   .button {
-    background: none;
-    border: 1px solid var(--colors-text);
-    border-radius: var(--border-radiuses-md);
     padding: 0.5rem 2rem;
     position: relative;
     width: fit-content;
     font-weight: var(--font-weights-bold);
-    color: var(--colors-text);
+    color: color-mix(in oklch, var(--bg-color), var(--colors-text) 90%);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+    text-decoration: none;
+    backdrop-filter: blur(5px);
+    background: color-mix(in oklch, var(--bg-color) 20%, transparent);
+    border: 2px solid
+      color-mix(
+        in oklch,
+        var(--bg-color),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    border-radius: var(--border-radiuses-md);
+
     &::after {
       content: "↗";
       position: absolute;
@@ -208,11 +232,11 @@
     }
   }
   .button__linkedin {
-    background: rgb(56, 189, 248);
+    --bg-color: rgb(56, 189, 248);
   }
 
   .button__github {
-    background: rgb(155, 158, 165);
+    --bg-color: rgb(177, 180, 185);
   }
 
   .nutshell__bg-image-container {
@@ -244,18 +268,28 @@
     height: calc(30rem);
     /* max-width: var(--site-width); */
     background-color: var(--colors-primary);
-/*     background: linear-gradient(
+    /*     background: linear-gradient(
       0deg in oklab,
       color-mix(in oklab, var(--colors-primary), black 55%),
       var(--colors-primary)
     ); */
-    border-bottom: 1px solid var(--colors-text);
+    border-bottom: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-primary),
+        var(--border-mix-shading) var(--border-strength-2)
+      );
   }
 
   .projects {
     height: 30rem;
     padding: 2rem;
-    border-bottom: 1px solid var(--colors-text);
+    border-bottom: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-0),
+        var(--border-mix-shading) var(--border-strength-2)
+      );
     /* max-width: var(--site-width); */
     background-color: var(--colors-elevation-0);
     &__grid {
@@ -269,21 +303,24 @@
   .recommendation {
     width: 100%;
     background-color: var(--colors-elevation-2);
-    padding: 2rem;
+    padding: 4rem 0;
     overflow: hidden;
     padding-bottom: 20rem;
   }
 
   .recommendation__inner {
+    max-width: 50rem;
     /*     background-color: var(--colors-elevation-2);
     border: 1px solid var(--colors-text); */
     border-radius: var(--border-radiuses-lg);
-    padding: 4rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    justify-content: flex-end;
-
+    display: grid;
+    grid-template-columns: 1fr;
+    /*     grid-template-rows: auto max-content; */
+    grid-template-areas:
+      "title"
+      "image"
+      "text";
+    gap: 1rem;
     > span {
       font-size: var(--font-sizes-xl);
       background-color: var(--colors-elevation-2);
@@ -298,7 +335,6 @@
   }
 
   .profile-image-container {
-    aspect-ratio: 1 / 1;
     background-color: var(--colors-elevation-2);
     background: linear-gradient(
       -30deg,
@@ -307,7 +343,9 @@
     );
     border-radius: 100%;
     position: relative;
-    width: 12rem;
+    height: 6rem;
+    width: 6rem;
+    aspect-ratio: 1 / 1;
     z-index: 0;
     font-size: var(--font-sizes-sm);
 
@@ -355,39 +393,96 @@
     z-index: 1;
   }
 
+  .toni-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    /*     margin-top: 2rem;
+    margin-bottom: 1rem; */
+    align-items: center;
+    /*     background-color: blue; */
+    grid-area: image;
+    margin-top: 1rem;
+  }
   .toni-introduction {
     color: var(--colors-text);
-    position: absolute;
     left: 50%;
-    transform: translate(-50%, 100%);
     bottom: 0;
     white-space: nowrap;
     z-index: 2;
 
-    padding: 0.5rem;
+    /*     padding: 0.5rem; */
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
     /*     background-color: var(--colors-elevation-2); */
     /*     border: 1px solid var(--colors-text); */
     /*     border-radius: var(--border-radiuses-sm); */
+    /*     margin: 1rem; */
 
     a {
       margin-top: 0.25rem;
       color: var(--colors-primary);
+      position: relative;
+      width: min-content;
+      &::after {
+        content: "↗";
+        font-size: var(--font-sizes-xs);
+        position: absolute;
+        top: -0.1em;
+        right: -1em;
+      }
     }
   }
 
   .recommendation__text-box {
     display: flex;
     flex-direction: column;
+    grid-area: text;
+  }
 
-    > h1 {
-      white-space: nowrap;
-      margin-left: 0;
-      box-shadow: unset;
-      padding-top: 0;
-      padding-bottom: 0;
+  .toni-heading {
+    margin: 0;
+    padding: 0;
+    grid-area: title;
+    color: var(--colors-text);
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 5px;
+      height: 100%;
+      background-color: var(--colors-primary);
+      border-radius: var(--border-radiuses-sm);
+    }
+  }
+
+  @container (width > 35rem) {
+    .profile-image-container {
+      width: 10rem;
+      height: 10rem;
+    }
+    .toni-container {
+      flex-direction: column;
+    }
+
+    .recommendation__inner {
+      grid-template-columns: 1fr 10rem;
+      grid-template-rows: minmax(0, max-content) auto;
+      align-items: start;
+      grid-template-areas:
+        "title image"
+        "text image";
+    }
+
+    .recommendation__text-box {
+      height: fit-content;
+      align-self: start;
     }
   }
 </style>

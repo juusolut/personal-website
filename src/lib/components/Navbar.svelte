@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { page } from '$app/state';
-  import { resolve } from '$app/paths';
+  import { page } from "$app/state";
+  import { resolve } from "$app/paths";
   import { asset } from "$app/paths";
 
   // Svelte 5 rune for mobile menu state
@@ -18,6 +18,22 @@
   function isActive(path: string): boolean {
     return page.url.pathname === resolve(path as `/`);
   }
+
+  // Initialize state; defaults to 'dark' or reads existing HTML attribute
+  let theme = $state(
+    typeof document !== "undefined"
+      ? document.documentElement.getAttribute("data-theme") || "dark"
+      : "dark",
+  );
+
+  // Sync state changes directly to the <html> element
+  $effect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  });
+
+  function toggleTheme() {
+    theme = theme === "dark" ? "light" : "dark";
+  }
 </script>
 
 <nav class="navbar">
@@ -30,8 +46,12 @@
         class="logo-image"
         style="height: 2.5rem; width: auto;"
       />
-      <span class="logo-text">Juuso Luttinen</span>
+      <span class="logo-text">Juuso <br> Luttinen</span>
     </a>
+
+    <button class="theme-button" onclick={toggleTheme} aria-label="Toggle theme">
+      Switch to {theme === "dark" ? "light" : "dark"} mode
+    </button>
 
     <!-- Mobile Hamburger Button -->
     <button
@@ -48,12 +68,15 @@
     <!-- Navigation Links -->
     <ul class="nav-links" class:open={isOpen}>
       <li>
-        <a href={resolve("/")} class:active={isActive("/")} onclick={closeMenu}>Etusivu</a
+        <a href={resolve("/")} class:active={isActive("/")} onclick={closeMenu}
+          >Etusivu</a
         >
       </li>
       <li>
-        <a href={resolve("/about")} class:active={isActive("/about")} onclick={closeMenu}
-          >Minä</a
+        <a
+          href={resolve("/about")}
+          class:active={isActive("/about")}
+          onclick={closeMenu}>Minä</a
         >
       </li>
       <li>
@@ -178,5 +201,14 @@
     .nav-links.open {
       display: flex;
     }
+  }
+
+  .theme-button {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 1px solid currentColor;
+    background: transparent;
+    color: var(--colors-text);
   }
 </style>

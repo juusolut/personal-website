@@ -16,7 +16,7 @@ export const DEFAULT_TAG: TagConfig = {
 export const TAG_CONFIG: Record<string, TagConfig> = {
   react: {
     label: 'React',
-    bg: '#9bbec9b6',
+    bg: '#9bbec9',
     icon: "React"
   },
   rubyonrails: {
@@ -31,17 +31,17 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
   },
   godot: {
     label: 'Godot',
-    bg: '#8fa5b97e',
+    bg: '#8fa5b9',
     icon: "Godot"
   },
   flutter: {
     label: 'Flutter',
-    bg: '#669fd467',
+    bg: '#669fd4',
     icon: "Flutter"
   },
   dotnet: {
     label: '.Net',
-    bg: '#512bd480',
+    bg: '#502bd4',
     icon: "Dotnet"
   }
 };

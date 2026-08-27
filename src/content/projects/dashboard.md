@@ -2,13 +2,13 @@
 title: "Dashboard"
 slug: "dashboard"
 description: "Ruudukkopohjainen, responsiivinen ja mukautettava dashboard, joka toteutettiin kandiprojektina radio-ohjelmistoa tekevän yhteistyöyrityksen kanssa."
-thumbnail: "/images/processed/placeholder-thumb.webp"
+thumbnail: "/images/processed/dashboard-prototype-thumb.webp"
 tags: ["React", "RubyOnRails"]
 ---
 
 # Johdanto
 
-Erään laajemman kurssikokonaisuuden tavoitteena oli tehdä yhteistyöyrityksen vaatimusten mukainen ohjelmisto projektityönä. Tiimimme pääsi mukaan erään oululaisen softafirman dashboard-projektiin. Yritys teki (ja taitaa tehdä tänäkin päivänä) webbipohjaista radio-ohjelmistoa, ja he halusivat ohjelmistoonsa opiskelijatyönä jonkinlaisen "kojelaudan", josta admin, tuottaja tai muu vastaava henkilö voisi seurata vaikkapa radiolähetysten, soittolistojen tai radio-ohjelmiston sisäisten palveluiden tilaa. He halusivat siis näkymän, joka koostaisi datan, joka oli sillä hetkellä hajautettuna moniin eri näkymiin. 
+Erään laajemman kurssikokonaisuuden tavoitteena oli tehdä yhteistyöyrityksen vaatimusten mukainen ohjelmisto projektityönä. Tiimimme pääsi mukaan oululaisen webbi-pohjaista radio-ohjelmistoa tekevät softafirman projektiin. He halusivat ohjelmistoonsa jonkinlaisen "kojelaudan", josta admin, tuottaja tai muu vastaava henkilö voisi seurata vaikkapa radiolähetysten, soittolistojen tai radio-ohjelmiston sisäisten palveluiden tilaa. He halusivat siis näkymän, joka koostaisi datan, joka oli sillä hetkellä hajautettuna moniin eri näkymiin.
 
 # Suunnittelu
 

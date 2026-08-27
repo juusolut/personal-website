@@ -73,7 +73,12 @@
       box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--colors-text);
+    border: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-2)
+      );
     color: var(--colors-text);
   }
 
@@ -148,12 +153,17 @@
     border-radius: var(--border-radiuses-full);
     font-size: var(--font-sizes-xs);
     font-weight: var(--font-weights-medium);
-    background-color: var(--bg-color);
+    background-color: color-mix(in oklch, var(--bg-color) 30%, transparent);
     border: 1px solid
-      color-mix(in oklch, var(--colors-text) 95%, var(--bg-color));
+      color-mix(
+        in oklch,
+        var(--bg-color),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
 
     > span {
-      color: color-mix(in oklch, var(--colors-text) 95%, var(--bg-color));
+      color: color-mix(in oklch, var(--bg-color), var(--colors-text) 90%);
+      /*       color: var(--bg-color); */
     }
   }
 </style>

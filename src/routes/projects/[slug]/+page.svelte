@@ -16,7 +16,7 @@
     class="project"
     style="view-transition-name: project-bg-{data.meta
       .slug}; view-transition-class: project-morph project-bg"
-    style:z-index={true ? 9999 : "auto"}
+/*     style:z-index={true ? 9999 : "auto"} */
   >
     <div class="back-link-container">
       <a href={resolve("/projects")} onclick={handleClick} class="back-link">
@@ -72,7 +72,7 @@
     position: relative;
     box-shadow: var(--shadows-sm);
     z-index: 0;
-    border: 1px solid var(--colors-text);
+    border: 1px solid color-mix(in oklch, var(--colors-elevation-2), var(--border-mix-shading) var(--border-strength-2));
 
     h3 {
       width: fit-content;
@@ -107,7 +107,6 @@
     border-radius: var(--border-radiuses-lg);
 
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
     grid-template-rows: auto max-content;
     grid-template-areas:
       "image"
@@ -130,8 +129,7 @@
     top: 0;
     z-index: 9999;
     background-color: var(--colors-elevation-2);
-    padding: 0rem 0;
-    border-bottom: 1px solid var(--colors-text);
+    border-bottom: 1px solid color-mix(in oklch, var(--colors-elevation-2), var(--border-mix-shading) var(--border-strength-4));
     margin-bottom: 1rem;
     &::after {
       content: "";
@@ -140,7 +138,8 @@
       height: 1px;
       width: 100%;
       box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
-      box-shadow: 0px 2px 2px color-mix(in oklab, var(--border-mix-shading) 15%, transparent);
+      box-shadow: 0px 2px 2px
+        color-mix(in oklab, var(--border-mix-shading) 15%, transparent);
       bottom: 0;
     }
   }
