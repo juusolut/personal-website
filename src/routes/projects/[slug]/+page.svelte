@@ -57,6 +57,7 @@
 <style>
   .project-container {
     width: 100%;
+    color: var(--colors-text);
   }
   .project {
     max-width: var(--site-width);
@@ -139,6 +140,7 @@
       height: 1px;
       width: 100%;
       box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 2px 2px color-mix(in oklab, var(--border-mix-shading) 15%, transparent);
       bottom: 0;
     }
   }

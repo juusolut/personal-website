@@ -69,7 +69,12 @@
       position: absolute;
       height: 100%;
       width: 100%;
-      background-color: var(--colors-secondary);
+      background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--colors-primary) 80%, #ffffff) 0%,
+        var(--colors-secondary) 55%,
+        color-mix(in srgb, var(--colors-secondary) 75%, #a855f7) 100%
+      );
       border-radius: var(--border-radiuses-lg);
       top: var(--offset);
       left: var(--offset);
@@ -83,7 +88,7 @@
       width: 100%;
       background-color: var(--colors-elevation-2);
       border-radius: var(--border-radiuses-lg);
-      border: 1px solid var(--colors-text);
+      border: 1px solid var(--colors-primary);
       top: 0;
       left: 0;
       z-index: -1;

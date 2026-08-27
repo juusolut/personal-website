@@ -74,6 +74,7 @@
     display: flex;
     flex-direction: column;
     border: 1px solid var(--colors-text);
+    color: var(--colors-text);
   }
 
   .grid-item:hover {
