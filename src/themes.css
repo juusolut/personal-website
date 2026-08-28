@@ -28,8 +28,8 @@
 
     /* Anims */
     --transitions-fast: 0.1s ease-in-out;
-
-    --colors-animation: background-color 0.4s ease, color 0.4s ease, background 0.4s ease;
+/*
+    --colors-animation: background-color 0.4s ease, color 0.4s ease, background 0.4s ease; */
 
     /* Color fallbacks */
     --colors-gray: hsl(0, 0%, 30%);

@@ -209,8 +209,7 @@
       background-color: var(--colors-elevation-2);
       padding: 1.5rem;
       gap: 1rem;
-      border-top: 1px solid var(--colors-text);
-      border-bottom: 1px solid var(--colors-text);
+      border-top: 1px solid color-mix(in oklch, var(--colors-elevation-2), var(--border-mix-shading) var(--border-strength-2));
     }
 
     .nav-links.open {
