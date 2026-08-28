@@ -117,7 +117,7 @@
 
     a {
       margin-top: 0.25rem;
-      color: var(--colors-primary);
+      color: var(--bg-color);
       position: relative;
       width: min-content;
       &::after {

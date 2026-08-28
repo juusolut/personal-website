@@ -172,8 +172,17 @@
     padding-top: 30%;
     margin-bottom: 3em;
     > h1 {
+      font-family: "Raleway";
       margin: 0;
       font-size: 13vw;
+      color: color-mix(
+        in oklab,
+        var(--colors-secondary) 8%,
+        var(--colors-text)
+      );
+/*       -webkit-text-stroke-width: .1rem;
+      -webkit-text-stroke-color: var(--colors-text);
+      color: transparent; */
     }
 
     > h1 > span {
@@ -181,6 +190,7 @@
       color: var(--colors-secondary);
       text-shadow: 0.03em 0.03em 0.08em
         color-mix(in oklch, var(--colors-secondary) 40%, rgba(0, 0, 0, 0.1));
+        -webkit-text-stroke-width: 0rem;
     }
   }
 
