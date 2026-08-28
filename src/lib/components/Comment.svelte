@@ -19,9 +19,9 @@
   <div class="person">
     <div class="person__image waves-pattern">
       {#if imageURL}
-        <img class="person__upper-part" src={imageURL} alt="Commenter" />
+        <img class="person__upper-part" src={asset(imageURL)} alt="Commenter" />
         <div class="image-crop-container">
-          <img class="person__lower-part" src={imageURL} alt="Commenter" />
+          <img class="person__lower-part" src={asset(imageURL)} alt="Commenter" />
         </div>
       {/if}
     </div>
