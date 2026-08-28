@@ -102,12 +102,12 @@
     top: 0;
     z-index: 100;
     color: var(--colors-text);
-    height: 5rem;
+    height: var(--navbar-height);
     display: flex;
     align-items: center;
     position: relative;
     width: 100%;
-    margin-bottom: 2rem;
+
   }
 
   .nav-container {

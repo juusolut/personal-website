@@ -66,6 +66,14 @@
       background-color: var(--colors-elevation-2);
       width: fit-content;
       box-shadow: var(--shadows-xs);
+      border: 1px solid
+        color-mix(
+          in oklch,
+          var(--colors-elevation-2),
+          var(--border-mix-shading) var(--border-strength-1)
+        );
+      border-radius: var(--border-radiuses-sm);
+
       &::before {
         content: "";
       }

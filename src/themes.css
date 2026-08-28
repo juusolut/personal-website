@@ -70,7 +70,7 @@
     --border-mix-shading: oklch(0 0 0);
 
     /* BORDER STRENGHT */
-    --border-strength-1: 15%;
+    --border-strength-1: 10%;
     --border-strength-2: 30%;
     --border-strength-3: 40%;
     --border-strength-4: 60%;

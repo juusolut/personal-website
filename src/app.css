@@ -132,8 +132,8 @@ button:hover {
 }
 
 .h-padding {
-  padding-left: .5rem !important;
-  padding-right: .5rem !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
 }
 
 .view-title {
@@ -148,6 +148,9 @@ button:hover {
   width: min-content;
   box-shadow: var(--shadows-xs);
   border-radius: var(--border-radiuses-sm);
+  border: 1px solid color-mix(in oklch,
+      var(--colors-elevation-2),
+      var(--border-mix-shading) var(--border-strength-1));
 
   &::before {
     content: "";
@@ -173,3 +176,30 @@ button:hover {
   max-width: var(--site-width);
   margin: 0 auto;
 }
+
+:root {
+  --navbar-height: 5rem;
+}
+
+.reveal {
+  --delay: 0s;
+  --speed: 2s;
+  --y-from: 3rem;
+  --opacity-from: 0;
+
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+  animation: revealUp var(--speed) cubic-bezier(0.16, 1, 0.3, 1) var(--delay) forwards;
+}
+
+  @keyframes revealUp {
+    from {
+      opacity: var(--opacity-from);
+      transform: translateY(var(--y-from));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

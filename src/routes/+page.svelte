@@ -7,7 +7,7 @@
   <div class="nutshell__info section-content">
     <div class="nutshell__gradient-border"></div>
     <div class="nutshell_content">
-      <div class="nutshell__title">
+      <div class="nutshell__title reveal">
         <h1>Moikka!</h1>
         <h1>Olen <span class="mr-dafoe-regular">Juuso.</span></h1>
       </div>
@@ -26,9 +26,9 @@
       <img
         src={asset("/images/me.png")}
         alt="Juuso Luttinen"
-        class="nutshell__image"
+        class="nutshell__image reveal"
       />
-      <div class="nutshell__bg-image-container"></div>
+      <div class="nutshell__bg-image-container reveal"></div>
     </div>
   </div>
 </section>
@@ -36,16 +36,17 @@
 <section class="projects"><div class="projects__grid"></div></section>
 <section class="recommendation h-padding">
   <div class="recommendation__inner section-content">
-    <h1 class="toni-heading">Kaverin <!-- <br> --> suusta</h1>
+    <h1 class="toni-heading">Kommentteja minusta</h1>
     <div class="recommendation__text-box">
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolores
         voluptatem odit officia, explicabo quaerat repellendus facere,
         distinctio temporibus, odio velit. Exercitationem commodi aperiam minima
-        excepturi nihil eius, beatae laboriosam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolores
-        voluptatem odit officia, explicabo quaerat repellendus facere,
-        distinctio temporibus, odio velit. Exercitationem commodi aperiam minima
-        excepturi nihil eius, beatae laboriosam.
+        excepturi nihil eius, beatae laboriosam. Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Libero dolores voluptatem odit officia,
+        explicabo quaerat repellendus facere, distinctio temporibus, odio velit.
+        Exercitationem commodi aperiam minima excepturi nihil eius, beatae
+        laboriosam.
       </p>
     </div>
     <div class="toni-container">
@@ -78,12 +79,19 @@
 <style>
   .nutshell {
     width: 100%;
-    padding: 5rem 0;
+    padding: 1rem 0;
+    height: calc(100svh - var(--navbar-height));
+    /*     padding: 5rem 0; */
     /*     border-bottom: 1px solid var(--colors-text); */
     /*     background: linear-gradient(180deg, transparent 50%, var(--colors-primary) 50%); */
-    /*     background-color: red; */
     position: relative;
-    &::before {
+    border-bottom: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-0),
+        var(--border-mix-shading) var(--border-strength-2)
+      );
+    /*     &::before {
       content: "";
       position: absolute;
       height: 50%;
@@ -97,27 +105,25 @@
           var(--colors-primary),
           var(--border-mix-shading) var(--border-strength-1)
         );
-    }
+    } */
   }
 
   .nutshell__info {
-    aspect-ratio: 10 / 5;
+    /*  aspect-ratio: 10 / 5; */
+    height: 100%;
+    width: 100%;
     background-color: var(--colors-elevation-2);
-    /*     border: 2px solid var(--colors-secondary); */
-    /*     border-radius: clamp(0px, (100cqi - 100%) * 1e5, var(--border-radiuses-lg)); */
     border-radius: var(--border-radiuses-lg);
-    /*    border-top-right-radius: 15rem; */
     font-weight: var(--font-weights-bold);
     color: var(--colors-text);
     position: relative;
-    /*     overflow: hidden; */
     z-index: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 0.5rem;
-    container-type: inline-size;
-    container-name: nutshell-info;
+    /*     container-type: inline-size;
+    container-name: nutshell-info; */
   }
 
   .nutshell__gradient-border {
@@ -130,14 +136,14 @@
     &::before {
       content: "";
       position: absolute;
-      height: calc(100% + 2px);
-      width: calc(100% + 2px);
-      left: -1px;
-      top: -1px;
+      height: calc(100% + 4px);
+      width: calc(100% + 4px);
+      left: -2px;
+      top: -2px;
       background: linear-gradient(
-        180deg,
+        135deg,
         var(--colors-secondary),
-        var(--colors-elevation-0) 50%
+        var(--colors-elevation-2) 50%
       );
       border-radius: var(--border-radiuses-lg);
     }
@@ -147,6 +153,7 @@
       position: absolute;
       height: 100%;
       width: 100%;
+      /*       background-color: color-mix(in oklab, var(--colors-primary), white 60%); */
       background-color: var(--colors-elevation-2);
       border-radius: var(--border-radiuses-lg);
     }
@@ -157,15 +164,24 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radiuses-lg);
   }
 
   .nutshell__title {
     display: flex;
     flex-direction: column;
     align-items: left;
+    height: 100%;
+    padding-top: 30%;
     > h1 {
       margin: 0;
       font-size: clamp(var(--font-sizes-md), 5cqi + 0.5rem, 4.5cqi);
+      font-size: 13vw;
     }
 
     > h1 > span {
@@ -175,17 +191,22 @@
   }
 
   .nutshell__image {
-    height: 95%;
-    width: auto;
+    --speed: 3s;
+    --opacity-from: 1;
+    /*     height: 95%; */
+    width: 90%;
+    /*     width: auto; */
     position: absolute;
     bottom: 0;
-    right: 5%;
+    margin: 0 auto;
+    /*     left: 5%; */
     z-index: -1;
   }
 
   @container (width > 40rem) {
     .nutshell__info {
       aspect-ratio: 9 / 3;
+      height: auto;
     }
     .nutshell__title {
       flex-direction: row;
@@ -195,6 +216,9 @@
     }
     .nutshell__image {
       height: 95%;
+      width: auto;
+      margin: unset;
+      right: 5%;
     }
   }
 
@@ -202,6 +226,9 @@
     display: flex;
     position: absolute;
     bottom: 2%;
+    width: 100%;
+    left: 0;
+    justify-content: center;
     gap: 0.5rem;
   }
 
@@ -210,18 +237,14 @@
     position: relative;
     width: fit-content;
     font-weight: var(--font-weights-bold);
-    color: color-mix(in oklch, var(--bg-color), var(--colors-text) 90%);
+    color: color-mix(in oklch, var(--bg-color), white 90%);
     text-underline-offset: 3px;
     text-decoration-thickness: 2px;
     text-decoration: none;
     backdrop-filter: blur(5px);
-    background: color-mix(in oklch, var(--bg-color) 20%, transparent);
+    background: color-mix(in oklch, var(--bg-color) 70%, transparent);
     border: 2px solid
-      color-mix(
-        in oklch,
-        var(--bg-color),
-        var(--border-mix-shading) var(--border-strength-1)
-      );
+      color-mix(in oklch, var(--bg-color), white var(--border-strength-1));
     border-radius: var(--border-radiuses-md);
 
     &::after {
@@ -232,42 +255,68 @@
     }
   }
   .button__linkedin {
-    --bg-color: rgb(56, 189, 248);
+    --bg-color: #0a66c2;
   }
 
   .button__github {
-    --bg-color: rgb(177, 180, 185);
+    --bg-color: rgb(46, 46, 46);
+  }
+
+  @keyframes scrollPattern {
+    from {
+      mask-position: 0 0;
+    }
+    to {
+      /* Shifts the pattern by 100% of its container's width */
+      mask-position: 100% -0%;
+    }
   }
 
   .nutshell__bg-image-container {
+    --speed: 4s;
+    --opacity-from: 1;
+    --y-from: 10rem;
+
     position: absolute;
-    height: 100%;
-    width: 50%;
+    height: 60%;
+    width: 100%;
     right: 0;
-    top: 0;
+    bottom: 0;
     z-index: -2;
     overflow: hidden;
-    clip-path: polygon(70% 0, 110% 0, 100% 100%, 0 100%, 0 100%);
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%, 0 80%);
     /*     filter: blur(5px); */
     background-color: var(--colors-secondary);
-    border-top-right-radius: var(--border-radiuses-lg);
-    border-bottom-right-radius: var(--border-radiuses-lg);
+    /*     border-top-right-radius: var(--border-radiuses-lg);
+    border-bottom-right-radius: var(--border-radiuses-lg); */
 
     &::after {
       content: "";
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.383 1.869.74 2.75 1.072h6.225c-2.51-.73-5.139-1.691-8.233-2.928C65.888 13.278 60.562 12 50 12c-10.626 0-16.855 1.397-26.66 5.063l-1.767.662c-2.475.923-4.66 1.674-6.724 2.275h6.335zm0-20C13.258 2.892 8.077 4 0 4V2c5.744 0 9.951-.574 14.85-2h6.334zM77.38 0C85.239 2.966 90.502 4 100 4V2c-6.842 0-11.386-.542-16.396-2h-6.225zM0 14c8.44 0 13.718-1.21 22.272-4.402l1.768-.661C33.64 5.347 39.647 4 50 4c10.271 0 15.362 1.222 24.629 4.928C84.112 12.722 89.438 14 100 14v-2c-10.271 0-15.362-1.222-24.629-4.928C65.888 3.278 60.562 2 50 2 39.374 2 33.145 3.397 23.34 7.063l-1.767.662C13.223 10.84 8.163 12 0 12v2z' fill='%23000000' fill-opacity='0.09' fill-rule='evenodd'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 8rem auto;
+      /* GPU-optimized execution */
+      will-change: mask-position;
+
+      /* Adjust duration (20s) to control scrolling speed */
+      animation: scrollPattern 60s linear infinite;
+      background-color: var(--colors-elevation-2);
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+      mask-repeat: repeat;
+      mask-size: 0.4rem auto;
+      opacity: 0.3;
     }
   }
 
   .details {
     height: calc(30rem);
     /* max-width: var(--site-width); */
-    background-color: var(--colors-primary);
+    background-color: var(--colors-elevation-2);
     /*     background: linear-gradient(
       0deg in oklab,
       color-mix(in oklab, var(--colors-primary), black 55%),
@@ -316,6 +365,8 @@
     display: grid;
     grid-template-columns: 1fr;
     /*     grid-template-rows: auto max-content; */
+
+    padding: 0 0.5rem;
     grid-template-areas:
       "title"
       "image"
@@ -339,12 +390,12 @@
     background: linear-gradient(
       -30deg,
       var(--colors-primary) 50%,
-      var(--colors-elevation-2)
+      color-mix(in oklch, var(--colors-primary), white 70%)
     );
     border-radius: 100%;
     position: relative;
-    height: 6rem;
-    width: 6rem;
+    height: 5rem;
+    width: 5rem;
     aspect-ratio: 1 / 1;
     z-index: 0;
     font-size: var(--font-sizes-sm);
