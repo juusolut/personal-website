@@ -31,8 +31,8 @@
 <style>
   .floating-head {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 1rem;
+    right: 1rem;
     width: 4rem;
     height: 4rem;
     border: none;
@@ -47,25 +47,30 @@
   .floating-head__bubble {
     position: absolute;
     bottom: 100%;
-    right: 0;
+    right: -15%;
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     color: var(--colors-text);
     border-radius: var(--border-radiuses-md);
-    font-size: var(--font-sizes-sm);
+    font-size: var(--font-sizes-xs);
     font-weight: var(--font-weights-medium);
     white-space: nowrap;
     opacity: 1;
     transform: translate(-1rem, 0rem);
-    box-shadow: var(--shadows-xs);
+    box-shadow: var(--shadows-xs-light);
     z-index: 1;
     isolation: isolate;
+
+    a {
+      color: var(--colors-primary);
+    }
 
     &::after {
       content: "";
       position: absolute;
       inset: 0;
-      background-color: var(--colors-white);
+      background-color: var(--colors-elevation-2);
+      border: 1px solid color-mix(in oklch, var(--colors-elevation-3), var(--border-mix-shading) var(--border-strength-2));
       border-radius: inherit;
       z-index: 1;
     }
@@ -78,14 +83,15 @@
     &::before {
       content: "";
       position: absolute;
-      top: 75%;
+      top: 60%;
       right: 1rem;
       height: 1rem;
       width: 1rem;
       transform: rotate(45deg);
-      background-color: var(--colors-white);
-      box-shadow: var(--shadows-xs);
-      z-index: 0;
+      background-color: var(--colors-elevation-2);
+      border: 1px solid color-mix(in oklch, var(--colors-elevation-3), var(--border-mix-shading) var(--border-strength-2));
+      box-shadow: var(--shadows-xs-light);
+      z-index: 1;
     }
   }
 </style>
