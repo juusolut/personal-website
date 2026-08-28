@@ -271,6 +271,7 @@
     left: 0;
     justify-content: center;
     gap: 0.5rem;
+    z-index: 1;
   }
 
   .button {
