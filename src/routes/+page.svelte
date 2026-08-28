@@ -29,6 +29,11 @@
         alt="Juuso Luttinen"
         class="nutshell__image reveal"
       />
+      <img
+        src={asset("/images/me.png")}
+        alt="Juuso Luttinen"
+        class="nutshell__image styled reveal"
+      />
       <div class="nutshell__bg-image-container reveal"></div>
     </div>
   </div>
@@ -180,7 +185,7 @@
         var(--colors-secondary) 8%,
         var(--colors-text)
       );
-/*       -webkit-text-stroke-width: .1rem;
+      /*       -webkit-text-stroke-width: .1rem;
       -webkit-text-stroke-color: var(--colors-text);
       color: transparent; */
     }
@@ -190,8 +195,16 @@
       color: var(--colors-secondary);
       text-shadow: 0.03em 0.03em 0.08em
         color-mix(in oklch, var(--colors-secondary) 40%, rgba(0, 0, 0, 0.1));
-        -webkit-text-stroke-width: 0rem;
+      -webkit-text-stroke-width: 0rem;
     }
+  }
+
+  .nutshell__image-mask {
+    width: 90%;
+    position: absolute;
+    bottom: 0;
+    margin: 0 auto;
+    z-index: -1;
   }
 
   .nutshell__image {
@@ -202,6 +215,21 @@
     position: absolute;
     bottom: 0;
     margin: 0 auto;
+    z-index: 0;
+  }
+
+  .styled {
+    --color: var(--colors-elevation-2);
+/*     --speed: 2s !important; */
+    filter:
+  drop-shadow(1.5px 0px 0 var(--color))
+  drop-shadow(-1.5px 0px 0 var(--color))
+  drop-shadow(0px 1.5px 0 var(--color))
+  drop-shadow(0px -1.5px 0 var(--color))
+  drop-shadow(1px 1px 0 var(--color))
+  drop-shadow(-1px -1px 0 var(--color))
+  drop-shadow(1px -1px 0 var(--color))
+  drop-shadow(-1px 1px 0 var(--color));
     z-index: -1;
   }
 
@@ -231,6 +259,7 @@
     .buttons {
       justify-content: flex-start !important;
       left: 15% !important;
+      z-index: 2;
     }
   }
 

@@ -142,11 +142,11 @@
     }
 
     &::before {
-      margin-right: 0.2em;
+      margin-right: 0.1em;
     }
 
     &::after {
-      margin-left: 0.2em;
+      margin-left: 0.1em;
     }
   }
 
