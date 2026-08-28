@@ -1,49 +1,51 @@
 <script lang="ts">
   import { asset } from "$app/paths";
 
-  let { name, firm, linkedInUrl } = $props();
+  let {
+    name,
+    firm,
+    linkedInURL,
+    imageURL,
+    text,
+    reverse = false,
+    color = "var(--colors-primary)",
+  } = $props();
 </script>
 
-<div class="recommendation__text-box">
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolores
-    voluptatem odit officia, explicabo quaerat repellendus facere, distinctio
-    temporibus, odio velit. Exercitationem commodi aperiam minima excepturi
-    nihil eius, beatae laboriosam. Lorem ipsum dolor sit amet consectetur
-    adipisicing elit. Libero dolores voluptatem odit officia, explicabo quaerat
-    repellendus facere, distinctio temporibus, odio velit. Exercitationem
-    commodi aperiam minima excepturi nihil eius, beatae laboriosam.
+<div class="comment" class:reversed={reverse} style="--bg-color: {color}">
+  <p class="text">
+    {text}
   </p>
-</div>
-<div class="toni-container">
-  <div class="profile-image-container waves-pattern">
-    <img
-      class="me-sticking-out"
-      src={asset("/images/toni.png")}
-      alt="Juuso Luttinen"
-    />
-    <div class="image-crop-container">
-      <img
-        class="profile-image"
-        src={asset("/images/toni.png")}
-        alt="Juuso Luttinen"
-      />
+  <div class="person">
+    <div class="person__image waves-pattern">
+      {#if imageURL}
+        <img class="person__upper-part" src={imageURL} alt="Commenter" />
+        <div class="image-crop-container">
+          <img class="person__lower-part" src={imageURL} alt="Commenter" />
+        </div>
+      {/if}
     </div>
-  </div>
-  <div class="toni-introduction">
-    <strong>Toni Pennanen</strong>
-    <span>Alfame Systems Oy</span>
-    <a href="https://www.linkedin.com/in/toni-pennanen-17278924a/">LinkedIn</a>
+    <div class="person-introduction">
+      <strong>{name}</strong>
+      <span>{firm}</span>
+      <a href={linkedInURL}>LinkedIn</a>
+    </div>
   </div>
 </div>
 
 <style>
-  .profile-image-container {
-    background-color: var(--colors-elevation-2);
+  .comment {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+  }
+  .person__image {
+    background-color: var(--bg-color);
     background: linear-gradient(
       -30deg,
-      var(--colors-primary) 50%,
-      color-mix(in oklch, var(--colors-primary), white 70%)
+      color-mix(in oklch, var(--bg-color), black 20%) 0%,
+      var(--bg-color) 45%,
+      color-mix(in oklch, var(--bg-color), white 50%) 90%
     );
     border-radius: 100%;
     position: relative;
@@ -67,13 +69,13 @@
     }
   }
 
-  .me-sticking-out {
+  .person__upper-part {
     position: absolute;
     border-radius: 100%;
     width: 150%;
     top: 50%;
     left: 50%;
-    transform: translate(-45%, -40%) scaleX(-100%);
+    transform: translate(-45%, -40%) scaleX(-1);
     clip-path: inset(0 0 70% 0);
     z-index: 1;
   }
@@ -87,42 +89,31 @@
     top: 0;
   }
 
-  .profile-image {
+  .person__lower-part {
     position: absolute;
     border-radius: 100%;
     width: 150%;
     top: 50%;
     left: 50%;
-    transform: translate(-45%, -40%) scaleX(-100%);
+    transform: translate(-45%, -40%) scaleX(-1);
     z-index: 1;
   }
 
-  .toni-container {
+  .person {
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    /*     margin-top: 2rem;
-    margin-bottom: 1rem; */
     align-items: center;
-    /*     background-color: blue; */
-    grid-area: image;
     margin-top: 1rem;
   }
-  .toni-introduction {
+  .person-introduction {
     color: var(--colors-text);
     left: 50%;
     bottom: 0;
     white-space: nowrap;
-    z-index: 2;
-
-    /*     padding: 0.5rem; */
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    /*     background-color: var(--colors-elevation-2); */
-    /*     border: 1px solid var(--colors-text); */
-    /*     border-radius: var(--border-radiuses-sm); */
-    /*     margin: 1rem; */
 
     a {
       margin-top: 0.25rem;
@@ -139,10 +130,59 @@
     }
   }
 
-  .recommendation__text-box {
-    display: flex;
-    flex-direction: column;
-    grid-area: text;
+  .text {
+    color: color-mix(in oklch, var(--colors-primary) 15%, var(--colors-text));
+    &::before,
+    &::after {
+      content: "”";
+      font-size: var(--font-sizes-lg);
+      line-height: var(--font-sizes-sm);
+      display: inline-block;
+      color: var(--bg-color);
+    }
+
+    &::before {
+      margin-right: 0.2em;
+    }
+
+    &::after {
+      margin-left: 0.2em;
+    }
   }
 
+  @container (width > 40rem) {
+    .person__image {
+      width: 10rem;
+      height: 10rem;
+    }
+    .comment {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 5rem;
+    }
+
+    .text {
+      margin: 0;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    .person {
+      flex-direction: column;
+      position: relative;
+    }
+
+    .reversed {
+      flex-direction: row-reverse;
+    }
+
+    .person-introduction {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(calc(100% + 1rem));
+    }
+  }
 </style>

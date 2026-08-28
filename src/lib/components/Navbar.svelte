@@ -2,6 +2,7 @@
   import { page } from "$app/state";
   import { resolve } from "$app/paths";
   import { asset } from "$app/paths";
+  import Icon from "./Icon.svelte";
 
   // Svelte 5 rune for mobile menu state
   let isOpen = $state(false);
@@ -46,12 +47,22 @@
         class="logo-image"
         style="height: 2.5rem; width: auto;"
       />
-      <span class="logo-text">Juuso <br> Luttinen</span>
+      <span class="logo-text">Juuso <br /> Luttinen</span>
     </a>
 
-    <button class="theme-button" onclick={toggleTheme} aria-label="Toggle theme">
-     {theme === "dark" ? "☀️ Theme" : "🌙 Theme"}
-    </button>
+    <div class="buttons">
+      <button
+        class="theme-button"
+        onclick={toggleTheme}
+        aria-label="Toggle theme"
+      >
+        {#if theme === "dark"}
+          <Icon name="MoonStars" />
+        {:else}
+          <Icon name="Sun" />
+        {/if}
+      </button>
+    </div>
 
     <!-- Mobile Hamburger Button -->
     <button
@@ -107,7 +118,7 @@
     align-items: center;
     position: relative;
     width: 100%;
-
+    margin-bottom: 3rem;
   }
 
   .nav-container {
@@ -179,6 +190,10 @@
 
   /* Responsive Mobile Menu */
   @media (max-width: 768px) {
+
+    .navbar {
+      margin-bottom: 0;
+    }
     .hamburger {
       display: flex;
     }
@@ -201,14 +216,32 @@
     .nav-links.open {
       display: flex;
     }
+
+    .buttons {
+      justify-content: flex-end !important;
+    }
   }
 
+  .buttons {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    padding: 0 1rem;
+  }
   .theme-button {
-    padding: 0.5rem 1rem;
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    border-radius: 6px;
-    border: 1px solid currentColor;
-    background: transparent;
+    border-radius: var(--border-radiuses-sm);
+    border: 1px solid
+      color-mix(in oklab, var(--colors-secondary), var(--border-mix-shading));
+    background: color-mix(
+      in oklab,
+      var(--colors-secondary) 30%,
+      var(--colors-elevation-0)
+    );
     color: var(--colors-text);
   }
 </style>

@@ -1,6 +1,7 @@
 <script>
   import { asset } from "$app/paths";
   import FloatingHead from "$lib/components/FloatingHead.svelte";
+  import Comment from "$lib/components/Comment.svelte";
 </script>
 
 <section class="nutshell h-padding">
@@ -8,7 +9,7 @@
     <div class="nutshell__gradient-border"></div>
     <div class="nutshell_content">
       <div class="nutshell__title reveal">
-        <h1>Moikka!</h1>
+        <h1>Hei!</h1>
         <h1>Olen <span class="mr-dafoe-regular">Juuso.</span></h1>
       </div>
       <div class="buttons">
@@ -37,40 +38,30 @@
 <section class="recommendation h-padding">
   <div class="recommendation__inner section-content">
     <h1 class="toni-heading">Kommentteja minusta</h1>
-    <div class="recommendation__text-box">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolores
-        voluptatem odit officia, explicabo quaerat repellendus facere,
-        distinctio temporibus, odio velit. Exercitationem commodi aperiam minima
-        excepturi nihil eius, beatae laboriosam. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Libero dolores voluptatem odit officia,
-        explicabo quaerat repellendus facere, distinctio temporibus, odio velit.
-        Exercitationem commodi aperiam minima excepturi nihil eius, beatae
-        laboriosam.
-      </p>
-    </div>
-    <div class="toni-container">
-      <div class="profile-image-container waves-pattern">
-        <img
-          class="me-sticking-out"
-          src={asset("/images/toni.png")}
-          alt="Juuso Luttinen"
-        />
-        <div class="image-crop-container">
-          <img
-            class="profile-image"
-            src={asset("/images/toni.png")}
-            alt="Juuso Luttinen"
-          />
-        </div>
-      </div>
-      <div class="toni-introduction">
-        <strong>Toni Pennanen</strong>
-        <span>Alfame Systems Oy</span>
-        <a href="https://www.linkedin.com/in/toni-pennanen-17278924a/"
-          >LinkedIn</a
-        >
-      </div>
+    <div class="comments">
+      <Comment
+        name="Toni Pennanen"
+        firm="Alfame Systems Oy"
+        linkedInURL="https://www.linkedin.com/in/toni-pennanen-17278924a/"
+        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolores
+      voluptatem odit officia, explicabo quaerat repellendus facere, distinctio
+      temporibus, odio velit. Exercitationem commodi aperiam minima excepturi
+      nihil eius, beatae laboriosam. Lorem ipsum dolor sit amet consectetur
+      adipisicing elit. Libero dolores voluptatem odit officia, explicabo
+      quaerat repellendus facere, distinctio temporibus, odio velit.
+      Exercitationem commodi aperiam minima excepturi nihil eius, beatae
+      laboriosam."
+        imageURL="/images/toni.png"
+      />
+      <Comment
+        name="Virpi Ruotsalainen"
+        firm="Luonnon Syli"
+        linkedInURL="https://www.linkedin.com/in/virpi-ruotsalainen/"
+        text="Teki annetut työtehtävät hyvällä asenteella ja moitteettomasti. Huolellinen ja tarkka, mutta ripeäotteinen. Sopeutuu hyvin niin itsenäisesti tehtäviin kuin porukalla tehtäviin töihin. Täsmällinen ja luotettava työntekijä. Halu oppia uusia asioita ja ennakkoluuloton asenne työntekoon."
+        imageURL=""
+        reverse={true}
+        color="var(--colors-secondary)"
+      />
     </div>
   </div>
 </section>
@@ -85,12 +76,14 @@
     /*     border-bottom: 1px solid var(--colors-text); */
     /*     background: linear-gradient(180deg, transparent 50%, var(--colors-primary) 50%); */
     position: relative;
-    border-bottom: 1px solid
+    container-type: inline-size;
+    container-name: hero;
+    /*     border-bottom: 1px solid
       color-mix(
         in oklch,
         var(--colors-elevation-0),
         var(--border-mix-shading) var(--border-strength-2)
-      );
+      ); */
     /*     &::before {
       content: "";
       position: absolute;
@@ -122,8 +115,6 @@
     flex-direction: column;
     justify-content: center;
     gap: 0.5rem;
-    /*     container-type: inline-size;
-    container-name: nutshell-info; */
   }
 
   .nutshell__gradient-border {
@@ -170,6 +161,7 @@
     position: relative;
     overflow: hidden;
     border-radius: var(--border-radiuses-lg);
+    container-type: inline-size;
   }
 
   .nutshell__title {
@@ -178,47 +170,57 @@
     align-items: left;
     height: 100%;
     padding-top: 30%;
+    margin-bottom: 3em;
     > h1 {
       margin: 0;
-      font-size: clamp(var(--font-sizes-md), 5cqi + 0.5rem, 4.5cqi);
       font-size: 13vw;
     }
 
     > h1 > span {
       font-size: 1.3em;
       color: var(--colors-secondary);
+      text-shadow: 0.03em 0.03em 0.08em
+        color-mix(in oklch, var(--colors-secondary) 40%, rgba(0, 0, 0, 0.1));
     }
   }
 
   .nutshell__image {
     --speed: 3s;
     --opacity-from: 1;
-    /*     height: 95%; */
+
     width: 90%;
-    /*     width: auto; */
     position: absolute;
     bottom: 0;
     margin: 0 auto;
-    /*     left: 5%; */
     z-index: -1;
   }
 
-  @container (width > 40rem) {
+  @container hero (width > 40rem) {
     .nutshell__info {
       aspect-ratio: 9 / 3;
       height: auto;
     }
+
     .nutshell__title {
-      flex-direction: row;
       justify-content: left;
-      align-items: center;
-      gap: 1rem;
+      height: auto;
+      padding-top: unset;
+      margin-bottom: unset;
+
+      > h1 {
+        font-size: clamp(var(--font-sizes-md), 5cqi + 0.5rem, 5cqi);
+      }
     }
     .nutshell__image {
       height: 95%;
       width: auto;
       margin: unset;
       right: 5%;
+    }
+
+    .buttons {
+      justify-content: flex-start !important;
+      left: 15% !important;
     }
   }
 
@@ -314,6 +316,7 @@
   }
 
   .details {
+    display: none;
     height: calc(30rem);
     /* max-width: var(--site-width); */
     background-color: var(--colors-elevation-2);
@@ -331,7 +334,7 @@
   }
 
   .projects {
-    height: 30rem;
+    height: 0rem;
     padding: 2rem;
     border-bottom: 1px solid
       color-mix(
@@ -358,31 +361,20 @@
   }
 
   .recommendation__inner {
-    max-width: 50rem;
-    /*     background-color: var(--colors-elevation-2);
-    border: 1px solid var(--colors-text); */
-    border-radius: var(--border-radiuses-lg);
-    display: grid;
-    grid-template-columns: 1fr;
-    /*     grid-template-rows: auto max-content; */
-
+    width: 100%;
+    max-width: 60rem;
+    display: flex;
+    flex-direction: column;
     padding: 0 0.5rem;
-    grid-template-areas:
-      "title"
-      "image"
-      "text";
-    gap: 1rem;
-    > span {
-      font-size: var(--font-sizes-xl);
-      background-color: var(--colors-elevation-2);
-      border: 2px solid var(--colors-text);
-      text-align: center;
-      height: min-content;
-      width: fit-content;
-      white-space: no-wrap;
-      padding: 1rem;
-      border-radius: var(--border-radiuses-lg);
-    }
+  }
+
+  .comments {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    container-type: inline-size;
+    gap: 2rem;
+    margin-top: 2rem;
   }
 
   .profile-image-container {
@@ -510,30 +502,6 @@
       height: 100%;
       background-color: var(--colors-primary);
       border-radius: var(--border-radiuses-sm);
-    }
-  }
-
-  @container (width > 35rem) {
-    .profile-image-container {
-      width: 10rem;
-      height: 10rem;
-    }
-    .toni-container {
-      flex-direction: column;
-    }
-
-    .recommendation__inner {
-      grid-template-columns: 1fr 10rem;
-      grid-template-rows: minmax(0, max-content) auto;
-      align-items: start;
-      grid-template-areas:
-        "title image"
-        "text image";
-    }
-
-    .recommendation__text-box {
-      height: fit-content;
-      align-self: start;
     }
   }
 </style>

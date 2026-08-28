@@ -7,8 +7,10 @@ export const iconNames = [
   "Expo",
   "Flutter",
   "Godot",
+  "MoonStars",
   "React",
   "RubyOnRails",
+  "Sun",
   "Svelte",
 ] as const
 
