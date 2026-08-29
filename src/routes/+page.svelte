@@ -1,13 +1,57 @@
 <script>
-  import { asset } from "$app/paths";
+  import { asset, resolve } from "$app/paths";
   import FloatingHead from "$lib/components/FloatingHead.svelte";
   import Comment from "$lib/components/Comment.svelte";
+  import { onMount } from "svelte";
+  import ProjectItem from "$lib/components/ProjectItem.svelte";
+
+  let isLoaded = $state(false);
+  const heroSrc = asset("/images/me.png");
+
+  onMount(() => {
+    const img = new Image();
+    img.src = heroSrc;
+
+    // decode() ensures the image is downloaded AND GPU-decoded before revealing
+    img
+      .decode()
+      .then(() => {
+        isLoaded = true;
+        console.log("Reveal!");
+      })
+      .catch(() => {
+        // Fallback in case of decoding errors or broken links
+        isLoaded = true;
+      });
+  });
+
+  function viewport(node) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          node.classList.add("is-visible");
+          observer.unobserve(node);
+        }
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(node);
+
+    return {
+      destroy() {
+        observer.disconnect();
+      },
+    };
+  }
+
+  let { data } = $props();
 </script>
 
 <section class="nutshell h-padding">
   <div class="nutshell__info section-content">
     <div class="nutshell__gradient-border"></div>
-    <div class="nutshell_content">
+    <div class="nutshell_content" class:is-visible={isLoaded}>
       <div class="nutshell__title reveal">
         <h1>Hei!</h1>
         <h1>Olen <span class="mr-dafoe-regular">Juuso.</span></h1>
@@ -29,17 +73,36 @@
         alt="Juuso Luttinen"
         class="nutshell__image reveal"
       />
-      <img
+      <!--       <img
         src={asset("/images/me.png")}
         alt="Juuso Luttinen"
         class="nutshell__image styled reveal"
-      />
+      /> -->
       <div class="nutshell__bg-image-container reveal"></div>
     </div>
   </div>
 </section>
 <section class="details"></section>
-<section class="projects"><div class="projects__grid"></div></section>
+<section class="projects">
+  <div class="projects__inner section-content">
+    <h1 class="toni-heading">Projektit</h1>
+    <div class="projects__grid reveal-on-scroll" use:viewport>
+      {#each data.projects as item (item.slug)}
+        <ProjectItem
+          id={item.slug}
+          title={item.title}
+          description={item.description}
+          tags={item.tags}
+          imageSrc={item.thumbnail}
+          href="/projects/{item.slug}"
+        />
+      {/each}
+      <a href={resolve("/projects")} class="all-projects-link"
+        >Näytä kaikki projektit ({data.projects.length})</a
+      >
+    </div>
+  </div>
+</section>
 <section class="recommendation h-padding">
   <div class="recommendation__inner section-content">
     <h1 class="toni-heading">Kommentteja minusta</h1>
@@ -48,15 +111,10 @@
         name="Toni Pennanen"
         firm="Alfame Systems Oy"
         linkedInURL="https://www.linkedin.com/in/toni-pennanen-17278924a/"
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolores
-      voluptatem odit officia, explicabo quaerat repellendus facere, distinctio
-      temporibus, odio velit. Exercitationem commodi aperiam minima excepturi
-      nihil eius, beatae laboriosam. Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Libero dolores voluptatem odit officia, explicabo
-      quaerat repellendus facere, distinctio temporibus, odio velit.
-      Exercitationem commodi aperiam minima excepturi nihil eius, beatae
-      laboriosam."
+        text="Olemme tehneet Juuson kanssa useita koulu- ja harrasteprojekteja yhdessä, minkä perusteella voin suositella häntä kaikenlaiseen ohjelmistokehitystyöhön. Juuso on erittäin osaava ja ahkera ongelmanratkaisija, jolla on jo hallussaan useita teknologioita, minkä lisäksi hän on aina halukas oppimaan uutta. Hänen kriittinen ja looginen ajattelukykynsä sekä nopea oppimiskykynsä ovat aivan omaa luokkaansa, ja hänen osaamisensa on jo nyt tasolla, joka ei jää jälkeen muutaman vuoden työkokemuksen omaavien ohjelmistokehittäjien tasosta. Ennen kaikkea Juuso on kuitenkin erittäin mukava ja luotettava henkilö, jonka kanssa on helppo ja miellyttävä työskennellä!"
         imageURL="/images/toni.png"
+        reverse={false}
+        {viewport}
       />
       <Comment
         name="Virpi Ruotsalainen"
@@ -66,6 +124,7 @@
         imageURL=""
         reverse={true}
         color="var(--colors-secondary)"
+        {viewport}
       />
     </div>
   </div>
@@ -164,9 +223,12 @@
     height: 100%;
     width: 100%;
     position: relative;
-    overflow: hidden;
     border-radius: var(--border-radiuses-lg);
     container-type: inline-size;
+    display: none;
+    &.is-visible {
+      display: flex !important;
+    }
   }
 
   .nutshell__title {
@@ -174,12 +236,17 @@
     flex-direction: column;
     align-items: left;
     height: 100%;
-    padding-top: 30%;
-    margin-bottom: 3em;
+    /*    padding-top: 30%;
+    margin-bottom: 3em; */
+    top: 20%;
+    position: absolute;
+    z-index: 1;
+
     > h1 {
       font-family: "Raleway";
       margin: 0;
       font-size: 13vw;
+      font-size: clamp(var(--font-sizes-lg), 3cqw + 5cqh, 6rem);
       color: color-mix(
         in oklab,
         var(--colors-secondary) 8%,
@@ -216,20 +283,19 @@
     bottom: 0;
     margin: 0 auto;
     z-index: 0;
+    object-fit: contain;
+    max-height: 70%;
   }
 
   .styled {
     --color: var(--colors-elevation-2);
-/*     --speed: 2s !important; */
-    filter:
-  drop-shadow(1.5px 0px 0 var(--color))
-  drop-shadow(-1.5px 0px 0 var(--color))
-  drop-shadow(0px 1.5px 0 var(--color))
-  drop-shadow(0px -1.5px 0 var(--color))
-  drop-shadow(1px 1px 0 var(--color))
-  drop-shadow(-1px -1px 0 var(--color))
-  drop-shadow(1px -1px 0 var(--color))
-  drop-shadow(-1px 1px 0 var(--color));
+    /*     --speed: 2s !important; */
+    filter: drop-shadow(1.5px 0px 0 var(--color))
+      drop-shadow(-1.5px 0px 0 var(--color))
+      drop-shadow(0px 1.5px 0 var(--color))
+      drop-shadow(0px -1.5px 0 var(--color)) drop-shadow(1px 1px 0 var(--color))
+      drop-shadow(-1px -1px 0 var(--color)) drop-shadow(1px -1px 0 var(--color))
+      drop-shadow(-1px 1px 0 var(--color));
     z-index: -1;
   }
 
@@ -249,11 +315,13 @@
         font-size: clamp(var(--font-sizes-md), 5cqi + 0.5rem, 5cqi);
       }
     }
+
     .nutshell__image {
       height: 95%;
       width: auto;
       margin: unset;
       right: 5%;
+      max-height: 95%;
     }
 
     .buttons {
@@ -296,6 +364,7 @@
       top: 0.2rem;
     }
   }
+
   .button__linkedin {
     --bg-color: #0a66c2;
   }
@@ -306,11 +375,12 @@
 
   @keyframes scrollPattern {
     from {
-      mask-position: 0 0;
+      transform: translateX(-50%);
     }
+
     to {
       /* Shifts the pattern by 100% of its container's width */
-      mask-position: 100% -0%;
+      transform: translateX(0%);
     }
   }
 
@@ -322,11 +392,12 @@
     position: absolute;
     height: 60%;
     width: 100%;
-    right: 0;
+    left: 0;
     bottom: 0;
     z-index: -2;
     overflow: hidden;
     clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%, 0 80%);
+    /*     clip-path: polygon(0% 0%, 100% 0%, 100% 53.25%, 0% 88.75%, 0% 100%, 100% 100%, 100% 75.76%, 100% 0%, 36.25% 0%, 0% 12.75%); */
     /*     filter: blur(5px); */
     background-color: var(--colors-secondary);
     /*     border-top-right-radius: var(--border-radiuses-lg);
@@ -337,12 +408,12 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 100%;
+      width: 200%;
       height: 100%;
       background-repeat: repeat;
       background-size: 8rem auto;
       /* GPU-optimized execution */
-      will-change: mask-position;
+      will-change: transform;
 
       /* Adjust duration (20s) to control scrolling speed */
       animation: scrollPattern 60s linear infinite;
@@ -352,6 +423,7 @@
       mask-repeat: repeat;
       mask-size: 0.4rem auto;
       opacity: 0.3;
+      transform: translateX(-50%);
     }
   }
 
@@ -374,7 +446,6 @@
   }
 
   .projects {
-    height: 0rem;
     padding: 2rem;
     border-bottom: 1px solid
       color-mix(
@@ -382,14 +453,45 @@
         var(--colors-elevation-0),
         var(--border-mix-shading) var(--border-strength-2)
       );
-    /* max-width: var(--site-width); */
-    background-color: var(--colors-elevation-0);
-    &__grid {
-      display: grid;
+  }
 
-      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-      gap: 2rem;
-    }
+  .projects__inner {
+    width: 100%;
+    color: var(--colors-text);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 5rem;
+  }
+
+  .projects__grid {
+    width: 100%;
+    color: var(--colors-text);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+/*     grid-template-rows: 20rem; */
+    gap: 1rem;
+  }
+
+  .all-projects-link {
+    background: var(--colors-elevation-2);
+    border-radius: var(--border-radiuses-lg);
+    overflow: hidden;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    color: var(--colors-text);
+    min-height: 5rem;
   }
 
   .recommendation {
@@ -397,12 +499,12 @@
     background-color: var(--colors-elevation-2);
     padding: 4rem 0;
     overflow: hidden;
-    padding-bottom: 20rem;
+    padding-bottom: 10rem;
   }
 
   .recommendation__inner {
     width: 100%;
-    max-width: 60rem;
+    /*     max-width: 60rem; */
     display: flex;
     flex-direction: column;
     padding: 0 0.5rem;
@@ -415,113 +517,6 @@
     container-type: inline-size;
     gap: 2rem;
     margin-top: 2rem;
-  }
-
-  .profile-image-container {
-    background-color: var(--colors-elevation-2);
-    background: linear-gradient(
-      -30deg,
-      var(--colors-primary) 50%,
-      color-mix(in oklch, var(--colors-primary), white 70%)
-    );
-    border-radius: 100%;
-    position: relative;
-    height: 5rem;
-    width: 5rem;
-    aspect-ratio: 1 / 1;
-    z-index: 0;
-    font-size: var(--font-sizes-sm);
-
-    &::after {
-      display: none;
-      content: "";
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.383 1.869.74 2.75 1.072h6.225c-2.51-.73-5.139-1.691-8.233-2.928C65.888 13.278 60.562 12 50 12c-10.626 0-16.855 1.397-26.66 5.063l-1.767.662c-2.475.923-4.66 1.674-6.724 2.275h6.335zm0-20C13.258 2.892 8.077 4 0 4V2c5.744 0 9.951-.574 14.85-2h6.334zM77.38 0C85.239 2.966 90.502 4 100 4V2c-6.842 0-11.386-.542-16.396-2h-6.225zM0 14c8.44 0 13.718-1.21 22.272-4.402l1.768-.661C33.64 5.347 39.647 4 50 4c10.271 0 15.362 1.222 24.629 4.928C84.112 12.722 89.438 14 100 14v-2c-10.271 0-15.362-1.222-24.629-4.928C65.888 3.278 60.562 2 50 2 39.374 2 33.145 3.397 23.34 7.063l-1.767.662C13.223 10.84 8.163 12 0 12v2z' fill='%23000000' fill-opacity='0.09' fill-rule='evenodd'/%3E%3C/svg%3E");
-      border-radius: 100%;
-      z-index: 0;
-    }
-  }
-
-  .me-sticking-out {
-    position: absolute;
-    border-radius: 100%;
-    width: 150%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-45%, -40%) scaleX(-100%);
-    clip-path: inset(0 0 70% 0);
-    z-index: 1;
-  }
-
-  .image-crop-container {
-    border-radius: 100%;
-    overflow: hidden;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-  }
-
-  .profile-image {
-    position: absolute;
-    border-radius: 100%;
-    width: 150%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-45%, -40%) scaleX(-100%);
-    z-index: 1;
-  }
-
-  .toni-container {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    /*     margin-top: 2rem;
-    margin-bottom: 1rem; */
-    align-items: center;
-    /*     background-color: blue; */
-    grid-area: image;
-    margin-top: 1rem;
-  }
-  .toni-introduction {
-    color: var(--colors-text);
-    left: 50%;
-    bottom: 0;
-    white-space: nowrap;
-    z-index: 2;
-
-    /*     padding: 0.5rem; */
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    /*     background-color: var(--colors-elevation-2); */
-    /*     border: 1px solid var(--colors-text); */
-    /*     border-radius: var(--border-radiuses-sm); */
-    /*     margin: 1rem; */
-
-    a {
-      margin-top: 0.25rem;
-      color: var(--colors-primary);
-      position: relative;
-      width: min-content;
-      &::after {
-        content: "↗";
-        font-size: var(--font-sizes-xs);
-        position: absolute;
-        top: -0.1em;
-        right: -1em;
-      }
-    }
-  }
-
-  .recommendation__text-box {
-    display: flex;
-    flex-direction: column;
-    grid-area: text;
   }
 
   .toni-heading {

@@ -9,10 +9,11 @@
     text,
     reverse = false,
     color = "var(--colors-primary)",
+    viewport
   } = $props();
 </script>
 
-<div class="comment" class:reversed={reverse} style="--bg-color: {color}">
+<div use:viewport class="comment reveal-on-scroll" class:reversed={reverse} style="--bg-color: {color}">
   <p class="text">
     {text}
   </p>
@@ -37,7 +38,7 @@
   .comment {
     display: flex;
     flex-direction: column-reverse;
-    gap: 0.5rem;
+    gap: 2rem;
   }
   .person__image {
     background-color: var(--bg-color);
@@ -159,8 +160,12 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       padding-bottom: 5rem;
+/*       max-width: 60rem; */
+      p {
+        max-width: 35rem;
+      }
     }
 
     .text {

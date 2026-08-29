@@ -4,6 +4,7 @@ slug: "dashboard"
 description: "Ruudukkopohjainen, responsiivinen ja mukautettava dashboard, joka toteutettiin kandiprojektina radio-ohjelmistoa tekevän yhteistyöyrityksen kanssa."
 thumbnail: "/images/processed/dashboard-prototype-thumb.webp"
 tags: ["React", "RubyOnRails"]
+isShowcased: true
 ---
 
 # Johdanto

@@ -14,8 +14,8 @@
     imageSrc,
     imageAlt = title,
     href = undefined,
-    isSelected,
-    onselect,
+    isSelected = false,
+    onselect = () => {},
   } = $props();
 
   function handleClick(e) {
@@ -67,7 +67,7 @@
     background: var(--colors-elevation-2);
     border-radius: var(--border-radiuses-lg);
     overflow: hidden;
-    box-shadow: var(--shadows-xs);
+/*     box-shadow: var(--shadows-xs); */
     transition:
       transform 0.2s ease,
       box-shadow 0.2s ease;
@@ -77,7 +77,7 @@
       color-mix(
         in oklch,
         var(--colors-elevation-2),
-        var(--border-mix-shading) var(--border-strength-2)
+        var(--border-mix-shading) var(--border-strength-1)
       );
     color: var(--colors-text);
   }
