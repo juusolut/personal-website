@@ -61,7 +61,7 @@
     margin-bottom: 2rem;
 
     p {
-      margin-left: 0.5rem;
+/*       margin-left: 0.5rem; */
       padding: 0.5rem 1rem;
       background-color: var(--colors-elevation-2);
       width: fit-content;

@@ -116,7 +116,7 @@
         class="nutshell__image styled reveal"
       /> -->
       <div class="nutshell__bg-image-container reveal"></div>
-      <div class="nutshell__bg-blueprint"></div>
+      <div class="nutshell__bg-blueprint reveal"></div>
     </div>
   </div>
   <button
@@ -131,8 +131,8 @@
 <section class="details"></section>
 <section class="projects h-padding">
   <div class="projects__inner section-content">
-    <h1 class="toni-heading">Korostetut projektit</h1>
-    <div class="projects__grid reveal-on-scroll" use:viewport>
+    <h1 class="view-title">Korostetut projektit</h1>
+    <div class="projects__grid">
       {#each data.projects as item (item.slug)}
         <ProjectItem
           id={item.slug}
@@ -144,7 +144,7 @@
         />
       {/each}
       <a href={resolve("/projects")} class="all-projects-link"
-        >Näytä kaikki projektit ({data.projects.length})</a
+        >Näytä kaikki projektit ({data.projectCount})</a
       >
     </div>
   </div>
@@ -175,6 +175,11 @@
     </div>
   </div>
 </section>
+
+<footer class="h-padding">
+  <span>Rakennettu <a href="https://svelte.dev/">Sveltellä</a></span>
+</footer>
+
 <FloatingHead />
 
 <style>
@@ -203,6 +208,7 @@
     justify-content: center;
     gap: 0.5rem;
     flex: 1;
+    box-shadow: var(--shadows-xs);
   }
 
   .nutshell__gradient-border {
@@ -267,12 +273,16 @@
   }
 
   .nutshell__bg-blueprint {
+    --opacity-to: 0.2;
+    --y-from: 2rem;
+    --speed: 4s;
+
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 200%;
     background-repeat: repeat;
     background-size: 8rem auto;
     /* GPU-optimized execution */
@@ -299,7 +309,7 @@
 
   .nutshell__im {
     margin: 0;
-    font-size: clamp(var(--font-sizes-lg), .5cqw + 4cqh, 4rem) !important;
+    font-size: clamp(var(--font-sizes-lg), 0.5cqw + 4cqh, 4rem) !important;
     white-space: nowrap;
 
     > span {
@@ -371,7 +381,7 @@
   @media (width > 40rem) {
     .nutshell {
       height: auto;
-      padding-bottom: var(--navbar-height);
+      padding-bottom: calc(var(--navbar-height) + 4rem);
     }
 
     .nutshell__info {
@@ -584,10 +594,11 @@
   }
 
   .projects {
+    width: 100%;
     border-bottom: 1px solid
       color-mix(
         in oklch,
-        var(--colors-elevation-0),
+        var(--colors-elevation-2),
         var(--border-mix-shading) var(--border-strength-1)
       );
   }
@@ -597,7 +608,7 @@
     color: var(--colors-text);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0rem;
     padding-bottom: 5rem;
   }
 
@@ -636,7 +647,12 @@
     background-color: var(--colors-elevation-2);
     padding: 4rem 0;
     overflow: hidden;
-    padding-bottom: 10rem;
+        border-bottom: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
   }
 
   .recommendation__inner {
@@ -654,6 +670,7 @@
     container-type: inline-size;
     gap: 2rem;
     margin-top: 2rem;
+    padding-bottom: 8rem;
   }
 
   .toni-heading {
@@ -674,6 +691,21 @@
       height: 100%;
       background-color: var(--colors-primary);
       border-radius: var(--border-radiuses-sm);
+    }
+  }
+
+  footer {
+    background-color: var(--colors-elevation-0);
+    display: flex;
+    justify-content: center;
+    color: var(--colors-text);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    > span > a {
+      color: var(--colors-primary);
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 3px;
     }
   }
 </style>

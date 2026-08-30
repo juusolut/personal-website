@@ -12,17 +12,19 @@
         alt="Juuso Luttinen"
       /> -->
       <div class="profile-image-container waves-pattern">
-        <img
-          class="me-sticking-out"
-          src={asset("/images/me.png")}
-          alt="Juuso Luttinen"
-        />
-        <div class="image-crop-container">
+        <div class="both-images">
           <img
-            class="profile-image"
+            class="image-top"
             src={asset("/images/me.png")}
             alt="Juuso Luttinen"
           />
+          <div class="image-bottom">
+            <img
+              class="profile-image"
+              src={asset("/images/me.png")}
+              alt="Juuso Luttinen"
+            />
+          </div>
         </div>
       </div>
       <p class="text">
@@ -108,7 +110,6 @@
   }
 
   .profile-image-container {
-    aspect-ratio: 1 / 1;
     background-color: var(--colors-secondary);
     border-radius: 100%;
     position: relative;
@@ -116,9 +117,19 @@
     max-width: 15rem;
     order: 1;
     justify-self: center;
+/*     overflow: hidden; */
   }
 
-  .me-sticking-out {
+  .both-images {
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    position: relative;
+    width: 100%;
+    order: 1;
+    justify-self: center;
+  }
+
+  .image-top {
     position: absolute;
     border-radius: 100%;
     width: 150%;
@@ -128,7 +139,7 @@
     clip-path: inset(0 0 50% 0);
   }
 
-  .image-crop-container {
+  .image-bottom {
     border-radius: 100%;
     overflow: hidden;
     position: absolute;

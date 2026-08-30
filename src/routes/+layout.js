@@ -25,6 +25,7 @@ export const trailingSlash = "never";
   }
 
   return {
-    projects: showcasedProjects
+    projects: showcasedProjects,
+    projectCount: Object.keys(modules).length 
   };
 }

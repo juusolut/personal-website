@@ -3,10 +3,12 @@
 export const iconNames = [
   "ArrowNarrowLeft",
   "Default",
+  "Docker",
   "Dotnet",
   "Expo",
   "Flutter",
   "Godot",
+  "Microsoft",
   "MoonStars",
   "React",
   "RubyOnRails",

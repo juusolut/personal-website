@@ -145,11 +145,11 @@ button:hover {
   position: relative;
   padding: 0.5rem 0;
   margin-top: 0;
-  margin-left: 0.5rem;
-  padding-left: 1.5rem;
-  padding-right: 1rem;
+/*   margin-left: 0.5rem; */
+  padding-left: 1.6rem;
+  padding-right: 1.3rem;
   background-color: var(--colors-elevation-2);
-  width: min-content;
+  width: fit-content;
   box-shadow: var(--shadows-xs);
   border-radius: var(--border-radiuses-sm);
   border: 1px solid color-mix(in oklch,
@@ -160,11 +160,10 @@ button:hover {
     content: "";
     position: absolute;
     bottom: 0;
-    left: .4rem;
+    left: .7rem;
     width: 5px;
-    height: 70%;
-    top: 50%;
-    transform: translateY(-50%);
+    top: .35em;
+    bottom: .35em;
     background-color: var(--colors-primary);
     border-radius: var(--border-radiuses-sm);
 
@@ -190,6 +189,7 @@ button:hover {
   --speed: 2s;
   --y-from: 3rem;
   --opacity-from: 0;
+  --opacity-to: 1.0;
 
   opacity: 0;
   transform: translateY(20px);
@@ -204,7 +204,7 @@ button:hover {
   }
 
   to {
-    opacity: 1;
+    opacity: var(--opacity-to);
     transform: translateY(0);
   }
 }
