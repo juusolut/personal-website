@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { asset, resolve } from "$app/paths";
   import FloatingHead from "$lib/components/FloatingHead.svelte";
   import Comment from "$lib/components/Comment.svelte";
@@ -46,29 +46,50 @@
   }
 
   function scrollToElement(target) {
-    const element = typeof target === 'string' 
-      ? document.querySelector(target) 
-      : target;
+    const element =
+      typeof target === "string" ? document.querySelector(target) : target;
 
     if (element) {
       element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start', // 'start', 'center', 'end', or 'nearest'
-        inline: 'nearest'
+        behavior: "smooth",
+        block: "start", // 'start', 'center', 'end', or 'nearest'
+        inline: "nearest",
       });
     }
+  }
+
+  let element: HTMLDivElement | null = $state(null);
+
+  let normalizedX = $state(0);
+  let normalizedY = $state(0);
+
+  function handleMouseMove(event: MouseEvent) {
+    return;
+    const center_x = window.innerWidth / 2;
+    const center_y = window.innerHeight / 2;
+
+    normalizedX = (event.clientX / window.innerWidth) * 2 - 1;
+    normalizedY = (event.clientY / window.innerHeight) * 2 - 1;
+
+    console.log(normalizedY);
   }
 
   let { data } = $props();
 </script>
 
+<svelte:window onmousemove={handleMouseMove} />
+
 <section class="nutshell h-padding">
   <div class="nutshell__info section-content">
     <div class="nutshell__gradient-border"></div>
     <div class="nutshell_content" class:is-visible={isLoaded}>
-      <div class="nutshell__title reveal">
+      <div
+        class="nutshell__title reveal"
+        style:--offset-x="{normalizedX * -50}px"
+        style:--offset-y="{normalizedY * -50}px"
+      >
         <h1>Hei!</h1>
-        <h1>Olen <span class="mr-dafoe-regular">Juuso.</span></h1>
+        <h1>Olen &lt; <span class="mr-dafoe-regular">Juuso</span> /&gt;</h1>
       </div>
       <div class="buttons">
         <a
@@ -96,17 +117,19 @@
       <div class="nutshell__bg-blueprint"></div>
     </div>
   </div>
-  <button class="nutshell__scroll-button" onclick={() => scrollToElement(".projects")}>
-    <span class="scroll-arrow" aria-hidden="true"></span><span>Vieritä alas</span><span
-      class="scroll-arrow"
-      aria-hidden="true"
-    ></span></button
+  <button
+    class="nutshell__scroll-button"
+    onclick={() => scrollToElement(".projects")}
+  >
+    <span class="scroll-arrow" aria-hidden="true"></span><span
+      >Vieritä alas</span
+    ><span class="scroll-arrow" aria-hidden="true"></span></button
   >
 </section>
 <section class="details"></section>
 <section class="projects">
   <div class="projects__inner section-content">
-    <h1 class="toni-heading">Projektit</h1>
+    <h1 class="toni-heading">Korostetut projektit</h1>
     <div class="projects__grid reveal-on-scroll" use:viewport>
       {#each data.projects as item (item.slug)}
         <ProjectItem
@@ -208,7 +231,17 @@
       height: 100%;
       width: 100%;
       /*       background-color: color-mix(in oklab, var(--colors-primary), white 60%); */
-      background-color: var(--colors-elevation-2);
+      background: radial-gradient(
+        circle at 100% 120%,
+        color-mix(
+            in oklab,
+            var(--colors-primary),
+            var(--colors-elevation-2) 80%
+          )
+          10%,
+        var(--colors-elevation-2) 80%
+      );
+      opacity: 1;
       border-radius: var(--border-radiuses-lg);
     }
   }
@@ -255,6 +288,9 @@
   }
 
   .nutshell__title {
+    /*     --offset-x: 0px;
+    --offset-y: 0px; */
+
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -264,17 +300,23 @@
     top: 20%;
     position: absolute;
     z-index: 1;
+    /*     transform: translate3d(var(--offset-x), var(--offset-y), 0) !important;
+    transition: transform 30ms ease-out !important;
+    will-change: transform; */
 
     > h1 {
-      font-family: "Raleway";
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 800;
+      font-style: normal;
       margin: 0;
       font-size: 13vw;
-      font-size: clamp(var(--font-sizes-lg), 3cqw + 5cqh, 6rem);
+      font-size: clamp(var(--font-sizes-lg), 2cqw + 4cqh, 6rem);
       color: color-mix(
         in oklab,
-        var(--colors-secondary) 8%,
+        var(--colors-secondary) 20%,
         var(--colors-text)
       );
+      white-space: nowrap;
       /*       -webkit-text-stroke-width: .1rem;
       -webkit-text-stroke-color: var(--colors-text);
       color: transparent; */
@@ -286,6 +328,7 @@
       text-shadow: 0.03em 0.03em 0.08em
         color-mix(in oklch, var(--colors-secondary) 40%, rgba(0, 0, 0, 0.1));
       -webkit-text-stroke-width: 0rem;
+      text-transform: none;
     }
   }
 
@@ -308,6 +351,7 @@
     z-index: 0;
     object-fit: contain;
     max-height: 70%;
+    user-select: none;
   }
 
   .styled {
@@ -325,6 +369,7 @@
   @media (width > 40rem) {
     .nutshell {
       height: auto;
+      padding-bottom: var(--navbar-height);
     }
 
     .nutshell__info {
@@ -475,9 +520,8 @@
   .scroll-arrow {
     position: relative;
     display: inline-block;
-    transform: translateY(-.8rem) rotate(45deg);
+    transform: translateY(-0.8rem) rotate(45deg);
     background-color: red;
-  
   }
 
   /* Base shape for both arrows */
@@ -495,15 +539,15 @@
 
   /* Top Arrow */
   .scroll-arrow::before {
-    top: -.2rem;
-    left: -.2rem;
+    top: -0.2rem;
+    left: -0.2rem;
     animation-delay: 0s;
   }
 
   /* Bottom Arrow (Layered below with delay) */
   .scroll-arrow::after {
-    top: .2rem;
-    left: .2rem;
+    top: 0.2rem;
+    left: 0.2rem;
     animation-delay: 0.1s;
   }
 
@@ -534,7 +578,7 @@
       color-mix(
         in oklch,
         var(--colors-primary),
-        var(--border-mix-shading) var(--border-strength-2)
+        var(--border-mix-shading) var(--border-strength-1)
       );
   }
 
@@ -544,7 +588,7 @@
       color-mix(
         in oklch,
         var(--colors-elevation-0),
-        var(--border-mix-shading) var(--border-strength-2)
+        var(--border-mix-shading) var(--border-strength-1)
       );
   }
 

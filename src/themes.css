@@ -57,8 +57,9 @@
     --colors-body-level-3: color-mix(in oklab, var(--colors-body), var(--colors-white) 75%);
 
     /* BRANDING COLORS */
-    --colors-primary: oklch(0.73 0.12 68.69);
-    --colors-secondary: oklch(56.513% 0.16524 348.461);
+    --colors-secondary: oklch(0.73 0.12 68.69);
+    --colors-primary: oklch(57.8% 0.16305 266.504);
+/*     --colors-secondary: oklch(56.513% 0.16524 348.461); */
     /* --colors-primary: oklch(55.05% 0.11643 293.077); */
     /*     --colors-secondary: oklch(54.851% 0.07727 217.855); */
     --colors-note: oklch(86.589% 0.05914 86.507);
@@ -79,22 +80,22 @@
     --border-strength-7: 100%;
 
     /* ELEVATION STRENGTH */
-    --elevation-strength-1: 40%;
-    --elevation-strength-2: 60%;
+    --elevation-strength-1: 10%;
+    --elevation-strength-2: 30%;
     --elevation-strength-3: 80%;
     --elevation-strength-4: 90%;
     --elevation-strength-5: 97%;
 
     /* ELEVATION COLORS */
-    --base-lightness: 0.9;
+    --base-lightness: 0.92;
     --base-saturation: 0.01;
 
     --colors-elevation-0: oklch(from var(--colors-primary) var(--base-lightness) var(--base-saturation) h);
-    --colors-elevation-1: color-mix(in oklch, rgb(247, 247, 247), var(--mix-shading) var(--elevation-strength-1));
-    --colors-elevation-2: color-mix(in oklch, rgb(247, 247, 247), var(--mix-shading) var(--elevation-strength-2));
-    --colors-elevation-3: color-mix(in oklch, rgb(247, 247, 247), var(--mix-shading) var(--elevation-strength-3));
-    --colors-elevation-4: color-mix(in oklch, rgb(247, 247, 247), var(--mix-shading) var(--elevation-strength-4));
-    --colors-elevation-5: color-mix(in oklch, rgb(247, 247, 247), var(--mix-shading) var(--elevation-strength-5));
+    --colors-elevation-1: color-mix(in oklch, var(--colors-elevation-0), var(--border-mix-shading) var(--elevation-strength-1));
+    --colors-elevation-2: color-mix(in oklch, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-2));
+    --colors-elevation-3: color-mix(in oklch, var(--colors-primary), var(--mix-shading) var(--elevation-strength-3));
+    --colors-elevation-4: color-mix(in oklch, var(--colors-primary), var(--mix-shading) var(--elevation-strength-4));
+    --colors-elevation-5: color-mix(in oklch, var(--colors-primary), var(--mix-shading) var(--elevation-strength-5));
 
     --colors-text: oklch(from var(--colors-primary) 0.15 0 h);
     --colors-text-light: oklch(from var(--colors-primary) 0.5 0.02 h);
@@ -109,6 +110,7 @@
 html[data-theme='dark'] {
 
     --colors-primary: oklch(57.8% 0.16305 266.504);
+    --colors-secondary: oklch(56.513% 0.16524 348.461);
 
     --colors-black: oklch(1 0 0);
     --colors-white: oklch(0 0 0);
@@ -136,7 +138,7 @@ html[data-theme='dark'] {
     --elevation-strength-4: 10%;
     --elevation-strength-5: 12%;
 
-    --base-lightness: 0.15;
+    --base-lightness: 0.18;
 
     --colors-elevation-0: oklch(from var(--colors-primary) var(--base-lightness) 0.02 h);
     --colors-elevation-1: color-mix(in oklch, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-1));
