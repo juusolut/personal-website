@@ -523,7 +523,6 @@
     position: relative;
     display: inline-block;
     transform: translateY(-0.8rem) rotate(45deg);
-    background-color: red;
   }
 
   /* Base shape for both arrows */
@@ -534,8 +533,8 @@
     left: 50%;
     width: 12px;
     height: 12px;
-    border-right: 2.5px solid #ffffff;
-    border-bottom: 2.5px solid #ffffff;
+    border-right: 2.5px solid var(--colors-text);
+    border-bottom: 2.5px solid var(--colors-text);
     animation: arrowPulse 2s infinite ease-in-out;
   }
 
