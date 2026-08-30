@@ -45,6 +45,20 @@
     };
   }
 
+  function scrollToElement(target) {
+    const element = typeof target === 'string' 
+      ? document.querySelector(target) 
+      : target;
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start', // 'start', 'center', 'end', or 'nearest'
+        inline: 'nearest'
+      });
+    }
+  }
+
   let { data } = $props();
 </script>
 
@@ -79,8 +93,15 @@
         class="nutshell__image styled reveal"
       /> -->
       <div class="nutshell__bg-image-container reveal"></div>
+      <div class="nutshell__bg-blueprint"></div>
     </div>
   </div>
+  <button class="nutshell__scroll-button" onclick={() => scrollToElement(".projects")}>
+    <span class="scroll-arrow" aria-hidden="true"></span><span>Vieritä alas</span><span
+      class="scroll-arrow"
+      aria-hidden="true"
+    ></span></button
+  >
 </section>
 <section class="details"></section>
 <section class="projects">
@@ -134,39 +155,16 @@
 <style>
   .nutshell {
     width: 100%;
-    padding: 1rem 0;
+    padding-top: 1rem;
     height: calc(100svh - var(--navbar-height));
-    /*     padding: 5rem 0; */
-    /*     border-bottom: 1px solid var(--colors-text); */
-    /*     background: linear-gradient(180deg, transparent 50%, var(--colors-primary) 50%); */
+    display: flex;
+    flex-direction: column;
     position: relative;
     container-type: inline-size;
     container-name: hero;
-    /*     border-bottom: 1px solid
-      color-mix(
-        in oklch,
-        var(--colors-elevation-0),
-        var(--border-mix-shading) var(--border-strength-2)
-      ); */
-    /*     &::before {
-      content: "";
-      position: absolute;
-      height: 50%;
-      width: 100%;
-      bottom: 0;
-      left: 0;
-      background-color: var(--colors-primary);
-      border-top: 1px solid
-        color-mix(
-          in oklch,
-          var(--colors-primary),
-          var(--border-mix-shading) var(--border-strength-1)
-        );
-    } */
   }
 
   .nutshell__info {
-    /*  aspect-ratio: 10 / 5; */
     height: 100%;
     width: 100%;
     background-color: var(--colors-elevation-2);
@@ -179,6 +177,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 0.5rem;
+    flex: 1;
   }
 
   .nutshell__gradient-border {
@@ -226,9 +225,33 @@
     border-radius: var(--border-radiuses-lg);
     container-type: inline-size;
     display: none;
+
     &.is-visible {
       display: flex !important;
     }
+  }
+
+  .nutshell__bg-blueprint {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: repeat;
+    background-size: 8rem auto;
+    /* GPU-optimized execution */
+    will-change: transform;
+
+    /* Adjust duration (20s) to control scrolling speed */
+    /*       animation: scrollPattern 200s linear infinite; */
+    background-color: var(--colors-secondary);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    mask-repeat: repeat;
+    mask-size: 10rem auto;
+    opacity: 0.2;
+    z-index: -1;
   }
 
   .nutshell__title {
@@ -299,7 +322,11 @@
     z-index: -1;
   }
 
-  @container hero (width > 40rem) {
+  @media (width > 40rem) {
+    .nutshell {
+      height: auto;
+    }
+
     .nutshell__info {
       aspect-ratio: 9 / 3;
       height: auto;
@@ -328,6 +355,10 @@
       justify-content: flex-start !important;
       left: 15% !important;
       z-index: 2;
+    }
+
+    .nutshell__scroll-button {
+      display: none !important;
     }
   }
 
@@ -427,6 +458,68 @@
     }
   }
 
+  .nutshell__scroll-button {
+    width: 100%;
+    background-color: transparent;
+    color: var(--colors-text);
+    padding: 1rem 0;
+    text-transform: uppercase;
+    font-weight: var(--font-weights-bold);
+    font-size: var(--font-sizes-xs);
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .scroll-arrow {
+    position: relative;
+    display: inline-block;
+    transform: translateY(-.8rem) rotate(45deg);
+    background-color: red;
+  
+  }
+
+  /* Base shape for both arrows */
+  .scroll-arrow::before,
+  .scroll-arrow::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-right: 2.5px solid #ffffff;
+    border-bottom: 2.5px solid #ffffff;
+    animation: arrowPulse 2s infinite ease-in-out;
+  }
+
+  /* Top Arrow */
+  .scroll-arrow::before {
+    top: -.2rem;
+    left: -.2rem;
+    animation-delay: 0s;
+  }
+
+  /* Bottom Arrow (Layered below with delay) */
+  .scroll-arrow::after {
+    top: .2rem;
+    left: .2rem;
+    animation-delay: 0.1s;
+  }
+
+  /* Downward bounce & fade animation */
+  @keyframes arrowPulse {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
   .details {
     display: none;
     height: calc(30rem);
@@ -469,7 +562,7 @@
     color: var(--colors-text);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-/*     grid-template-rows: 20rem; */
+    /*     grid-template-rows: 20rem; */
     gap: 1rem;
   }
 
