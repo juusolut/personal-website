@@ -2,10 +2,10 @@ export const prerender = true;
 export const trailingSlash = "never";
 
 // Fetch all markdown files in the content/projects directory
-  
 
 
-  export async function load() {
+
+export async function load() {
   // 1. Import all .md files in your articles directory
   const modules = import.meta.glob('/src/content/projects/*.md', { eager: true });
 
@@ -26,6 +26,6 @@ export const trailingSlash = "never";
 
   return {
     projects: showcasedProjects,
-    projectCount: Object.keys(modules).length 
+    projectCount: Object.keys(modules).length
   };
 }

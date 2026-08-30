@@ -82,7 +82,7 @@
     /* ELEVATION STRENGTH */
     --elevation-strength-1: 10%;
     --elevation-strength-2: 30%;
-    --elevation-strength-3: 80%;
+    --elevation-strength-3: 50%;
     --elevation-strength-4: 90%;
     --elevation-strength-5: 97%;
 
@@ -93,7 +93,7 @@
     --colors-elevation-0: oklch(from var(--colors-primary) var(--base-lightness) var(--base-saturation) h);
     --colors-elevation-1: color-mix(in oklch, var(--colors-elevation-0), var(--border-mix-shading) var(--elevation-strength-1));
     --colors-elevation-2: color-mix(in oklch, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-2));
-    --colors-elevation-3: color-mix(in oklch, var(--colors-primary), var(--mix-shading) var(--elevation-strength-3));
+    --colors-elevation-3: color-mix(in oklch, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-3));
     --colors-elevation-4: color-mix(in oklch, var(--colors-primary), var(--mix-shading) var(--elevation-strength-4));
     --colors-elevation-5: color-mix(in oklch, var(--colors-primary), var(--mix-shading) var(--elevation-strength-5));
 

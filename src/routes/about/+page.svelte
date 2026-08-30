@@ -1,10 +1,13 @@
 <script lang="ts">
   import { asset } from "$app/paths";
+  import Tags from "$lib/components/Tags.svelte";
+
+  let { data } = $props();
 </script>
 
 <div class="info-container h-padding">
   <div class="info">
-    <h2 class="view-title">Minä</h2>
+    <h2 class="view-title">Kuka olen?</h2>
     <article class="info-box">
       <!--       <img
         class="sitting"
@@ -28,17 +31,42 @@
         </div>
       </div>
       <div class="content">
-        <h3>Kuka olen?</h3>
+        <!--         <h3>Kuka olen?</h3> -->
         <p>
           Hei! Olen Juuso, 27-v. Asun <b>Oulussa</b> ja olen valmistunut
-          luonnontieteiden kandidaatiksi <b>tietojenkäsittelytieteistä</b>, jota olen
+          luonnontieteiden kandidaatiksi <b>tietojenkäsittelytieteistä</b>. Olen
           opiskellut <b>Oulun yliopistolla</b>. Työskentelen tällä hetkellä
-          <b>Postilla</b> ja vapaa-aikani kuluu kuntosalin, frisbeegolfin ja
-          erilaisten luovien projektien parissa; ohjelmoin mm. verkkosivuja ja
-          pelejä, sävellän konemusiikkia, teen digitaalista taidetta ja päädyn joskus myös käsitöiden pariin. Olen erittäin oma-aloitteinen ja maanläheinen tyyppi; tunnollinen, ahkera, luotettava, rento, mutta vastuullinen ja helposti lähestyttävä niin töissä kuin töidenki ulkopuolella.
+          <b>Postilla</b> ja vapaa-aikani kuluu kuntosalin, frisbeegolfin ja erilaisten
+          luovien projektien parissa; ohjelmoin mm. verkkosivuja ja pelejä, sävellän
+          konemusiikkia, teen digitaalista taidetta ja päädyn joskus käsitöidenkin
+          pariin. Tunnollisuus ja ahkeruus ovat minulle tosi tärkeitä arvoja, joita
+          tasapainottaa rennon maanläheinen asenne elämään. Olen erittäin oma-aloitteinen
+          ja helposti lähestyttävä tyyppi niin töissä kuin vapaa-ajalla.
         </p>
       </div>
     </article>
+  </div>
+</div>
+
+<div class="skills-container h-padding">
+  <div class="skills section-content">
+    <h2 class="view-title no-bg">Mitä osaan?</h2>
+    <p>
+      Taitoni on painottunut frontend-suunnitteluun ja toteutukseen, mutta
+      backend-kehitys kiinnostaa myös. Tässä teknologioita, joita olen käyttänyt
+      projekteissani:
+    </p>
+    <div class="tags"><Tags tags={data.tags} /></div>
+    <br />
+    <p>Tässä ohjelmointikieliä, joista minulla on kokemusta:</p>
+    <ul class="programming-langugage-list">
+      <li>Javascript/Typescript</li>
+      <li>Python</li>
+      <li>C</li>
+      <li>Java</li>
+      <li>Dart</li>
+      <li>GDScript</li>
+    </ul>
   </div>
 </div>
 
@@ -90,9 +118,23 @@
       position: absolute;
       height: 100%;
       width: 100%;
-      background-color: var(--colors-elevation-2);
+      background: radial-gradient(
+        circle at 75% 50%,
+        color-mix(
+            in oklab,
+            var(--colors-primary),
+            var(--colors-elevation-2) 94%
+          )
+          5%,
+        var(--colors-elevation-2) 60%
+      );
       border-radius: var(--border-radiuses-lg);
-      border: 2px solid var(--colors-secondary);
+      border: 2px solid
+        color-mix(
+          in oklch,
+          var(--colors-secondary),
+          var(--mix-shading) var(--border-strength-2)
+        );
       top: 0;
       left: 0;
       z-index: -1;
@@ -119,9 +161,9 @@
     position: relative;
     width: 50%;
     max-width: 15rem;
+    aspect-ratio: 1 / 1;
     order: 1;
     justify-self: center;
-    /*     overflow: hidden; */
   }
 
   .both-images {
@@ -161,9 +203,37 @@
     transform: translate(-50%, -50%);
   }
 
+  .skills-container {
+    background-color: var(--colors-elevation-2);
+    padding: 4rem 0;
+  }
+
+  .skills {
+    height: 40rem;
+    padding: 0 0.5rem;
+  }
+
+  .tags {
+    background-color: var(--colors-elevation-3);
+    padding: 1rem;
+    border-radius: var(--border-radiuses-sm);
+    border: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-3),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    width: 100%;
+    max-width: 40rem;
+  }
+
+  .programming-langugage-list {
+    color: var(--colors-text);
+  }
+
   @container (width > 50rem) {
     .info-box {
-      grid-template-columns: 3fr 1fr;
+      grid-template-columns: 2fr 1fr;
     }
 
     .content {
@@ -174,7 +244,7 @@
     .profile-image-container {
       order: 2;
       width: 100%;
-      max-width: unset;
+      align-self: center;
     }
   }
 </style>

@@ -20,6 +20,7 @@
         font-size: var(--font-sizes-xs);
         font-weight: var(--font-weights-medium);
         background-color: color-mix(in oklch, var(--bg-color) 30%, transparent);
+        color: color-mix(in oklch, var(--bg-color), var(--colors-text) 90%);
         border: 1px solid
             color-mix(
                 in oklch,
@@ -28,7 +29,7 @@
             );
 
         > span {
-            color: color-mix(in oklch, var(--bg-color), var(--colors-text) 90%);
+            color: inherit;
 /*             font-weight: var(--font-weights-bold); */
         }
     }

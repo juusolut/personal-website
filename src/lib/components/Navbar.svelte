@@ -119,6 +119,11 @@
     position: relative;
     width: 100%;
     margin-bottom: 3rem;
+    position: sticky;
+    background-color: color-mix(in oklch, var(--colors-elevation-0), transparent 10%);
+    backdrop-filter: blur(10px);
+    view-transition-name: navbar;
+    view-transition-class: project-morph navbar;
   }
 
   .nav-container {
@@ -193,6 +198,7 @@
 
     .navbar {
       margin-bottom: 0rem;
+      z-index: 10000;
     }
     .hamburger {
       display: flex;

@@ -165,6 +165,7 @@ button:hover {
     border: none;
     margin: 0;
     padding-left: 1rem;
+    background: none;
 
     &::before {
       left: 0;
@@ -249,5 +250,11 @@ button:hover {
     top: -0.3em;
     font-size: inherit;
     /*     font-weight: var(--font-weights-bold); */
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 3.5rem;
   }
 }
