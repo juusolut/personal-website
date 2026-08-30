@@ -4,13 +4,13 @@ import { type IconName } from "../../types/icon-names";
 export interface TagConfig {
   label: string;
   bg: string;
-  icon: IconName;
+  icon: IconName | null;
 }
 
 export const DEFAULT_TAG: TagConfig = {
   label: 'Code',
   bg: 'rgba(151, 151, 151, 0.46)',
-  icon: "Default"
+  icon: null
 };
 
 export const TAG_CONFIG: Record<string, TagConfig> = {
@@ -31,8 +31,8 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
   },
   godot: {
     label: 'Godot',
-    bg: '#8fa5b9',
-    icon: "Default"
+    bg: '#478cbf',
+    icon: "Godot"
   },
   flutter: {
     label: 'Flutter',
@@ -47,7 +47,7 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
   mailhog: {
     label: 'Mailhog',
     bg: '#952225',
-    icon: "Default"
+    icon: "Undefined"
   },
   docker: {
     label: 'Docker',
@@ -58,6 +58,11 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
     label: 'Microsoft SQL Server',
     bg: '#2e59bb',
     icon: "Microsoft"
+  },
+  reactnative: {
+    label: 'React Native',
+    bg: '#9bbec9',
+    icon: "React"
   }
 };
 

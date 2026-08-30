@@ -4,6 +4,7 @@
   import { resolve } from "$app/paths";
   import { getTagInfo, type TagConfig } from "$lib/config/tags";
   import Icon from "$lib/components/Icon.svelte";
+  import Tags from "./Tags.svelte";
 
   // Destructure properties from the $props rune
   let {
@@ -49,16 +50,12 @@
       >
         {description}
       </p>
+      <div
+        style="view-transition-name: project-tags-{id}; view-transition-class: project-morph project-tags"
+      >
+        <Tags {tags} />
+      </div>
     </div>
-    <ul class="tag-list">
-      {#each tags as tagKey}
-        {@const tag: TagConfig = getTagInfo(tagKey)}
-        <li class="tag-list__tag-chip" style="--bg-color: {tag.bg};">
-          <Icon name={tag.icon} size="1.25rem" />
-          <span class="tag-label">{tag.label}</span>
-        </li>
-      {/each}
-    </ul>
   </a>
 </article>
 
@@ -67,7 +64,6 @@
     background: var(--colors-elevation-2);
     border-radius: var(--border-radiuses-lg);
     overflow: hidden;
-/*     box-shadow: var(--shadows-xs); */
     transition:
       transform 0.2s ease,
       box-shadow 0.2s ease;
@@ -111,10 +107,6 @@
     object-position: top;
   }
 
-  .grid-item:hover .grid-item__image-wrapper img {
-    /*     transform: scale(1.05); */
-  }
-
   .grid-item__content {
     padding: 1.25rem;
     display: flex;
@@ -134,36 +126,6 @@
     font-size: var(--font-sizes-sm);
     color: var(--colors-text-light);
     line-height: 1.5;
-  }
-
-  .tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 0.5rem 1.25rem 1.25rem 1.25rem;
-    margin: 0;
-    list-style: none;
-  }
-
-  .tag-list__tag-chip {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.1rem 0.5rem;
-    border-radius: var(--border-radiuses-full);
-    font-size: var(--font-sizes-xs);
-    font-weight: var(--font-weights-medium);
-    background-color: color-mix(in oklch, var(--bg-color) 30%, transparent);
-    border: 1px solid
-      color-mix(
-        in oklch,
-        var(--bg-color),
-        var(--border-mix-shading) var(--border-strength-1)
-      );
-
-    > span {
-      color: color-mix(in oklch, var(--bg-color), var(--colors-text) 90%);
-      /*       color: var(--bg-color); */
-    }
+    flex: 1;
   }
 </style>

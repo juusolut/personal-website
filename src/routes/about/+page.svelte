@@ -27,15 +27,17 @@
           </div>
         </div>
       </div>
-      <p class="text">
-        Tänne tietoa minusta ja CV. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Incidunt doloribus voluptatibus doloremque aspernatur
-        vero fuga aperiam placeat cum, magni accusamus, maxime nam vitae aliquid
-        excepturi culpa minus ex! Eaque, incidunt. Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Accusantium doloremque necessitatibus ex,
-        numquam maiores debitis asperiores impedit, officia voluptatibus, quia
-        illo sed soluta doloribus magnam id. Quia itaque quos deserunt.
-      </p>
+      <div class="content">
+        <h3>Kuka olen?</h3>
+        <p>
+          Hei! Olen Juuso, 27-v. Asun <b>Oulussa</b> ja olen valmistunut
+          luonnontieteiden kandidaatiksi <b>tietojenkäsittelytieteistä</b>, jota olen
+          opiskellut <b>Oulun yliopistolla</b>. Työskentelen tällä hetkellä
+          <b>Postilla</b> ja vapaa-aikani kuluu kuntosalin, frisbeegolfin ja
+          erilaisten luovien projektien parissa; ohjelmoin mm. verkkosivuja ja
+          pelejä, sävellän konemusiikkia, teen digitaalista taidetta ja päädyn joskus myös käsitöiden pariin. Olen erittäin oma-aloitteinen ja maanläheinen tyyppi; tunnollinen, ahkera, luotettava, rento, mutta vastuullinen ja helposti lähestyttävä niin töissä kuin töidenki ulkopuolella.
+        </p>
+      </div>
     </article>
   </div>
 </div>
@@ -90,15 +92,17 @@
       width: 100%;
       background-color: var(--colors-elevation-2);
       border-radius: var(--border-radiuses-lg);
-      border: 1px solid var(--colors-primary);
+      border: 2px solid var(--colors-secondary);
       top: 0;
       left: 0;
       z-index: -1;
     }
   }
 
-  .text {
+  .content {
     order: 2;
+    > p {
+    }
   }
   .sitting {
     display: none;
@@ -117,7 +121,7 @@
     max-width: 15rem;
     order: 1;
     justify-self: center;
-/*     overflow: hidden; */
+    /*     overflow: hidden; */
   }
 
   .both-images {
@@ -162,7 +166,7 @@
       grid-template-columns: 3fr 1fr;
     }
 
-    .text {
+    .content {
       order: 1;
       align-self: center;
     }

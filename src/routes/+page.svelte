@@ -4,6 +4,8 @@
   import Comment from "$lib/components/Comment.svelte";
   import { onMount } from "svelte";
   import ProjectItem from "$lib/components/ProjectItem.svelte";
+  import { scale, fade } from "svelte/transition";
+  import { backOut } from "svelte/easing";
 
   let isLoaded = $state(false);
   const heroSrc = asset("/images/me.png");
@@ -75,9 +77,13 @@
   }
 
   let { data } = $props();
+
+  // For hiding scroll down button
+  let scrollY = $state(0);
+  let isVisible = $derived(scrollY > 100);
 </script>
 
-<svelte:window onmousemove={handleMouseMove} />
+<svelte:window onmousemove={handleMouseMove} bind:scrollY />
 
 <section class="nutshell h-padding">
   <div class="nutshell__info section-content">
@@ -97,12 +103,12 @@
         <a
           href="https://www.linkedin.com/in/juusolut/"
           target="_blank"
-          class="button button__linkedin">LinkedIn</a
+          class="button button__linkedin"><span class="offsite-link">LinkedIn</span></a
         >
         <a
           href="https://github.com/juusolut"
           target="_blank"
-          class="button button__github">GitHub</a
+          class="button button__github"><span class="offsite-link">GitHub</span></a
         >
       </div>
       <img
@@ -119,14 +125,20 @@
       <div class="nutshell__bg-blueprint reveal"></div>
     </div>
   </div>
-  <button
-    class="nutshell__scroll-button"
-    onclick={() => scrollToElement(".projects")}
-  >
-    <span class="scroll-arrow" aria-hidden="true"></span><span
-      >Vieritä alas</span
-    ><span class="scroll-arrow" aria-hidden="true"></span></button
-  >
+  <div class="nutshell__scroll-button-container">
+    {#if !isVisible}
+      <button
+        class="nutshell__scroll-button"
+        onclick={() => scrollToElement(".projects")}
+        in:scale={{ duration: 400, start: 0.5, easing: backOut }}
+        out:fade={{ duration: 200 }}
+      >
+        <span class="scroll-arrow" aria-hidden="true"></span><span
+          >Vieritä alas</span
+        ><span class="scroll-arrow" aria-hidden="true"></span></button
+      >
+    {/if}
+  </div>
 </section>
 <section class="details"></section>
 <section class="projects h-padding">
@@ -151,7 +163,7 @@
 </section>
 <section class="recommendation h-padding">
   <div class="recommendation__inner section-content">
-    <h1 class="toni-heading">Kommentteja minusta</h1>
+    <h1 class="view-title no-bg">Kommentteja minusta</h1>
     <div class="comments">
       <Comment
         name="Toni Pennanen"
@@ -177,7 +189,7 @@
 </section>
 
 <footer class="h-padding">
-  <span>Rakennettu <a href="https://svelte.dev/">Sveltellä</a></span>
+  <span>Rakennettu <a href="https://svelte.dev/" class="offsite-link">Sveltellä</a></span>
 </footer>
 
 <FloatingHead />
@@ -192,6 +204,7 @@
     position: relative;
     container-type: inline-size;
     container-name: hero;
+    margin-bottom: 4rem;
   }
 
   .nutshell__info {
@@ -382,6 +395,7 @@
     .nutshell {
       height: auto;
       padding-bottom: calc(var(--navbar-height) + 4rem);
+      margin-bottom: 0rem;
     }
 
     .nutshell__info {
@@ -444,13 +458,13 @@
     border: 2px solid
       color-mix(in oklch, var(--bg-color), white var(--border-strength-1));
     border-radius: var(--border-radiuses-md);
-
+/* 
     &::after {
       content: "↗";
       position: absolute;
       right: 0.5rem;
       top: 0.2rem;
-    }
+    } */
   }
 
   .button__linkedin {
@@ -515,11 +529,17 @@
     }
   }
 
+  .nutshell__scroll-button-container {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+  }
+
   .nutshell__scroll-button {
     width: 100%;
+    height: 100%;
     background-color: transparent;
     color: var(--colors-text);
-    padding: 1rem 0;
     text-transform: uppercase;
     font-weight: var(--font-weights-bold);
     font-size: var(--font-sizes-xs);
@@ -647,7 +667,7 @@
     background-color: var(--colors-elevation-2);
     padding: 4rem 0;
     overflow: hidden;
-        border-bottom: 1px solid
+    border-bottom: 1px solid
       color-mix(
         in oklch,
         var(--colors-elevation-2),

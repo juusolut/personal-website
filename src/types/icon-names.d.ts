@@ -14,6 +14,7 @@ export const iconNames = [
   "RubyOnRails",
   "Sun",
   "Svelte",
+  "Undefined",
 ] as const
 
 export type IconName = typeof iconNames[number]

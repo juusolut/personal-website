@@ -5,7 +5,7 @@
 ::view-transition-group(.project-morph) {
   animation-duration: 260ms !important;
   animation-timing-function: ease-in-out !important;
-/*   animation-timing-function: linear; */
+  /*   animation-timing-function: linear; */
   z-index: 9999;
 }
 
@@ -41,4 +41,11 @@
   border-top-left-radius: var(--border-radiuses-lg);
   border-top-right-radius: var(--border-radiuses-lg);
   overflow: hidden;
+}
+
+::view-transition-old(.project-tags),
+::view-transition-new(.project-tags) {
+  mix-blend-mode: normal;
+  width: max-content;
+  height: auto;
 }

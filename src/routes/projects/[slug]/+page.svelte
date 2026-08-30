@@ -2,6 +2,7 @@
   import { asset } from "$app/paths";
   import { resolve } from "$app/paths";
   import Icon from "$lib/components/Icon.svelte";
+  import Tags from "$lib/components/Tags.svelte";
   let { data } = $props();
   let Content = $derived(data.content);
 
@@ -16,7 +17,6 @@
     class="project"
     style="view-transition-name: project-bg-{data.meta
       .slug}; view-transition-class: project-morph project-bg"
-/*     style:z-index={true ? 9999 : "auto"} */
   >
     <div class="back-link-container">
       <a href={resolve("/projects")} onclick={handleClick} class="back-link">
@@ -49,6 +49,13 @@
       >
         {data.meta.description}
       </p>
+      <div
+        class="tags"
+        style="view-transition-name: project-tags-{data.meta
+          .slug}; view-transition-class: project-morph project-tags"
+      >
+        <Tags tags={data.meta.tags} />
+      </div>
     </div>
     <Content />
   </article>
@@ -68,11 +75,15 @@
     /*     min-height: 50rem; */
     background-color: var(--colors-elevation-2);
     border-radius: var(--border-radiuses-lg);
-    font-weight: var(--font-weights-bold);
     position: relative;
     box-shadow: var(--shadows-sm);
     z-index: 0;
-    border: 1px solid color-mix(in oklch, var(--colors-elevation-2), var(--border-mix-shading) var(--border-strength-2));
+    border: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-2)
+      );
 
     h3 {
       width: fit-content;
@@ -83,6 +94,10 @@
     .undertext {
       color: var(--colors-text-light);
       grid-area: desc;
+    }
+
+    .tags {
+      grid-area: tags;
     }
 
     img {
@@ -111,7 +126,8 @@
     grid-template-areas:
       "image"
       "title"
-      "desc";
+      "desc"
+      "tags";
   }
 
   .grid-item__image-wrapper {
@@ -129,7 +145,12 @@
     top: 0;
     z-index: 9999;
     background-color: var(--colors-elevation-2);
-    border-bottom: 1px solid color-mix(in oklch, var(--colors-elevation-2), var(--border-mix-shading) var(--border-strength-4));
+    border-bottom: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-4)
+      );
     margin-bottom: 1rem;
     &::after {
       content: "";
@@ -155,6 +176,7 @@
     gap: 0.5rem;
     top: 1rem;
     margin: 0.5rem 0;
+    font-weight: var(--font-weights-bold);
   }
 
   .separator {
@@ -175,10 +197,11 @@
   @container (width > 50rem) {
     .project__inner {
       grid-template-columns: 1.2fr 1fr;
-      grid-template-rows: auto max-content;
+      grid-template-rows: auto max-content auto;
       grid-template-areas:
         "title image"
-        "desc image";
+        "desc image"
+        "tags image";
     }
 
     .project {
