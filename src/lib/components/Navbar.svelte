@@ -120,10 +120,11 @@
     width: 100%;
     margin-bottom: 3rem;
     position: sticky;
-    background-color: color-mix(in oklch, var(--colors-elevation-0), transparent 10%);
-    backdrop-filter: blur(10px);
+    background-color: color-mix(in oklch, var(--colors-elevation-0), transparent 0%);
+/*     backdrop-filter: blur(10px); */
     view-transition-name: navbar;
-    view-transition-class: project-morph navbar;
+    view-transition-class: project-morph2 navbar;
+    z-index: 9999;
   }
 
   .nav-container {

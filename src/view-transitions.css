@@ -55,3 +55,9 @@
 /*   mix-blend-mode: normal; */
   z-index: 9999 !important;
 }
+
+::view-transition-group(.project-morph2) {
+  animation-duration: 260ms !important;
+  animation-timing-function: ease-in-out !important;
+  z-index: 9999;
+}
