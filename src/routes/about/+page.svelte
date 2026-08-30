@@ -39,7 +39,7 @@
           <b>Postilla</b> ja vapaa-aikani kuluu kuntosalin, frisbeegolfin ja erilaisten
           luovien projektien parissa; ohjelmoin mm. verkkosivuja ja pelejä, sävellän
           konemusiikkia, teen digitaalista taidetta ja päädyn joskus käsitöidenkin
-          pariin. Tunnollisuus ja ahkeruus ovat minulle tosi tärkeitä arvoja, joita
+          pariin. <br><br>Tunnollisuus ja ahkeruus ovat minulle tosi tärkeitä arvoja, joita
           tasapainottaa rennon maanläheinen asenne elämään. Olen erittäin oma-aloitteinen
           ja helposti lähestyttävä tyyppi niin töissä kuin vapaa-ajalla.
         </p>
