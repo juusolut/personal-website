@@ -88,8 +88,10 @@
         style:--offset-x="{normalizedX * -50}px"
         style:--offset-y="{normalizedY * -50}px"
       >
-        <h1>Hei!</h1>
-        <h1>Olen &lt; <span class="mr-dafoe-regular">Juuso</span> /&gt;</h1>
+        <h1 class="nutshell__hey">Hei!</h1>
+        <h1 class="nutshell__im">
+          Olen &lt; <span class="mr-dafoe-regular">Juuso</span> /&gt;
+        </h1>
       </div>
       <div class="buttons">
         <a
@@ -127,7 +129,7 @@
   >
 </section>
 <section class="details"></section>
-<section class="projects">
+<section class="projects h-padding">
   <div class="projects__inner section-content">
     <h1 class="toni-heading">Korostetut projektit</h1>
     <div class="projects__grid reveal-on-scroll" use:viewport>
@@ -287,6 +289,29 @@
     z-index: -1;
   }
 
+  .nutshell__hey {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 800;
+    font-style: normal;
+    margin: 0;
+    font-size: clamp(var(--font-sizes-xxl), 2cqw + 5cqh, 5rem) !important;
+  }
+
+  .nutshell__im {
+    margin: 0;
+    font-size: clamp(var(--font-sizes-lg), .5cqw + 4cqh, 4rem) !important;
+    white-space: nowrap;
+
+    > span {
+      font-size: 1.3em;
+      color: var(--colors-secondary);
+      text-shadow: 0.03em 0.03em 0.08em
+        color-mix(in oklch, var(--colors-secondary) 40%, rgba(0, 0, 0, 0.1));
+      -webkit-text-stroke-width: 0rem;
+      text-transform: none;
+    }
+  }
+
   .nutshell__title {
     /*     --offset-x: 0px;
     --offset-y: 0px; */
@@ -300,36 +325,13 @@
     top: 20%;
     position: absolute;
     z-index: 1;
+    color: color-mix(in oklab, var(--colors-secondary) 20%, var(--colors-text));
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 800;
+    font-style: normal;
     /*     transform: translate3d(var(--offset-x), var(--offset-y), 0) !important;
     transition: transform 30ms ease-out !important;
     will-change: transform; */
-
-    > h1 {
-      font-family: "IBM Plex Mono", monospace;
-      font-weight: 800;
-      font-style: normal;
-      margin: 0;
-      font-size: 13vw;
-      font-size: clamp(var(--font-sizes-lg), 2cqw + 4cqh, 6rem);
-      color: color-mix(
-        in oklab,
-        var(--colors-secondary) 20%,
-        var(--colors-text)
-      );
-      white-space: nowrap;
-      /*       -webkit-text-stroke-width: .1rem;
-      -webkit-text-stroke-color: var(--colors-text);
-      color: transparent; */
-    }
-
-    > h1 > span {
-      font-size: 1.3em;
-      color: var(--colors-secondary);
-      text-shadow: 0.03em 0.03em 0.08em
-        color-mix(in oklch, var(--colors-secondary) 40%, rgba(0, 0, 0, 0.1));
-      -webkit-text-stroke-width: 0rem;
-      text-transform: none;
-    }
   }
 
   .nutshell__image-mask {
@@ -583,7 +585,6 @@
   }
 
   .projects {
-    padding: 2rem;
     border-bottom: 1px solid
       color-mix(
         in oklch,
