@@ -33,15 +33,21 @@
       <div class="content">
         <!--         <h3>Kuka olen?</h3> -->
         <p>
-          Hei! Olen Juuso, 27-v. Asun <b>Oulussa</b> ja olen valmistunut
-          luonnontieteiden kandidaatiksi <b>tietojenkäsittelytieteistä</b>. Olen
-          opiskellut <b>Oulun yliopistolla</b>. Työskentelen tällä hetkellä
-          <b>Postilla</b> ja vapaa-aikani kuluu kuntosalin, frisbeegolfin ja erilaisten
-          luovien projektien parissa; ohjelmoin mm. verkkosivuja ja pelejä, sävellän
-          konemusiikkia, teen digitaalista taidetta ja päädyn joskus käsitöidenkin
-          pariin. <br><br>Tunnollisuus ja ahkeruus ovat minulle tosi tärkeitä arvoja, joita
-          tasapainottaa rennon maanläheinen asenne elämään. Olen erittäin oma-aloitteinen
-          ja helposti lähestyttävä tyyppi niin töissä kuin vapaa-ajalla.
+          Hei! Olen Juuso, 27-vuotias <b>luonnontieteiden kandidaatti</b>
+          Oulusta. Olen opiskellut
+          <b>Oulun yliopistossa tietojenkäsittelytieteitä</b>
+          ja työskentelen tällä hetkellä
+          <b>Postilla</b>. Vapaa-ajallani kanavoin luovuuttani monipuolisesti:
+          koodaan <b>verkkosivuja</b> ja <b>pelejä</b>, sävellän musiikkia sekä
+          teen digitaalista taidetta. Vastapainoa ruudun ääressä työskentelylle
+          tuovat kuntosali ja frisbeegolf, ja joskus päädyn myös käsitöiden tai
+          paritanssin pariin.
+          <br /><br />Tunnollisuus ja ahkeruus ovat minulle tärkeitä arvoja,
+          joita tasapainottaa rennon maanläheinen asenne elämään. Pyrin siihen
+          että hommat hoituvat tehokaasti ja huolellisesti. Olen
+          oma-aloitteinen, joustava ja mutkaton tyyppi: kanssani on helppo
+          toimia, ja olen helposti lähestyttävä niin töissä kuin
+          vapaa-ajallakin.
         </p>
       </div>
     </article>
@@ -50,11 +56,12 @@
 
 <div class="skills-container h-padding">
   <div class="skills section-content">
-    <h2 class="view-title no-bg">Mitä osaan?</h2>
+    <h2 class="view-title no-bg">Osaamiseni</h2>
     <p>
-      Taitoni on painottunut frontend-suunnitteluun ja toteutukseen, mutta
-      backend-kehitys kiinnostaa myös. Tässä teknologioita, joita olen käyttänyt
-      projekteissani:
+      Osaamiseni on painottunut frontend-kehitykseen ja UI-suunnitteluun, mutta
+      minulta löytyy myös vahva kiinnostus backend-kehitystä kohtaan. Olen
+      utelias oppija ja pyrin jatkuvasti laajentamaan teknistä osaamistani.
+      Tässä teknologioita, joita olen käyttänyt projekteissani:
     </p>
     <div class="tags"><Tags tags={data.tags} /></div>
     <br />
