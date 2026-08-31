@@ -20,6 +20,7 @@ code {
 *::before,
 *::after {
   box-sizing: border-box;
+  color: var(--colors-text);
 }
 
 html {

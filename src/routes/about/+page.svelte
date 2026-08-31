@@ -76,15 +76,27 @@
       <li>Dart</li>
       <li>GDScript</li>
     </ul>
-    <br>
-    <p>Hallitsen työskentelyn sekä Windows- että Linux-ympäristöissä.</p> 
+    <br />
+    <p>Hallitsen työskentelyn sekä Windows- että Linux-ympäristöissä.</p>
   </div>
 </div>
 
 <div class="work-history__container h-padding">
   <div class="work-history__inner section-content">
     <h2 class="view-title">Työhistoria</h2>
-    <p>Tänne työhistoria</p>
+    <ul class="workplaces">
+      <li class="workplace">
+        <ul class="workplace-details">
+          <strong>Posti</strong> / 20XX –
+          <li>Paketti- ja kirjelajittelutehtävät</li>
+        </ul>
+      </li>
+      <li class="workplace" style="--offset-left: 8rem;">
+        <strong>Kiinteistöhuolto ja Siivouspalvelu Ilkka Hyytinen</strong> / 20XX
+        –
+      </li>
+      <li class="workplace"><strong>Luonnon syli</strong>/ 20XX –</li>
+    </ul>
   </div>
 </div>
 
@@ -278,6 +290,86 @@
       );
     width: 100%;
     max-width: 40rem;
+  }
+
+  .workplaces {
+    --offset-left: 6rem;
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin: 2rem 0;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    margin-left: 1rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--colors-text) 10%,
+        var(--colors-text) 90%,
+        transparent 100%
+      );
+    }
+  }
+
+  .workplace {
+    padding: 2rem 2rem;
+    margin-left: var(--offset-left);
+    position: relative;
+    font-size: var(--font-sizes-sm);
+    width: fit-content;
+    background-color: var(--colors-elevation-2);
+    box-shadow: var(--shadows-xs);
+    border-radius: var(--border-radiuses-sm);
+    border: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) translateX(0px);
+      width: var(--offset-left);
+      height: 2px;
+      background-color: var(--colors-text);
+      right: 100%;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) translateX(0px);
+      width: 1rem;
+      height: 1rem;
+      background-color: var(--colors-secondary);
+      right: calc(100% - 0.5rem);
+      border-radius: 100%;
+    }
+  }
+
+  .workplace-details {
+    margin: 0;
+    padding: 0;
+    > li {
+      margin-left: 1rem;
+    }
   }
 
   @container (width > 50rem) {
