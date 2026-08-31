@@ -253,8 +253,21 @@ button:hover {
   }
 }
 
+.center-horizontally {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.space-on-mobile {
+  height: 0;
+}
+
 @media (max-width: 768px) {
   :root {
     --navbar-height: 3.5rem;
+  }
+  .space-on-mobile {
+    height: 4rem;
   }
 }

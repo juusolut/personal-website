@@ -5,6 +5,8 @@
   let { data } = $props();
 </script>
 
+<div class="space-on-mobile"></div>
+
 <div class="info-container h-padding">
   <div class="info">
     <h2 class="view-title">Kuka olen?</h2>
@@ -31,13 +33,12 @@
         </div>
       </div>
       <div class="content">
-        <!--         <h3>Kuka olen?</h3> -->
         <p>
           Hei! Olen Juuso, 27-vuotias <b>luonnontieteiden kandidaatti</b>
           Oulusta. Olen opiskellut
           <b>Oulun yliopistossa tietojenkäsittelytieteitä</b>
           ja työskentelen tällä hetkellä
-          <b>Postilla</b>. Vapaa-ajallani kanavoin luovuuttani monipuolisesti:
+          <b>Postilla</b>. Vapaa-ajallani käytän luovuuttani monipuolisesti:
           koodaan <b>verkkosivuja</b> ja <b>pelejä</b>, sävellän musiikkia sekä
           teen digitaalista taidetta. Vastapainoa ruudun ääressä työskentelylle
           tuovat kuntosali ja frisbeegolf, ja joskus päädyn myös käsitöiden tai
@@ -65,6 +66,7 @@
     </p>
     <div class="tags"><Tags tags={data.tags} /></div>
     <br />
+    <br />
     <p>Tässä ohjelmointikieliä, joista minulla on kokemusta:</p>
     <ul class="programming-langugage-list">
       <li>Javascript/Typescript</li>
@@ -74,6 +76,15 @@
       <li>Dart</li>
       <li>GDScript</li>
     </ul>
+    <br>
+    <p>Hallitsen työskentelyn sekä Windows- että Linux-ympäristöissä.</p> 
+  </div>
+</div>
+
+<div class="work-history__container h-padding">
+  <div class="work-history__inner section-content">
+    <h2 class="view-title">Työhistoria</h2>
+    <p>Tänne työhistoria</p>
   </div>
 </div>
 
@@ -81,7 +92,7 @@
   .info-container {
     width: 100%;
     padding: 0rem 0;
-    margin-bottom: 5rem;
+    padding-bottom: 5rem;
   }
 
   .info {
@@ -212,12 +223,27 @@
 
   .skills-container {
     background-color: var(--colors-elevation-2);
-    padding: 4rem 0;
+    padding: 4rem 0rem;
+    border-bottom: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    border-top: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
   }
 
   .skills {
-    height: 40rem;
     padding: 0 0.5rem;
+    height: auto;
+    > h2 {
+      margin-bottom: 1rem;
+    }
   }
 
   .tags {
@@ -234,8 +260,24 @@
     max-width: 40rem;
   }
 
+  .work-history__inner {
+    padding: 4rem 0.5rem;
+  }
+
   .programming-langugage-list {
     color: var(--colors-text);
+    background-color: var(--colors-elevation-3);
+    padding: 1rem;
+    padding-left: 2rem;
+    border-radius: var(--border-radiuses-sm);
+    border: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-3),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    width: 100%;
+    max-width: 40rem;
   }
 
   @container (width > 50rem) {

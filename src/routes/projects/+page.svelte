@@ -31,6 +31,8 @@
 
 <svelte:window bind:scrollY />
 
+<div class="space-on-mobile"></div>
+
 <div class="projects-container h-padding">
   <section class="projects">
     <h2 class="view-title">Projektit</h2>

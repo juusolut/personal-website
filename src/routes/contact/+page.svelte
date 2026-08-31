@@ -2,6 +2,8 @@
   import { asset } from "$app/paths";
 </script>
 
+<div class="space-on-mobile"></div>
+
 <div class="info-container h-padding">
   <div class="info">
     <h2 class="view-title">Yhteystiedot</h2>

@@ -103,12 +103,14 @@
         <a
           href="https://www.linkedin.com/in/juusolut/"
           target="_blank"
-          class="button button__linkedin"><span class="offsite-link">LinkedIn</span></a
+          class="button button__linkedin"
+          ><span class="offsite-link">LinkedIn</span></a
         >
         <a
           href="https://github.com/juusolut"
           target="_blank"
-          class="button button__github"><span class="offsite-link">GitHub</span></a
+          class="button button__github"
+          ><span class="offsite-link">GitHub</span></a
         >
       </div>
       <img
@@ -185,11 +187,22 @@
         {viewport}
       />
     </div>
+    <div class="center-horizontally">
+      <div class="comments__own-words">
+        <p>Täältä löydät tietoa minusta omin sanoin kerrottuna:</p>
+        <a href={resolve("/about")} class="button"
+          ><span class="offsite-link">Tutustu minuun</span></a
+        >
+      </div>
+    </div>
   </div>
 </section>
 
 <footer class="h-padding">
-  <span>Rakennettu <a href="https://svelte.dev/" class="offsite-link">Sveltellä</a></span>
+  <span
+    >Rakennettu <a href="https://svelte.dev/" class="offsite-link">Sveltellä</a
+    ></span
+  >
 </footer>
 
 <FloatingHead />
@@ -458,7 +471,7 @@
     border: 2px solid
       color-mix(in oklch, var(--bg-color), white var(--border-strength-1));
     border-radius: var(--border-radiuses-md);
-/* 
+    /* 
     &::after {
       content: "↗";
       position: absolute;
@@ -691,26 +704,19 @@
     gap: 2rem;
     margin-top: 2rem;
     padding-bottom: 8rem;
+    justify-content: center;
   }
 
-  .toni-heading {
-    margin: 0;
-    padding: 0;
-    grid-area: title;
-    color: var(--colors-text);
-    position: relative;
-    padding-left: 1rem;
+  .comments__own-words {
+    justify-content: center;
+    width: fit-content;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    &::before {
-      content: "";
-      display: inline-block;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 5px;
-      height: 100%;
-      background-color: var(--colors-primary);
-      border-radius: var(--border-radiuses-sm);
+    > a {
+      --bg-color: var(--colors-primary);
     }
   }
 
