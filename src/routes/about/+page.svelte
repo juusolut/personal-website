@@ -3,6 +3,45 @@
   import Tags from "$lib/components/Tags.svelte";
 
   let { data } = $props();
+
+  const workplaces = [
+    {
+      place: "Posti Group Oyj",
+      jobTitle: "Postityöntekijä Oulussa",
+      tasks: ["Kirjepostin lajittelu", "Pakettien lajittelu", "Kuljetusyksiköiden ja lavojen siirto (pitkäpiikkisellä) lavansiirtovaunulla", "Perehdytystehtävät"],
+      timePeriod: ["7.12. – 18.12.2020", "X.5.2021 –"],
+    },
+    {
+      place: "Kiinteistöhuolto ja siivouspalvelu Ilkka Hyytinen",
+      jobTitle: "Kausiapulainen Kärsämäellä",
+      tasks: ["Yksityisten viheralueiden hoito", "Liikennemerkkien vaihto", "Asfalttiteiden paikkaus", "P-pysäkkien puhtaus", "Muut satunnaiset työtehtävät"],
+      timePeriod: "",
+    },
+    {
+      place: "Ruotsalainen Virpi / 4H",
+      jobTitle: "Kausiapulainen Kärsämäellä",
+      tasks: ["Kotitalouden viheralueiden hoito", "Erilaiset maatilan tehtävät"],
+      timePeriod: "",
+    },
+    {
+      place: "Kärsämäen kunta / 4H",
+      jobTitle: "Nurmikonleikkaaja Kärsämäellä",
+      tasks: ["Kunnan viheralueiden hoito"],
+      timePeriod: "1. – 12.6.2015",
+    },
+    {
+      place: "Kärsämäen kunta / 4H",
+      jobTitle: "Keittiöapulainen Kärsämäellä",
+      tasks: ["Siivoaminen ja ruokahuolto"],
+      timePeriod: "30.6. – 11.7.2014",
+    },
+    {
+      place: "Työelämään tutustuminen / 5 päivää per työpaikka",
+      jobTitle: "Tettiläinen Kärsämäellä",
+      tasks: ["Veikon Kone", "Laaksojen Rauta Oy", "Venetpalon alakoulu"],
+      timePeriod: "",
+    },
+  ];
 </script>
 
 <div class="space-on-mobile"></div>
@@ -40,15 +79,14 @@
           ja työskentelen tällä hetkellä
           <b>Postilla</b>. Vapaa-ajallani käytän luovuuttani monipuolisesti:
           koodaan <b>verkkosivuja</b> ja <b>pelejä</b>, sävellän musiikkia sekä
-          teen digitaalista taidetta. Vastapainoa ruudun ääressä työskentelylle
-          tuovat kuntosali ja frisbeegolf, ja joskus päädyn myös käsitöiden tai
-          paritanssin pariin.
+          teen digitaalista taidetta. Vastapainona ruudun ääressä työskentelylle
+          käyn kuntosalilla ja frisbeegolfaamassa, ja joskus päädyn myös
+          käsitöiden tai paritanssin pariin.
           <br /><br />Tunnollisuus ja ahkeruus ovat minulle tärkeitä arvoja,
-          joita tasapainottaa rennon maanläheinen asenne elämään. Pyrin siihen
-          että hommat hoituvat tehokaasti ja huolellisesti. Olen
+          joita kuitenkin tasapainottaa rento ja maanläheinen asenne elämään.
+          Pyrin siihen että hommat hoituvat tehokaasti ja huolellisesti. Olen
           oma-aloitteinen, joustava ja mutkaton tyyppi: kanssani on helppo
-          toimia, ja olen helposti lähestyttävä niin töissä kuin
-          vapaa-ajallakin.
+          toimia, ja olen helposti lähestyttävä niin töissä kuin vapaa-ajalla.
         </p>
       </div>
     </article>
@@ -85,17 +123,20 @@
   <div class="work-history__inner section-content">
     <h2 class="view-title">Työhistoria</h2>
     <ul class="workplaces">
-      <li class="workplace">
+      <li class="workplace highlighted" style="--offset-left: 3rem;">
+        <span class="current-job">Tämänhetkinen työtehtävä</span>
         <ul class="workplace-details">
           <strong>Posti</strong> / 20XX –
           <li>Paketti- ja kirjelajittelutehtävät</li>
         </ul>
       </li>
-      <li class="workplace" style="--offset-left: 8rem;">
+      <li class="workplace" style="--offset-left: 6rem;">
         <strong>Kiinteistöhuolto ja Siivouspalvelu Ilkka Hyytinen</strong> / 20XX
         –
       </li>
-      <li class="workplace"><strong>Luonnon syli</strong>/ 20XX –</li>
+      <li class="workplace" style="--offset-left: 8rem;">
+        <strong>Luonnon syli</strong>/ 20XX –
+      </li>
     </ul>
   </div>
 </div>
@@ -312,13 +353,13 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 1px;
+      width: 2px;
       height: 100%;
       background: linear-gradient(
         to bottom,
         transparent 0%,
-        var(--colors-text) 10%,
-        var(--colors-text) 90%,
+        var(--colors-secondary) 10%,
+        var(--colors-secondary) 90%,
         transparent 100%
       );
     }
@@ -340,6 +381,13 @@
         var(--border-mix-shading) var(--border-strength-1)
       );
 
+    &.highlighted {
+      border-color: var(--colors-secondary);
+      border-width: 2px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
     &::before {
       content: "";
       position: absolute;
@@ -347,7 +395,7 @@
       transform: translateY(-50%) translateX(0px);
       width: var(--offset-left);
       height: 2px;
-      background-color: var(--colors-text);
+      background-color: var(--colors-secondary);
       right: 100%;
     }
 
@@ -370,6 +418,22 @@
     > li {
       margin-left: 1rem;
     }
+  }
+
+  .current-job {
+    position: absolute;
+    bottom: 100%;
+    left: -2px;
+    width: calc(100% + 4px);
+    background-color: var(--colors-secondary);
+    padding: 0.5rem;
+    border: 2px solid var(--colors-secondary);
+    border-top-left-radius: var(--border-radiuses-sm);
+    border-top-right-radius: var(--border-radiuses-sm);
+    /*     text-transform: uppercase; */
+    font-weight: var(--font-weights-bold);
+    font-size: var(--font-sizes-sm);
+    text-align: center;
   }
 
   @container (width > 50rem) {
