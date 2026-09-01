@@ -142,7 +142,7 @@
 
   .back-link-container {
     position: sticky;
-    top: 0;
+    top: var(--navbar-height);
     z-index: 9999;
     background-color: var(--colors-elevation-2);
     border-bottom: 1px solid
@@ -174,7 +174,6 @@
     text-decoration: none;
     align-items: center;
     gap: 0.5rem;
-    top: 1rem;
     margin: 0.5rem 0;
     font-weight: var(--font-weights-bold);
   }

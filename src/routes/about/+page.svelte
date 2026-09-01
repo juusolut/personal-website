@@ -1,45 +1,67 @@
 <script lang="ts">
   import { asset } from "$app/paths";
   import Tags from "$lib/components/Tags.svelte";
+  import Workplace from "$lib/components/Workplace.svelte";
 
   let { data } = $props();
 
-  const workplaces = [
+  const workplaces: {
+    workplace: string;
+    jobTitle: string;
+    tasks: string[];
+    timePeriod: string[];
+    currentJob?: boolean;
+  }[] = [
     {
-      place: "Posti Group Oyj",
+      workplace: "Posti Group Oyj",
       jobTitle: "Postityöntekijä Oulussa",
-      tasks: ["Kirjepostin lajittelu", "Pakettien lajittelu", "Kuljetusyksiköiden ja lavojen siirto (pitkäpiikkisellä) lavansiirtovaunulla", "Perehdytystehtävät"],
+      tasks: [
+        "Kirjeiden ja pakettien lajittelu",
+        "Kuljetusyksiköiden käsittely ja siirto lavansiirtovaunulla",
+        "Uusien työntekijöiden perehdyttäminen",
+      ],
       timePeriod: ["7.12. – 18.12.2020", "X.5.2021 –"],
+      currentJob: true,
     },
     {
-      place: "Kiinteistöhuolto ja siivouspalvelu Ilkka Hyytinen",
+      workplace: "Kiinteistöhuolto ja siivouspalvelu Ilkka Hyytinen",
       jobTitle: "Kausiapulainen Kärsämäellä",
-      tasks: ["Yksityisten viheralueiden hoito", "Liikennemerkkien vaihto", "Asfalttiteiden paikkaus", "P-pysäkkien puhtaus", "Muut satunnaiset työtehtävät"],
-      timePeriod: "",
+      tasks: [
+        "Viheralueiden hoito ja kunnossapito",
+        "Liikennemerkkien vaihto",
+        "Asfalttiteiden paikkaus",
+        " P-alueiden puhtaanapito", "Muut satunnaiset kiinteistöhuoltotyöt",
+      ],
+      timePeriod: [],
     },
     {
-      place: "Ruotsalainen Virpi / 4H",
+      workplace: "Ruotsalainen Virpi / 4H",
       jobTitle: "Kausiapulainen Kärsämäellä",
-      tasks: ["Kotitalouden viheralueiden hoito", "Erilaiset maatilan tehtävät"],
-      timePeriod: "",
+      tasks: [
+        "Kotitalouden viheralueiden hoito",
+        "Taimien istutus",
+        "Traktorin käyttö",
+        "Muut maatilan tehtävät",
+      ],
+      timePeriod: [],
     },
     {
-      place: "Kärsämäen kunta / 4H",
+      workplace: "Kärsämäen kunta / 4H",
       jobTitle: "Nurmikonleikkaaja Kärsämäellä",
       tasks: ["Kunnan viheralueiden hoito"],
-      timePeriod: "1. – 12.6.2015",
+      timePeriod: [],
     },
     {
-      place: "Kärsämäen kunta / 4H",
+      workplace: "Kärsämäen kunta / 4H",
       jobTitle: "Keittiöapulainen Kärsämäellä",
-      tasks: ["Siivoaminen ja ruokahuolto"],
-      timePeriod: "30.6. – 11.7.2014",
+      tasks: ["Siivoaminen ja avustavat keittiötyöt"],
+      timePeriod: [],
     },
     {
-      place: "Työelämään tutustuminen / 5 päivää per työpaikka",
+      workplace: "Työelämään tutustuminen / 5 päivää per työpaikka",
       jobTitle: "Tettiläinen Kärsämäellä",
-      tasks: ["Veikon Kone", "Laaksojen Rauta Oy", "Venetpalon alakoulu"],
-      timePeriod: "",
+      tasks: ["Veikon Kone (2015)", "Laaksojen Rauta Oy (2014)", "Venetpalon alakoulu (2014)"],
+      timePeriod: [],
     },
   ];
 </script>
@@ -123,20 +145,16 @@
   <div class="work-history__inner section-content">
     <h2 class="view-title">Työhistoria</h2>
     <ul class="workplaces">
-      <li class="workplace highlighted" style="--offset-left: 3rem;">
-        <span class="current-job">Tämänhetkinen työtehtävä</span>
-        <ul class="workplace-details">
-          <strong>Posti</strong> / 20XX –
-          <li>Paketti- ja kirjelajittelutehtävät</li>
-        </ul>
-      </li>
-      <li class="workplace" style="--offset-left: 6rem;">
-        <strong>Kiinteistöhuolto ja Siivouspalvelu Ilkka Hyytinen</strong> / 20XX
-        –
-      </li>
-      <li class="workplace" style="--offset-left: 8rem;">
-        <strong>Luonnon syli</strong>/ 20XX –
-      </li>
+      {#each workplaces as workplace, index}
+        <Workplace
+          workplace={workplace.workplace}
+          jobTitle={workplace.jobTitle}
+          tasks={workplace.tasks}
+          timePeriod={workplace.timePeriod}
+          currentJob={workplace.currentJob}
+          offsetLeft={`${3 + index * 2}rem`}
+        />
+      {/each}
     </ul>
   </div>
 </div>
@@ -363,77 +381,6 @@
         transparent 100%
       );
     }
-  }
-
-  .workplace {
-    padding: 2rem 2rem;
-    margin-left: var(--offset-left);
-    position: relative;
-    font-size: var(--font-sizes-sm);
-    width: fit-content;
-    background-color: var(--colors-elevation-2);
-    box-shadow: var(--shadows-xs);
-    border-radius: var(--border-radiuses-sm);
-    border: 1px solid
-      color-mix(
-        in oklch,
-        var(--colors-elevation-2),
-        var(--border-mix-shading) var(--border-strength-1)
-      );
-
-    &.highlighted {
-      border-color: var(--colors-secondary);
-      border-width: 2px;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%) translateX(0px);
-      width: var(--offset-left);
-      height: 2px;
-      background-color: var(--colors-secondary);
-      right: 100%;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%) translateX(0px);
-      width: 1rem;
-      height: 1rem;
-      background-color: var(--colors-secondary);
-      right: calc(100% - 0.5rem);
-      border-radius: 100%;
-    }
-  }
-
-  .workplace-details {
-    margin: 0;
-    padding: 0;
-    > li {
-      margin-left: 1rem;
-    }
-  }
-
-  .current-job {
-    position: absolute;
-    bottom: 100%;
-    left: -2px;
-    width: calc(100% + 4px);
-    background-color: var(--colors-secondary);
-    padding: 0.5rem;
-    border: 2px solid var(--colors-secondary);
-    border-top-left-radius: var(--border-radiuses-sm);
-    border-top-right-radius: var(--border-radiuses-sm);
-    /*     text-transform: uppercase; */
-    font-weight: var(--font-weights-bold);
-    font-size: var(--font-sizes-sm);
-    text-align: center;
   }
 
   @container (width > 50rem) {
