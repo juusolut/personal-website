@@ -111,9 +111,11 @@
           käsitöiden tai paritanssin pariin.
           <br /><br />Tunnollisuus ja ahkeruus ovat minulle tärkeitä arvoja,
           joita kuitenkin tasapainottaa rento ja maanläheinen asenne elämään.
-          Pyrin siihen että hommat hoituvat tehokaasti ja huolellisesti. Olen
+          Pyrin siihen että hommat hoituvat tehokkaasti ja huolellisesti. Olen
           oma-aloitteinen, joustava ja mutkaton tyyppi: kanssani on helppo
-          toimia, ja olen helposti lähestyttävä niin töissä kuin vapaa-ajalla.
+          toimia, ja olen helposti lähestyttävä niin töissä kuin töiden
+          ulkopuolella. Ura IT-alalla kiinnostaa ja odotankin jo innolla mitä
+          tulevaisuus tuo tullessaan!
         </p>
       </div>
     </article>
