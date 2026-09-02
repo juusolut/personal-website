@@ -5,6 +5,9 @@
 
   let { data } = $props();
 
+  const newData: string[] = [...data.tags, "MongoDB"];
+
+
   const workplaces: {
     workplace: string;
     jobTitle: string;
@@ -117,6 +120,12 @@
           ulkopuolella. Ura IT-alalla kiinnostaa ja odotankin jo innolla mitä
           tulevaisuus tuo tullessaan!
         </p>
+        <a href={asset("/resume.pdf")} target="_blank" rel="noopener noreferrer" class="to-light-cv offsite-link">
+          Avaa CV
+        </a>
+        <a href={asset("/resume-dark.pdf")} target="_blank" rel="noopener noreferrer" class="to-dark-cv offsite-link">
+          Avaa CV
+        </a>
       </div>
     </article>
   </div>
@@ -131,7 +140,7 @@
       utelias oppija ja pyrin jatkuvasti laajentamaan teknistä osaamistani.
       Tässä teknologioita, joita olen käyttänyt projekteissani:
     </p>
-    <div class="tags"><Tags tags={data.tags} /></div>
+    <div class="tags"><Tags tags={newData} /></div>
     <br />
     <br />
     <p>Tässä ohjelmointikieliä, joista minulla on kokemusta:</p>
@@ -144,7 +153,7 @@
       <li>GDScript</li>
     </ul>
     <br />
-    <p>Hallitsen työskentelyn sekä Windows- että Linux-ympäristöissä.</p>
+    <p>Hallitsen työskentelyn sekä <b>Windows-</b> että <b>Linux-ympäristöissä</b>. Linux-ympäristöistä tutuimpia ovat Ubuntu ja Linux Mint.</p>
   </div>
 </div>
 
@@ -242,7 +251,11 @@
     > h2 {
       margin-bottom: 1rem;
     }
+    > a {
+      color: var(--colors-primary);
+    }
   }
+
   .sitting {
     display: none;
     position: absolute;

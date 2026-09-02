@@ -47,7 +47,7 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
   mailhog: {
     label: 'Mailhog',
     bg: '#952225',
-    icon: "Undefined"
+    icon: null
   },
   docker: {
     label: 'Docker',
@@ -63,6 +63,11 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
     label: 'React Native',
     bg: '#9bbec9',
     icon: "React"
+  },
+  mongodb: {
+    label: 'MongoDB',
+    bg: '#00ed64',
+    icon: "Mongodb"
   }
 };
 

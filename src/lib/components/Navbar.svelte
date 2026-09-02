@@ -6,6 +6,8 @@
 
   // Svelte 5 rune for mobile menu state
   let isOpen = $state(false);
+  let scrollY = $state(0);
+  let isScrolled = $derived(scrollY > 0);
 
   function toggleMenu() {
     isOpen = !isOpen;
@@ -37,7 +39,9 @@
   }
 </script>
 
-<nav class="navbar">
+<svelte:window bind:scrollY={scrollY} />
+
+<nav class="navbar" class:show-border={isScrolled}>
   <div class="nav-container">
     <!-- Brand / Logo -->
     <a href={resolve("/")} class="brand" onclick={closeMenu}>
@@ -125,6 +129,11 @@
     view-transition-name: navbar;
     view-transition-class: project-morph2 navbar;
     z-index: 9999;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom-color 200ms ease-in-out;
+    &.show-border {
+      border-bottom-color: color-mix(in oklab, var(--colors-elevation-0), var(--border-mix-shading) var(--border-strength-2));
+    }
   }
 
   .nav-container {

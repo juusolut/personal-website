@@ -33,6 +33,34 @@
   <main class="page-content">
     {@render children()}
   </main>
+
+  <footer class="h-padding">
+    <span
+      >Rakennettu <a
+        href="https://svelte.dev/"
+        class="offsite-link"
+        target="_blank"
+        rel="noopener noreferrer">Sveltellä</a
+      ></span
+    >
+  </footer>
 </div>
 
-<style></style>
+<style>
+  footer {
+    background-color: var(--colors-elevation-0);
+    display: flex;
+    justify-content: center;
+    color: var(--colors-text);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    flex: 1;
+    align-items: flex-end;
+    > span > a {
+      color: var(--colors-primary);
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 3px;
+    }
+  }
+</style>

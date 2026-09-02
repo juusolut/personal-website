@@ -9,6 +9,7 @@ export const iconNames = [
   "Flutter",
   "Godot",
   "Microsoft",
+  "Mongodb",
   "MoonStars",
   "React",
   "RubyOnRails",

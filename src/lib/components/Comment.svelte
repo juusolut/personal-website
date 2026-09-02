@@ -29,7 +29,7 @@
     <div class="person-introduction">
       <strong>{name}</strong>
       <span>{firm}</span>
-      <a href={linkedInURL}>LinkedIn</a>
+      <a href={linkedInURL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
   </div>
 </div>

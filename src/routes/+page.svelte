@@ -101,14 +101,28 @@
       </div>
       <div class="buttons">
         <a
+          href={asset("/resume.pdf")}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button button__resume to-light-cv"><span class="offsite-link">CV</span></a
+        >
+        <a
+          href={asset("/resume-dark.pdf")}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button button__resume to-dark-cv"><span class="offsite-link">CV</span></a
+        >
+        <a
           href="https://www.linkedin.com/in/juusolut/"
           target="_blank"
+          rel="noopener noreferrer"
           class="button button__linkedin"
           ><span class="offsite-link">LinkedIn</span></a
         >
         <a
           href="https://github.com/juusolut"
           target="_blank"
+          rel="noopener noreferrer"
           class="button button__github"
           ><span class="offsite-link">GitHub</span></a
         >
@@ -171,7 +185,7 @@
         name="Toni Pennanen"
         firm="Alfame Systems Oy"
         linkedInURL="https://www.linkedin.com/in/toni-pennanen-17278924a/"
-        text="Olemme tehneet Juuson kanssa useita koulu- ja harrasteprojekteja yhdessä, minkä perusteella voin suositella häntä kaikenlaiseen ohjelmistokehitystyöhön. Juuso on erittäin osaava ja ahkera ongelmanratkaisija, jolla on jo hallussaan useita teknologioita, minkä lisäksi hän on aina halukas oppimaan uutta. Hänen kriittinen ja looginen ajattelukykynsä sekä nopea oppimiskykynsä ovat aivan omaa luokkaansa, ja hänen osaamisensa on jo nyt tasolla, joka ei jää jälkeen muutaman vuoden työkokemuksen omaavien ohjelmistokehittäjien tasosta. Ennen kaikkea Juuso on kuitenkin erittäin mukava ja luotettava henkilö, jonka kanssa on helppo ja miellyttävä työskennellä!"
+        text="Olemme tehneet Juuson kanssa useita koulu- ja harraste&shy;projekteja yhdessä, minkä perus&shy;teella voin suositella häntä kaiken&shy;laiseen ohjel&shy;misto&shy;kehitys&shy;työhön. Juuso on erittäin osaava ja ahkera ongelman&shy;ratkaisija, jolla on jo hallussaan useita tekno&shy;logioita, minkä lisäksi hän on aina halukas oppimaan uutta. Hänen kriittinen ja looginen ajattelu&shy;kykynsä sekä nopea oppimis&shy;kykynsä ovat aivan omaa luokkaansa, ja hänen osaami&shy;sensa on jo nyt tasolla, joka ei jää jälkeen muutaman vuoden työ&shy;kokemuksen omaavien ohjelmisto&shy;kehittäjien tasosta. Ennen kaikkea Juuso on kuitenkin erittäin mukava ja luotettava henkilö, jonka kanssa on helppo ja miellyttävä työskennellä!"
         imageURL="/images/toni.png"
         reverse={false}
         {viewport}
@@ -180,7 +194,7 @@
         name="Virpi Ruotsalainen"
         firm="Luonnon Syli"
         linkedInURL="https://www.linkedin.com/in/virpi-ruotsalainen/"
-        text="Teki annetut työtehtävät hyvällä asenteella ja moitteettomasti. Huolellinen ja tarkka, mutta ripeäotteinen. Sopeutuu hyvin niin itsenäisesti tehtäviin kuin porukalla tehtäviin töihin. Täsmällinen ja luotettava työntekijä. Halu oppia uusia asioita ja ennakkoluuloton asenne työntekoon."
+        text="Teki annetut työ&shy;tehtävät hyvällä asenteella ja moitteetto&shy;masti. Huo&shy;lellinen ja tarkka, mutta ripeä&shy;otteinen. Sopeutuu hyvin niin itse&shy;näisesti tehtäviin kuin porukalla tehtäviin töihin. Täsmällinen ja luo&shy;tettava työn&shy;tekijä. Halu oppia uusia asioita ja ennakko&shy;luuloton asenne työn&shy;tekoon."
         imageURL=""
         reverse={true}
         color="var(--colors-secondary)"
@@ -189,21 +203,15 @@
     </div>
     <div class="center-horizontally">
       <div class="comments__own-words">
-        <p>Täältä löydät tietoa minusta omin sanoin kerrottuna:</p>
         <a href={resolve("/about")} class="button"
-          ><span class="offsite-link">Tutustu minuun</span></a
+          ><span class="offsite-link no-arrow"
+            >Tutustu minuun tarkemmin Minä-osiossa</span
+          ></a
         >
       </div>
     </div>
   </div>
 </section>
-
-<footer class="h-padding">
-  <span
-    >Rakennettu <a href="https://svelte.dev/" class="offsite-link">Sveltellä</a
-    ></span
-  >
-</footer>
 
 <FloatingHead />
 
@@ -323,7 +331,7 @@
     mask-size: 10rem auto;
     opacity: 0.2;
     z-index: -1;
-/*     transform: skew(15deg, -15deg) !important; */
+    /*     transform: skew(15deg, -15deg) !important; */
   }
 
   .nutshell__hey {
@@ -442,6 +450,11 @@
       z-index: 2;
     }
 
+    .button {
+      padding: 0.5rem 2rem !important;
+      flex: unset !important;
+    }
+
     .nutshell__scroll-button {
       display: none !important;
     }
@@ -456,10 +469,13 @@
     justify-content: center;
     gap: 0.5rem;
     z-index: 1;
+    padding: 0 0.5rem;
   }
 
   .button {
-    padding: 0.5rem 2rem;
+    flex: 1;
+    padding: 0.5rem 0;
+    text-align: center;
     position: relative;
     width: fit-content;
     font-weight: var(--font-weights-bold);
@@ -479,6 +495,10 @@
       right: 0.5rem;
       top: 0.2rem;
     } */
+  }
+
+  .button__resume {
+    --bg-color: color-mix(in oklab, var(--colors-secondary), white 20%);
   }
 
   .button__linkedin {
@@ -718,21 +738,6 @@
 
     > a {
       --bg-color: var(--colors-primary);
-    }
-  }
-
-  footer {
-    background-color: var(--colors-elevation-0);
-    display: flex;
-    justify-content: center;
-    color: var(--colors-text);
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    > span > a {
-      color: var(--colors-primary);
-      text-decoration: underline;
-      text-underline-offset: 5px;
-      text-decoration-thickness: 3px;
     }
   }
 </style>

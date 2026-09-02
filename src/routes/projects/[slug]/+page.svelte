@@ -72,7 +72,6 @@
     margin: 0 auto;
     padding: 1rem 1rem;
     margin-bottom: 5rem;
-    /*     min-height: 50rem; */
     background-color: var(--colors-elevation-2);
     border-radius: var(--border-radiuses-lg);
     position: relative;

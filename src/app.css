@@ -20,7 +20,6 @@ code {
 *::before,
 *::after {
   box-sizing: border-box;
-  color: var(--colors-text);
 }
 
 html {
@@ -33,6 +32,7 @@ html {
     /* both-edges */
   ;
   overflow-x: hidden;
+  color: var(--colors-text);
 }
 
 body {
@@ -244,12 +244,17 @@ button:hover {
 .offsite-link {
   position: relative;
 
+  &.no-arrow::after {
+    display: none;
+  }
+
   &::after {
     content: "↗";
     position: absolute;
     right: -1em;
     top: -0.3em;
     font-size: inherit;
+    color: currentColor;
     /*     font-weight: var(--font-weights-bold); */
   }
 }
@@ -268,13 +273,24 @@ p:lang(fi) {
   hyphens: auto;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
-  text-align: justify;
+  /*   text-align: justify; */
 }
+
+html[data-theme="light"] .to-dark-cv,
+html:not([data-theme="dark"]) .to-dark-cv {
+  display: none;
+}
+
+html[data-theme="dark"] .to-light-cv {
+  display: none;
+}
+
 
 @media (max-width: 768px) {
   :root {
     --navbar-height: 3.5rem;
   }
+
   .space-on-mobile {
     height: 4rem;
   }
