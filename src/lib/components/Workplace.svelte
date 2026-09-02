@@ -35,8 +35,10 @@
 
 <style>
   .workplace {
-    padding: 2rem 2rem;
-    margin-left: var(--offset-left);
+    padding: 1rem 2rem;
+/*     min-width: 30rem; */
+/*     margin-left: var(--offset-left); */
+    margin-left: 2rem;
     position: relative;
     font-size: var(--font-sizes-sm);
     width: fit-content;
@@ -63,7 +65,8 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%) translateX(0px);
-      width: var(--offset-left);
+/*       width: var(--offset-left); */
+      width: 2rem;
       height: 2px;
       background-color: var(--colors-secondary);
       right: 100%;

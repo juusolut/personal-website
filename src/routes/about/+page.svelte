@@ -30,7 +30,8 @@
         "Viheralueiden hoito ja kunnossapito",
         "Liikennemerkkien vaihto",
         "Asfalttiteiden paikkaus",
-        " P-alueiden puhtaanapito", "Muut satunnaiset kiinteistöhuoltotyöt",
+        " P-alueiden puhtaanapito",
+        "Muut satunnaiset kiinteistöhuoltotyöt",
       ],
       timePeriod: [],
     },
@@ -60,7 +61,11 @@
     {
       workplace: "Työelämään tutustuminen / 5 päivää per työpaikka",
       jobTitle: "Tettiläinen Kärsämäellä",
-      tasks: ["Veikon Kone (2015)", "Laaksojen Rauta Oy (2014)", "Venetpalon alakoulu (2014)"],
+      tasks: [
+        "Veikon Kone (2015)",
+        "Laaksojen Rauta Oy (2014)",
+        "Venetpalon alakoulu (2014)",
+      ],
       timePeriod: [],
     },
   ];
@@ -97,7 +102,7 @@
         <p>
           Hei! Olen Juuso, 27-vuotias <b>luonnontieteiden kandidaatti</b>
           Oulusta. Olen opiskellut
-          <b>Oulun yliopistossa tietojenkäsittelytieteitä</b>
+          <b>tietojenkäsittelytieteitä Oulun yliopistossa </b>
           ja työskentelen tällä hetkellä
           <b>Postilla</b>. Vapaa-ajallani käytän luovuuttani monipuolisesti:
           koodaan <b>verkkosivuja</b> ja <b>pelejä</b>, sävellän musiikkia sekä
@@ -365,6 +370,8 @@
     padding-top: 4rem;
     padding-bottom: 4rem;
     margin-left: 1rem;
+    overflow: hidden;
+    max-height: 50rem;
 
     &::before {
       content: "";

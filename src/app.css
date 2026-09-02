@@ -264,6 +264,13 @@ button:hover {
   height: 0;
 }
 
+p:lang(fi) {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  text-align: justify;
+}
+
 @media (max-width: 768px) {
   :root {
     --navbar-height: 3.5rem;

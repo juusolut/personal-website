@@ -323,6 +323,7 @@
     mask-size: 10rem auto;
     opacity: 0.2;
     z-index: -1;
+/*     transform: skew(15deg, -15deg) !important; */
   }
 
   .nutshell__hey {
@@ -471,7 +472,7 @@
     border: 2px solid
       color-mix(in oklch, var(--bg-color), white var(--border-strength-1));
     border-radius: var(--border-radiuses-md);
-    /* 
+    /*
     &::after {
       content: "↗";
       position: absolute;
