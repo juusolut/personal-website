@@ -75,7 +75,6 @@
 
 <div class="info-container h-padding">
   <div class="info">
-    <h2 class="view-title">Kuka olen?</h2>
     <article class="info-box">
       <!--       <img
         class="sitting"
@@ -99,15 +98,16 @@
         </div>
       </div>
       <div class="content">
+        <h2 class="view-title no-bg">Pähkinänkuoressa</h2>
         <p>
           Hei! Olen Juuso, 27-vuotias <b>luonnontieteiden kandidaatti</b>
           Oulusta. Olen opiskellut
           <b>tietojenkäsittelytieteitä Oulun yliopistossa </b>
           ja työskentelen tällä hetkellä
-          <b>Postilla</b>. Vapaa-ajallani käytän luovuuttani monipuolisesti:
+          <b>Postilla</b>. Vapaa-ajalla käytän luovuuttani monipuolisesti:
           koodaan <b>verkkosivuja</b> ja <b>pelejä</b>, sävellän musiikkia sekä
           teen digitaalista taidetta. Vastapainona ruudun ääressä työskentelylle
-          käyn kuntosalilla ja frisbeegolfaamassa, ja joskus päädyn myös
+          harrastan kuntosalia ja frisbeegolfia, ja joskus päädyn myös
           käsitöiden tai paritanssin pariin.
           <br /><br />Tunnollisuus ja ahkeruus ovat minulle tärkeitä arvoja,
           joita kuitenkin tasapainottaa rento ja maanläheinen asenne elämään.
@@ -237,7 +237,8 @@
 
   .content {
     order: 2;
-    > p {
+    > h2 {
+      margin-bottom: 1rem;
     }
   }
   .sitting {
