@@ -44,7 +44,7 @@
       <button
         class="hamburger"
         onclick={toggleMenu}
-        aria-label="Toggle navigation menu"
+        aria-label={isOpen ? "Sulje navigointivalikko" : "Avaa navigointivalikko"}
         aria-expanded={isOpen}
       >
         <span class="bar" class:open={isOpen}></span>

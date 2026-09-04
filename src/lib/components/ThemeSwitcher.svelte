@@ -32,37 +32,32 @@
   }
 
   let isMounted = $state(false);
-
   // Sync state changes directly to the <html> element
   $effect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     isMounted = true;
   });
-</script>
 
-<!-- <button id="theme-button" onclick={toggleTheme} aria-label="Toggle theme">
-  {#if theme === "dark"}
-    <Icon name="MoonStars" />
-  {:else}
-    <Icon name="Sun" />
-  {/if}
-</button> -->
+  // Derive dynamic label to announce target action clearly
+  let nextTheme = $derived(theme === "dark" ? "light" : "dark");
+</script>
 
 <button
   id="theme-button"
   onclick={toggleTheme}
-  aria-label="Toggle theme"
+  aria-label={`Switch to ${nextTheme} theme`}
   class:light={theme === "light"}
   class:ready={isMounted}
 >
-  <Icon name="MoonStars" />
-  <Icon name="Sun" />
+  <Icon name="MoonStars" size="1.25rem" aria-hidden="true" />
+  <Icon name="Sun" size="1.25rem" aria-hidden="true" />
 </button>
 
 <style>
   #theme-button {
-    padding: 0.25rem 0;
-    width: 4rem;
+    /*     padding: 0.25rem 0; */
+    width: 3.5rem;
+    aspect-ratio: 2 / 1;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -94,8 +89,12 @@
       width: 50%;
       left: 0;
       border-radius: var(--border-radiuses-sm);
-      border: 1px solid
-        color-mix(in oklab, var(--colors-secondary), var(--border-mix-shading));
+      border: 2px solid
+        color-mix(
+          in oklab,
+          var(--colors-secondary),
+          var(--border-mix-shading) var(--border-strength-3)
+        );
       background: color-mix(
         in oklab,
         var(--colors-secondary) 80%,

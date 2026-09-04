@@ -86,11 +86,6 @@
 <div class="info-container h-padding">
   <div class="info">
     <article class="info-box">
-      <!--       <img
-        class="sitting"
-        src={asset("/images/sitting.png")}
-        alt="Juuso Luttinen"
-      /> -->
       <div class="profile-image-container waves-pattern">
         <div class="both-images">
           <img
@@ -132,6 +127,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="to-light-cv offsite-link"
+          aria-label="Avaa CV uudessa välilehdessä"
         >
           Avaa CV
         </a>
@@ -140,6 +136,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="to-dark-cv offsite-link"
+          aria-label="Avaa CV uudessa välilehdessä"
         >
           Avaa CV
         </a>
@@ -181,7 +178,7 @@
 <div id="work-history__container" class="h-padding" class:expanded={showMore}>
   <WorkHistory />
   <div id="gradient-box">
-    <button id="show-more-button" onclick={handleShowMoreClick}>
+    <button id="show-more-button" onclick={handleShowMoreClick} aria-label={showMore ? "Pienennä työhistoria" : "Näytä koko työhistoria"}>
       {showMore ? "Näytä vähemmän" : "Näytä lisää"}
       <div class:flipped={showMore}><Icon name="CaretDown" size="1rem" /></div>
     </button>
@@ -280,14 +277,14 @@
     display: inline-block;
   }
 
-  .sitting {
+/*   .sitting {
     display: none;
     position: absolute;
     width: 15%;
     top: 0;
     right: 2rem;
     transform: translateY(-55%) rotate(-4deg);
-  }
+  } */
 
   .profile-image-container {
     background-color: var(--colors-secondary);
@@ -452,6 +449,7 @@
       );
     border-left: none;
     border-right: none;
+    min-height: 40rem;
   }
 
   #studies__inner {
