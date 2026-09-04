@@ -164,6 +164,10 @@
     display: inline-flex;
     align-items: center;
     gap: 1rem;
+
+    img {
+      height: 2rem !important;
+    }
   }
 
   .nav-links {
@@ -180,7 +184,7 @@
     flex-direction: column;
     background-color: var(--colors-elevation-2);
     padding: 1.5rem;
-    gap: 1rem;
+    gap: 0rem;
     border-top: 1px solid
       color-mix(
         in oklch,
@@ -203,6 +207,9 @@
     text-decoration: none;
     font-weight: var(--font-weights-bold);
     transition: color 0.2s ease;
+    display: inline-block;
+    padding: 1rem 0rem;
+    min-width: 10rem;
   }
 
   .nav-links a:hover,
@@ -229,7 +236,7 @@
     flex-direction: column;
     justify-content: space-around;
     width: 1.75rem;
-    height: 1.25rem;
+    height: 1.5rem;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -267,6 +274,12 @@
 
   /* Responsive Mobile Menu */
   @media (width > 768px) {
+
+    .brand {
+      img {
+      height: 2.5rem !important;
+    }
+    }
     #links-and-buttons {
       gap: 2rem;
       flex-direction: row;
@@ -290,6 +303,13 @@
       flex-direction: row;
       background-color: transparent;
       border: none;
+      gap: .5rem;
+
+      a {
+        display: inline-block;
+        padding: .5rem .5rem;
+        min-width: 0rem;
+      }
     }
   }
 </style>
