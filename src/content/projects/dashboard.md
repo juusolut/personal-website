@@ -7,6 +7,11 @@ tags: ["React", "RubyOnRails"]
 isShowcased: true
 ---
 
+<script>
+  import { asset } from '$app/paths';
+  import VideoPlayer from '$lib/components/VideoPlayer.svelte';
+</script>
+
 # Johdanto
 
 Osana laajempaa opintokokonaisuutta toteutimme projektityönä ohjelmiston oululaiselle softafirmalle, joka kehittää web-pohjaista radio-ohjelmistoa. Tavoitteena oli rakentaa järjestelmään keskitetty näkymä (dashboard) järjestelmänvalvojille ja tuottajille. Uusi kojelauta kokoaa yhteen paikkaan aiemmin eri näkymiin hajautetun datan, kuten radiolähetysten, soittolistojen ja sisäisten palveluiden tilan seurannan.
@@ -14,6 +19,8 @@ Osana laajempaa opintokokonaisuutta toteutimme projektityönä ohjelmiston oulul
 # Suunnittelu
 
 Käynnistimme projektin huolellisella vaatimusmäärittelyllä ja kilpailija-analyysilla. Koska suoria vastineita ei markkinoilta löytynyt, keräsimme parhaat käytännöt eri sovelluksista suunnittelun pohjaksi. Tiimin sisäisen ideoinnin jälkeen jokainen suunnitteli oman konseptinsa Figmalla. Jatkoon valikoitui suunnittelemani interaktiivinen Figma-proto, jolle saimme myös asiakkaan hyväksynnän.
+
+<VideoPlayer videoSrc="/videos/dashboard-prototype.webm" posterSrc="/images/processed/dashboard-prototype-thumb.webp" description="Dashboard-prototyyppi"  />
 
 # Ohjelmistokehitys
 
