@@ -2,7 +2,7 @@
   import { page } from "$app/state";
   import { resolve } from "$app/paths";
   import { asset } from "$app/paths";
-  import Icon from "./Icon.svelte";
+  import ThemeSwitcher from "./ThemeSwitcher.svelte";
 
   // Svelte 5 rune for mobile menu state
   let isOpen = $state(false);
@@ -20,22 +20,6 @@
   // Helper to check if a route is currently active
   function isActive(path: string): boolean {
     return page.url.pathname === resolve(path as `/`);
-  }
-
-  // Initialize state; defaults to 'dark' or reads existing HTML attribute
-  let theme = $state(
-    typeof document !== "undefined"
-      ? document.documentElement.getAttribute("data-theme") || "dark"
-      : "dark",
-  );
-
-  // Sync state changes directly to the <html> element
-  $effect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  });
-
-  function toggleTheme() {
-    theme = theme === "dark" ? "light" : "dark";
   }
 </script>
 
@@ -98,17 +82,7 @@
         </li>
       </ul>
       <div id="buttons">
-        <button
-          id="theme-button"
-          onclick={toggleTheme}
-          aria-label="Toggle theme"
-        >
-          {#if theme === "dark"}
-            <Icon name="MoonStars" />
-          {:else}
-            <Icon name="Sun" />
-          {/if}
-        </button>
+<ThemeSwitcher/>
       </div>
     </div>
   </div>
@@ -254,22 +228,6 @@
     display: flex;
     justify-content: flex-start;
     /*     padding: 0 1rem; */
-  }
-  #theme-button {
-    padding: 0.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: var(--border-radiuses-sm);
-    border: 1px solid
-      color-mix(in oklab, var(--colors-secondary), var(--border-mix-shading));
-    background: color-mix(
-      in oklab,
-      var(--colors-secondary) 30%,
-      var(--colors-elevation-0)
-    );
-    color: var(--colors-text);
   }
 
   /* Responsive Mobile Menu */

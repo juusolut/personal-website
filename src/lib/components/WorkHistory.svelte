@@ -77,7 +77,8 @@
         tasks={workplace.tasks}
         timePeriod={workplace.timePeriod}
         currentJob={workplace.currentJob}
-        offsetLeft={`${2 + index * 1}rem`}
+/*         offsetLeft={`${2 + index * 1}rem`} */
+        offsetLeft={`${2}rem`}
       />
     {/each}
   </ul>

@@ -110,22 +110,22 @@
       <div class="content">
         <h2 class="view-title no-bg">Pähkinänkuoressa</h2>
         <p>
-          Hei! Olen Juuso, 27-vuotias <b>luonnontieteiden kandidaatti</b>
-          Oulusta. Olen opiskellut
-          <b>tietojenkäsittelytieteitä Oulun yliopistossa </b>
+          Hei! Olen Juuso, 27-vuotias <b>luonnon&shy;tieteiden kan&shy;didaatti</b>
+          Oulusta. Olen opis&shy;kellut
+          <b>tie&shy;tojen&shy;käsittely&shy;tieteitä Oulun yli&shy;opistossa </b>
           ja työskentelen tällä hetkellä
-          <b>Postilla</b>. Vapaa-ajalla käytän luovuuttani monipuolisesti:
-          koodaan <b>verkkosivuja</b> ja <b>pelejä</b>, sävellän musiikkia sekä
-          teen digitaalista taidetta. Vastapainona ruudun ääressä työskentelylle
-          harrastan kuntosalia ja frisbeegolfia, ja joskus päädyn myös
-          käsitöiden tai paritanssin pariin.
-          <br /><br />Tunnollisuus ja ahkeruus ovat minulle tärkeitä arvoja,
-          joita kuitenkin tasapainottaa rento ja maanläheinen asenne elämään.
-          Pyrin siihen että hommat hoituvat tehokkaasti ja huolellisesti. Olen
-          oma-aloitteinen, joustava ja mutkaton tyyppi: kanssani on helppo
-          toimia, ja olen helposti lähestyttävä niin töissä kuin töiden
-          ulkopuolella. Ura IT-alalla kiinnostaa ja odotankin jo innolla mitä
-          tulevaisuus tuo tullessaan!
+          <b>Postilla</b>. Vapaa-ajalla käytän luo&shy;vuut&shy;tani moni&shy;puo&shy;li&shy;sesti:
+          koodaan <b>verkko&shy;sivuja</b> ja <b>pelejä</b>, sävellän musiik&shy;kia sekä
+          teen digi&shy;taa&shy;lista tai&shy;detta. Vasta&shy;painona ruudun ääressä työs&shy;kente&shy;lylle
+          harrastan kunto&shy;salia ja frisbee&shy;golfia, ja joskus päädyn myös
+          käsi&shy;töiden tai pari&shy;tanssin pariin.
+          <br /><br />Tunnol&shy;lisuus ja ahke&shy;ruus ovat minulle tärkeitä arvoja,
+          joita kui&shy;tenkin tasa&shy;painot&shy;taa rento ja maan&shy;läheinen asenne elämään.
+          Pyrin siihen että hommat hoituvat tehok&shy;kaasti ja huo&shy;lellisesti. Olen
+          oma-aloitteinen, jous&shy;tava ja mut&shy;katon tyyppi: kanssani on helppo
+          toimia, ja olen helposti lähes&shy;tyttävä niin töissä kuin töiden
+          ulko&shy;puolel&shy;la. Ura IT-alalla kiin&shy;nostaa ja odotankin jo innolla mitä
+          tule&shy;vaisuus tuo tul&shy;lessaan!
         </p>
         <a
           href={asset("/resume.pdf")}
@@ -356,7 +356,7 @@
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      var(--colors-elevation-1) 50%
+      var(--colors-elevation-2) 80%
     );
     display: flex;
     justify-content: center;
@@ -394,18 +394,14 @@
     background-color: var(--colors-elevation-2);
     padding-top: 4rem;
     padding-bottom: 4rem;
-    border-bottom: 1px solid
+    border: 1px solid
       color-mix(
         in oklch,
         var(--colors-elevation-2),
         var(--border-mix-shading) var(--border-strength-1)
       );
-    border-top: 1px solid
-      color-mix(
-        in oklch,
-        var(--colors-elevation-2),
-        var(--border-mix-shading) var(--border-strength-1)
-      );
+    border-left: none;
+    border-right: none;
   }
 
   .skills {
@@ -444,6 +440,18 @@
       );
     width: 100%;
     max-width: 40rem;
+  }
+
+  #studies {
+    background-color: var(--colors-elevation-2);
+    border: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    border-left: none;
+    border-right: none;
   }
 
   #studies__inner {

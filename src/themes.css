@@ -87,8 +87,8 @@
     --elevation-strength-5: 97%;
 
     /* ELEVATION COLORS */
-    --base-lightness: 0.87;
-    --base-saturation: 0.03;
+    --base-lightness: 0.9;
+    --base-saturation: 0.01;
 
     --colors-elevation-0: oklch(from var(--colors-primary) var(--base-lightness) var(--base-saturation) h);
     --colors-elevation-1: color-mix(in oklab, var(--colors-elevation-0), var(--border-mix-shading) var(--elevation-strength-1));
