@@ -28,49 +28,22 @@
 
     /* Anims */
     --transitions-fast: 0.1s ease-in-out;
-/*
-    --colors-animation: background-color 0.4s ease, color 0.4s ease, background 0.4s ease; */
 
-    /* Color fallbacks */
-    --colors-gray: hsl(0, 0%, 30%);
-    --colors-badge: hsl(14, 68%, 51%);
+    --colors-animation: background-color 0.2s ease, color 0.2s ease, 0.2s ease, border-color 0.2s ease;
+
+
     --colors-black: oklch(0 0 0);
     --colors-white: oklch(1 0 0);
-
-    --colors-none: hsla(0, 0%, 0%, 0%);
-
-    --colors-error: oklch(56.527% 0.15932 23.694);
-    --colors-success: oklch(49.301% 0.13649 143.877);
-    --colors-warning: oklch(53.098% 0.09609 105.573);
-    --colors-heart: hsl(0, 50%, 50%);
-    --colors-heart-transparent: hsl(0, 50%, 50%, 0.2);
-
-    /* Colors */
-
-    --colors-1st-elevation: 9%;
-    --colors-2nd-elevation: 20%;
-    --colors-3rd-elevation: 50%;
-
-    --colors-body: oklch(0.92 0 0);
-    --colors-body-level-1: color-mix(in oklch, var(--colors-body), var(--colors-white) var(--colors-2nd-elevation));
-    --colors-body-level-2: color-mix(in oklch, var(--colors-body), var(--colors-white) var(--colors-3rd-elevation));
-    --colors-body-level-3: color-mix(in oklab, var(--colors-body), var(--colors-white) 75%);
 
     /* BRANDING COLORS */
     --colors-secondary: oklch(0.73 0.12 68.69);
     --colors-primary: oklch(57.8% 0.16305 266.504);
-/*     --colors-secondary: oklch(56.513% 0.16524 348.461); */
-    /* --colors-primary: oklch(55.05% 0.11643 293.077); */
-    /*     --colors-secondary: oklch(54.851% 0.07727 217.855); */
-    --colors-note: oklch(86.589% 0.05914 86.507);
-
-    /*New color variables*/
 
     /* SHADING */
     --mix-shading: oklch(1 0 0);
     --border-mix-shading: oklch(0 0 0);
 
-    /* BORDER STRENGHT */
+    /* BORDER STRENGTH */
     --border-strength-1: 15%;
     --border-strength-2: 30%;
     --border-strength-3: 40%;
@@ -115,9 +88,6 @@ html[data-theme='dark'] {
     --colors-black: oklch(1 0 0);
     --colors-white: oklch(0 0 0);
 
-    /*     --shadows-xs: 0px 0px .4rem hsla(0, 0%, 3%, 20%);
-    --shadows-sm: 0px 0px .4rem hsla(0, 0%, 3%, 50%); */
-
     --font-weights-normal: 300;
     --font-weights-semi: 500;
     --font-weights-bold: 700;
@@ -156,9 +126,3 @@ html[data-theme='dark'] {
     --shadows-sm: 0px 0px 20px 0px color-mix(in oklch, black 30%, transparent);
     --shadows-sm-light: 0px 0px 20px 0px color-mix(in oklch, white 30%, transparent);
 }
-
-/* html[data-theme='dark'] {
-    --colors-primary: oklch(59.257% 0.12798 257.98);
-    --base-lightness: 0.18;
-    --colors-elevation-0: oklch(from var(--colors-primary) var(--base-lightness) 0.02 h);
-} */

@@ -1,5 +1,6 @@
 <script lang="ts">
   import Icon from "./Icon.svelte";
+  import { asset } from "$app/paths";
 
   // Helper function to resolve the initial theme on the client
   function getInitialTheme(): string {
@@ -29,6 +30,12 @@
   function toggleTheme() {
     theme = theme === "dark" ? "light" : "dark";
     localStorage.setItem("theme", theme);
+    if (switchSound) {
+      switchSound.currentTime = 0; // Rewind so rapid clicks play immediately
+      switchSound.play().catch(() => {
+        // Handle autoplay restrictions safely if needed
+      });
+    }
   }
 
   let isMounted = $state(false);
@@ -40,6 +47,15 @@
 
   // Derive dynamic label to announce target action clearly
   let nextTheme = $derived(theme === "dark" ? "light" : "dark");
+
+  const switchSound = typeof Audio !== "undefined"
+    ? new Audio(asset("/sounds/click.wav"))
+    : null;
+
+  if (switchSound) {
+    switchSound.preload = "auto";
+    switchSound.volume = 0.5
+  }
 </script>
 
 <button

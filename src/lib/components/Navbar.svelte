@@ -35,7 +35,7 @@
         class="logo-image"
         style="height: 2.5rem; width: auto;"
       />
-      <span class="logo-text">Juuso<br />Luttinen</span>
+      <span id="logo-text">Juuso<br />Luttinen</span>
     </a>
 
     <!-- Navigation Links -->
@@ -142,6 +142,10 @@
     img {
       height: 2rem !important;
     }
+  }
+
+  #logo-text {
+    color: var(--colors-text);
   }
 
   .nav-links {
