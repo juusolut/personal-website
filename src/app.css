@@ -54,6 +54,12 @@ body {
  */
 }
 
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 b {
   font-weight: var(--font-weights-bold);
 }
@@ -288,10 +294,10 @@ html[data-theme="dark"] .to-light-cv {
 
 @media (max-width: 768px) {
   :root {
-    --navbar-height: 3.5rem;
+    --navbar-height: 3rem;
   }
 
   .space-on-mobile {
-    height: 4rem;
+    height: 3rem;
   }
 }

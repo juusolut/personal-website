@@ -2,6 +2,7 @@
 
 export const iconNames = [
   "ArrowNarrowLeft",
+  "CaretDown",
   "Default",
   "Docker",
   "Dotnet",

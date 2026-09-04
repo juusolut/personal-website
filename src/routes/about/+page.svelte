@@ -1,12 +1,13 @@
 <script lang="ts">
   import { asset } from "$app/paths";
   import Tags from "$lib/components/Tags.svelte";
+  import Icon from "$lib/components/Icon.svelte";
   import Workplace from "$lib/components/Workplace.svelte";
+  import WorkHistory from "$lib/components/WorkHistory.svelte";
 
   let { data } = $props();
 
   const newData: string[] = [...data.tags, "MongoDB"];
-
 
   const workplaces: {
     workplace: string;
@@ -72,6 +73,12 @@
       timePeriod: [],
     },
   ];
+
+  let showMore = $state(false);
+
+  function handleShowMoreClick(e) {
+    showMore = !showMore;
+  }
 </script>
 
 <div class="space-on-mobile"></div>
@@ -120,10 +127,20 @@
           ulkopuolella. Ura IT-alalla kiinnostaa ja odotankin jo innolla mitä
           tulevaisuus tuo tullessaan!
         </p>
-        <a href={asset("/resume.pdf")} target="_blank" rel="noopener noreferrer" class="to-light-cv offsite-link">
+        <a
+          href={asset("/resume.pdf")}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="to-light-cv offsite-link"
+        >
           Avaa CV
         </a>
-        <a href={asset("/resume-dark.pdf")} target="_blank" rel="noopener noreferrer" class="to-dark-cv offsite-link">
+        <a
+          href={asset("/resume-dark.pdf")}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="to-dark-cv offsite-link"
+        >
           Avaa CV
         </a>
       </div>
@@ -153,25 +170,27 @@
       <li>GDScript</li>
     </ul>
     <br />
-    <p>Hallitsen työskentelyn sekä <b>Windows-</b> että <b>Linux-ympäristöissä</b>. Linux-ympäristöistä tutuimpia ovat Ubuntu ja Linux Mint.</p>
+    <p>
+      Hallitsen työskentelyn sekä <b>Windows-</b> että
+      <b>Linux-ympäristöissä</b>. Linux-ympäristöistä tutuimpia ovat Ubuntu ja
+      Linux Mint.
+    </p>
   </div>
 </div>
 
-<div class="work-history__container h-padding">
-  <div class="work-history__inner section-content">
-    <h2 class="view-title">Työhistoria</h2>
-    <ul class="workplaces">
-      {#each workplaces as workplace, index}
-        <Workplace
-          workplace={workplace.workplace}
-          jobTitle={workplace.jobTitle}
-          tasks={workplace.tasks}
-          timePeriod={workplace.timePeriod}
-          currentJob={workplace.currentJob}
-          offsetLeft={`${3 + index * 2}rem`}
-        />
-      {/each}
-    </ul>
+<div id="work-history__container" class="h-padding" class:expanded={showMore}>
+  <WorkHistory />
+  <div id="gradient-box">
+    <button id="show-more-button" onclick={handleShowMoreClick}>
+      {showMore ? "Näytä vähemmän" : "Näytä lisää"}
+      <div class:flipped={showMore}><Icon name="CaretDown" size="1rem" /></div>
+    </button>
+  </div>
+</div>
+
+<div id="studies" class="h-padding" class:expanded={showMore}>
+  <div id="studies__inner" class="section-content">
+    <h2 class="view-title">Koulutukset</h2>
   </div>
 </div>
 
@@ -256,6 +275,12 @@
     }
   }
 
+  .to-dark-cv,
+  .to-light-cv {
+    margin-top: 2rem;
+    display: inline-block;
+  }
+
   .sitting {
     display: none;
     position: absolute;
@@ -313,6 +338,59 @@
     transform: translate(-50%, -50%);
   }
 
+  #work-history__container {
+    position: relative;
+    max-height: 50rem;
+    overflow: hidden;
+
+    &.expanded {
+      max-height: unset;
+      padding-bottom: 8rem;
+      #gradient-box {
+        height: auto;
+      }
+    }
+  }
+
+  #gradient-box {
+    width: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--colors-elevation-1) 50%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 1rem;
+    height: 10rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  #show-more-button {
+    height: min-content;
+    padding: 0.5rem 2rem;
+    border-radius: var(--border-radiuses-md);
+    color: var(--colors-text);
+    background-color: var(--colors-secondary);
+    border: 1px solid
+      color-mix(
+        in oklab,
+        var(--colors-secondary),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .flipped {
+    transform: rotate(180deg);
+  }
+
   .skills-container {
     background-color: var(--colors-elevation-2);
     padding: 4rem 0rem;
@@ -352,10 +430,6 @@
     max-width: 40rem;
   }
 
-  .work-history__inner {
-    padding: 4rem 0.5rem;
-  }
-
   .programming-langugage-list {
     color: var(--colors-text);
     background-color: var(--colors-elevation-3);
@@ -372,38 +446,8 @@
     max-width: 40rem;
   }
 
-  .workplaces {
-    --offset-left: 6rem;
-
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    margin: 2rem 0;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-    margin-left: 1rem;
-    overflow: hidden;
-    max-height: 50rem;
-
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 2px;
-      height: 100%;
-      background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        var(--colors-secondary) 10%,
-        var(--colors-secondary) 90%,
-        transparent 100%
-      );
-    }
+  #studies__inner {
+    padding: 4rem 0;
   }
 
   @container (width > 50rem) {

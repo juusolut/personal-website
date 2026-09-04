@@ -8,7 +8,7 @@
   import { backOut } from "svelte/easing";
 
   let isLoaded = $state(false);
-  const heroSrc = asset("/images/me.png");
+  const heroSrc = asset("/images/me (Small).png");
 
   onMount(() => {
     const img = new Image();
@@ -104,13 +104,15 @@
           href={asset("/resume.pdf")}
           target="_blank"
           rel="noopener noreferrer"
-          class="button button__resume to-light-cv"><span class="offsite-link">CV</span></a
+          class="button button__resume to-light-cv"
+          ><span class="offsite-link">CV</span></a
         >
         <a
           href={asset("/resume-dark.pdf")}
           target="_blank"
           rel="noopener noreferrer"
-          class="button button__resume to-dark-cv"><span class="offsite-link">CV</span></a
+          class="button button__resume to-dark-cv"
+          ><span class="offsite-link">CV</span></a
         >
         <a
           href="https://www.linkedin.com/in/juusolut/"
@@ -128,7 +130,7 @@
         >
       </div>
       <img
-        src={asset("/images/me.png")}
+        src={asset("/images/me (Small).png")}
         alt="Juuso Luttinen"
         class="nutshell__image reveal"
       />
@@ -204,8 +206,7 @@
     <div class="center-horizontally">
       <div class="comments__own-words">
         <a href={resolve("/about")} class="button"
-          ><span class="offsite-link no-arrow"
-            >Tutustu minuun tarkemmin Minä-osiossa</span
+          ><span class="offsite-link no-arrow">Tutustu minuun tarkemmin</span
           ></a
         >
       </div>
@@ -448,11 +449,11 @@
       justify-content: flex-start !important;
       left: 15% !important;
       z-index: 2;
-    }
 
-    .button {
-      padding: 0.5rem 2rem !important;
-      flex: unset !important;
+      .button {
+        padding: 0.5rem 2rem !important;
+        flex: unset !important;
+      }
     }
 
     .nutshell__scroll-button {
@@ -488,13 +489,7 @@
     border: 2px solid
       color-mix(in oklch, var(--bg-color), white var(--border-strength-1));
     border-radius: var(--border-radiuses-md);
-    /*
-    &::after {
-      content: "↗";
-      position: absolute;
-      right: 0.5rem;
-      top: 0.2rem;
-    } */
+
   }
 
   .button__resume {
@@ -735,6 +730,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .button {
+      padding: .5rem 2rem;
+    }
 
     > a {
       --bg-color: var(--colors-primary);

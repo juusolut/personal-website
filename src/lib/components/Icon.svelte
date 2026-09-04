@@ -29,10 +29,15 @@
 <svg
   width={size}
   height={size}
-  class={className}
+  class={`{className} icon`}
   aria-hidden="true"
   {...restProps}
 >
   <!-- Points to public folder sprite sheet with browser caching -->
   <use href={spriteUrl} />
 </svg>
+
+<style>
+  .icon {
+  }
+</style>

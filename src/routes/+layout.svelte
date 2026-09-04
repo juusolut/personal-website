@@ -25,6 +25,26 @@
 
 <svelte:head>
   <link rel="icon" href={favicon} />
+  <title>Juuso Luttinen | Portfolio | julu.fi</title>
+  <meta
+    name="description"
+    content="Tervetuloa Juuson henkilökohtaiseen portfolioon. Tutustu projekteihini, osaamiseeni ja ota yhteyttä."
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    href="/images/favicons/favicon-96x96.png"
+    sizes="96x96"
+  />
+  <link rel="icon" type="image/svg+xml" href="/images/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" />
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/images/favicons/apple-touch-icon.png"
+  />
+  <meta name="apple-mobile-web-app-title" content="julu.fi" />
+  <link rel="manifest" href="/images/favicons/site.webmanifest" />
 </svelte:head>
 
 <div class="app-shell">
@@ -48,12 +68,12 @@
 
 <style>
   footer {
-    background-color: var(--colors-elevation-0);
+    /*     background-color: var(--colors-elevation-0); */
     display: flex;
     justify-content: center;
     color: var(--colors-text);
     padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
     flex: 1;
     align-items: flex-end;
     > span > a {

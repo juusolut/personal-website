@@ -39,7 +39,7 @@
   }
 </script>
 
-<svelte:window bind:scrollY={scrollY} />
+<svelte:window bind:scrollY />
 
 <nav class="navbar" class:show-border={isScrolled}>
   <div class="nav-container">
@@ -51,88 +51,97 @@
         class="logo-image"
         style="height: 2.5rem; width: auto;"
       />
-      <span class="logo-text">Juuso <br /> Luttinen</span>
+      <span class="logo-text">Juuso<br />Luttinen</span>
     </a>
 
-    <div class="buttons">
-      <button
-        class="theme-button"
-        onclick={toggleTheme}
-        aria-label="Toggle theme"
-      >
-        {#if theme === "dark"}
-          <Icon name="MoonStars" />
-        {:else}
-          <Icon name="Sun" />
-        {/if}
-      </button>
-    </div>
-
-    <!-- Mobile Hamburger Button -->
-    <button
-      class="hamburger"
-      onclick={toggleMenu}
-      aria-label="Toggle navigation menu"
-      aria-expanded={isOpen}
-    >
-      <span class="bar" class:open={isOpen}></span>
-      <span class="bar" class:open={isOpen}></span>
-      <span class="bar" class:open={isOpen}></span>
-    </button>
-
     <!-- Navigation Links -->
-    <ul class="nav-links" class:open={isOpen}>
-      <li>
-        <a href={resolve("/")} class:active={isActive("/")} onclick={closeMenu}
-          >Etusivu</a
+    <div id="links-and-buttons">
+      <!-- Mobile Hamburger Button -->
+      <button
+        class="hamburger"
+        onclick={toggleMenu}
+        aria-label="Toggle navigation menu"
+        aria-expanded={isOpen}
+      >
+        <span class="bar" class:open={isOpen}></span>
+        <span class="bar" class:open={isOpen}></span>
+        <span class="bar" class:open={isOpen}></span>
+      </button>
+      <ul class="nav-links" class:open={isOpen}>
+        <li>
+          <a
+            href={resolve("/")}
+            class:active={isActive("/")}
+            onclick={closeMenu}>Etusivu</a
+          >
+        </li>
+        <li>
+          <a
+            href={resolve("/about")}
+            class:active={isActive("/about")}
+            onclick={closeMenu}>Minä</a
+          >
+        </li>
+        <li>
+          <a
+            href={resolve("/projects")}
+            class:active={isActive("/projects")}
+            onclick={closeMenu}>Projektit</a
+          >
+        </li>
+        <li>
+          <a
+            href={resolve("/contact")}
+            class:active={isActive("/contact")}
+            onclick={closeMenu}>Yhteystiedot</a
+          >
+        </li>
+      </ul>
+      <div id="buttons">
+        <button
+          id="theme-button"
+          onclick={toggleTheme}
+          aria-label="Toggle theme"
         >
-      </li>
-      <li>
-        <a
-          href={resolve("/about")}
-          class:active={isActive("/about")}
-          onclick={closeMenu}>Minä</a
-        >
-      </li>
-      <li>
-        <a
-          href={resolve("/projects")}
-          class:active={isActive("/projects")}
-          onclick={closeMenu}>Projektit</a
-        >
-      </li>
-      <li>
-        <a
-          href={resolve("/contact")}
-          class:active={isActive("/contact")}
-          onclick={closeMenu}>Yhteystiedot</a
-        >
-      </li>
-    </ul>
+          {#if theme === "dark"}
+            <Icon name="MoonStars" />
+          {:else}
+            <Icon name="Sun" />
+          {/if}
+        </button>
+      </div>
+    </div>
   </div>
 </nav>
 
 <style>
-  .navbar {
+  nav {
     top: 0;
-    z-index: 100;
     color: var(--colors-text);
     height: var(--navbar-height);
     display: flex;
     align-items: center;
-    position: relative;
     width: 100%;
-    margin-bottom: 3rem;
+    margin-bottom: 0rem;
+    flex-shrink: 0;
+    z-index: 10000;
     position: sticky;
-    background-color: color-mix(in oklch, var(--colors-elevation-0), transparent 0%);
-/*     backdrop-filter: blur(10px); */
+    background-color: color-mix(
+      in oklch,
+      var(--colors-elevation-0),
+      transparent 0%
+    );
+    /*     backdrop-filter: blur(10px); */
     view-transition-name: navbar;
     view-transition-class: project-morph2 navbar;
-    z-index: 9999;
     border-bottom: 1px solid transparent;
-    transition: border-bottom-color 200ms ease-in-out;
+    transition: border-bottom-color 200ms linear;
     &.show-border {
-      border-bottom-color: color-mix(in oklab, var(--colors-elevation-0), var(--border-mix-shading) var(--border-strength-2));
+      border-bottom-color: color-mix(
+        in oklab,
+        var(--colors-elevation-0),
+        var(--border-mix-shading) var(--border-strength-2)
+      );
     }
   }
 
@@ -158,11 +167,35 @@
   }
 
   .nav-links {
-    display: flex;
-    gap: 1.5rem;
     list-style: none;
+    display: none;
+    position: absolute;
+    top: var(--navbar-height);
+    bottom: 0;
+    height: calc(100vh - var(--navbar-height));
+    width: 100vw;
     margin: 0;
-    padding: 0;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--colors-elevation-2);
+    padding: 1.5rem;
+    gap: 1rem;
+    border-top: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-2)
+      );
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  /* Disable background scroll when menu is open */
+  :global(html:has(.nav-links.open)) {
+    overflow: hidden;
   }
 
   .nav-links a {
@@ -183,9 +216,16 @@
     text-decoration-thickness: 3px;
   }
 
+  #links-and-buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 1rem;
+  }
+
   /* Mobile Toggle Button */
   .hamburger {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 1.75rem;
@@ -203,48 +243,13 @@
     transition: all 0.3s ease;
   }
 
-  /* Responsive Mobile Menu */
-  @media (max-width: 768px) {
-
-    .navbar {
-      margin-bottom: 0rem;
-      z-index: 10000;
-    }
-    .hamburger {
-      display: flex;
-    }
-
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 100%;
-      height: calc(100vh - 5rem);
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      background-color: var(--colors-elevation-2);
-      padding: 1.5rem;
-      gap: 1rem;
-      border-top: 1px solid color-mix(in oklch, var(--colors-elevation-2), var(--border-mix-shading) var(--border-strength-2));
-    }
-
-    .nav-links.open {
-      display: flex;
-    }
-
-    .buttons {
-      justify-content: flex-end !important;
-    }
-  }
-
-  .buttons {
+  #buttons {
     display: flex;
-    flex: 1;
     justify-content: flex-start;
-    padding: 0 1rem;
+    /*     padding: 0 1rem; */
   }
-  .theme-button {
-    padding: .5rem;
+  #theme-button {
+    padding: 0.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -258,5 +263,33 @@
       var(--colors-elevation-0)
     );
     color: var(--colors-text);
+  }
+
+  /* Responsive Mobile Menu */
+  @media (width > 768px) {
+    #links-and-buttons {
+      gap: 2rem;
+      flex-direction: row;
+    }
+    nav {
+      margin-bottom: 3rem;
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+      position: unset;
+      height: auto;
+      width: auto;
+      flex-direction: row;
+      background-color: transparent;
+      border: none;
+    }
   }
 </style>
