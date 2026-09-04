@@ -58,9 +58,16 @@ body::before {
 
   --color-1: color-mix(in oklch, var(--colors-elevation-0), var(--colors-primary) 2%);
 
-  --color-2: color-mix(in oklch, var(--colors-elevation-0), var(--colors-secondary) 5%);
+  --color-2: color-mix(in oklch, var(--colors-elevation-0), var(--colors-secondary) 12%);
 
   background: linear-gradient(to top right, var(--color-1) 0%, var(--color-2) 100%);
+}
+
+::selection {
+  background-color: var(--colors-secondary, #53c1de);
+  /* Highlight background */
+  color: var(--colors-white, #ffffff);
+  /* Selected text color */
 }
 
 .app-shell {
@@ -75,7 +82,7 @@ b {
 
 p {
   hyphens: auto;
-  max-width: 40rem;
+  max-width: var(--text-max-width);
   line-height: 1.5;
   font-weight: var(--font-weights-normal);
   font-size: var(--font-sizes-sm);
@@ -218,6 +225,7 @@ button:hover {
 
 :root {
   --navbar-height: 5rem;
+  --text-max-width: 40rem;
 }
 
 .reveal {
