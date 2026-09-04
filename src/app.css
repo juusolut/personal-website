@@ -20,7 +20,7 @@ code {
 *::before,
 *::after {
   box-sizing: border-box;
-  transition: var(--colors-animation) !important;
+  transition: var(--colors-animation);
 }
 
 html {
@@ -77,7 +77,6 @@ h3,
 h4,
 h5 h6 {
   margin: 0;
-  /*     margin: .5em 0; */
   margin-top: 0.75em;
   margin-bottom: 0.5em;
   color: var(--colors-text);
@@ -139,8 +138,8 @@ button:hover {
 }
 
 :where(.h-padding) {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
 }
 
 /* .h-padding {

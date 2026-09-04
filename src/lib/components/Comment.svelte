@@ -15,7 +15,7 @@
 
 <div use:viewport class="comment reveal-on-scroll" class:reversed={reverse} style="--bg-color: {color}">
   <p class="text">
-    {text}
+    <q>{text}</q>
   </p>
   <div class="person">
     <div class="person__image waves-pattern">
@@ -131,11 +131,11 @@
     }
   }
 
-  .text {
+  .text > q {
     color: color-mix(in oklch, var(--colors-primary) 15%, var(--colors-text));
     &::before,
     &::after {
-      content: "”";
+      content: "❞";
       font-size: var(--font-sizes-lg);
       line-height: var(--font-sizes-sm);
       display: inline-block;
@@ -143,11 +143,12 @@
     }
 
     &::before {
-      margin-right: 0.1em;
+      content: "❝";
+      margin-right: 0.2em;
     }
 
     &::after {
-      margin-left: 0.1em;
+      margin-left: 0.2em;
     }
   }
 

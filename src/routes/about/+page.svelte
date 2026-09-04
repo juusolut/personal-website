@@ -103,7 +103,7 @@
         </div>
       </div>
       <div class="content">
-        <h2 class="view-title no-bg">Pähkinänkuoressa</h2>
+        <h2 class="view-title no-bg">Pähkinän&shy;kuoressa</h2>
         <p>
           Hei! Olen Juuso, 27-vuotias <b>luonnon&shy;tieteiden kan&shy;didaatti</b>
           Oulusta. Olen opis&shy;kellut
@@ -185,9 +185,9 @@
   </div>
 </div>
 
-<div id="studies" class="h-padding" class:expanded={showMore}>
+<div id="studies" class="h-padding">
   <div id="studies__inner" class="section-content">
-    <h2 class="view-title">Koulutukset</h2>
+    <h2 class="view-title no-bg">Koulutukset</h2>
   </div>
 </div>
 
@@ -211,7 +211,6 @@
     padding: 4rem 2rem;
     margin-top: 0rem;
     display: grid;
-    gap: 1rem;
     grid-template-columns: 1fr;
     gap: 1rem;
 
@@ -263,6 +262,8 @@
 
   .content {
     order: 2;
+    > p {
+    }
     > h2 {
       margin-bottom: 1rem;
     }
@@ -453,12 +454,14 @@
   }
 
   #studies__inner {
-    padding: 4rem 0;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
-  @container (width > 50rem) {
+  @container (width > 40rem) {
     .info-box {
       grid-template-columns: 2fr 1fr;
+      padding: 4rem 2rem;
     }
 
     .content {

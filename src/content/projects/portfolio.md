@@ -1,7 +1,7 @@
 ---
 title: "Portfolio"
 slug: "portfolio"
-description: "Responsiivinen nettisivu, joka on rakennettu SvelteKitillä"
+description: "Responsiivinen portfolio, joka on rakennettu SvelteKitillä."
 thumbnail: "/images/processed/portfolio-thumb.webp"
 tags: ["Svelte"]
 ---

@@ -60,40 +60,26 @@
     }
   }
 
-  let element: HTMLDivElement | null = $state(null);
-
-  let normalizedX = $state(0);
-  let normalizedY = $state(0);
-
-  function handleMouseMove(event: MouseEvent) {
-    return;
-    const center_x = window.innerWidth / 2;
-    const center_y = window.innerHeight / 2;
-
-    normalizedX = (event.clientX / window.innerWidth) * 2 - 1;
-    normalizedY = (event.clientY / window.innerHeight) * 2 - 1;
-
-    console.log(normalizedY);
-  }
-
   let { data } = $props();
 
   // For hiding scroll down button
   let scrollY = $state(0);
-  let isVisible = $derived(scrollY > 100);
+  let isVisible = $state(false);
+
+  $effect(() => {
+    if (scrollY > 200 && !isVisible) {
+      isVisible = true;
+    }
+  });
 </script>
 
-<svelte:window onmousemove={handleMouseMove} bind:scrollY />
+<svelte:window bind:scrollY />
 
 <section class="nutshell h-padding">
   <div class="nutshell__info section-content">
     <div class="nutshell__gradient-border"></div>
     <div class="nutshell_content" class:is-visible={isLoaded}>
-      <div
-        class="nutshell__title reveal"
-        style:--offset-x="{normalizedX * -50}px"
-        style:--offset-y="{normalizedY * -50}px"
-      >
+      <div class="nutshell__title reveal">
         <h1 class="nutshell__hey">Hei!</h1>
         <h1 class="nutshell__im">
           Olen &lt; <span class="mr-dafoe-regular">Juuso</span> /&gt;
@@ -148,7 +134,6 @@
       <button
         class="nutshell__scroll-button"
         onclick={() => scrollToElement(".projects")}
-        in:scale={{ duration: 400, start: 0.5, easing: backOut }}
         out:fade={{ duration: 200 }}
       >
         <span class="scroll-arrow" aria-hidden="true"></span><span
@@ -158,7 +143,6 @@
     {/if}
   </div>
 </section>
-<section class="details"></section>
 <section class="projects h-padding">
   <div class="projects__inner section-content">
     <h1 class="view-title">Korostetut projektit</h1>
@@ -489,7 +473,6 @@
     border: 2px solid
       color-mix(in oklch, var(--bg-color), white var(--border-strength-1));
     border-radius: var(--border-radiuses-md);
-
   }
 
   .button__resume {
@@ -624,24 +607,6 @@
     }
   }
 
-  .details {
-    display: none;
-    height: calc(30rem);
-    /* max-width: var(--site-width); */
-    background-color: var(--colors-elevation-2);
-    /*     background: linear-gradient(
-      0deg in oklab,
-      color-mix(in oklab, var(--colors-primary), black 55%),
-      var(--colors-primary)
-    ); */
-    border-bottom: 1px solid
-      color-mix(
-        in oklch,
-        var(--colors-primary),
-        var(--border-mix-shading) var(--border-strength-1)
-      );
-  }
-
   .projects {
     width: 100%;
     border-bottom: 1px solid
@@ -650,6 +615,7 @@
         var(--colors-elevation-2),
         var(--border-mix-shading) var(--border-strength-1)
       );
+    scroll-margin-top: calc(var(--navbar-height, 4rem) + 0.5rem);
   }
 
   .projects__inner {
@@ -733,7 +699,7 @@
     align-items: center;
 
     .button {
-      padding: .5rem 2rem;
+      padding: 0.5rem 2rem;
     }
 
     > a {

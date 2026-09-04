@@ -54,7 +54,7 @@
 
   if (switchSound) {
     switchSound.preload = "auto";
-    switchSound.volume = 0.5
+    switchSound.volume = 0.25
   }
 </script>
 

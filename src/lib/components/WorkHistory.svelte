@@ -5,7 +5,7 @@
     workplace: string;
     jobTitle: string;
     tasks: string[];
-    timePeriod: string[];
+    timePeriods: string[];
     currentJob?: boolean;
   }[] = [
     {
@@ -16,7 +16,7 @@
         "Kuljetusyksiköiden käsittely ja siirto lavansiirtovaunulla",
         "Uusien työntekijöiden perehdyttäminen",
       ],
-      timePeriod: ["7.12. – 18.12.2020", "X.5.2021 –"],
+      timePeriods: ["1.6.2021"],
       currentJob: true,
     },
     {
@@ -29,10 +29,16 @@
         " P-alueiden puhtaanapito",
         "Muut satunnaiset kiinteistöhuoltotyöt",
       ],
-      timePeriod: [],
+      timePeriods: [
+        "7.5. – 14.9.2020",
+        "1.7. – 29.8.2019",
+        "24.4. – 16.11.2018",
+        "26.5. – 26.10.2017",
+        "1.6. – 31.10.2016",
+      ],
     },
     {
-      workplace: "Ruotsalainen Virpi / 4H",
+      workplace: "Virpi Ruotsalainen / Luonnon syli",
       jobTitle: "Kausiapulainen Kärsämäellä",
       tasks: [
         "Kotitalouden viheralueiden hoito",
@@ -40,19 +46,19 @@
         "Traktorin käyttö",
         "Muut maatilan tehtävät",
       ],
-      timePeriod: [],
+      timePeriods: ["4.6. – 19.10.2017", "12.6. – 21.8.2016"],
     },
     {
       workplace: "Kärsämäen kunta / 4H",
       jobTitle: "Nurmikonleikkaaja Kärsämäellä",
       tasks: ["Kunnan viheralueiden hoito"],
-      timePeriod: [],
+      timePeriods: ["1. – 12.6.2015"],
     },
     {
       workplace: "Kärsämäen kunta / 4H",
       jobTitle: "Keittiöapulainen Kärsämäellä",
       tasks: ["Siivoaminen ja avustavat keittiötyöt"],
-      timePeriod: [],
+      timePeriods: ["30.6. – 11.7.2014"],
     },
     {
       workplace: "Työelämään tutustuminen / 5 päivää per työpaikka",
@@ -62,7 +68,7 @@
         "Laaksojen Rauta Oy (2014)",
         "Venetpalon alakoulu (2014)",
       ],
-      timePeriod: [],
+      timePeriods: [],
     },
   ];
 </script>
@@ -75,10 +81,10 @@
         workplace={workplace.workplace}
         jobTitle={workplace.jobTitle}
         tasks={workplace.tasks}
-        timePeriod={workplace.timePeriod}
+        timePeriods={workplace.timePeriods}
         currentJob={workplace.currentJob}
-/*         offsetLeft={`${2 + index * 1}rem`} */
-        offsetLeft={`${2}rem`}
+        /*         offsetLeft={`${2 + index * 1}rem`} */
+/*         offsetLeft={`${1}rem`} */
       />
     {/each}
   </ul>

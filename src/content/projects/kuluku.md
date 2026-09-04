@@ -1,7 +1,7 @@
 ---
 title: "Kuluku"
 slug: "kuluku"
-description: "Alusta, jolla käyttäjät voivat myydä kulkuneuvojaan. Rakennettu Reactilla."
+description: "Alusta, jolla yksityishenkilöt voivat myydä ja ostaa kulkuneuvoja."
 thumbnail: "/images/processed/kuluku-thumb.webp"
 tags: ["React", "Dotnet", "Mailhog", "Docker", "MicrosoftSQLServer"]
 isShowcased: true

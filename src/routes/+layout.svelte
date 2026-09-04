@@ -56,7 +56,7 @@
 
   <footer class="h-padding">
     <span
-      >Rakennettu <a
+      >Portfolio rakennettu <a
         href="https://svelte.dev/"
         class="offsite-link"
         target="_blank"
@@ -72,8 +72,8 @@
     display: flex;
     justify-content: center;
     color: var(--colors-text);
-    padding-top: 2rem;
-    padding-bottom: 1rem;
+    padding-top: 8rem;
+    padding-bottom: 2rem;
     flex: 1;
     align-items: flex-end;
     > span > a {
