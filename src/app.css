@@ -58,7 +58,7 @@ body::before {
 
   --color-1: color-mix(in oklch, var(--colors-elevation-0), var(--colors-primary) 2%);
 
-  --color-2: color-mix(in oklch, var(--colors-elevation-0), var(--colors-secondary) 20%);
+  --color-2: color-mix(in oklch, var(--colors-elevation-0), var(--colors-secondary) 5%);
 
   background: linear-gradient(to top right, var(--color-1) 0%, var(--color-2) 100%);
 }

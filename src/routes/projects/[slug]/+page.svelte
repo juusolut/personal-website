@@ -204,9 +204,8 @@
   }
 
   @container (width > 50rem) {
-
     .project-container {
-      padding: 0 .5rem;
+      padding: 0 0.5rem;
     }
     .project__inner {
       grid-template-columns: 1.2fr 1fr;
@@ -219,9 +218,19 @@
 
     .project {
       min-height: auto;
-      padding: 1rem 2rem;
+      padding: 2rem 2rem;
+      padding-bottom: 4rem;
       border-radius: var(--border-radiuses-lg);
-      border: 1px solid color-mix(in oklab, var(--colors-elevation-2), var(--border-mix-shading) var(--border-strength-1));
+      border: 1px solid
+        color-mix(
+          in oklab,
+          var(--colors-elevation-2),
+          var(--border-mix-shading) var(--border-strength-1)
+        );
+    }
+
+    .back-link {
+      padding: 1rem 0;
     }
   }
 </style>

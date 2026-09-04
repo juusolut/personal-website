@@ -247,7 +247,7 @@
       background: linear-gradient(
         135deg,
         var(--colors-secondary),
-        var(--colors-elevation-2) 50%
+        color-mix(in oklch, var(--colors-elevation-2), var(--colors-secondary) 50%) 50%
       );
       border-radius: var(--border-radiuses-lg);
     }
