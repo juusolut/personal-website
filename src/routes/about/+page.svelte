@@ -95,13 +95,13 @@
         <div class="both-images">
           <img
             class="image-top"
-            src={asset("/images/me.png")}
+            src={asset("/images/me (Small).png")}
             alt="Juuso Luttinen"
           />
           <div class="image-bottom">
             <img
               class="profile-image"
-              src={asset("/images/me.png")}
+              src={asset("/images/me (Small).png")}
               alt="Juuso Luttinen"
             />
           </div>
@@ -197,8 +197,7 @@
 <style>
   .info-container {
     width: 100%;
-    padding: 0rem 0;
-    padding-bottom: 5rem;
+    margin-bottom: 5rem;
   }
 
   .info {
@@ -393,7 +392,8 @@
 
   .skills-container {
     background-color: var(--colors-elevation-2);
-    padding: 4rem 0rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
     border-bottom: 1px solid
       color-mix(
         in oklch,

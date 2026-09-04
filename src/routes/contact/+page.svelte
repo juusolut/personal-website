@@ -16,7 +16,6 @@
 <style>
   .info-container {
     width: 100%;
-    padding: 0rem 0;
   }
 
   .info {

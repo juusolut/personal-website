@@ -12,7 +12,7 @@
   };
 </script>
 
-<div class="project-container h-padding">
+<div class="project-container">
   <article
     class="project"
     style="view-transition-name: project-bg-{data.meta
@@ -65,24 +65,22 @@
   .project-container {
     width: 100%;
     color: var(--colors-text);
+    padding: 0;
   }
+
   .project {
     max-width: var(--site-width);
+    min-height: calc(100vh - var(--navbar-height));
     width: 100%;
     margin: 0 auto;
-    padding: 1rem 1rem;
+    padding: 0rem 1rem;
+    padding-bottom: 2rem;
     margin-bottom: 5rem;
-    background-color: var(--colors-elevation-2);
-    border-radius: var(--border-radiuses-lg);
     position: relative;
     box-shadow: var(--shadows-sm);
     z-index: 0;
-    border: 1px solid
-      color-mix(
-        in oklch,
-        var(--colors-elevation-2),
-        var(--border-mix-shading) var(--border-strength-2)
-      );
+    background-color: var(--colors-elevation-2);
+    /*     padding-top: 1rem; */
 
     h3 {
       width: fit-content;
@@ -119,6 +117,7 @@
     );
     padding: 1rem;
     border-radius: var(--border-radiuses-lg);
+    margin-top: 1rem;
 
     grid-template-columns: 1fr;
     grid-template-rows: auto max-content;
@@ -141,33 +140,45 @@
 
   .back-link-container {
     position: sticky;
+    /*     padding: 0 1rem; */
     top: var(--navbar-height);
     z-index: 9999;
     background-color: var(--colors-elevation-2);
-    border-bottom: 1px solid
-      color-mix(
-        in oklch,
-        var(--colors-elevation-2),
-        var(--border-mix-shading) var(--border-strength-4)
-      );
-    margin-bottom: 1rem;
+    box-shadow:
+      -1rem 0 0 var(--colors-elevation-2),
+      1rem 0 0 var(--colors-elevation-2);
     &::after {
       content: "";
       display: block;
       position: absolute;
       height: 1px;
       width: 100%;
+      left: 0;
+      bottom: 0;
       box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
       box-shadow: 0px 2px 2px
-        color-mix(in oklab, var(--border-mix-shading) 15%, transparent);
+        color-mix(in oklab, var(--border-mix-shading) 10%, transparent);
+    }
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      left: 0;
       bottom: 0;
+      background-color: color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-4)
+      );
     }
   }
 
   .back-link {
     color: var(--colors-text);
     font-weight: var(--font-weights-medium);
-    padding: 1rem 0rem;
+    padding: 0.5rem 0rem;
     padding-right: 1rem;
     display: inline-flex;
     text-decoration: none;
@@ -193,6 +204,10 @@
   }
 
   @container (width > 50rem) {
+
+    .project-container {
+      padding: 0 .5rem;
+    }
     .project__inner {
       grid-template-columns: 1.2fr 1fr;
       grid-template-rows: auto max-content auto;
@@ -203,7 +218,10 @@
     }
 
     .project {
+      min-height: auto;
       padding: 1rem 2rem;
+      border-radius: var(--border-radiuses-lg);
+      border: 1px solid color-mix(in oklab, var(--colors-elevation-2), var(--border-mix-shading) var(--border-strength-1));
     }
   }
 </style>

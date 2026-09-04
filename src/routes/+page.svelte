@@ -694,7 +694,8 @@
   .recommendation {
     width: 100%;
     background-color: var(--colors-elevation-2);
-    padding: 4rem 0;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
     overflow: hidden;
     border-bottom: 1px solid
       color-mix(
