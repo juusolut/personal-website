@@ -2,6 +2,7 @@
   import { asset } from "$app/paths";
 
   let { videoSrc = "", posterSrc = "", description = "" } = $props();
+
 </script>
 
 <div class="video-wrapper">

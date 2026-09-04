@@ -26,7 +26,7 @@ Käyttäjät voivat hakea ja suodattaa sijainteja hakukentällä tai kategoriapa
 
 <VideoPlayer videoSrc="/videos/ouluni-places.webm" posterSrc="/images/ouluni/thumb.png" description="Places-näkymä."  />
 
-## Karttanäkymä
+### Karttanäkymä
 Kartta kokoaa yhteen opiskelijalle olennaiset sijainnit. Oikean alakulman <i>My location</i> -painikkeella voi paikantaa oman sijainnin. Samasta kulmasta löytyvällä <i>Show filters</i> -painikkeella karttaa voi suodattaa tarpeen mukaan, ja karttamerkkejä klikkaamalla avautuvat kohteen tarkemmat tiedot näytön vasempaan reunaan. Avautuneen sivunäkymän  <i>Navigate to</i> -painikkeella käyttäjä voi myös siirtyä varsinaiselle Google Maps -sivustolle ja aloittaa navigoinnin kohteeseen välittömästi.
 
 <VideoPlayer videoSrc="/videos/ouluni-map.webm" posterSrc="/images/ouluni/thumb.png" description="Karttanäkymä."  />
