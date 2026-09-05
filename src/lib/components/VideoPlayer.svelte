@@ -29,6 +29,7 @@
   .video-wrapper {
     width: 100%;
     max-width: var(--text-max-width);
+    margin-bottom: 2rem;
   }
 
   video {

@@ -80,6 +80,12 @@ b {
   font-weight: var(--font-weights-bold);
 }
 
+:where(a) {
+  color: var(--colors-primary, blue);
+/*   text-underline-offset: 3px;
+  text-decoration-thickness: 2px; */
+}
+
 p {
   hyphens: auto;
   max-width: var(--text-max-width);

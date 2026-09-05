@@ -152,7 +152,7 @@
       Osaamiseni on painottunut frontend-kehitykseen ja UI-suunnitteluun, mutta
       minulta löytyy myös vahva kiinnostus backend-kehitystä kohtaan. Olen
       utelias oppija ja pyrin jatkuvasti laajentamaan teknistä osaamistani.
-      Tässä teknologioita, joita olen käyttänyt projekteissani:
+      Tässä teknologioita, joita olen käyttänyt opinnoissani ja omissa projekteissani:
     </p>
     <div class="tags"><Tags tags={newData} /></div>
     <br />
@@ -169,8 +169,8 @@
     <br />
     <p>
       Hallitsen työskentelyn sekä <b>Windows-</b> että
-      <b>Linux-ympäristöissä</b>. Linux-ympäristöistä tutuimpia ovat Ubuntu ja
-      Linux Mint.
+      <b>Linux-ympäristöissä</b>. Linux-ympäristöistä tutuimpia ovat <b>Ubuntu</b> ja
+      <b>Linux Mint</b>.
     </p>
   </div>
 </div>
