@@ -146,7 +146,7 @@
 </section>
 <section class="projects h-padding">
   <div class="projects__inner section-content">
-    <h1 class="view-title">Korostetut projektit</h1>
+    <h2 class="view-title">Korostetut projektit</h2>
     <div class="projects__grid">
       {#each data.projects as item (item.slug)}
         <ProjectItem
@@ -166,7 +166,7 @@
 </section>
 <section class="recommendation h-padding">
   <div class="recommendation__inner section-content">
-    <h1 class="view-title no-bg">Kommentteja minusta</h1>
+    <h2 class="view-title no-bg">Kommentteja minusta</h2>
     <div class="comments">
       <Reveal>
         <Comment
@@ -233,6 +233,7 @@
     gap: 0.5rem;
     flex: 1;
     box-shadow: var(--shadows-xs);
+
   }
 
   .nutshell__gradient-border {
@@ -334,12 +335,12 @@
     font-weight: 800;
     font-style: normal;
     margin: 0;
-    font-size: clamp(var(--font-sizes-xxl), 2cqw + 5cqh, 5rem) !important;
+    font-size: clamp(var(--font-sizes-xxl), 2cqw + 5cqh, 5rem);
   }
 
   .nutshell__im {
     margin: 0;
-    font-size: clamp(var(--font-sizes-lg), 0.5cqw + 4cqh, 4rem) !important;
+    font-size: clamp(var(--font-sizes-lg), 0.5cqw + 4cqh, 4rem);
     white-space: nowrap;
 
     > span {

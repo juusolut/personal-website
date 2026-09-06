@@ -20,7 +20,13 @@ code {
 *::before,
 *::after {
   box-sizing: border-box;
-/*   transition: var(--colors-animation); */
+  transition: var(--colors-animation);
+}
+
+:where(*, *::before, *::after):focus-visible {
+  outline: 3px solid var(--colors-text);
+  outline-offset: 3px;
+  border-radius: var(--border-radiuses-xs, 4px);
 }
 
 html {
@@ -46,6 +52,7 @@ body {
   z-index: 0;
 
 }
+
 /*
 body::before {
   content: "";
@@ -82,7 +89,7 @@ b {
 
 :where(a) {
   color: var(--colors-primary, blue);
-/*   text-underline-offset: 3px;
+  /*   text-underline-offset: 3px;
   text-decoration-thickness: 2px; */
 }
 
@@ -265,7 +272,7 @@ button:hover {
   transform: scale(97%);
   transition: opacity 1.6s ease-out, transform 0.6s ease-out;
   will-change: opacity, transform;
-/*   transition-delay: 0.2s; */
+  /*   transition-delay: 0.2s; */
 }
 
 /* Revealed active state */

@@ -3,6 +3,8 @@
   import { resolve } from "$app/paths";
   import { asset } from "$app/paths";
   import ThemeSwitcher from "./ThemeSwitcher.svelte";
+  import DropdownButton from "./DropdownButton.svelte";
+  import MenuOptions from "./MenuOptions.svelte";
 
   // Svelte 5 rune for mobile menu state
   let isOpen = $state(false);
@@ -43,8 +45,11 @@
       <!-- Mobile Hamburger Button -->
       <button
         class="hamburger"
+        class:isOpen
         onclick={toggleMenu}
-        aria-label={isOpen ? "Sulje navigointivalikko" : "Avaa navigointivalikko"}
+        aria-label={isOpen
+          ? "Sulje navigointivalikko"
+          : "Avaa navigointivalikko"}
         aria-expanded={isOpen}
       >
         <span class="bar" class:open={isOpen}></span>
@@ -81,8 +86,11 @@
           >
         </li>
       </ul>
-      <div id="buttons">
-<ThemeSwitcher/>
+      <div class="buttons">
+        <ThemeSwitcher />
+        <DropdownButton>
+          <MenuOptions />
+        </DropdownButton>
       </div>
     </div>
   </div>
@@ -219,28 +227,55 @@
     border: none;
     cursor: pointer;
     padding: 0;
+    position: relative;
+  }
+
+  .hamburger.isOpen .bar:nth-child(1) {
+    transform: translateY(0) translateX(-50%) rotate(45deg);
+  }
+
+  .hamburger.isOpen .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.isOpen .bar:nth-child(3) {
+    transform: translateY(0) translateX(-50%) rotate(-45deg);
+  }
+
+  .hamburger.isOpen .bar {
+    width: 80%;
   }
 
   .bar {
     width: 100%;
     height: 2px;
     background-color: var(--colors-text);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease-in-out;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  #buttons {
+  .bar:first-of-type {
+    transform: translateY(-0.5rem) translateX(-50%);
+  }
+
+  .bar:last-of-type {
+    transform: translateY(0.5rem) translateX(-50%);
+  }
+
+  .buttons {
     display: flex;
-    justify-content: flex-start;
-    /*     padding: 0 1rem; */
+    align-items: center;
+    gap: 0.5rem;
   }
 
   /* Responsive Mobile Menu */
   @media (width > 768px) {
-
     .brand {
       img {
-      height: 2.5rem !important;
-    }
+        height: 2.5rem !important;
+      }
     }
     #links-and-buttons {
       gap: 2rem;
@@ -265,11 +300,11 @@
       flex-direction: row;
       background-color: transparent;
       border: none;
-      gap: .5rem;
+      gap: 0.5rem;
 
       a {
         display: inline-block;
-        padding: .5rem .5rem;
+        padding: 0.5rem 0.5rem;
         min-width: 0rem;
       }
     }

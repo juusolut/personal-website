@@ -52,6 +52,8 @@
     --border-strength-6: 80%;
     --border-strength-7: 100%;
 
+    --colors-border-0: color-mix(in oklab, var(--colors-elevation-0), var(--border-mix-shading) var(--border-strength-1));
+
     /* ELEVATION STRENGTH */
     --elevation-strength-1: 30%;
     --elevation-strength-2: 50%;

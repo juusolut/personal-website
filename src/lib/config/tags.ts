@@ -77,7 +77,6 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
  */
 export function getTagInfo(tagKey: string): TagConfig {
   const normalizedKey = tagKey.toLowerCase().trim();
-  console.log(normalizedKey)
   return TAG_CONFIG[normalizedKey] ?? {
     ...DEFAULT_TAG,
     label: tagKey // Keeps the raw string name if unmapped

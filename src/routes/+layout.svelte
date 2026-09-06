@@ -6,11 +6,19 @@
   import favicon from "$lib/assets/favicon.svg";
   import Navbar from "$lib/components/Navbar.svelte";
   import { onNavigate } from "$app/navigation";
+  import { settings, initSettings } from "$lib/stores/settings.svelte";
+
+  /*   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; */
 
   // Trigger native View Transitions on page navigation
   onNavigate((navigation) => {
     // Fallback for browsers that don't support View Transitions
-    if (!document.startViewTransition) return;
+    if (!document.startViewTransition || !settings.transitionsEnabled) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReducedMotion) return;
 
     return new Promise((resolve) => {
       document.startViewTransition(async () => {
@@ -21,6 +29,10 @@
   });
 
   let { children } = $props();
+
+  $effect(() => {
+    initSettings();
+  });
 </script>
 
 <svelte:head>

@@ -16,7 +16,6 @@
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
-/*         padding: 0.5rem 1.25rem 1.25rem 1.25rem; */
         margin: 0;
         padding: 0;
         list-style: none;

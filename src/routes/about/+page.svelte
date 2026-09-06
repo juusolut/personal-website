@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { asset } from "$app/paths";
+  import { asset, resolve } from "$app/paths";
   import Tags from "$lib/components/Tags.svelte";
   import Icon from "$lib/components/Icon.svelte";
   import Workplace from "$lib/components/Workplace.svelte";
@@ -7,76 +7,11 @@
 
   let { data } = $props();
 
-  const newData: string[] = [...data.tags, "MongoDB"];
-
-  const workplaces: {
-    workplace: string;
-    jobTitle: string;
-    tasks: string[];
-    timePeriod: string[];
-    currentJob?: boolean;
-  }[] = [
-    {
-      workplace: "Posti Group Oyj",
-      jobTitle: "Postityöntekijä Oulussa",
-      tasks: [
-        "Kirjeiden ja pakettien lajittelu",
-        "Kuljetusyksiköiden käsittely ja siirto lavansiirtovaunulla",
-        "Uusien työntekijöiden perehdyttäminen",
-      ],
-      timePeriod: ["7.12. – 18.12.2020", "X.5.2021 –"],
-      currentJob: true,
-    },
-    {
-      workplace: "Kiinteistöhuolto ja siivouspalvelu Ilkka Hyytinen",
-      jobTitle: "Kausiapulainen Kärsämäellä",
-      tasks: [
-        "Viheralueiden hoito ja kunnossapito",
-        "Liikennemerkkien vaihto",
-        "Asfalttiteiden paikkaus",
-        " P-alueiden puhtaanapito",
-        "Muut satunnaiset kiinteistöhuoltotyöt",
-      ],
-      timePeriod: [],
-    },
-    {
-      workplace: "Ruotsalainen Virpi / 4H",
-      jobTitle: "Kausiapulainen Kärsämäellä",
-      tasks: [
-        "Kotitalouden viheralueiden hoito",
-        "Taimien istutus",
-        "Traktorin käyttö",
-        "Muut maatilan tehtävät",
-      ],
-      timePeriod: [],
-    },
-    {
-      workplace: "Kärsämäen kunta / 4H",
-      jobTitle: "Nurmikonleikkaaja Kärsämäellä",
-      tasks: ["Kunnan viheralueiden hoito"],
-      timePeriod: [],
-    },
-    {
-      workplace: "Kärsämäen kunta / 4H",
-      jobTitle: "Keittiöapulainen Kärsämäellä",
-      tasks: ["Siivoaminen ja avustavat keittiötyöt"],
-      timePeriod: [],
-    },
-    {
-      workplace: "Työelämään tutustuminen / 5 päivää per työpaikka",
-      jobTitle: "Tettiläinen Kärsämäellä",
-      tasks: [
-        "Veikon Kone (2015)",
-        "Laaksojen Rauta Oy (2014)",
-        "Venetpalon alakoulu (2014)",
-      ],
-      timePeriod: [],
-    },
-  ];
+  const newTags: string[] = $derived([...data.tags, "MongoDB"]);
 
   let showMore = $state(false);
 
-  function handleShowMoreClick(e) {
+  function handleShowMoreClick(e: MouseEvent) {
     showMore = !showMore;
   }
 </script>
@@ -105,22 +40,29 @@
       <div class="content">
         <h2 class="view-title no-bg">Pähkinän&shy;kuoressa</h2>
         <p>
-          Hei! Olen Juuso, 27-vuotias <b>luonnon&shy;tieteiden kan&shy;didaatti</b>
+          Hei! Olen Juuso, 27-vuotias <b
+            >luonnon&shy;tieteiden kan&shy;didaatti</b
+          >
           Oulusta. Olen opis&shy;kellut
-          <b>tie&shy;tojen&shy;käsittely&shy;tieteitä Oulun yli&shy;opistossa </b>
+          <b
+            >tie&shy;tojen&shy;käsittely&shy;tieteitä Oulun yli&shy;opistossa
+          </b>
           ja työskentelen tällä hetkellä
-          <b>Postilla</b>. Vapaa-ajalla käytän luo&shy;vuut&shy;tani moni&shy;puo&shy;li&shy;sesti:
-          koodaan <b>verkko&shy;sivuja</b> ja <b>pelejä</b>, sävellän musiik&shy;kia sekä
-          teen digi&shy;taa&shy;lista tai&shy;detta. Vasta&shy;painona ruudun ääressä työs&shy;kente&shy;lylle
-          harrastan kunto&shy;salia ja frisbee&shy;golfia, ja joskus päädyn myös
-          käsi&shy;töiden tai pari&shy;tanssin pariin.
-          <br /><br />Tunnol&shy;lisuus ja ahke&shy;ruus ovat minulle tärkeitä arvoja,
-          joita kui&shy;tenkin tasa&shy;painot&shy;taa rento ja maan&shy;läheinen asenne elämään.
-          Pyrin siihen että hommat hoituvat tehok&shy;kaasti ja huo&shy;lellisesti. Olen
-          oma-aloitteinen, jous&shy;tava ja mut&shy;katon tyyppi: kanssani on helppo
-          toimia, ja olen helposti lähes&shy;tyttävä niin töissä kuin töiden
-          ulko&shy;puolel&shy;la. Ura IT-alalla kiin&shy;nostaa ja odotankin jo innolla mitä
-          tule&shy;vaisuus tuo tul&shy;lessaan!
+          <b>Postilla</b>. Vapaa-ajalla käytän luo&shy;vuut&shy;tani
+          moni&shy;puo&shy;li&shy;sesti: koodaan <b>verkko&shy;sivuja</b> ja
+          <b>pelejä</b>, sävellän musiik&shy;kia sekä teen
+          digi&shy;taa&shy;lista tai&shy;detta. Vasta&shy;painona ruudun ääressä
+          työs&shy;kente&shy;lylle harrastan kunto&shy;salia ja
+          frisbee&shy;golfia, ja joskus päädyn myös käsi&shy;töiden tai
+          pari&shy;tanssin pariin.
+          <br /><br />Tunnol&shy;lisuus ja ahke&shy;ruus ovat minulle tärkeitä
+          arvoja, joita kui&shy;tenkin tasa&shy;painot&shy;taa rento ja
+          maan&shy;läheinen asenne elämään. Pyrin siihen että hommat hoituvat
+          tehok&shy;kaasti ja huo&shy;lellisesti. Olen oma-aloitteinen,
+          jous&shy;tava ja mut&shy;katon tyyppi: kanssani on helppo toimia, ja
+          olen helposti lähes&shy;tyttävä niin töissä kuin töiden
+          ulko&shy;puolel&shy;la. Ura IT-alalla kiin&shy;nostaa ja odotankin jo
+          innolla mitä tule&shy;vaisuus tuo tul&shy;lessaan!
         </p>
         <a
           href={asset("/resume.pdf")}
@@ -152,9 +94,10 @@
       Osaamiseni on painottunut frontend-kehitykseen ja UI-suunnitteluun, mutta
       minulta löytyy myös vahva kiinnostus backend-kehitystä kohtaan. Olen
       utelias oppija ja pyrin jatkuvasti laajentamaan teknistä osaamistani.
-      Tässä teknologioita, joita olen käyttänyt opinnoissani ja omissa projekteissani:
+      Tässä teknologioita, joita olen käyttänyt opinnoissani ja omissa
+      <a href={resolve("/projects")}>projekteissani</a>:
     </p>
-    <div class="tags"><Tags tags={newData} /></div>
+    <div class="tags"><Tags tags={newTags} /></div>
     <br />
     <br />
     <p>Tässä ohjelmointikieliä, joista minulla on kokemusta:</p>
@@ -169,7 +112,9 @@
     <br />
     <p>
       Hallitsen työskentelyn sekä <b>Windows-</b> että
-      <b>Linux-ympäristöissä</b>. Linux-ympäristöistä tutuimpia ovat <b>Ubuntu</b> ja
+      <b>Linux-ympäristöissä</b>. Linux-ympäristöistä tutuimpia ovat
+      <b>Ubuntu</b>
+      ja
       <b>Linux Mint</b>.
     </p>
   </div>
@@ -178,7 +123,11 @@
 <div id="work-history__container" class="h-padding" class:expanded={showMore}>
   <WorkHistory />
   <div id="gradient-box">
-    <button id="show-more-button" onclick={handleShowMoreClick} aria-label={showMore ? "Pienennä työhistoria" : "Näytä koko työhistoria"}>
+    <button
+      id="show-more-button"
+      onclick={handleShowMoreClick}
+      aria-label={showMore ? "Pienennä työhistoria" : "Näytä koko työhistoria"}
+    >
       {showMore ? "Näytä vähemmän" : "Näytä lisää"}
       <div class:flipped={showMore}><Icon name="CaretDown" size="1rem" /></div>
     </button>
@@ -208,7 +157,7 @@
     width: 100%;
     position: relative;
     z-index: 0;
-    padding: 4rem 2rem;
+    padding: 4rem 1.25rem;
     margin-top: 0rem;
     display: grid;
     grid-template-columns: 1fr;
@@ -262,8 +211,6 @@
 
   .content {
     order: 2;
-    > p {
-    }
     > h2 {
       margin-bottom: 1rem;
     }
@@ -278,7 +225,7 @@
     display: inline-block;
   }
 
-/*   .sitting {
+  /*   .sitting {
     display: none;
     position: absolute;
     width: 15%;

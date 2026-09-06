@@ -59,7 +59,6 @@
 </script>
 
 <button
-  id="theme-button"
   onclick={toggleTheme}
   aria-label={`Switch to ${nextTheme} theme`}
   class:light={theme === "light"}
@@ -70,10 +69,10 @@
 </button>
 
 <style>
-  #theme-button {
+  button {
     /*     padding: 0.25rem 0; */
     width: 3.5rem;
-    aspect-ratio: 2 / 1;
+    height: 1.75rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
