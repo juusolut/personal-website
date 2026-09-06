@@ -9,11 +9,11 @@
     text,
     reverse = false,
     color = "var(--colors-primary)",
-    viewport
+/*     viewport */
   } = $props();
 </script>
 
-<div use:viewport class="comment reveal-on-scroll" class:reversed={reverse} style="--bg-color: {color}">
+<div /* use:viewport  */class="comment" class:reversed={reverse} style="--bg-color: {color}">
   <p class="text">
     <q>{text}</q>
   </p>

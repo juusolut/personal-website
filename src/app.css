@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200..800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Geo:ital@0;1&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Geo:ital@0;1&display=swap'); */
 
 .mr-dafoe-regular {
   font-family: "Mr Dafoe", cursive;
@@ -20,7 +20,7 @@ code {
 *::before,
 *::after {
   box-sizing: border-box;
-  transition: var(--colors-animation);
+/*   transition: var(--colors-animation); */
 }
 
 html {
@@ -46,7 +46,7 @@ body {
   z-index: 0;
 
 }
-
+/*
 body::before {
   content: "";
   position: fixed;
@@ -61,7 +61,7 @@ body::before {
   --color-2: color-mix(in oklch, var(--colors-elevation-0), var(--colors-secondary) 12%);
 
   background: linear-gradient(to top right, var(--color-1) 0%, var(--color-2) 100%);
-}
+} */
 
 ::selection {
   background-color: var(--colors-secondary, #53c1de);
@@ -265,7 +265,7 @@ button:hover {
   transform: scale(97%);
   transition: opacity 1.6s ease-out, transform 0.6s ease-out;
   will-change: opacity, transform;
-  transition-delay: 0.2s;
+/*   transition-delay: 0.2s; */
 }
 
 /* Revealed active state */

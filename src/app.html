@@ -4,11 +4,47 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="text-scale" content="scale" />
+
     <link rel="icon" type="image/png" href="%sveltekit.assets%/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      (function () {
+        try {
+          const storedTheme = localStorage.getItem("theme");
+          const userPrefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches;
+
+          // Determine theme: stored value > system preference > default "light"
+          const theme = storedTheme || (userPrefersDark ? "dark" : "light");
+
+          // 1. Set the data-theme attribute on <html>
+          document.documentElement.setAttribute("data-theme", theme);
+
+          // 2. Update or create the <meta name="color-scheme"> tag
+          let metaColorScheme = document.querySelector(
+            'meta[name="color-scheme"]',
+          );
+          if (!metaColorScheme) {
+            metaColorScheme = document.createElement("meta");
+            metaColorScheme.name = "color-scheme";
+            document.head.appendChild(metaColorScheme);
+          }
+          metaColorScheme.content = theme;
+        } catch (e) {}
+      })();
+    </script>
+
     %sveltekit.head%
   </head>
-  	<body data-sveltekit-preload-data="hover" data-theme="light">
-<!--   <body data-sveltekit-preload-data="hover"> -->
+  <body data-sveltekit-preload-data="hover" data-theme="light">
+    <!--   <body data-sveltekit-preload-data="hover"> -->
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>

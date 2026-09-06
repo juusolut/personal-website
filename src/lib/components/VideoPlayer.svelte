@@ -1,16 +1,25 @@
-<script>
+<script lang="ts">
   import { asset } from "$app/paths";
+  import { intersect } from "$lib/actions/intersect.svelte";
 
   let { videoSrc = "", posterSrc = "", description = "" } = $props();
 
+  let isIntersecting = $state(false);
 </script>
 
-<div class="video-wrapper">
+<div
+  class="video-wrapper"
+  use:intersect={{
+    rootMargin: "200px 0px",
+    onIntersect: (activate) => (isIntersecting = activate),
+  }}
+  /*   class:test={isIntersecting} */
+>
   <video
     src={asset(videoSrc)}
     poster={asset(posterSrc)}
     controls
-    preload="none"
+    preload={isIntersecting ? "auto" : "none"}
     width="100%"
   >
     <track kind="captions" />
@@ -30,6 +39,11 @@
     width: 100%;
     max-width: var(--text-max-width);
     margin-bottom: 2rem;
+    transition: outline 2s linear;
+
+    /*     &.test {
+      outline: 2px solid blue;
+    } */
   }
 
   video {

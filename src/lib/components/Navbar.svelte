@@ -30,7 +30,7 @@
     <!-- Brand / Logo -->
     <a href={resolve("/")} class="brand" onclick={closeMenu}>
       <img
-        src={asset("/images/head.png")}
+        src={asset("/images/favicons/favicon-96x96.png")}
         alt="Logo"
         class="logo-image"
         style="height: 2.5rem; width: auto;"

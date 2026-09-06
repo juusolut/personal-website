@@ -6,6 +6,7 @@
   import ProjectItem from "$lib/components/ProjectItem.svelte";
   import { scale, fade } from "svelte/transition";
   import { backOut } from "svelte/easing";
+  import Reveal from "$lib/components/Reveal.svelte";
 
   let isLoaded = $state(false);
   const heroSrc = asset("/images/me (Small).png");
@@ -27,7 +28,7 @@
       });
   });
 
-  function viewport(node) {
+  /*   function viewport(node) {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -45,7 +46,7 @@
         observer.disconnect();
       },
     };
-  }
+  } */
 
   function scrollToElement(target) {
     const element =
@@ -167,34 +168,38 @@
   <div class="recommendation__inner section-content">
     <h1 class="view-title no-bg">Kommentteja minusta</h1>
     <div class="comments">
-      <Comment
-        name="Toni Pennanen"
-        firm="Alfame Systems Oy"
-        linkedInURL="https://www.linkedin.com/in/toni-pennanen-17278924a/"
-        text="Olemme tehneet Juuson kanssa useita koulu- ja harraste&shy;projekteja yhdessä, minkä perus&shy;teella voin suositella häntä kaiken&shy;laiseen ohjel&shy;misto&shy;kehitys&shy;työhön. Juuso on erittäin osaava ja ahkera ongelman&shy;ratkaisija, jolla on jo hallussaan useita tekno&shy;logioita, minkä lisäksi hän on aina halukas oppimaan uutta. Hänen kriittinen ja looginen ajattelu&shy;kykynsä sekä nopea oppimis&shy;kykynsä ovat aivan omaa luokkaansa, ja hänen osaami&shy;sensa on jo nyt tasolla, joka ei jää jälkeen muutaman vuoden työ&shy;kokemuksen omaavien ohjelmisto&shy;kehittäjien tasosta. Ennen kaikkea Juuso on kuitenkin erittäin mukava ja luotettava henkilö, jonka kanssa on helppo ja miellyttävä työskennellä!"
-        imageURL="/images/toni.png"
-        reverse={false}
-        {viewport}
-      />
-      <Comment
-        name="Virpi Ruotsalainen"
-        firm="Luonnon Syli"
-        linkedInURL="https://www.linkedin.com/in/virpi-ruotsalainen/"
-        text="Teki annetut työ&shy;tehtävät hyvällä asenteella ja moitteetto&shy;masti. Huo&shy;lellinen ja tarkka, mutta ripeä&shy;otteinen. Sopeutuu hyvin niin itse&shy;näisesti tehtäviin kuin porukalla tehtäviin töihin. Täsmällinen ja luo&shy;tettava työn&shy;tekijä. Halu oppia uusia asioita ja ennakko&shy;luuloton asenne työn&shy;tekoon."
-        imageURL=""
-        reverse={true}
-        color="var(--colors-secondary)"
-        {viewport}
-      />
+      <Reveal>
+        <Comment
+          name="Toni Pennanen"
+          firm="Alfame Systems Oy"
+          linkedInURL="https://www.linkedin.com/in/toni-pennanen-17278924a/"
+          text="Olemme tehneet Juuson kanssa useita koulu- ja harraste&shy;projekteja yhdessä, minkä perus&shy;teella voin suositella häntä kaiken&shy;laiseen ohjel&shy;misto&shy;kehitys&shy;työhön. Juuso on erittäin osaava ja ahkera ongelman&shy;ratkaisija, jolla on jo hallussaan useita tekno&shy;logioita, minkä lisäksi hän on aina halukas oppimaan uutta. Hänen kriittinen ja looginen ajattelu&shy;kykynsä sekä nopea oppimis&shy;kykynsä ovat aivan omaa luokkaansa, ja hänen osaami&shy;sensa on jo nyt tasolla, joka ei jää jälkeen muutaman vuoden työ&shy;kokemuksen omaavien ohjelmisto&shy;kehittäjien tasosta. Ennen kaikkea Juuso on kuitenkin erittäin mukava ja luotettava henkilö, jonka kanssa on helppo ja miellyttävä työskennellä!"
+          imageURL="/images/toni.png"
+          reverse={false}
+        />
+      </Reveal>
+      <Reveal>
+        <Comment
+          name="Virpi Ruotsalainen"
+          firm="Luonnon Syli"
+          linkedInURL="https://www.linkedin.com/in/virpi-ruotsalainen/"
+          text="Teki annetut työ&shy;tehtävät hyvällä asenteella ja moitteetto&shy;masti. Huo&shy;lellinen ja tarkka, mutta ripeä&shy;otteinen. Sopeutuu hyvin niin itse&shy;näisesti tehtäviin kuin porukalla tehtäviin töihin. Täsmällinen ja luo&shy;tettava työn&shy;tekijä. Halu oppia uusia asioita ja ennakko&shy;luuloton asenne työn&shy;tekoon."
+          imageURL=""
+          reverse={true}
+          color="var(--colors-secondary)"
+        />
+      </Reveal>
     </div>
-    <div class="center-horizontally">
-      <div class="comments__own-words">
-        <a href={resolve("/about")} class="button"
-          ><span class="offsite-link no-arrow">Tutustu minuun tarkemmin</span
-          ></a
-        >
+    <Reveal>
+      <div class="center-horizontally">
+        <div class="comments__own-words">
+          <a href={resolve("/about")} class="button"
+            ><span class="offsite-link no-arrow">Tutustu minuun tarkemmin</span
+            ></a
+          >
+        </div>
       </div>
-    </div>
+    </Reveal>
   </div>
 </section>
 
@@ -247,7 +252,12 @@
       background: linear-gradient(
         135deg,
         var(--colors-secondary),
-        color-mix(in oklch, var(--colors-elevation-2), var(--colors-secondary) 50%) 50%
+        color-mix(
+            in oklch,
+            var(--colors-elevation-2),
+            var(--colors-secondary) 50%
+          )
+          50%
       );
       border-radius: var(--border-radiuses-lg);
     }

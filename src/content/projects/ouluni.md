@@ -12,7 +12,7 @@ tags: ["HTML/CSS/JS"]
 </script>
 
 # Projekti
-Kurssimme tavoitteena oli toteuttaa ryhmätyönä pieni sovellus, joka auttaisi uusia opiskelijoita löytämään mielenkiintoisia ja olennaisia paikkoja Oulusta. Projektin keskeisenä vaatimuksena oli Google Maps -apin hyödyntäminen. Tiukan aikataulun ja yksinkertaisten vaatimuksien vuoksi päädyimme toteuttamaan sivuston ilman raskaita frameworkeja, käyttäen modernia HTML-, CSS- ja JavaScript-koodia.
+Kurssimme tavoitteena oli toteuttaa ryhmätyönä pieni sovellus, joka auttaisi uusia opiskelijoita löytämään relevantteja paikkoja Oulusta. Projektin keskeisenä vaatimuksena oli Google Maps -rajapinnan hyödyntäminen. Kurssiaikataulun ja suoraviivaisten vaatimuksien vuoksi päädyimme toteuttamaan sivuston ilman raskaita frameworkeja, käyttäen modernia HTML-, CSS- ja JavaScript-koodia.
 
 ## Oma rooli
 Minulla oli päävastuu sivuston visuaalisesta ilmeestä, käyttöliittymäsuunnittelusta ja Maps-rajapinnan käyttöönotosta. Visuaalisessa suunnittelussa tavoittelin pehmeää, leikkisää ja helposti lähestyttävää ilmettä. Lopputuloksena syntyi selkeä, esteettinen ja raikas kokonaisuus.
@@ -22,7 +22,7 @@ Minulla oli päävastuu sivuston visuaalisesta ilmeestä, käyttöliittymäsuunn
 ## Keskeiset toiminnallisuudet
 
 ### Places-näkymä
-Käyttäjät voivat hakea ja suodattaa sijainteja hakukentällä tai kategoriapainikkeilla (esim. <i>Attractions, Restaurants, Campuses</i>). Sijainnin näkyvät näkymässä listana. <i>View</i>-painike avaa <i>popover</i>-ikkunan, joka tarjoaa lisätietoa kohteesta ja mahdollistaa siirtymisen suoraan karttanäkymään.
+Käyttäjät voivat hakea ja suodattaa sijainteja hakukentällä tai kategoriapainikkeilla (esim. <i>Attractions, Restaurants, Campuses</i>). Sijainnit näkyvät listana näkymässä. <i>View</i>-painike avaa <i>popover</i>-ikkunan, joka tarjoaa lisätietoa kohteesta ja mahdollistaa siirtymisen suoraan karttanäkymään.
 
 <VideoPlayer videoSrc="/videos/ouluni/ouluni-places.webm" posterSrc="/images/ouluni/thumb.png" description="Places-näkymä."  />
 

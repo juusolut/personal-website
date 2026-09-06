@@ -21,7 +21,7 @@
     in:scale={{ duration: 400, start: 0.5, easing: backOut }}
     out:fade={{ duration: 200 }}
   >
-    <img src={asset("/images/head.png")} alt="Juuso Luttinen" />
+    <img src={asset("/images/favicons/favicon-96x96.png")} alt="Juuso Luttinen" />
     <div class="floating-head__bubble">
       <span> Psst! Löydät yhteystietoni <a href={resolve("/contact")}>täältä</a>.</span>
     </div>
