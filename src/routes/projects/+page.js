@@ -12,6 +12,10 @@ export async function load() {
       date: file.metadata.date,
     };
   });
+/*
+  let sortedProjects = projects.sort((a, b) => {
+
+  }) */
 
   return { projects };
 }

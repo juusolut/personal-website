@@ -12,6 +12,7 @@ export const iconNames = [
   "FullscreenExit",
   "Fullscreen",
   "Godot",
+  "Image",
   "Microsoft",
   "Mongodb",
   "MoonStars",

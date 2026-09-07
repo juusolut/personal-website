@@ -15,9 +15,69 @@ date: "2022"
 
   const thumbSrc = "/images/dashboard/dashboard-thumb.webp"
   const path = "/images/dashboard/gallery"
-  const rawImages = ["dashboard-figma.webp", "dashboard_all_compact.webp", "dashboard_arrivals_playing_recorders_large.webp", "dashboard_failed_conversions.webp", "dashboard_load_layout_as.webp", "dashboard_save_layout_as.webp", "dashboard_services_and_converters_large.webp", "dashboard_widget_management.webp", "dashboard_widget_menu.webp", "Inkeddashboard_failed_conversions_LI.webp", "status_of_services1.webp", "status_of_services2.webp"]
+  const rawImages = [
+  {
+    imageSrc: "dashboard-figma.webp",
+    thumbSrc: "dashboard-figma.webp",
+    description: "Koko dashboard-prototyypin rakenne Figmassa."
+  },
+  {
+    imageSrc: "dashboard_all_compact.webp",
+    thumbSrc: "dashboard_all_compact.webp",
+    description: "Dashboard-näkymä. Kaikki widgetin minimaalisessa tilassa."
+  },
+  {
+    imageSrc: "dashboard_arrivals_playing_recorders_large.webp",
+    thumbSrc: "dashboard_arrivals_playing_recorders_large.webp",
+    description: "Latest Arrivals, Now Playing ja Recorded Status laajennetussa tilassa."
+  },
+  {
+    imageSrc: "dashboard_failed_conversions.webp",
+    thumbSrc: "dashboard_failed_conversions.webp",
+    description: "Failed Conversions -ikkuna"
+  },
+  {
+    imageSrc: "dashboard_load_layout_as.webp",
+    thumbSrc: "dashboard_load_layout_as.webp",
+    description: "Load layout -ikkuna."
+  },
+  {
+    imageSrc: "dashboard_save_layout_as.webp",
+    thumbSrc: "dashboard_save_layout_as.webp",
+    description: "Save layout -ikkuna."
+  },
+  {
+    imageSrc: "dashboard_services_and_converters_large.webp",
+    thumbSrc: "dashboard_services_and_converters_large.webp",
+    description: "Status of Services ja Status of Converters laajennetussa tilassa."
+  },
+  {
+    imageSrc: "dashboard_widget_management.webp",
+    thumbSrc: "dashboard_widget_management.webp",
+    description: "Widgettien hallitsemisen pudotusvalikko vasemmassa yläkulmassa."
+  },
+  {
+    imageSrc: "dashboard_widget_menu.webp",
+    thumbSrc: "dashboard_widget_menu.webp",
+    description: "Widgetin oma pudotusvalikko."
+  },
+  {
+    imageSrc: "status_of_services1.webp",
+    thumbSrc: "status_of_services1.webp",
+    description: "Status of Services widgetti. Luonnos 1."
+  },
+  {
+    imageSrc: "status_of_services2.webp",
+    thumbSrc: "status_of_services2.webp",
+    description: "Status of Services widgetti. Luonnos 2."
+  }
+];
 
-  const images = rawImages.map((img) => `${path}/${img}`);
+  const galleryData = rawImages.map((img) => ({
+  imageSrc: `${path}/${img.imageSrc}`,
+  thumbSrc: `${path}/${img.thumbSrc}`,
+  description: img.description
+}));
 
 </script>
 
@@ -29,7 +89,7 @@ Osana laajempaa opintokokonaisuutta toteutimme projektityönä ohjelmiston oulul
 
 Käynnistimme projektin huolellisella vaatimusmäärittelyllä ja kilpailija-analyysilla. Suoria vastineita ei markkinoilta löytynyt, joten otimme parhaat ideat eri sovelluksista suunnittelun pohjaksi. Tiimin sisäisen ideoinnin jälkeen jokainen suunnitteli oman konseptinsa Figmalla. Jatkoon valikoitui suunnittelemani interaktiivinen Figma-proto, jolle saimme myös asiakkaan hyväksynnän.
 
-<Gallery images={images} description="Tekemiäni Figma-luonnoksia"/>
+<Gallery data={galleryData}/>
 
 <VideoPlayer videoSrc="/videos/dashboard/dashboard-prototype.webm" posterSrc={thumbSrc} description="Dashboard-prototyyppi, jonka tein Figmalla. Widgettien responsiivisuus esiteltynä."  />
 

@@ -5,6 +5,7 @@
   import { getTagInfo, type TagConfig } from "$lib/config/tags";
   import Icon from "$lib/components/Icon.svelte";
   import Tags from "./Tags.svelte";
+  import DatePill from "./DatePill.svelte";
 
   // Destructure properties from the $props rune
   let {
@@ -20,7 +21,7 @@
     onselect = () => {},
   } = $props();
 
-  function handleClick(e) {
+  function handleClick(e: MouseEvent) {
     e.preventDefault();
     // Notify parent to set this item as selected right before navigating
     onselect?.(id);
@@ -28,43 +29,43 @@
   }
 </script>
 
-<article
-  class="grid-item"
+<a
+  href={resolve(href)}
+  class="link"
+  onclick={handleClick}
   style="view-transition-name: project-bg-{id}; view-transition-class: project-morph project-bg"
   style:z-index={isSelected ? 9999 : "auto"}
 >
-  <a href={resolve(href)} class="grid-item__link" onclick={handleClick}>
-    <div
-      class="grid-item__image-wrapper"
-      style="view-transition-name: project-img-{id}; view-transition-class: project-morph project-img"
+  <div
+    class="grid-item__image-wrapper"
+    style="view-transition-name: project-img-{id}; view-transition-class: project-morph project-img"
+  >
+    <img src={asset(imageSrc)} alt={imageAlt} loading="lazy" />
+  </div>
+  <div class="grid-item__content">
+    <div class="title-row">
+      <h4
+        style="view-transition-name: project-title-{id}; view-transition-class: project-morph project-title"
+      >
+        {title}
+      </h4>
+    </div>
+    <p
+      style="view-transition-name: project-desc-{id}; view-transition-class: project-morph project-desc"
     >
-      <img src={asset(imageSrc)} alt={imageAlt} loading="lazy" />
+      {description}
+    </p>
+    <div
+      style="view-transition-name: project-tags-{id}; view-transition-class: project-morph project-tags"
+    >
+      <Tags {tags} />
     </div>
-    <div class="grid-item__content">
-      <div class="title-row">
-        <h4
-          style="view-transition-name: project-title-{id}; view-transition-class: project-morph project-title"
-        >
-          {title}
-        </h4>
-      </div>
-      <p
-        style="view-transition-name: project-desc-{id}; view-transition-class: project-morph project-desc"
-      >
-        {description}
-      </p>
-      <div
-        style="view-transition-name: project-tags-{id}; view-transition-class: project-morph project-tags"
-      >
-        <Tags {tags} />
-      </div>
-    </div>
-    <span class="date">{date === "" ? "-" : date}</span>
-  </a>
-</article>
+  </div>
+  <div class="date"><DatePill {date} identifier={id} /></div>
+</a>
 
 <style>
-  .grid-item {
+  .link {
     background: var(--colors-elevation-2);
     border-radius: var(--border-radiuses-lg);
     overflow: hidden;
@@ -81,19 +82,12 @@
       );
     color: var(--colors-text);
     position: relative;
+    text-decoration: none;
   }
 
-  .grid-item:hover {
+  .link:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadows-sm);
-  }
-
-  .grid-item__link {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
   }
 
   .grid-item__image-wrapper {
@@ -142,20 +136,6 @@
   }
 
   .date {
-    display: flex;
-    align-items: center;
-    background-color: var(--colors-elevation-3);
-    color: var(--colors-text);
-    font-size: var(--font-sizes-xs);
-    border: 1px solid
-      color-mix(
-        in oklch,
-        var(--colors-elevation-3),
-        var(--border-mix-shading) var(--border-strength-1)
-      );
-    border-radius: var(--border-radiuses-full);
-    padding: 0.25rem 0.5rem;
-
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;

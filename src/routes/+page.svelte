@@ -154,6 +154,7 @@
           title={item.title}
           description={item.description}
           tags={item.tags}
+          date={item.date}
           imageSrc={item.thumbnail}
           href="/projects/{item.slug}"
         />

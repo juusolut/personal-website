@@ -1,12 +1,13 @@
-<script>
+<script lang="ts">
   import { asset } from "$app/paths";
   import { resolve } from "$app/paths";
+  import DatePill from "$lib/components/DatePill.svelte";
   import Icon from "$lib/components/Icon.svelte";
   import Tags from "$lib/components/Tags.svelte";
   let { data } = $props();
   let Content = $derived(data.content);
 
-  const handleClick = (e) => {
+  const handleClick = (e: MouseEvent) => {
     e.preventDefault();
     history.back();
   };
@@ -20,7 +21,7 @@
   >
     <div class="back-link-container">
       <a href={resolve("/projects")} onclick={handleClick} class="back-link">
-        <Icon name="ArrowNarrowLeft" /> Takaisin projekteihin
+        <Icon name="ArrowNarrowLeft" /> Takaisin
       </a>
     </div>
     <div class="project__inner">
@@ -36,12 +37,19 @@
         />
       </div>
 
-      <h3
-        style="view-transition-name: project-title-{data.meta
-          .slug}; view-transition-class: project-morph project-title"
-      >
-        {data.meta.title}
-      </h3>
+      <div class="title-and-date">
+        <h3
+          class="project-title"
+          style="view-transition-name: project-title-{data.meta
+            .slug}; view-transition-class: project-morph project-title"
+        >
+          {data.meta.title}
+        </h3>
+
+        <div class="date">
+          <DatePill date={data.meta.date} identifier={data.meta.slug} />
+        </div>
+      </div>
       <p
         class="undertext"
         style="view-transition-name: project-desc-{data.meta
@@ -82,10 +90,9 @@
     background-color: var(--colors-elevation-2);
     /*     padding-top: 1rem; */
 
-    h3 {
+    .project-title {
       width: fit-content;
       height: fit-content;
-      grid-area: title;
     }
 
     .undertext {
@@ -107,6 +114,17 @@
     }
   }
 
+  .title-and-date {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .date {
+    width: max-content;
+  }
+
   .project__inner {
     display: grid;
     width: 100%;
@@ -120,6 +138,7 @@
     margin-top: 1rem;
 
     grid-template-columns: 1fr;
+    column-gap: 1rem;
     grid-template-rows: auto max-content;
     grid-template-areas:
       "image"
@@ -186,21 +205,6 @@
     gap: 0.5rem;
     margin: 0.5rem 0;
     font-weight: var(--font-weights-bold);
-  }
-
-  .separator {
-    position: relative;
-    padding: 1rem 0;
-    &::after {
-      content: "";
-      display: block;
-      position: absolute;
-      height: 1px;
-      width: 100%;
-      border-bottom: 1px solid var(--colors-text);
-      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
-      bottom: 0;
-    }
   }
 
   @container (width > 50rem) {
