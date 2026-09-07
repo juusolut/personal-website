@@ -37,7 +37,7 @@
 <style>
   .video-wrapper {
     width: 100%;
-    max-width: var(--text-max-width);
+/*     max-width: var(--text-max-width); */
     margin-bottom: 2rem;
     transition: outline 2s linear;
 
@@ -47,7 +47,7 @@
   }
 
   video {
-    max-width: var(--text-max-width);
+/*     max-width: var(--text-max-width); */
     width: 100%;
     height: auto;
     aspect-ratio: 16 / 9;
@@ -69,7 +69,7 @@
         var(--border-mix-shading) var(--border-strength-1)
       );
     border-top: none;
-    border-radius: 0 0 var(--border-radiuses-sm) var(--border-radiuses-sm);
+    border-radius: 0 0 var(--border-radiuses-lg) var(--border-radiuses-lg);
     padding: 0.5rem 1rem;
     line-height: 1.5;
     color: var(--colors-text);

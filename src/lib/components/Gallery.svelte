@@ -116,7 +116,7 @@
       <div class="hud-inner">
         <div class="image-counter button">
           <Icon name="Image" size="1rem" /><span
-            >{currentImageIndex + 1}/{data.length}</span
+            >{currentImageIndex + 1} / {data.length}</span
           >
         </div>
         <button
@@ -292,6 +292,7 @@
 
   .button:disabled {
     opacity: 0.25;
+    cursor: not-allowed;
   }
 
   .change-image-button {

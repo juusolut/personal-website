@@ -14,59 +14,61 @@
 </script>
 
 <div class="project-container">
-  <article
-    class="project"
-    style="view-transition-name: project-bg-{data.meta
-      .slug}; view-transition-class: project-morph project-bg"
-  >
-    <div class="back-link-container">
-      <a href={resolve("/projects")} onclick={handleClick} class="back-link">
-        <Icon name="ArrowNarrowLeft" /> Takaisin
-      </a>
-    </div>
-    <div class="project__inner">
-      <div
-        class="grid-item__image-wrapper"
-        style="view-transition-name: project-img-{data.meta
-          .slug}; view-transition-class: project-morph project-img"
-      >
-        <img
-          src={asset(data.meta.thumbnail)}
-          loading="lazy"
-          alt={data.meta.title}
-        />
+  <div class="width-reducer">
+    <article
+      class="project"
+      style="view-transition-name: project-bg-{data.meta
+        .slug}; view-transition-class: project-morph project-bg"
+    >
+      <div class="back-link-container">
+        <a href={resolve("/projects")} onclick={handleClick} class="back-link">
+          <Icon name="ArrowNarrowLeft" /> Takaisin
+        </a>
       </div>
-
-      <div class="title-and-date">
-        <h3
-          class="project-title"
-          style="view-transition-name: project-title-{data.meta
-            .slug}; view-transition-class: project-morph project-title"
+      <div class="project__inner">
+        <div
+          class="grid-item__image-wrapper"
+          style="view-transition-name: project-img-{data.meta
+            .slug}; view-transition-class: project-morph project-img"
         >
-          {data.meta.title}
-        </h3>
+          <img
+            src={asset(data.meta.thumbnail)}
+            loading="lazy"
+            alt={data.meta.title}
+          />
+        </div>
 
-        <div class="date">
-          <DatePill date={data.meta.date} identifier={data.meta.slug} />
+        <div class="title-and-date">
+          <h3
+            class="project-title"
+            style="view-transition-name: project-title-{data.meta
+              .slug}; view-transition-class: project-morph project-title"
+          >
+            {data.meta.title}
+          </h3>
+
+          <div class="date">
+            <DatePill date={data.meta.date} identifier={data.meta.slug} />
+          </div>
+        </div>
+        <p
+          class="undertext"
+          style="view-transition-name: project-desc-{data.meta
+            .slug}; view-transition-class: project-morph project-desc"
+        >
+          {data.meta.description}
+        </p>
+        <div
+          class="tags"
+          style="view-transition-name: project-tags-{data.meta
+            .slug}; view-transition-class: project-morph project-tags"
+        >
+          <Tags tags={data.meta.tags} />
         </div>
       </div>
-      <p
-        class="undertext"
-        style="view-transition-name: project-desc-{data.meta
-          .slug}; view-transition-class: project-morph project-desc"
-      >
-        {data.meta.description}
-      </p>
-      <div
-        class="tags"
-        style="view-transition-name: project-tags-{data.meta
-          .slug}; view-transition-class: project-morph project-tags"
-      >
-        <Tags tags={data.meta.tags} />
-      </div>
-    </div>
-    <Content />
-  </article>
+      <Content />
+    </article>
+  </div>
 </div>
 
 <style>
@@ -76,11 +78,16 @@
     padding: 0;
   }
 
-  .project {
+  .width-reducer {
     max-width: var(--site-width);
+    margin: 0 auto;
+    display: block;
+  }
+
+  .project {
+    max-width: 55rem;
     min-height: calc(100vh - var(--navbar-height));
     width: 100%;
-    margin: 0 auto;
     padding: 0rem 1rem;
     padding-bottom: 2rem;
     margin-bottom: 5rem;
@@ -93,6 +100,8 @@
     .project-title {
       width: fit-content;
       height: fit-content;
+      margin: 0;
+      padding: 0;
     }
 
     .undertext {
@@ -118,11 +127,15 @@
     grid-area: title;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /*     justify-content: space-between; */
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
   }
 
   .date {
     width: max-content;
+    display: inline-block;
   }
 
   .project__inner {
