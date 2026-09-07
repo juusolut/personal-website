@@ -3,6 +3,7 @@
 export const iconNames = [
   "ArrowNarrowLeft",
   "CaretDown",
+  "Check",
   "Cog",
   "Default",
   "Docker",

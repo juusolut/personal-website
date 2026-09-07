@@ -82,6 +82,8 @@
     max-width: var(--site-width);
     margin: 0 auto;
     display: block;
+    display: flex;
+    justify-content: center;
   }
 
   .project {
@@ -128,7 +130,7 @@
     display: flex;
     align-items: center;
     /*     justify-content: space-between; */
-    gap: 1rem;
+    gap: .5rem;
     margin-top: 1rem;
     margin-bottom: .5rem;
   }

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { settings, toggleTransitions } from '$lib/stores/settings.svelte';
+  import Icon from './Icon.svelte';
 
 </script>
 
@@ -15,7 +16,7 @@
           bind:checked={settings.transitionsEnabled}
           onchange={(e) => (toggleTransitions(e.currentTarget.checked))}
         />
-        <div class="checkbox">✓</div>
+        <div class="checkbox"><Icon name="Check"/></div>
       </label>
     </div>
   </li>
