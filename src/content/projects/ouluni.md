@@ -1,9 +1,10 @@
 ---
 title: "OulUni"
 slug: "ouluni"
-description: "HTML/CSS/JS-projekti, jossa hyödynnetty Google Maps -apia. Toteutettu ryhmätyönä Projektitoiminnan perusteet -yliopistokurssilla."
+description: "HTML/CSS/JS-projekti, jossa hyödynnetty Google Maps -API:a. Toteutettu ryhmätyönä Projektitoiminnan perusteet -yliopistokurssilla."
 thumbnail: "/images/ouluni/thumb.png"
 tags: ["HTML/CSS/JS"]
+date: "2021"
 ---
 
 <script>

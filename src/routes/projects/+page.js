@@ -9,6 +9,7 @@ export async function load() {
       description: file.metadata.description,
       thumbnail: file.metadata.thumbnail,
       tags: file.metadata.tags,
+      date: file.metadata.date,
     };
   });
 

@@ -43,6 +43,7 @@
           id={item.slug}
           title={item.title}
           description={item.description}
+          date={item.date}
           tags={item.tags}
           imageSrc={item.thumbnail}
           href="/projects/{item.slug}"

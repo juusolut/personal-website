@@ -9,6 +9,8 @@ export const iconNames = [
   "Dotnet",
   "Expo",
   "Flutter",
+  "FullscreenExit",
+  "Fullscreen",
   "Godot",
   "Microsoft",
   "Mongodb",

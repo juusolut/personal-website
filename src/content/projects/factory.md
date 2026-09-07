@@ -5,6 +5,7 @@ description: "P2P verkkoräiskintäpeli, jossa server authoritative -rakenne."
 thumbnail: "/images/processed/placeholder-thumb.webp"
 tags: ["Godot"]
 isShowcased: true
+date: "2025"
 ---
 
 # Test

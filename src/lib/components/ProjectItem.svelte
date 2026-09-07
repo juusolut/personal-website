@@ -12,6 +12,7 @@
     title,
     description,
     tags = [],
+    date,
     imageSrc,
     imageAlt = title,
     href = undefined,
@@ -40,11 +41,13 @@
       <img src={asset(imageSrc)} alt={imageAlt} loading="lazy" />
     </div>
     <div class="grid-item__content">
-      <h4
-        style="view-transition-name: project-title-{id}; view-transition-class: project-morph project-title"
-      >
-        {title}
-      </h4>
+      <div class="title-row">
+        <h4
+          style="view-transition-name: project-title-{id}; view-transition-class: project-morph project-title"
+        >
+          {title}
+        </h4>
+      </div>
       <p
         style="view-transition-name: project-desc-{id}; view-transition-class: project-morph project-desc"
       >
@@ -56,6 +59,7 @@
         <Tags {tags} />
       </div>
     </div>
+    <span class="date">{date === "" ? "-" : date}</span>
   </a>
 </article>
 
@@ -76,6 +80,7 @@
         var(--border-mix-shading) var(--border-strength-1)
       );
     color: var(--colors-text);
+    position: relative;
   }
 
   .grid-item:hover {
@@ -127,5 +132,32 @@
     color: var(--colors-text-light);
     line-height: 1.5;
     flex: 1;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: center;
+    /*     justify-content: space-between; */
+    gap: 0.5rem;
+  }
+
+  .date {
+    display: flex;
+    align-items: center;
+    background-color: var(--colors-elevation-3);
+    color: var(--colors-text);
+    font-size: var(--font-sizes-xs);
+    border: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-3),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    border-radius: var(--border-radiuses-full);
+    padding: 0.25rem 0.5rem;
+
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
   }
 </style>

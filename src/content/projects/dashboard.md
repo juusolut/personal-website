@@ -5,13 +5,20 @@ description: "Ruudukkopohjainen, responsiivinen ja mukautettava dashboard, joka 
 thumbnail: "/images/dashboard/dashboard-thumb.webp"
 tags: ["React", "RubyOnRails"]
 isShowcased: true
+date: "2022"
 ---
 
 <script>
   import { asset } from '$app/paths';
   import VideoPlayer from '$lib/components/VideoPlayer.svelte';
+  import Gallery from '$lib/components/Gallery.svelte';
 
   const thumbSrc = "/images/dashboard/dashboard-thumb.webp"
+  const path = "/images/dashboard/gallery"
+  const rawImages = ["dashboard-figma.webp", "dashboard_all_compact.webp", "dashboard_arrivals_playing_recorders_large.webp", "dashboard_failed_conversions.webp", "dashboard_load_layout_as.webp", "dashboard_save_layout_as.webp", "dashboard_services_and_converters_large.webp", "dashboard_widget_management.webp", "dashboard_widget_menu.webp", "Inkeddashboard_failed_conversions_LI.webp", "status_of_services1.webp", "status_of_services2.webp"]
+
+  const images = rawImages.map((img) => `${path}/${img}`);
+
 </script>
 
 # Johdanto
@@ -22,7 +29,9 @@ Osana laajempaa opintokokonaisuutta toteutimme projektityönä ohjelmiston oulul
 
 Käynnistimme projektin huolellisella vaatimusmäärittelyllä ja kilpailija-analyysilla. Suoria vastineita ei markkinoilta löytynyt, joten otimme parhaat ideat eri sovelluksista suunnittelun pohjaksi. Tiimin sisäisen ideoinnin jälkeen jokainen suunnitteli oman konseptinsa Figmalla. Jatkoon valikoitui suunnittelemani interaktiivinen Figma-proto, jolle saimme myös asiakkaan hyväksynnän.
 
-<VideoPlayer videoSrc="/videos/dashboard/dashboard-prototype.webm" posterSrc={thumbSrc} description="Dashboard-prototyyppi, jonka tein Figmalla. Widgettien responsiivisuus visalisoituna."  />
+<Gallery images={images} description="Tekemiäni Figma-luonnoksia"/>
+
+<VideoPlayer videoSrc="/videos/dashboard/dashboard-prototype.webm" posterSrc={thumbSrc} description="Dashboard-prototyyppi, jonka tein Figmalla. Widgettien responsiivisuus esiteltynä."  />
 
 ## Ohjelmistokehitys
 
