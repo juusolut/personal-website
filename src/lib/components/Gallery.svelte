@@ -1,5 +1,6 @@
 <script lang="ts">
   import { asset } from "$app/paths";
+  import { tick } from "svelte";
   import Icon from "./Icon.svelte";
 
   interface galleryType {
@@ -18,7 +19,7 @@
 
   let currentImageIndex = $state(0);
 
-  let targetElement: HTMLDialogElement | null = $state(null);
+  let targetElement: HTMLElement | null = $state(null);
   let isFullscreen = $state(false);
 
   function toggleFullscreen() {
@@ -142,17 +143,46 @@
     }
   }
 
+  function handleKeyDown(e: KeyboardEvent) {
+    /*     if (!isFullscreen) return; */
+
+    switch (e.key) {
+      case "ArrowLeft":
+        e.preventDefault();
+        currentImageIndex = Math.max(0, currentImageIndex - 1);
+        break;
+
+      case "ArrowRight":
+      case " ": // Spacebar to advance
+        e.preventDefault();
+        currentImageIndex = Math.min(images.length - 1, currentImageIndex + 1);
+        break;
+
+      case "f":
+      case "F":
+        e.preventDefault();
+        isFullscreen = !isFullscreen; // Toggle off via 'F' key
+        break;
+
+      // 'Escape' is handled natively by <dialog>, but you can add explicit actions here if needed
+    }
+  }
+
+  let dialogRef = $state<HTMLDialogElement | null>(null);
+
   // Sync Svelte state with dialog's top-layer elevation
   $effect(() => {
     if (isFullscreen) {
-      targetElement?.showModal();
-    } else if (targetElement?.open) {
-      targetElement.close();
+      dialogRef?.showModal();
+    } else if (dialogRef?.open) {
+      dialogRef.close();
     }
   });
 </script>
 
-<dialog class="gallery" bind:this={targetElement} class:isFullscreen>
+<!-- <svelte:window onkeydown={handleKeyDown} /> -->
+
+{#snippet galleryContent()}
   <div class="gallery-inner">
     <div class="hud">
       <div class="hud-inner">
@@ -161,6 +191,9 @@
             >{currentImageIndex + 1} / {data.length}</span
           >
         </div>
+        <button class="fullscreen-button button" onclick={toggleFullscreen}
+          ><Icon name={isFullscreen ? "FullscreenExit" : "Fullscreen"} />
+        </button>
         <button
           class="change-image-button button"
           aria-label="Siirry edelliseen kuvaan"
@@ -188,11 +221,6 @@
         >
           <Icon name="ArrowNarrowLeft" />
         </button>
-        <button class="fullscreen-button button" onclick={toggleFullscreen}
-          ><Icon
-            name={isFullscreen ? "FullscreenExit" : "Fullscreen"}
-          /></button
-        >
       </div>
     </div>
     <div
@@ -231,7 +259,29 @@
       </p>
     </div>
   {/if}
-</dialog>
+{/snippet}
+
+<!-- Inline Version -->
+{#if !isFullscreen}
+  <div class="gallery">
+    {@render galleryContent()}
+  </div>
+{/if}
+
+<!-- Fullscreen Top-Layer Dialog -->
+{#if isFullscreen}
+  <dialog
+    bind:this={dialogRef}
+    onkeydown={handleKeyDown}
+    class="gallery-dialog"
+    class:isFullscreen
+    oncancel={() => {
+      isFullscreen = false;
+    }}
+  >
+    {@render galleryContent()}
+  </dialog>
+{/if}
 
 <style>
   .gallery {
@@ -256,7 +306,29 @@
     justify-content: space-between;
   }
 
-  .gallery.isFullscreen {
+  .gallery-dialog {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--colors-elevation-3);
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    border-radius: var(--border-radiuses-lg);
+    border: 1px solid
+      color-mix(
+        in oklab,
+        var(--colors-elevation-3),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    overflow: hidden;
+    container-type: inline-size;
+    container-name: gallery;
+    position: relative;
+    justify-content: space-between;
+  }
+
+  .gallery-dialog:modal {
     position: fixed;
     width: 100dvw;
     height: 100dvh;
@@ -271,16 +343,9 @@
   }
 
   /* Disable background scroll when menu is open */
-  :global(html:has(.gallery.isFullscreen)) {
+  :global(html:has(.gallery-dialog:modal)) {
     overflow: hidden;
   }
-
-  .gallery:fullscreen .gallery-inner {
-    width: 100vw;
-    height: 100vh;
-    aspect-ratio: unset;
-  }
-
   .gallery-inner {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -314,7 +379,6 @@
     min-width: 100%;
     height: 100%;
     padding: 0.5rem;
-    /*     background-color: var(--colors-elevation-2); */
     position: relative;
     /*     &::before {
       content: "";
@@ -344,13 +408,12 @@
     color: var(--colors-text);
   }
 
-  .gallery.isFullscreen .description {
+  .gallery-dialog:modal .description {
     background-color: var(--colors-elevation-4);
     min-height: min-content;
     width: calc(100vw - 2rem);
     max-width: var(--text-max-width);
     position: absolute;
-    width: 100%;
     left: 50%;
     transform: translateX(-50%);
     bottom: 1rem;
@@ -375,17 +438,17 @@
     height: var(--size);
     width: var(--size);
     border-radius: 100%;
-    background: var(--colors-elevation-3);
+    background: var(--colors-elevation-4);
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     color: var(--colors-text);
-    border: 1px solid
+    border: 2px solid
       color-mix(
         in oklab,
-        var(--colors-elevation-3),
-        var(--border-mix-shading) var(--border-strength-1)
+        var(--colors-elevation-4),
+        var(--border-mix-shading) var(--border-strength-4)
       );
     pointer-events: auto;
     touch-action: none;
@@ -439,16 +502,31 @@
   }
 
   .image-counter {
-    height: auto;
     width: auto;
     border-radius: var(--border-radiuses-sm);
     gap: 0.5rem;
-    padding: 0.25rem 0.5rem;
+    padding: 0 0.5rem;
     font-size: var(--font-sizes-xs);
     background: color-mix(in oklab, var(--colors-elevation-3) 70%, transparent);
-    border: none;
-    bottom: 0;
-    right: 0;
+    border: 1px solid
+      color-mix(
+        in oklab,
+        var(--colors-elevation-4),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    background: var(--colors-elevation-4);
+    top: 0;
+    left: 0;
+
+    & > span {
+      height: 1em;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .button {
+      --size: 2.25rem;
+    }
   }
 
   @container gallery (width > 40rem) {
