@@ -12,7 +12,7 @@
 
 <style>
   .date {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     background-color: var(--colors-elevation-3);
     color: var(--colors-text);
@@ -24,6 +24,9 @@
         var(--border-mix-shading) var(--border-strength-1)
       );
     border-radius: var(--border-radiuses-full);
-    padding: 0.25rem 0.5rem;
+    padding: 0 0.5rem;
+    padding-top: .06rem;
+    height: 1.5rem;
+    line-height: 1;
   }
 </style>

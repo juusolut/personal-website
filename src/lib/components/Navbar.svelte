@@ -106,7 +106,7 @@
     width: 100%;
     margin-bottom: 0rem;
     flex-shrink: 0;
-    z-index: 9999;
+    z-index: 9998;
     position: sticky;
     background-color: color-mix(
       in oklch,

@@ -18,11 +18,11 @@
 
   let currentImageIndex = $state(0);
 
-  let targetElement: HTMLElement | null = $state(null);
+  let targetElement: HTMLDialogElement | null = $state(null);
   let isFullscreen = $state(false);
 
   function toggleFullscreen() {
-    if (!document.fullscreenElement) {
+    /*  if (!document.fullscreenElement) {
       targetElement
         ?.requestFullscreen()
         .then(() => {
@@ -35,18 +35,45 @@
       document.exitFullscreen().then(() => {
         isFullscreen = false;
       });
-    }
+    } */
+
+    isFullscreen = !isFullscreen;
   }
 
+  let movingContainer = $state<HTMLElement | null>(null);
   let startX = 0;
   let isDragging = $state(false);
   let trackMousePos = $state(false);
   let distance = $state(0);
+  let isInterrupting = $state(false);
 
   function handleMouseDown(e: PointerEvent) {
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    if (movingContainer) {
+      const style = window.getComputedStyle(movingContainer);
+      const transform = style.transform;
 
-    /*     console.log("Start:" + e.clientX); */
+      // Check if matrix transform exists (animating mid-slide)
+      if (transform && transform !== "none") {
+        const matrixValues = transform.match(/matrix\((.+)\)/);
+        if (matrixValues) {
+          const values = matrixValues[1].split(", ");
+          const currentTranslateX = parseFloat(values[4]); // Current exact pixel offset
+
+          const elementWidth = movingContainer.clientWidth;
+          const currentBaseX = -currentImageIndex * elementWidth;
+
+          // Calculate visual difference from current target index
+          const caughtOffset = currentTranslateX - currentBaseX;
+
+          // If caught mid-anim (more than 1px shift), freeze transition
+          if (Math.abs(caughtOffset) > 1) {
+            isInterrupting = true;
+            distance = caughtOffset; // Locks current visual offset into --offset-x
+          }
+        }
+      }
+    }
+
     startX = e.clientX;
     trackMousePos = true;
   }
@@ -64,30 +91,33 @@
       target.releasePointerCapture(e.pointerId);
     }
 
+    // Set your threshold ratio here (e.g., 0.25 = 25%, 0.5 = 50%)
+    const SWIPE_THRESHOLD_RATIO = 0.25;
+
     const elementWidth = target.clientWidth;
-    // Threshold: 25% of width (or change to elementWidth / 2 for 50%)
-    const threshold = elementWidth / 4;
+    const threshold = elementWidth * SWIPE_THRESHOLD_RATIO;
+    const absDistance = Math.abs(distance);
 
-    const multiplier = Math.floor(
-      (Math.abs(distance) + threshold * 3) / elementWidth,
-    );
-
-    // Swiped LEFT (Negative distance) -> Move to NEXT image
-    if (distance < -threshold) {
-      currentImageIndex = Math.min(
-        images.length - 1,
-        currentImageIndex + multiplier,
+    if (absDistance > threshold) {
+      // Calculates how many full pages were swiped past the initial threshold
+      const multiplier = Math.max(
+        1,
+        Math.floor((absDistance - threshold) / elementWidth) + 1,
       );
-    }
-    // Swiped RIGHT (Positive distance) -> Move to PREVIOUS image
-    else if (distance > threshold) {
-      currentImageIndex = Math.max(0, currentImageIndex - multiplier);
+      const direction = distance < 0 ? 1 : -1; // Negative = forward (left swipe), Positive = backward (right swipe)
+
+      currentImageIndex = Math.min(
+        Math.max(0, currentImageIndex + direction * multiplier),
+        images.length - 1,
+      );
     }
 
     // Reset drag tracking state
     trackMousePos = false;
     isDragging = false;
     distance = 0;
+    isInterrupting = false;
+    startX = 0;
   }
 
   function handleMouseMove(e: PointerEvent) {
@@ -96,7 +126,7 @@
     const currentDistance = e.clientX - startX;
 
     // 1. Only start capturing/dragging if moved more than 5px (ignores static taps/clicks)
-    if (!isDragging && Math.abs(currentDistance) > 5) {
+    if (!isDragging && Math.abs(currentDistance) > 0) {
       isDragging = true;
       const target = e.currentTarget as HTMLElement;
       if (target && target.setPointerCapture) {
@@ -105,12 +135,24 @@
     }
 
     if (isDragging) {
-      distance = currentDistance;
+      distance = isInterrupting ? distance + currentDistance : currentDistance;
+      if (isInterrupting) {
+        startX = e.clientX;
+      }
     }
   }
+
+  // Sync Svelte state with dialog's top-layer elevation
+  $effect(() => {
+    if (isFullscreen) {
+      targetElement?.showModal();
+    } else if (targetElement?.open) {
+      targetElement.close();
+    }
+  });
 </script>
 
-<div class="gallery" bind:this={targetElement}>
+<dialog class="gallery" bind:this={targetElement} class:isFullscreen>
   <div class="gallery-inner">
     <div class="hud">
       <div class="hud-inner">
@@ -155,6 +197,7 @@
     </div>
     <div
       class="moving-container"
+      bind:this={movingContainer}
       style:--index={currentImageIndex}
       style:--offset-x={distance + "px"}
       style:transition={distance !== 0 ? "none" : undefined}
@@ -178,17 +221,24 @@
   </div>
   {#if data[currentImageIndex].description}
     <div class="description">
-      <p><i>{data[currentImageIndex].description}</i></p>
+      <p>
+        <i
+          ><!-- {startX}
+          {distance}
+          {isInterrupting} -->
+          {data[currentImageIndex].description}</i
+        >
+      </p>
     </div>
   {/if}
-</div>
+</dialog>
 
 <style>
   .gallery {
+    padding: 0;
     width: 100%;
-    max-width: var(--text-max-width);
-    max-width: 100%;
-    display: block;
+    display: flex;
+    flex-direction: column;
     background-color: var(--colors-elevation-3);
     margin-bottom: 2rem;
     margin-top: 2rem;
@@ -203,6 +253,26 @@
     container-type: inline-size;
     container-name: gallery;
     position: relative;
+    justify-content: space-between;
+  }
+
+  .gallery.isFullscreen {
+    position: fixed;
+    width: 100dvw;
+    height: 100dvh;
+    max-width: 100dvw;
+    max-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    inset: 0;
+    border: none;
+    border-radius: 0;
+    align-items: center;
+  }
+
+  /* Disable background scroll when menu is open */
+  :global(html:has(.gallery.isFullscreen)) {
+    overflow: hidden;
   }
 
   .gallery:fullscreen .gallery-inner {
@@ -216,6 +286,7 @@
     aspect-ratio: 16 / 9;
     position: relative;
     display: block;
+    flex: 1;
     overflow: hidden;
     z-index: 0;
   }
@@ -235,7 +306,7 @@
     touch-action: pan-y;
     user-select: none;
     -webkit-user-select: none;
-    transition: 200ms transform ease-in-out;
+    transition: 600ms transform cubic-bezier(0.2, 0.8, 0.2, 1);
     will-change: transform;
   }
 
@@ -244,6 +315,17 @@
     height: 100%;
     padding: 0.5rem;
     /*     background-color: var(--colors-elevation-2); */
+    position: relative;
+    /*     &::before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 1px;
+      background-color: black;
+      top: 0;
+      transform: translateX(-50%);
+      left: 50%;
+    } */
   }
 
   .image {
@@ -260,6 +342,25 @@
     padding: 0.5rem 1rem;
     line-height: 1.5;
     color: var(--colors-text);
+  }
+
+  .gallery.isFullscreen .description {
+    background-color: var(--colors-elevation-4);
+    min-height: min-content;
+    width: calc(100vw - 2rem);
+    max-width: var(--text-max-width);
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1rem;
+    border: 1px solid
+      color-mix(
+        in oklab,
+        var(--colors-elevation-4),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    border-radius: var(--border-radiuses-lg);
   }
 
   .description p {
@@ -293,6 +394,9 @@
   .button:disabled {
     opacity: 0.25;
     cursor: not-allowed;
+  }
+
+  .button:active {
   }
 
   .change-image-button {
