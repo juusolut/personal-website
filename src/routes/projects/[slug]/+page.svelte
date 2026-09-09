@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { afterNavigate, goto } from "$app/navigation";
   import { asset } from "$app/paths";
   import { resolve } from "$app/paths";
   import DatePill from "$lib/components/DatePill.svelte";
@@ -7,9 +8,29 @@
   let { data } = $props();
   let Content = $derived(data.content);
 
+  // Tracks if the user has navigated internally within this session
+  let hasInternalHistory = $state(false);
+
+  afterNavigate(({ from }) => {
+    // 'from' is non-null whenever navigation originates within the SvelteKit app
+    if (from) {
+      hasInternalHistory = true;
+    }
+  });
+
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
-    history.back();
+
+    // Check if the user navigated from within the same domain
+    const hasInternalReferrer = document.referrer.startsWith(
+      window.location.origin,
+    );
+
+    if (hasInternalHistory || hasInternalReferrer) {
+      history.back();
+    } else {
+      goto(resolve("/projects"), { replaceState: true });
+    }
   };
 </script>
 
@@ -22,7 +43,8 @@
     >
       <div class="back-link-container">
         <a href={resolve("/projects")} onclick={handleClick} class="back-link">
-          <Icon name="ArrowNarrowLeft" /> Takaisin
+          <Icon name="ArrowNarrowLeft" />
+          {hasInternalHistory ? "Takaisin" : "Takaisin"}
         </a>
       </div>
       <div class="project__inner">
@@ -130,9 +152,9 @@
     display: flex;
     align-items: center;
     /*     justify-content: space-between; */
-    gap: .5rem;
+    gap: 0.5rem;
     margin-top: 1rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   .date {

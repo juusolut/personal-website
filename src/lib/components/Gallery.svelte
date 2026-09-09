@@ -265,10 +265,15 @@
 
     if (activePointers.size === 2) {
       e.stopPropagation();
+
       // Handle Pinch Scaling
       const points = Array.from(activePointers.values());
       const currentDistance = getDistance(points[0], points[1]);
       if (initialPinchDistance > 0) {
+        const targetScale = Math.min(
+          Math.max((currentDistance / initialPinchDistance) * initialScale, 1),
+          4,
+        );
         // Calculate new mid-point location as user moves fingers during pinch
         const currentMid = getMidpoint(points[0], points[1]);
         const currentFocalX = currentMid.x - window.innerWidth / 2;
@@ -276,18 +281,17 @@
 
         const nextScale =
           (currentDistance / initialPinchDistance) * initialScale;
+        const scaleFactor = targetScale / initialScale;
+
         let newTx =
-          currentFocalX - (initialFocalX - initialTranslateX) * nextScale;
+          currentFocalX - (initialFocalX - initialTranslateX) * scaleFactor;
         let newTy =
-          currentFocalY - (initialFocalY - initialTranslateY) * nextScale;
+          currentFocalY - (initialFocalY - initialTranslateY) * scaleFactor;
 
         // Clamp scale between 1x and 4x
         scale = Math.min(Math.max(nextScale, 1.0), 4);
         translateX = Math.min(Math.max(newTx, -maxTranslateX), maxTranslateX);
-        translateY = Math.min(
-        Math.max(newTy, -maxTranslateY),
-        maxTranslateY,
-      );
+        translateY = Math.min(Math.max(newTy, -maxTranslateY), maxTranslateY);
       }
     } else if (activePointers.size === 1 && scale > 1) {
       e.stopPropagation();
@@ -418,9 +422,7 @@
   {#if data[currentImageIndex].description}
     <div class="description">
       <p>
-        <i>
-          {data[currentImageIndex].description}</i
-        >
+        <i> {data[currentImageIndex].description}</i>
       </p>
     </div>
   {/if}
