@@ -9,20 +9,77 @@ date: "2021"
 
 <script>
   import { asset } from '$app/paths';
+  import Gallery from '$lib/components/Gallery.svelte';
+
+  const path = "/images/friba"
+  const rawImages = [
+    {
+      imageSrc: "friba-stats.webp",
+      thumbSrc: "",
+      description: "Stats-näkymä."
+    },
+    {
+      imageSrc: "friba-rounds.webp",
+      thumbSrc: "",
+      description: "Rounds-näkymä."
+    },
+    {
+      imageSrc: "friba-courses.webp",
+      thumbSrc: "",
+      description: "Courses-näkymä."
+    },
+    {
+      imageSrc: "friba-pre-throw.webp",
+      thumbSrc: "",
+      description: "Pre-throw-näkymä."
+    },
+    {
+      imageSrc: "friba-throw-evaluation.webp",
+      thumbSrc: "",
+      description: "Throw-evaluation-näkymä."
+    },
+    {
+      imageSrc: "friba-putting.webp",
+      thumbSrc: "",
+      description: "Putting-näkymä."
+    },
+    {
+      imageSrc: "friba-feedback.webp",
+      thumbSrc: "",
+      description: "Feedback-näkymä."
+    },
+    {
+      imageSrc: "friba-settings.webp",
+      thumbSrc: "",
+      description: "Settings-näkymä."
+    },
+    {
+      imageSrc: "friba-clear-data.webp",
+      thumbSrc: "",
+      description: "Clear-data-näkymä."
+    },
+
+  ];
+
+  const galleryData = rawImages.map((img) => ({
+  imageSrc: `${path}/${img.imageSrc}`,
+  thumbSrc: `${path}/${img.thumbSrc}`,
+  description: img.description
+}));
 </script>
 
-## Alustus
+## Projektin aloitus
 
-Yliopiston harjoitustyö antoi vapaat kädet ohjelmiston toteutukseen, joten päätimme rakentaa opiskelijakaverini kanssa mobiilisovelluksen frisbeegolfin ympärille. Valitsimme työkaluksi Googlen Flutterin, joka houkutteli kehitysympäristön keveydellä ja  kehitystä nopeuttavalla Hot Reload -ominaisuudellaan. Projektissa parasta oli päästä testaamaan omaa oppimiskykyä: kuinka nopeasti uusi kieli (Dart) ja sen syntaksi taipuvat toimivaksi sovellukseksi.
-
-<img src={asset('/images/processed/friba-medium.webp')} alt="Frisbeegolf application preview" width="200" />
+Yliopiston harjoitustyö antoi vapaat kädet ohjelmiston toteutukseen, joten päätimme opiskelijakaverini kanssa rakentaa mobiilisovelluksen frisbeegolfin ympärille. Halusimme tehdä sellaisen applikaation, johon voisi merkata tarkat tiedot frisbeegolf-kierrokselta, ja joka sitten koostaisi kaikkien kierrosten tiedot ja antaisi kehitysvinkkejä käyttäjälle. Käyttäjä voisi siis tulla paremmaksi frisbeegolfaajaksi applikaation kautta.
 
 ## Ohjelmistokehitys
 
-Profiloitiin mahdollisia käyttäjiä, yritettiin asettua heidän asemaan. Sovelluksesta haluttiin yksinkertainen, jotta se olisi aidosti hyödyllinen kierroksella.
-
-<img src={asset('/images/processed/friba-medium.webp')} alt="Frisbeegolf application preview" width="200" />
+Aloitimme profiloimalla mahdollisia käyttäjiä. Yritimme asettua heidän asemaansa, ja ideoida sovellusta ja käyttöliittymää sitä kautta. Halusimme sovelluksesta mahdollisimman yksinkertaisen, jotta se olisi aidosti kierroksella kenelle tahansa frisbeegolfaajalle. Valitsimme työkaluksi Googlen Flutterin, joka houkutteli kehitysympäristön keveydellä ja kehitystä nopeuttavalla Hot Reload -ominaisuudella. Kun meillä oli jonkinlainen tuotos valmiina, otimme sen mukaan frisbeegolf-kierrokselle, testaisimme sitä ja teimme parannuksia sovellukseen havaintojemme perusteella.
 
 ## Lopputulos
 
-Lopputulos oli toimiva ja selkä, mutta ei tietenkään täydellinen, koska kyseessä oli molempien ensikosketus mobiilisovelluskehitykseen. Aikarajojen puitteissa olimme kuitenkin tyytyväisiä tuotokseen.
+Lopputuloksesta tuli aivan toimiva ja selkä, mutta ei tietenkään täydellinen. Huomasimme, että sovellus ei välttämättä toimi niin hyvin jos on pelailemassa ryhmässä, koska yksityiskohtainen merkkailu on melko työlästä. Jos pelaajaa on heittelemässä itsekseen, silloin hän jaksaa silloin merkitä sovellukseen tarkat heittokohtaiset tiedot.<br><br>
+Kyseessä oli molempien ensikosketus mobiilisovelluskehitykseen, ja kurssin aikarajojen puitteissa olimme tyytyväisiä tuotokseen. Erityisesti puttausnäkymä oli toimiva ja jopa sellainen ominaisuus, jota vastaavaa on myöhemmin nähty suosituissa frisbeegolf-sovelluksissa. Projektissa parasta oli päästä testaamaan omaa oppimiskykyä: kuinka nopeasti Flutter ja sen uusi kieli (Dart) ja sen syntaksi taipuivat toimivaksi sovellukseksi.  <br><br>
+Tässä vielä kuvia lopputuotteesta:
+
+<Gallery data={galleryData}/>
