@@ -18,38 +18,29 @@
   const images = $derived(data.map((item) => item.imageSrc));
 
   let currentImageIndex = $state(0);
-
-  let targetElement: HTMLElement | null = $state(null);
   let isFullscreen = $state(false);
-
-  function toggleFullscreen() {
-    /*  if (!document.fullscreenElement) {
-      targetElement
-        ?.requestFullscreen()
-        .then(() => {
-          isFullscreen = true;
-        })
-        .catch((err) => {
-          console.error(`Error enabling fullscreen: ${err.message}`);
-        });
-    } else {
-      document.exitFullscreen().then(() => {
-        isFullscreen = false;
-      });
-    } */
-
-    isFullscreen = !isFullscreen;
-  }
-
   let movingContainer = $state<HTMLElement | null>(null);
   let startX = 0;
   let isDragging = $state(false);
-  let trackMousePos = $state(false);
+  let trackPointerPos = $state(false);
   let distance = $state(0);
   let isInterrupting = $state(false);
 
-  function handleMouseDown(e: PointerEvent) {
-    if (movingContainer) {
+  // Set your threshold ratio here (e.g., 0.25 = 25%, 0.5 = 50%)
+  const SWIPE_THRESHOLD_RATIO = 0.25;
+
+  function toggleFullscreen() {
+    isFullscreen = !isFullscreen;
+  }
+
+  /* SWIPING BETWEEN IMAGES */
+
+  function handleMovingContainerPointerDown(e: PointerEvent) {
+    if (scale !== 1.0) return;
+
+    /*     activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); */
+
+    if (movingContainer /*  && activePointers.size === 1 */) {
       const style = window.getComputedStyle(movingContainer);
       const transform = style.transform;
 
@@ -76,10 +67,11 @@
     }
 
     startX = e.clientX;
-    trackMousePos = true;
+    trackPointerPos = true;
   }
-  function handleMouseUp(e: PointerEvent) {
-    if (!trackMousePos) return;
+
+  function handleMovingContainerPointerUp(e: PointerEvent) {
+    if (!trackPointerPos) return;
 
     const target = e.currentTarget as HTMLElement;
 
@@ -91,9 +83,6 @@
     if (target.hasPointerCapture(e.pointerId)) {
       target.releasePointerCapture(e.pointerId);
     }
-
-    // Set your threshold ratio here (e.g., 0.25 = 25%, 0.5 = 50%)
-    const SWIPE_THRESHOLD_RATIO = 0.25;
 
     const elementWidth = target.clientWidth;
     const threshold = elementWidth * SWIPE_THRESHOLD_RATIO;
@@ -114,15 +103,15 @@
     }
 
     // Reset drag tracking state
-    trackMousePos = false;
+    trackPointerPos = false;
     isDragging = false;
     distance = 0;
     isInterrupting = false;
     startX = 0;
   }
 
-  function handleMouseMove(e: PointerEvent) {
-    if (!trackMousePos) return;
+  function handleMovingContainerPointerMove(e: PointerEvent) {
+    if (!trackPointerPos) return;
 
     const currentDistance = e.clientX - startX;
 
@@ -144,7 +133,7 @@
   }
 
   function handleKeyDown(e: KeyboardEvent) {
-    /*     if (!isFullscreen) return; */
+    if (!isFullscreen) return;
 
     switch (e.key) {
       case "ArrowLeft":
@@ -163,8 +152,6 @@
         e.preventDefault();
         isFullscreen = !isFullscreen; // Toggle off via 'F' key
         break;
-
-      // 'Escape' is handled natively by <dialog>, but you can add explicit actions here if needed
     }
   }
 
@@ -178,12 +165,179 @@
       dialogRef.close();
     }
   });
+
+  /* ZOOMING IMAGE */
+
+  let scale = $state(1);
+  let translateX = $state(0);
+  let translateY = $state(0);
+
+  // Track active pointer touches
+  let activePointers = new Map<number, { x: number; y: number }>();
+  let initialPinchDistance = 0;
+  let initialScale = 1;
+  let panStartX = 0;
+  let panStartY = 0;
+  let initialTranslateX = 0;
+  let initialTranslateY = 0;
+  let initialFocalX = 0;
+  let initialFocalY = 0;
+  let currentImageContainerWidth: number = 0;
+  let currentImageContainerHeight: number = 0;
+  let currentImageWidth: number = 0;
+  let currentImageHeight: number = 0;
+  let isScaling: boolean = false;
+
+  function getDistance(
+    p1: { x: number; y: number },
+    p2: { x: number; y: number },
+  ) {
+    return Math.hypot(p2.x - p1.x, p2.y - p1.y);
+  }
+
+  function getMidpoint(
+    p1: { x: number; y: number },
+    p2: { x: number; y: number },
+  ) {
+    return {
+      x: (p1.x + p2.x) / 2,
+      y: (p1.y + p2.y) / 2,
+    };
+  }
+
+  function handleImagePointerDown(e: PointerEvent) {
+    if (e.pointerType !== "touch") return;
+
+    if (e.isPrimary && activePointers.size > 0) {
+      activePointers.clear();
+    }
+
+    const target = e.currentTarget as HTMLElement;
+    activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    if (activePointers.size >= 2 || scale > 1) {
+      e.stopPropagation();
+      target.setPointerCapture(e.pointerId);
+    }
+
+    if (activePointers.size === 2) {
+      // Two fingers: Start Pinch-Zoom
+      const points = Array.from(activePointers.values());
+      initialPinchDistance = getDistance(points[0], points[1]);
+      initialScale = scale;
+      isScaling = true;
+
+      const mid = getMidpoint(points[0], points[1]);
+      initialFocalX = mid.x - window.innerWidth / 2;
+      initialFocalY = mid.y - window.innerHeight / 2;
+    } else if (activePointers.size === 1 && scale > 1) {
+      // Single finger while zoomed: Start Panning
+      panStartX = e.clientX;
+      panStartY = e.clientY;
+      initialTranslateX = translateX;
+      initialTranslateY = translateY;
+
+      const currentImageContainer = e.currentTarget as HTMLElement;
+      currentImageContainerWidth = currentImageContainer.clientWidth;
+      currentImageContainerHeight = currentImageContainer.clientHeight;
+
+      const targetImage = e.target as HTMLImageElement;
+      currentImageWidth = targetImage.clientWidth;
+      currentImageHeight = targetImage.clientHeight;
+    }
+  }
+
+  function handleImagePointerMove(e: PointerEvent) {
+    if (!activePointers.has(e.pointerId)) return;
+    activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    const zoomedImageWidth = currentImageWidth * scale;
+    const zoomedImageHeight = currentImageHeight * scale;
+
+    const maxTranslateX = Math.max(
+      0,
+      (zoomedImageWidth - currentImageContainerWidth) / 2,
+    );
+    const maxTranslateY = Math.max(
+      0,
+      (zoomedImageHeight - currentImageContainerHeight) / 2,
+    );
+
+    if (activePointers.size === 2) {
+      e.stopPropagation();
+      // Handle Pinch Scaling
+      const points = Array.from(activePointers.values());
+      const currentDistance = getDistance(points[0], points[1]);
+      if (initialPinchDistance > 0) {
+        // Calculate new mid-point location as user moves fingers during pinch
+        const currentMid = getMidpoint(points[0], points[1]);
+        const currentFocalX = currentMid.x - window.innerWidth / 2;
+        const currentFocalY = currentMid.y - window.innerHeight / 2;
+
+        const nextScale =
+          (currentDistance / initialPinchDistance) * initialScale;
+        let newTx =
+          currentFocalX - (initialFocalX - initialTranslateX) * nextScale;
+        let newTy =
+          currentFocalY - (initialFocalY - initialTranslateY) * nextScale;
+
+        // Clamp scale between 1x and 4x
+        scale = Math.min(Math.max(nextScale, 1.0), 4);
+        translateX = Math.min(Math.max(newTx, -maxTranslateX), maxTranslateX);
+        translateY = Math.min(
+        Math.max(newTy, -maxTranslateY),
+        maxTranslateY,
+      );
+      }
+    } else if (activePointers.size === 1 && scale > 1) {
+      e.stopPropagation();
+      // Handle Panning when zoomed in
+      const deltaX = e.clientX - panStartX;
+      const deltaY = e.clientY - panStartY;
+
+      translateX = Math.min(
+        Math.max(initialTranslateX + deltaX, -maxTranslateX),
+        maxTranslateX,
+      );
+      translateY = Math.min(
+        Math.max(initialTranslateY + deltaY, -maxTranslateY),
+        maxTranslateY,
+      );
+
+      /*     translateX = deltaX
+      translateY = deltaY */
+    }
+  }
+
+  function handleImagePointerUp(e: PointerEvent) {
+    activePointers.delete(e.pointerId);
+
+    if (activePointers.size < 2) {
+      initialPinchDistance = 0;
+    }
+
+    // Reset offsets if zoomed out back to 1x
+    if (scale <= 1) {
+      resetZoom();
+    }
+
+    isScaling = false;
+
+    console.log(activePointers);
+  }
+
+  function resetZoom() {
+    scale = 1;
+    translateX = 0;
+    translateY = 0;
+    activePointers.clear();
+  }
 </script>
 
 <!-- <svelte:window onkeydown={handleKeyDown} /> -->
 
 {#snippet galleryContent()}
-  <div class="gallery-inner">
+  <div class="gallery-inner" class:disableMoving={scale !== 1}>
     <div class="hud">
       <div class="hud-inner">
         <div class="image-counter button">
@@ -229,19 +383,33 @@
       style:--index={currentImageIndex}
       style:--offset-x={distance + "px"}
       style:transition={distance !== 0 ? "none" : undefined}
-      onpointerdown={handleMouseDown}
-      onpointermove={handleMouseMove}
-      onpointerup={handleMouseUp}
+      onpointerdown={handleMovingContainerPointerDown}
+      onpointermove={handleMovingContainerPointerMove}
+      onpointerup={handleMovingContainerPointerUp}
+      onpointercancel={handleMovingContainerPointerUp}
       role="region"
       aria-label="Kuva-galleria"
     >
-      {#each images as image}
-        <div class="image-container">
+      {#each images as image, index}
+        {@const isActive = index === currentImageIndex}
+        <div
+          class="image-container"
+          onpointerdown={handleImagePointerDown}
+          onpointermove={handleImagePointerMove}
+          onpointerup={handleImagePointerUp}
+          onpointercancel={handleImagePointerUp}
+          onlostpointercapture={handleImagePointerUp}
+          role="region"
+          style:touch-action={scale !== 1.0 ? "none" : "pan-y"}
+        >
           <img
             class="image"
             src={asset(image)}
             alt={data[currentImageIndex].description}
             loading="lazy"
+            style:transform={isActive
+              ? `translate3d(${translateX}px, ${translateY}px, 0px) scale(${scale})`
+              : "none"}
           />
         </div>
       {/each}
@@ -250,10 +418,7 @@
   {#if data[currentImageIndex].description}
     <div class="description">
       <p>
-        <i
-          ><!-- {startX}
-          {distance}
-          {isInterrupting} -->
+        <i>
           {data[currentImageIndex].description}</i
         >
       </p>
@@ -348,7 +513,7 @@
   }
   .gallery-inner {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 5;
     position: relative;
     display: block;
     flex: 1;
@@ -375,31 +540,48 @@
     will-change: transform;
   }
 
+  .gallery-inner.disableMoving .hud {
+    opacity: 0;
+    pointer-events: none;
+
+    .button {
+      pointer-events: none;
+    }
+  }
+
   .image-container {
+    --scale: 1;
+    --x: 0;
+    --y: 0;
+
     min-width: 100%;
     height: 100%;
     padding: 0.5rem;
     position: relative;
-    /*     &::before {
-      content: "";
-      position: absolute;
-      height: 100%;
-      width: 1px;
-      background-color: black;
-      top: 0;
-      transform: translateX(-50%);
-      left: 50%;
-    } */
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+    transform: scale(var(--scale)) translate(var(--x), var(--y));
+    will-change: transform;
   }
 
   .image {
-    width: 100%;
+    --scale: 1;
+    --x: 0;
+    --y: 0;
+
+    width: auto;
     height: 100%;
+    margin: 0 auto;
     object-fit: contain;
     display: block;
     pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;
+
+    transform: scale(var(--scale)) translate(var(--x), var(--y));
+    will-change: transform;
+    transition: transform 0.05s ease-out; /* Smooth rendering adjustments */
   }
 
   .description {
@@ -491,6 +673,7 @@
     left: 0;
     pointer-events: none;
     padding: var(--padding);
+    transition: opacity 200ms linear;
   }
 
   .hud-inner {
@@ -535,6 +718,9 @@
     }
     .hud {
       --padding: 1.5rem;
+    }
+    .gallery-inner {
+      aspect-ratio: 16 / 9;
     }
   }
 </style>
