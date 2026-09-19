@@ -1,27 +1,47 @@
 <script lang="ts">
   import { asset } from "$app/paths";
+  import ContactButtons from "$lib/components/ContactButtons.svelte";
+  import ProfileCircle from "$lib/components/ProfileCircle.svelte";
 </script>
 
-<div class="space-on-mobile"></div>
+<!-- <div class="space-on-mobile"></div> -->
 
 <div class="info-container h-padding">
   <div class="info">
-    <h2 class="view-title">Yhteystiedot</h2>
-    <article class="info-box">
+    <div style="width: 100%;"><h2 class="view-title">Yhteystiedot</h2></div>
+    <ProfileCircle imageSrc={"/images/me (Small).png"} outlined />
+    <div class="title-buttons-container">
+      <span class="find-me-text ibm-plex-mono">Löydät minut täältä:</span>
+      <div class="contact-buttons">
+        <ContactButtons />
+      </div>
+    </div>
 
-    </article>
+    <!--     <article class="info-box"></article> -->
   </div>
 </div>
 
 <style>
   .info-container {
     width: 100%;
+    height: calc(100svh - var(--navbar-height));
+    display: flex;
+    align-items: center;
+/*
+    transform: translateY(-3rem); */
+    /*     border: 1px solid red; */
   }
 
   .info {
-    width: 100%;
-    max-width: var(--site-width);
+    max-width: 40rem;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    /*     background-color: red; */
+    height: min-content;
+    width: 100%;
   }
 
   .info-box {
@@ -35,31 +55,25 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-
-    &::before {
-      content: "";
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      background-color: var(--colors-secondary);
-      border-radius: var(--border-radiuses-lg);
-      top: 1rem;
-      left: 1rem;
-      z-index: -1;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      background-color: var(--colors-elevation-2);
-      border-radius: var(--border-radiuses-lg);
-      border: 1px solid var(--colors-text);
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
   }
 
+  .contact-buttons {
+    container-type: inline-size;
+    width: 100%;
+  }
+
+  .find-me-text {
+    width: 100%;
+    padding: 0 1rem;
+  }
+  .title-buttons-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--colors-elevation-2);
+    padding: 1rem 0.5rem;
+    border-radius: var(--border-radiuses-md);
+    box-shadow: var(--shadows-xs);
+  }
 </style>

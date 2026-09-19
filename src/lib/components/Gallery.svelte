@@ -379,6 +379,7 @@
         >
           <Icon name="ArrowNarrowLeft" />
         </button>
+        <div class="disclaimer button"><span><strong>Huom!</strong><br> Galleria-komponentti WIP</span></div>
       </div>
     </div>
     <div
@@ -565,6 +566,7 @@
     -webkit-user-select: none;
     transform: scale(var(--scale)) translate(var(--x), var(--y));
     will-change: transform;
+    display: flex;
   }
 
   .image {
@@ -572,8 +574,8 @@
     --x: 0;
     --y: 0;
 
-    width: auto;
-    height: 100%;
+    height: auto;
+    width: 100%;
     margin: 0 auto;
     object-fit: contain;
     display: block;
@@ -616,7 +618,7 @@
   }
 
   .button {
-    --size: 1.5rem;
+    --size: 2rem;
 
     z-index: 2;
     height: var(--size);
@@ -628,11 +630,11 @@
     align-items: center;
     position: absolute;
     color: var(--colors-text);
-    border: 2px solid
+    border: 1px solid
       color-mix(
         in oklab,
         var(--colors-elevation-4),
-        var(--border-mix-shading) var(--border-strength-4)
+        var(--border-mix-shading) var(--border-strength-1)
       );
     pointer-events: auto;
     touch-action: none;
@@ -687,10 +689,11 @@
   }
 
   .image-counter {
+    --size: 1.5rem !important;
     width: auto;
     border-radius: var(--border-radiuses-sm);
     gap: 0.5rem;
-    padding: 0 0.5rem;
+    padding: 0rem 0.5rem;
     font-size: var(--font-sizes-xs);
     background: color-mix(in oklab, var(--colors-elevation-3) 70%, transparent);
     border: 1px solid
@@ -706,6 +709,19 @@
     & > span {
       height: 1em;
     }
+  }
+
+  .disclaimer {
+    --size: 1.5rem !important;
+    width: auto;
+    height: auto;
+    border-color: var(--colors-error);
+    border-radius: var(--border-radiuses-sm);
+    padding: 0.0rem 0.5rem;
+    top: 2rem;
+    font-size: var(--font-sizes-xs);
+    border-width: 2px;
+    line-height: 1rem;
   }
 
   @media (hover: none) and (pointer: coarse) {
@@ -724,5 +740,10 @@
     .gallery-inner {
       aspect-ratio: 16 / 9;
     }
+
+/*     .image {
+      width: auto;
+      height: 100%;
+    } */
   }
 </style>

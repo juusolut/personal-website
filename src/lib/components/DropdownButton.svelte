@@ -2,20 +2,51 @@
   import Icon from "./Icon.svelte";
   import type { Snippet } from "svelte";
   import { fade, slide, fly } from "svelte/transition";
-  import { outclick } from '$lib/actions/outclick.svelte';
+  import { outclick } from "$lib/actions/outclick.svelte";
 
   let { children }: { children?: Snippet } = $props();
 
   let isOpen = $state(false);
+
+  let isAnimating = $state(false);
+
+  function triggerAnimation() {
+    isAnimating = true;
+  }
+  function handleAnimationEnd() {
+    isAnimating = false; // Reset so it can be re-triggered on next press
+  }
+
+  $effect(() => {
+    if (!isOpen) return;
+
+    function handleScroll() {
+      isOpen = false;
+    }
+
+    // { passive: true } improves scrolling performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
 </script>
+
 
 <div class="menu-container" class:isOpen use:outclick={() => (isOpen = false)}>
   <button
     aria-label="Avaa asetusvalikko"
-    onclick={() => (isOpen = !isOpen)}
+    onclick={() => {
+      isOpen = !isOpen;
+      isAnimating = true;
+    }}
     class:isOpen
+    onanimationend={handleAnimationEnd}
   >
-    <Icon name="Cog" />
+    <div class="icon-wrapper" class:spin={isAnimating}>
+      <Icon name="Cog" size="1.25rem" />
+    </div>
   </button>
   {#if isOpen}
     <div
@@ -32,35 +63,68 @@
 </div>
 
 <style>
+  @keyframes slowSpin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(180deg);
+    }
+  }
+
+  .spin {
+    animation: slowSpin 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  }
+
+  .reverse-animation {
+    animation-fill-mode: backwards;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
   .menu-container {
     position: relative;
     display: block;
     z-index: 0;
   }
   button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 2.25rem;
-    aspect-ratio: 1 / 1;
-    background: transparent;
     color: var(--colors-text);
+    aspect-ratio: 1 / 1;
+    height: 1.75rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    border-radius: var(--border-radiuses-sm);
+    background: var(--colors-elevation-2);
+    position: relative;
     z-index: 0;
-    border-color: transparent;
+    overflow: hidden;
+    border: 2px solid
+      color-mix(
+        in oklab,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-5)
+      );
   }
 
   button.isOpen {
     background: var(--colors-elevation-2);
-    border: 1px solid
+    border: 2px solid
       color-mix(
         in oklab,
         var(--colors-elevation-2),
-        var(--border-mix-shading) var(--border-strength-1)
+        var(--border-mix-shading) var(--border-strength-5)
       );
     border-radius: var(--border-radiuses-sm);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    border-bottom-color: transparent;
+    border-bottom-width: 0;
   }
 
   .menu {
@@ -68,17 +132,17 @@
     width: 100vw;
     max-width: 15rem;
     background-color: var(--colors-elevation-2);
-    border: 1px solid
+    border: 2px solid
       color-mix(
         in oklab,
         var(--colors-elevation-2),
-        var(--border-mix-shading) var(--border-strength-1)
+        var(--border-mix-shading) var(--border-strength-5)
       );
     border-radius: var(--border-radiuses-sm);
     border-top-right-radius: 0;
     position: absolute;
     z-index: 9999;
-    top: calc(100% - 1px);
+    top: calc(100% - 2px);
     right: 0;
     z-index: -2;
     padding: 1rem;

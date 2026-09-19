@@ -165,7 +165,7 @@
     </div>
   </div>
 </section>
-<section class="recommendation h-padding">
+<section class="recommendation h-padding" id="comments">
   <div class="recommendation__inner section-content">
     <h2 class="view-title no-bg">Kommentteja minusta</h2>
     <div class="comments">

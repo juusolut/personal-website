@@ -4,6 +4,7 @@
   import Icon from "$lib/components/Icon.svelte";
   import Workplace from "$lib/components/Workplace.svelte";
   import WorkHistory from "$lib/components/WorkHistory.svelte";
+  import ProfileCircle from "$lib/components/ProfileCircle.svelte";
 
   let { data } = $props();
 
@@ -21,21 +22,8 @@
 <div class="info-container h-padding">
   <div class="info">
     <article class="info-box">
-      <div class="profile-image-container waves-pattern">
-        <div class="both-images">
-          <img
-            class="image-top"
-            src={asset("/images/me (Small).png")}
-            alt="Juuso Luttinen"
-          />
-          <div class="image-bottom">
-            <img
-              class="profile-image"
-              src={asset("/images/me (Small).png")}
-              alt="Juuso Luttinen"
-            />
-          </div>
-        </div>
+      <div class="profile-image-container">
+        <ProfileCircle imageSrc={"/images/me (Small).png"} />
       </div>
       <div class="content">
         <h2 class="view-title no-bg">Pähkinän&shy;kuoressa</h2>
@@ -87,7 +75,7 @@
   </div>
 </div>
 
-<div class="skills-container h-padding">
+<div class="skills-container h-padding" id="skills">
   <div class="skills section-content">
     <h2 class="view-title no-bg">Osaamiseni</h2>
     <p>
@@ -137,10 +125,130 @@
 <div id="studies" class="h-padding">
   <div id="studies__inner" class="section-content">
     <h2 class="view-title no-bg">Koulutukset</h2>
+    <ul class="achievements section">
+      <li class="achievement gradient-bg">
+        <strong>Tietojenkäsittelytiede</strong><br />
+        <i>Oulun yliopisto, luonnontieteiden kandidaatiksi 2023</i><br />
+        <span class="thesis-text"
+          >Kanditutkielma:
+          <a
+            href="https://oulurepo.oulu.fi/handle/10024/41833"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="small-link"
+            >Tekoäly musiikkituottajan tukena : musiikillisen luovuuden
+            edistäminen tekoälyn avulla</a
+          ></span
+        >
+      </li>
+      <li
+        class="achievement gradient-bg with-button"
+        style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+          "
+      >
+        <div style="display: block; flex-direction: column; gap: 0;">
+          <strong>Full Stack Open</strong><br />
+          <i>Helsingin yliopisto, verkko-opintoja, suoritettu 2023</i><br />
+          <span
+            >React, NodeJS, Express, Redux, GraphQL, React Native, Typescript,
+            MongoDB</span
+          >
+        </div>
+        <a
+          href="https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/fi/78cebc71207256fcbaade6b8ce79c5fb"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="small-link certificate-link">Avaa sertifikaatti</a
+        >
+      </li>
+      <li class="achievement gradient-bg">
+        <strong>Viestimies</strong><br />
+        <i>Kainuun prikaati, reserviin kesällä 2019</i>
+      </li>
+      <li class="achievement gradient-bg">
+        <strong>Ylioppilas</strong><br />
+        <i>Kärsämäen lukio, valmistunut keväällä 2018</i>
+      </li>
+      <!--         <li class="achievement gradient-bg">
+          <strong>Tietokoneen A-ajokortti (tieke.fi)</strong><br />
+          <i>Frosteruksen koulu</i>
+        </li> -->
+    </ul>
   </div>
 </div>
 
 <style>
+  .achievements {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+    max-width: 50rem;
+  }
+
+  .achievement {
+    padding: 1rem 2rem;
+    flex-direction: row;
+    line-height: 1.5em;
+    overflow: hidden;
+
+    &.with-button {
+      justify-content: space-between;
+    }
+    &.gradient-bg::before {
+      display: block;
+    }
+  }
+
+  .achievement:nth-child(even) {
+    background-color: var(--colors-elevation-2);
+    border-radius: var(--border-radiuses-md);
+    &.gradient-bg::before {
+      display: block;
+    }
+  }
+
+  .gradient-bg {
+    position: relative;
+    z-index: 0;
+    * {
+      z-index: 1;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      border-radius: var(--border-radiuses-sm);
+      left: 0;
+      top: 0;
+      background: var(--colors-elevation-3);
+      border: 1px solid
+        color-mix(
+          in oklab,
+          var(--colors-elevation-0),
+          var(--border-mix-shading) var(--border-strength-1)
+        );
+      z-index: -1;
+    }
+  }
+
+  .small-link {
+    text-align: center;
+    color: var(--colors-secondary);
+    font-size: var(--font-sizes-xs);
+  }
+
+  .thesis-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
   .info-container {
     width: 100%;
     margin-bottom: 5rem;
@@ -161,10 +269,12 @@
     margin-top: 0rem;
     display: grid;
     grid-template-columns: 1fr;
+    /*     grid-template-rows: 1rem 1fr; */
     gap: 1rem;
 
     &::before {
-      --offset: clamp(4px, 5vw - 1rem, 1rem);
+      /*  --offset: clamp(4px, 5vw - 1rem, 1rem); */
+      --offset: 0.5rem;
       content: "";
       position: absolute;
       height: 100%;
@@ -177,7 +287,7 @@
       );
       border-radius: var(--border-radiuses-lg);
       top: var(--offset);
-      left: var(--offset);
+      /*       left: var(--offset); */
       z-index: -1;
     }
 
@@ -209,6 +319,15 @@
     }
   }
 
+  .profile-image-container {
+    order: 1;
+    width: 10rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .content {
     order: 2;
     > h2 {
@@ -233,54 +352,6 @@
     right: 2rem;
     transform: translateY(-55%) rotate(-4deg);
   } */
-
-  .profile-image-container {
-    background-color: var(--colors-secondary);
-    border-radius: 100%;
-    position: relative;
-    width: 50%;
-    max-width: 15rem;
-    aspect-ratio: 1 / 1;
-    order: 1;
-    justify-self: center;
-  }
-
-  .both-images {
-    aspect-ratio: 1 / 1;
-    border-radius: 100%;
-    position: relative;
-    width: 100%;
-    order: 1;
-    justify-self: center;
-  }
-
-  .image-top {
-    position: absolute;
-    border-radius: 100%;
-    width: 150%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    clip-path: inset(0 0 50% 0);
-  }
-
-  .image-bottom {
-    border-radius: 100%;
-    overflow: hidden;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-  }
-
-  .profile-image {
-    position: absolute;
-    border-radius: 100%;
-    width: 150%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 
   #work-history__container {
     position: relative;
@@ -418,8 +489,17 @@
 
     .profile-image-container {
       order: 2;
+      height: 100%;
       width: 100%;
-      align-self: center;
+    }
+  }
+
+  @container (width > 74rem) {
+    .info-box {
+      &::before {
+        --offset: 0.8rem;
+        left: var(--offset);
+      }
     }
   }
 </style>

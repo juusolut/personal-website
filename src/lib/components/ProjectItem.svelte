@@ -48,7 +48,7 @@
         style="view-transition-name: project-title-{id}; view-transition-class: project-morph project-title"
       >
         {title}
-      </h4>
+      </h4><DatePill {date} identifier={id} />
     </div>
     <p
       style="view-transition-name: project-desc-{id}; view-transition-class: project-morph project-desc"
@@ -61,7 +61,7 @@
       <Tags {tags} />
     </div>
   </div>
-  <div class="date"><DatePill {date} identifier={id} /></div>
+<!--   <div class="date"><DatePill {date} identifier={id} /></div> -->
 </a>
 
 <style>

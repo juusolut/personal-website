@@ -17,7 +17,7 @@
     /* 20px   - H3 / Lead text */
     --font-sizes-lg: 1.563rem;
     /* 25px   - H2 */
-    --font-sizes-xl: 1.953rem;
+    --font-sizes-xl: 1.653rem;
     /* 31px   - H1 */
     --font-sizes-xxl: 2.341rem;
     /* 39px   - Hero Header */
@@ -38,6 +38,7 @@
     /* BRANDING COLORS */
     --colors-secondary: oklch(0.73 0.12 68.69);
     --colors-primary: oklch(57.8% 0.16305 266.504);
+    --colors-error: oklch(61.53% 0.17487 15.94);
 
     /* SHADING */
     --mix-shading: oklch(1 0 0);
@@ -98,7 +99,7 @@ html[data-theme='dark'] {
     --border-mix-shading: oklch(1 0 0);
 
     --border-strength-0: 0%;
-    --border-strength-1: 7%;
+    --border-strength-1: 15%;
     --border-strength-2: 20%;
     --border-strength-3: 30%;
     --border-strength-4: 50%;

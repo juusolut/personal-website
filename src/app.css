@@ -53,7 +53,7 @@ body {
 
 }
 
-/*
+
 body::before {
   content: "";
   position: fixed;
@@ -68,7 +68,7 @@ body::before {
   --color-2: color-mix(in oklch, var(--colors-elevation-0), var(--colors-secondary) 12%);
 
   background: linear-gradient(to top right, var(--color-1) 0%, var(--color-2) 100%);
-} */
+}
 
 ::selection {
   background-color: var(--colors-secondary, #53c1de);
@@ -182,6 +182,12 @@ button:hover {
   padding-right: 0.5rem !important;
 } */
 
+.ibm-plex-mono {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 800;
+  font-style: normal;
+}
+
 .view-title {
   color: var(--colors-text);
   position: relative;
@@ -198,6 +204,7 @@ button:hover {
   width: fit-content;
   text-wrap: pretty;
   max-width: 100%;
+  font-family: "IBM Plex Mono", monospace;
 
   &.no-bg {
     background-color: none;
