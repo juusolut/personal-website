@@ -151,7 +151,7 @@
       case "F":
         e.preventDefault();
         isFullscreen = !isFullscreen; // Toggle off via 'F' key
-        break;
+        break;resetZoom();
     }
   }
 
@@ -164,6 +164,7 @@
     } else if (dialogRef?.open) {
       dialogRef.close();
     }
+    resetZoom();
   });
 
   /* ZOOMING IMAGE */
@@ -289,7 +290,7 @@
           currentFocalY - (initialFocalY - initialTranslateY) * scaleFactor;
 
         // Clamp scale between 1x and 4x
-        scale = Math.min(Math.max(nextScale, 1.0), 4);
+        scale = Math.min(Math.max(nextScale, 1.0), 8);
         translateX = Math.min(Math.max(newTx, -maxTranslateX), maxTranslateX);
         translateY = Math.min(Math.max(newTy, -maxTranslateY), maxTranslateY);
       }
@@ -314,6 +315,10 @@
   }
 
   function handleImagePointerUp(e: PointerEvent) {
+    const target = e.currentTarget as HTMLElement;
+    if (target && target.hasPointerCapture && target.hasPointerCapture(e.pointerId)) {
+      target.releasePointerCapture(e.pointerId);
+    }
     activePointers.delete(e.pointerId);
 
     if (activePointers.size < 2) {
@@ -344,16 +349,16 @@
   <div class="gallery-inner" class:disableMoving={scale !== 1}>
     <div class="hud">
       <div class="hud-inner">
-        <div class="image-counter button">
+        <div class="image-counter button swiping-hud">
           <Icon name="Image" size="1rem" /><span
             >{currentImageIndex + 1} / {data.length}</span
           >
         </div>
-        <button class="fullscreen-button button" onclick={toggleFullscreen}
+        <button class="fullscreen-button button swiping-hud" onclick={toggleFullscreen}
           ><Icon name={isFullscreen ? "FullscreenExit" : "Fullscreen"} />
         </button>
         <button
-          class="change-image-button button"
+          class="change-image-button button swiping-hud"
           aria-label="Siirry edelliseen kuvaan"
           disabled={currentImageIndex <= 0}
           onclick={(e) => {
@@ -365,7 +370,7 @@
           <Icon name="ArrowNarrowLeft" />
         </button>
         <button
-          class="change-image-button button right"
+          class="change-image-button button right swiping-hud"
           aria-label="Siirry seuraavaan kuvaan"
           disabled={currentImageIndex >= data.length - 1}
           onclick={(e) => {
@@ -379,7 +384,10 @@
         >
           <Icon name="ArrowNarrowLeft" />
         </button>
-        <div class="disclaimer button"><span><strong>Huom!</strong><br> Galleria-komponentti WIP</span></div>
+        <div class="disclaimer button swiping-hud">
+          <span><strong>Huom!</strong><br /> Galleria-komponentti WIP</span>
+        </div>
+        <div class="zoom-indicator button">{scale.toFixed(1)}x</div>
       </div>
     </div>
     <div
@@ -543,13 +551,19 @@
     will-change: transform;
   }
 
-  .gallery-inner.disableMoving .hud {
+  .swiping-hud {
+        transition: opacity 200ms linear;
+
+  }
+
+  .gallery-inner.disableMoving .swiping-hud {
     opacity: 0;
     pointer-events: none;
+  }
 
-    .button {
-      pointer-events: none;
-    }
+    .gallery-inner.disableMoving .zoom-indicator {
+    opacity: 1.0;
+    pointer-events: all;
   }
 
   .image-container {
@@ -677,7 +691,6 @@
     left: 0;
     pointer-events: none;
     padding: var(--padding);
-    transition: opacity 200ms linear;
   }
 
   .hud-inner {
@@ -717,12 +730,20 @@
     height: auto;
     border-color: var(--colors-error);
     border-radius: var(--border-radiuses-sm);
-    padding: 0.0rem 0.5rem;
+    padding: 0rem 0.5rem;
     top: 2rem;
     font-size: var(--font-sizes-xs);
     border-width: 2px;
     line-height: 1rem;
   }
+
+  .zoom-indicator {
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms linear;
+  } 
 
   @media (hover: none) and (pointer: coarse) {
     .button {
@@ -741,7 +762,7 @@
       aspect-ratio: 16 / 9;
     }
 
-/*     .image {
+    /*     .image {
       width: auto;
       height: 100%;
     } */
