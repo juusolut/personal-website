@@ -8,7 +8,7 @@
 
 <div class="info-container h-padding">
   <div class="info">
-    <div style="width: 100%;"><h2 class="view-title">Yhteystiedot</h2></div>
+    <div style="width: 100%; margin-left: 1rem;"><h2 class="view-title no-bg">Yhteystiedot</h2></div>
     <ProfileCircle imageSrc={"/images/me (Small).png"} outlined />
     <div class="title-buttons-container">
       <span class="find-me-text ibm-plex-mono">Löydät minut täältä:</span>
@@ -24,12 +24,13 @@
 <style>
   .info-container {
     width: 100%;
-    height: calc(100svh - var(--navbar-height));
+    /*     height: calc(100svh - var(--navbar-height)); */
     display: flex;
     align-items: center;
-/*
+    /*
     transform: translateY(-3rem); */
     /*     border: 1px solid red; */
+    margin-top: 3rem;
   }
 
   .info {
@@ -42,19 +43,10 @@
     /*     background-color: red; */
     height: min-content;
     width: 100%;
-  }
-
-  .info-box {
-    width: 100%;
-    height: 30rem;
-    position: relative;
-    z-index: 0;
-    padding: 2rem;
-    margin-top: 0rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    background-color: var(--colors-elevation-2);
+    padding: 2rem 1rem;
+    border-radius: var(--border-radiuses-md);
+    box-shadow: var(--shadows-xs);
   }
 
   .contact-buttons {
@@ -71,9 +63,5 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background-color: var(--colors-elevation-2);
-    padding: 1rem 0.5rem;
-    border-radius: var(--border-radiuses-md);
-    box-shadow: var(--shadows-xs);
   }
 </style>
