@@ -195,7 +195,7 @@
     padding: 1rem 2rem;
     flex-direction: row;
     line-height: 1.5em;
-    overflow: hidden;
+/*     overflow: hidden; */
 
     &.with-button {
       justify-content: space-between;
@@ -205,13 +205,13 @@
     }
   }
 
-  .achievement:nth-child(even) {
+/*   .achievement:nth-child(even) {
     background-color: var(--colors-elevation-2);
     border-radius: var(--border-radiuses-md);
     &.gradient-bg::before {
       display: block;
     }
-  }
+  } */
 
   .gradient-bg {
     position: relative;
@@ -224,7 +224,7 @@
       position: absolute;
       height: 100%;
       width: 100%;
-      border-radius: var(--border-radiuses-sm);
+      border-radius: var(--border-radiuses-lg);
       left: 0;
       top: 0;
       background: var(--colors-elevation-3);
@@ -431,7 +431,7 @@
   .tags {
     background-color: var(--colors-elevation-3);
     padding: 1rem;
-    border-radius: var(--border-radiuses-sm);
+    border-radius: var(--border-radiuses-lg);
     border: 1px solid
       color-mix(
         in oklch,
@@ -447,7 +447,7 @@
     background-color: var(--colors-elevation-3);
     padding: 1rem;
     padding-left: 2rem;
-    border-radius: var(--border-radiuses-sm);
+    border-radius: var(--border-radiuses-lg);
     border: 1px solid
       color-mix(
         in oklch,

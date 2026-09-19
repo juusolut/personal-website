@@ -44,7 +44,7 @@
     height: min-content;
     width: 100%;
     background-color: var(--colors-elevation-2);
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
     border-radius: var(--border-radiuses-md);
     box-shadow: var(--shadows-xs);
   }

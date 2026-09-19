@@ -72,7 +72,7 @@
     width: fit-content;
     background-color: var(--colors-elevation-2);
     box-shadow: var(--shadows-xs);
-    border-radius: var(--border-radiuses-sm);
+    border-radius: var(--border-radiuses-lg);
     border: 1px solid
       color-mix(
         in oklch,
@@ -136,8 +136,8 @@
     background-color: var(--colors-secondary);
     padding: 0.5rem;
     border: 2px solid var(--colors-secondary);
-    border-top-left-radius: var(--border-radiuses-sm);
-    border-top-right-radius: var(--border-radiuses-sm);
+    border-top-left-radius: var(--border-radiuses-lg);
+    border-top-right-radius: var(--border-radiuses-lg);
     /*     text-transform: uppercase; */
     font-weight: var(--font-weights-bold);
     font-size: var(--font-sizes-sm);

@@ -2,7 +2,7 @@ import { browser } from '$app/environment';
 
 export const settings = $state({
   // Default to true during SSR and initial hydration to match server output
-  transitionsEnabled: true
+  transitionsEnabled: false
 });
 
 // Sync from localStorage ONCE the browser has loaded
