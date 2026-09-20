@@ -109,7 +109,7 @@
       color-mix(
         in oklab,
         var(--colors-elevation-2),
-        var(--border-mix-shading) var(--border-strength-5)
+        var(--border-mix-shading) var(--border-strength-1)
       );
   }
 

@@ -6,21 +6,13 @@
     --border-radiuses-xl: 2rem;
     --border-radiuses-full: 9999px;
 
-    /* Base: 16px */
     --font-sizes-xxs: 0.54rem;
-    /* 10.2px - Use for tiny labels only */
     --font-sizes-xs: 0.8rem;
-    /* 12.8px - Small captions */
     --font-sizes-sm: 1rem;
-    /* 16px   - Standard Body */
     --font-sizes-md: 1.25rem;
-    /* 20px   - H3 / Lead text */
-    --font-sizes-lg: 1.563rem;
-    /* 25px   - H2 */
+    --font-sizes-lg: 1.463rem;
     --font-sizes-xl: 1.653rem;
-    /* 31px   - H1 */
     --font-sizes-xxl: 2.341rem;
-    /* 39px   - Hero Header */
 
     --font-weights-normal: 400;
     --font-weights-semibold: 650;
