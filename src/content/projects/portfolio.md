@@ -11,4 +11,8 @@ date: "2026"
   // your code here
 </script>
 
-To-do
+## Oma portfolio
+
+Halusin portfolion toteutukseen jonkin kevyen frameworkin, joka mahdollistaisi sivuston staattisen buildaamisen ja helpon hostaamisen. Olin lukenut aiemmin Sveltestä, jonka oli kuvailtu olevan kevyt, suorituskykyinen ja kehittäjäystävällinen. Testailun perusteella Svelte vaikutti oikein loistavalta 
+
+Portfolioni eli tämä sivu on toteutettu Sveltellä. Valitsin tämän frameworkin, koska se on kevyt ja mahdollistaa sivuston staattisen buildaamisen, jolloin sen voi hostia helposti.

@@ -70,7 +70,7 @@ date: "2021"
 
 ## Projektin aloitus
 
-Yliopiston harjoitustyö antoi vapaat kädet ohjelmiston toteutukseen, joten päätimme opiskelijakaverini kanssa rakentaa mobiilisovelluksen frisbeegolfin ympärille. Halusimme tehdä sellaisen applikaation, johon voisi merkata tarkat tiedot frisbeegolf-kierrokselta, ja joka sitten koostaisi kaikkien kierrosten tiedot ja antaisi kehitysvinkkejä käyttäjälle. Käyttäjä voisi siis tulla paremmaksi frisbeegolfaajaksi applikaation kautta.
+Yliopiston harjoitustyö antoi vapaat kädet ohjelmiston toteutukseen, joten päätimme opiskelijakaverini kanssa rakentaa mobiilisovelluksen frisbeegolfin ympärille. Halusimme tehdä sellaisen applikaation, johon voisi merkata tarkat tiedot frisbeegolf-kierrokselta, ja joka sitten koostaisi kaikkien kierrosten tiedot antaen kehitysvinkkejä käyttäjälle. Käyttäjä voisi siis tulla paremmaksi frisbeegolfaajaksi applikaation avulla.
 
 ## Ohjelmistokehitys
 
@@ -78,8 +78,8 @@ Aloitimme profiloimalla mahdollisia käyttäjiä. Yritimme asettua heidän asema
 
 ## Lopputulos
 
-Lopputuloksesta tuli aivan toimiva ja selkä, mutta ei tietenkään täydellinen. Huomasimme, että sovellus ei välttämättä toimi niin hyvin jos on pelailemassa ryhmässä, koska yksityiskohtainen merkkailu on melko työlästä. Jos pelaajaa on heittelemässä itsekseen, silloin hän jaksaa silloin merkitä sovellukseen tarkat heittokohtaiset tiedot.<br><br>
-Kyseessä oli molempien ensikosketus mobiilisovelluskehitykseen, ja kurssin aikarajojen puitteissa olimme tyytyväisiä tuotokseen. Erityisesti puttausnäkymä oli toimiva ja jopa sellainen ominaisuus, jota vastaavaa on myöhemmin nähty suosituissa frisbeegolf-sovelluksissa. Projektissa parasta oli päästä testaamaan omaa oppimiskykyä: kuinka nopeasti Flutter ja sen uusi kieli (Dart) ja sen syntaksi taipuivat toimivaksi sovellukseksi.  <br><br>
+Lopputuloksesta tuli aivan toimiva ja selkä, mutta ei tietenkään täydellinen. Emme kerenneet totetuttaa sovellukseen kaavailemaamme palautejärjestelmää, mutta se olisi seuraava ominaisuus, joka siihen toteutettaisiin. Huomasimme myös, että sovellus ei välttämättä toimi niin hyvin jos on pelailemassa ryhmässä, koska yksityiskohtainen merkkailu on melko työlästä. Jos pelaajaa on heittelemässä itsekseen, silloin hän jaksaa merkitä sovellukseen tarkat heittokohtaiset tiedot.  <br><br>
+Kyseessä oli molempien ensikosketus mobiilisovelluskehitykseen, ja kurssin aikarajojen puitteissa olimme kuitenkin tyytyväisiä tuotokseen. Erityisesti puttausnäkymä oli toimiva ja jopa sellainen ominaisuus, jota vastaavaa on nähty myöhemmin suosituissa frisbeegolf-sovelluksissa. Parasta projektissa oli se, kun pääsi testaamaan omaa oppimiskykyä: kuinka nopeasti Flutter ja sen uusi kieli (Dart) ja syntaksi taipuivat toimivaksi sovellukseksi. Ja taipuivathan ne!  <br><br>
 Tässä vielä kuvia lopputuotteesta:
 
 <Gallery data={galleryData}/>
