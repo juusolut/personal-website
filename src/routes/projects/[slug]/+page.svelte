@@ -121,6 +121,16 @@
     background-color: var(--colors-elevation-2);
     /*     padding-top: 1rem; */
 
+    :global(h2)::before {
+      content: "# ";
+      color: var(--colors-secondary);
+    }
+
+    :global(h3)::before {
+      content: "## ";
+      color: var(--colors-secondary);
+    }
+
     .project-title {
       width: fit-content;
       height: fit-content;

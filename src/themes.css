@@ -83,7 +83,7 @@ html[data-theme='dark'] {
     --colors-black: oklch(1 0 0);
     --colors-white: oklch(0 0 0);
 
-    --font-weights-normal: 400;
+    --font-weights-normal: 350;
     --font-weights-semi: 500;
     --font-weights-bold: 700;
 

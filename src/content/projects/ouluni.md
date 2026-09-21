@@ -12,7 +12,7 @@ date: "2021"
   import VideoPlayer from '$lib/components/VideoPlayer.svelte';
 </script>
 
-# Projekti
+## Projektin aloitus
 Kurssimme tavoitteena oli toteuttaa ryhmätyönä pieni sovellus, joka auttaisi uusia opiskelijoita löytämään relevantteja paikkoja Oulusta. Projektin keskeisenä vaatimuksena oli Google Maps -rajapinnan hyödyntäminen. Kurssiaikataulun ja suoraviivaisten vaatimuksien vuoksi päädyimme toteuttamaan sivuston ilman raskaita frameworkeja, käyttäen modernia HTML-, CSS- ja JavaScript-koodia.
 
 ## Oma rooli
