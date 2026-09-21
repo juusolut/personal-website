@@ -2,6 +2,8 @@
 
 export const iconNames = [
   "ArrowNarrowLeft",
+  "BrandGithub",
+  "BrandLinkedin (1)",
   "CaretDown",
   "Check",
   "ChevronDown",
@@ -10,6 +12,7 @@ export const iconNames = [
   "Docker",
   "Dotnet",
   "Expo",
+  "FileCv",
   "Flutter",
   "FullscreenExit",
   "Fullscreen",

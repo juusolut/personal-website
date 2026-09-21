@@ -1,5 +1,6 @@
 <script lang="ts">
   import { asset } from "$app/paths";
+  import Icon from "./Icon.svelte";
 </script>
 
 <div class="buttons">
@@ -8,27 +9,29 @@
     target="_blank"
     rel="noopener noreferrer"
     class="button button__resume to-light-cv"
-    ><span class="offsite-link">CV</span></a
+    ><Icon name="FileCv" /><span class="offsite-link">CV</span></a
   >
   <a
     href={asset("/resume-dark.pdf")}
     target="_blank"
     rel="noopener noreferrer"
     class="button button__resume to-dark-cv"
-    ><span class="offsite-link">CV</span></a
+    ><Icon name="FileCv" /><span class="offsite-link">CV</span></a
   >
   <a
     href="https://www.linkedin.com/in/juusolut/"
     target="_blank"
     rel="noopener noreferrer"
     class="button button__linkedin"
-    ><span class="offsite-link">LinkedIn</span></a
+    ><Icon name="BrandLinkedin (1)" /><span class="offsite-link">LinkedIn</span
+    ></a
   >
   <a
     href="https://github.com/juusolut"
     target="_blank"
     rel="noopener noreferrer"
-    class="button button__github"><span class="offsite-link">GitHub</span></a
+    class="button button__github"
+    ><Icon name="BrandGithub" /><span class="offsite-link">GitHub</span></a
   >
 </div>
 
@@ -48,6 +51,10 @@
     border: 2px solid
       color-mix(in oklch, var(--bg-color), white var(--border-strength-2));
     border-radius: var(--border-radiuses-md);
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
   }
 
   .button__resume {
@@ -73,7 +80,7 @@
     @container (width > 30rem) {
       .button {
         padding: 0.5rem 2rem;
-/*         flex: unset; */
+        /*         flex: unset; */
       }
     }
   }
