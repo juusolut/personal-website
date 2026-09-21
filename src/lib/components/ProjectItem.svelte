@@ -44,11 +44,12 @@
   </div>
   <div class="grid-item__content">
     <div class="title-row">
-      <h4
+      <span class="title"
         style="view-transition-name: project-title-{id}; view-transition-class: project-morph project-title"
       >
         {title}
-      </h4><DatePill {date} identifier={id} />
+    </span>
+      <DatePill {date} identifier={id} />
     </div>
     <p
       style="view-transition-name: project-desc-{id}; view-transition-class: project-morph project-desc"
@@ -61,7 +62,7 @@
       <Tags {tags} />
     </div>
   </div>
-<!--   <div class="date"><DatePill {date} identifier={id} /></div> -->
+  <!--   <div class="date"><DatePill {date} identifier={id} /></div> -->
 </a>
 
 <style>
@@ -70,8 +71,8 @@
     border-radius: var(--border-radiuses-lg);
     overflow: hidden;
     transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
+      transform var(--anim-speed-medium) var(--anim-easing-circ),
+      box-shadow var(--anim-speed-medium) var(--anim-easing-circ);
     display: flex;
     flex-direction: column;
     border: 1px solid
@@ -101,8 +102,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
-    /*     object-position: 0% 20%; */
     object-position: top;
   }
 
@@ -133,6 +132,10 @@
     align-items: center;
     /*     justify-content: space-between; */
     gap: 0.5rem;
+    > .title {
+      font-size: var(--font-sizes-md);
+      font-weight: var(--font-weights-bolder);
+    }
   }
 
   .date {

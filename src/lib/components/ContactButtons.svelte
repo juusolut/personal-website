@@ -44,15 +44,14 @@
     text-underline-offset: 3px;
     text-decoration-thickness: 2px;
     text-decoration: none;
-    backdrop-filter: blur(5px);
-    background: color-mix(in oklch, var(--bg-color) 70%, transparent);
+    background: var(--bg-color);
     border: 2px solid
-      color-mix(in oklch, var(--bg-color), white var(--border-strength-1));
+      color-mix(in oklch, var(--bg-color), white var(--border-strength-2));
     border-radius: var(--border-radiuses-md);
   }
 
   .button__resume {
-    --bg-color: color-mix(in oklab, var(--colors-secondary), white 20%);
+    --bg-color: oklch(from oklch(0.73 0.12 68.69) 0.68 c 70);
   }
 
   .button__linkedin {

@@ -117,7 +117,7 @@
     view-transition-name: navbar;
     view-transition-class: project-morph2 navbar;
     border-bottom: 1px solid transparent;
-    transition: border-bottom-color 200ms linear;
+    transition: border-bottom-color var(--anim-speed-slow) linear;
     &.show-border {
       border-bottom-color: color-mix(
         in oklab,
@@ -192,7 +192,7 @@
     color: inherit;
     text-decoration: none;
     font-weight: var(--font-weights-bold);
-    transition: color 0.2s ease;
+    transition: color var(--anim-speed-fast) var(--anim-easing-circ);
     display: inline-block;
     padding: 1rem 0rem;
     min-width: 10rem;
@@ -250,7 +250,7 @@
     width: 100%;
     height: 2px;
     background-color: var(--colors-text);
-    transition: all 0.2s ease-in-out;
+    transition: all var(--anim-speed-medium) var(--anim-easing-circ);
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

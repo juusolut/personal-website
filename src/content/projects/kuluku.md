@@ -10,24 +10,35 @@ date: "2026"
 
 ## Mistä projekti sai alkunsa?
 
-<p>Olimme jo pitkään miettineet ystäväni kanssa, että voisimme yhdistää voimamme ja alkaa työstämään jotain laajempaa projektia. Itselle softaprojektit olivat tähän mennessä olleet lähinnä pienempiä kokonaisuuksia, joten perehtyminen johonkin laajempaan kokonaisuuteen jonkun toisen kanssa tuntui mukavalta ajatukselta. Halusin tämän projektin kautta oppia uusia teknologioita ja pistää aiemmin opitut taitoni koetukselle. Ystävälläni oli tässä vaiheessa jo useamman vuoden kokemus alalta, mistä olisi merkittävä hyöty. </p>
+Olimme jo pitkään miettineet ystäväni kanssa, että voisimme yhdistää voimamme ja alkaa työstämään pykäkää laajempaa projektia. Aiemmat projektini olivat olleet kokoluokaltaan pienempiä, joten mahdollisuus syventyä kookkaampaan kokonaisuuteen yhdessä toisen kehittäjän kanssa tuntui innostavalta. Yhteistyö tarjosi loistavan tilaisuuden haastaa omaa osaamista ja oppia uusia teknologioita. Ystävälläni oli tässä vaiheessa jo useamman vuoden kokemus alalta, mistä olisi merkittävä hyöty projektin ja oman oppimisen kannalta.
 
-### Mikä nettisivu olisi?
+### Ajoneuvojen markkinapaikka (Kuluku)
 
-Mietimme nettisivun ideaa. Staattisen sivuston sijasta halusimme jotain dynaamista; käyttäjät vuorovaikuttaisivat toistensa kanssa. Huomasimme että Suomessa ei ole montaa palvelua, jotka mahdollistaisivat autojen myynnin yksityishenkilöltä toiselle. Lähdimme rakentamaan nettisivua siis siltä pohjalta, että siellä voisi myydä ja ostaa käytettyjä autoja. Myöhemmin laajensimme ideaa siihen että muidenkin kulkupelien – kuten pyörien ja työkoneiden – ilmoittaminen olisi mahdollista sivulla. Tämä antaisi mukavasti haastetta erityisesti tietokantasuunnitteluun. Haasteena oli myös erilaisten käyttäjätileihin liittyvien perusominaisuuksien luonteva ja tietoturvallinen totetus. Jotta sivu olisi toimiva, siellä täytyi olla mahdollista:
+Pohtiessamme nettisivun ideaa huomasimme että Suomessa ei ole montaa palvelua, jotka mahdollistaisivat autojen myynnin yksityishenkilöltä toiselle. Lähdimme rakentamaan nettisivua siis siltä pohjalta, että siellä voisi myydä ja ostaa käytettyjä autoja. Myöhemmin laajensimme ideaa niin että muidenkin kulkupelien – kuten pyörien ja työkoneiden – myyminen olisi mahdollista sivulla. Tämä toisi mukavasti haastetta tietokannan ja frontendin suunnitteluun. Haastetta antaisi myös käyttäjätilien ja niihin liittyvien perusominaisuuksien luonteva ja tietoturvallinen toteutus.
+
+## Toiminnallisuus
+
+Jotta sivu olisi toimiva, täytyi toteuttaa perusominaisuudet:
 
 <ul>
-<li>luoda uusi tili</li>
-<li>vahvistaa sähköpostiosoite</li>
-<li>kirjautua sisään</li>
-<li>vaihtaa unohtunut salasana</li>
-<li>muokata omia käyttäjätietoja (perustiedot, salasana, sähköpostiosoite jne.)</li>
-<li>rajoittaa tiettyjä ominaisuuksia vain kirjautuneille käyttäjille</li>
+    <li>Uuden tilin luonti ja sähköpostiosoiteen vahvistus</li>
+    <li>Sisäänkirjautuminen</li>
+    <li>Unohtuneen salasanan vaihto</li>
+    <li>Omien tietojen muokkaaminen (perustiedot, salasana, sähköpostiosoite jne.)</li>
 </ul>
 
+Luonnollisesti toiminnallisuuksia täytyi myös rajoittaa vain kirjautuneille käyttäjille. Näitä omainaisuuksia ovat:
 
-## Kulukun techstack
+<ul>
+    <li>Ilmoitusten luonti ja hallinnointi</li>
+    <li>Suosikit</li>
+    <li>Viestittely myyjien ja potentiaalisten ostajien kanssa</li>
+</ul>
 
-Meillä molemmilla oli paljon kokemusta <i>Reactista</i>, joten se aika ilmiselvä valinta frontendiksi. Backendiksi valikoitu <i>.Net</i> ja tietokannaksi <i>Microsoft SQL Server</i>. Projektikumppanillani oli näistä hyvää kokemusta työelämässä ja ovathan nuo  tietenkin muutenkin vankkoja ja luotettavia vaihtoehtoja. Näillä raameille aloitimme Kuluku-projektin.
+Kehittäminen mobiililähtöisesti, jotta ilmoitusten luominen olisi helppoa ja suoraviivaista kännykällä. Eli suunnittelu niin että ensin elementit mobiilikoossa ja ikkunan laajentuessa työpöytäkoossa.
+
+## Teknologiavalinnat
+
+Valitsimme frontendiksi molemmille entuudestaan tutun Reactin. Backend-ratkaisuksi ja tietokannaksi valikoituivat .NET sekä Microsoft SQL Server. Projektikumppanillani oli näistä ennestään kokemusta, ja ne tarjosivat projektille luotettavan sekä tuotantovalmiin pohjan. Sähköpostiviestinnän testaamiseen valitsimme Mailhog-ohjelman Näillä teknologiavalinnoilla käynnistimme Kuluku-projektin.
 
 ## Otsikko

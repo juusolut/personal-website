@@ -4,6 +4,7 @@ export const iconNames = [
   "ArrowNarrowLeft",
   "CaretDown",
   "Check",
+  "ChevronDown",
   "Cog",
   "Default",
   "Docker",

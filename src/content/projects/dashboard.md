@@ -8,10 +8,11 @@ isShowcased: true
 date: "2022"
 ---
 
-<script>
+<script lang="ts">
   import { asset } from '$app/paths';
   import VideoPlayer from '$lib/components/VideoPlayer.svelte';
   import Gallery from '$lib/components/Gallery.svelte';
+  import Summary from "$lib/components/Summary.svelte";
 
   const thumbSrc = "/images/dashboard/dashboard-thumb.webp"
   const path = "/images/dashboard/gallery"
@@ -73,6 +74,33 @@ date: "2022"
   }
 ];
 
+  const summaryData = [
+    {
+      title: "Tavoite",
+      content: "Toteuttaa oululaiselle yritykselle mukautettava kojelauta radio-ohjelmiston datan keskittämiseen."
+    },
+    {
+      title: "Suunnittelu",
+      content: "Asiakkaalla hyväksytettiin toteutettamani interaktiivinen Figma-prototyyppi."
+    },
+    {
+      title: "Toteutus",
+      content: "Layout rakennettiin <i>react-grid-layout</i>-kirjastolla ja kehitystä nopeutettiin backendia simuloivalla dummy-serverillä."
+    },
+    {
+      title: "Widgetit",
+      content: "Widgettien responsiivisuus toteutettiin ResizeObserver-rajapinnalla ja dynaamisesti asetettavilla breakpoint CSS-luokilla."
+    },
+    {
+      title: "Ominaisuudet",
+      content: "Layoutin voi tallentaa, ladata ja asettaa kokoruututilaan. Widgetin kokoa/sijaintia voi muuttaa ja sen voi piilottaa/lukita."
+    },
+    {
+      title: "Tulos",
+      content: "Onnistunut integrointi asiakkaan koodikantaan ja vaatimukset täyttänyt lopputulos."
+    }
+  ]
+
   const galleryData = rawImages.map((img) => ({
   imageSrc: `${path}/${img.imageSrc}`,
   thumbSrc: `${path}/${img.thumbSrc}`,
@@ -81,9 +109,11 @@ date: "2022"
 
 </script>
 
+<Summary data={summaryData} />
+
 ## Johdanto
 
-Osana laajempaa opintokokonaisuutta toteutimme tiiminä ohjelmiston oululaiselle softafirmalle. Yritys kehittää web-pohjaista radio-ohjelmistoa, ja meidän tavoitteenamme oli rakentaa heidän ohjelmistoonsa keskitetty näkymä (dashboard). Uusi kojelauta kokoasi yhteen paikkaan aiemmin eri näkymiin hajautetun datan, kuten radiolähetysten, soittolistojen ja sisäisten palveluiden tilan. Dashboardin tuli olla konfiguroitavissa käyttäjän – järjestelmänvalvojan, tuottajan tai radiojuontajan – tarpeiden mukaan.
+Osana laajempaa opintokokonaisuutta pääsimme tekemään yhteistyötä oululaisen ohjelmistoyrityksen kanssa. Yritys kehittää web-pohjaista radio-ohjelmistoa, ja tavoitteenamme oli rakentaa heidän ohjelmistoonsa keskitetty näkymä (dashboard). Uusi kojelauta kokoasi yhteen paikkaan aiemmin eri näkymiin hajautetun datan, kuten radiolähetysten, soittolistojen ja sisäisten palveluiden tilan. Dashboardin tuli olla konfiguroitavissa käyttäjän – järjestelmänvalvojan, tuottajan tai radiojuontajan – tarpeiden mukaan.
 
 ## Suunnittelu
 
@@ -95,7 +125,7 @@ Käynnistimme projektin huolellisella vaatimusmäärittelyllä ja kilpailija-ana
 
 ## Ohjelmistokehitys
 
-Emme halunneet keksiä pyörää uudelleen, jote valitsimme projektin pohjaksi avoimen lähdekoodin <a href="https://github.com/react-grid-layout/react-grid-layout">react-grid-layout</a> -kirjaston (MIT), joka oli paljon käytetty ja testattu. Tuo kirjasto siis mahdollisti elementtien ruudukkosijoittelun ja säästi siten rutkasti kehitysaikaa. Kehitystyön sujuvoittamiseksi loimme myös dummy-server-skriptin, joka simuloi radio-ohjelmiston backendia. Tämä helpotti merkittävästi ruudukossa sijaitsevien dynaamisten widgetien suunnittelua, toteutusta ja testausta ennen integrointimista oikeaan järjestelmään.
+Emme halunneet keksiä pyörää uudelleen, joten valitsimme projektin pohjaksi avoimen lähdekoodin <a href="https://github.com/react-grid-layout/react-grid-layout">react-grid-layout</a> -kirjaston (MIT), joka on suosittu ja testattu. Tuo kirjasto siis mahdollisti elementtien ruudukkosijoittelun ja säästi siten rutkasti kehitysaikaa. Kehitystyön sujuvoittamiseksi loimme myös dummy-server-skriptin, joka simuloi radio-ohjelmiston backendia. Tämä helpotti merkittävästi ruudukossa sijaitsevien dynaamisten widgetien suunnittelua, toteutusta ja testausta ennen integrointimista oikeaan järjestelmään.
 
 <VideoPlayer videoSrc="/videos/dashboard/dashboard-dummy-server.webm" posterSrc={thumbSrc} description="Dummy-serverin hyödyntäminen kehityksessä."  />
 

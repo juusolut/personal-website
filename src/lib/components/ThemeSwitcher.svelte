@@ -90,7 +90,7 @@
 
     > :global(svg) {
       z-index: 1;
-      transition: color 200ms ease-in-out;
+      transition: color var(--anim-speed-medium) var(--anim-easing-circ);
     }
 
     > :global(svg):last-child {
@@ -118,7 +118,7 @@
     }
 
     &.ready::before {
-      transition: transform 200ms ease-in-out;
+      transition: transform var(--anim-speed-medium) var(--anim-easing-circ);
     }
 
     &.light::before {

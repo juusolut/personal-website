@@ -234,7 +234,6 @@
     gap: 0.5rem;
     flex: 1;
     box-shadow: var(--shadows-xs);
-
   }
 
   .nutshell__gradient-border {
@@ -480,19 +479,19 @@
     text-underline-offset: 3px;
     text-decoration-thickness: 2px;
     text-decoration: none;
-    backdrop-filter: blur(5px);
-    background: color-mix(in oklch, var(--bg-color) 70%, transparent);
+/*     backdrop-filter: blur(5px); */
+    background: var(--bg-color);
     border: 2px solid
-      color-mix(in oklch, var(--bg-color), white var(--border-strength-1));
+      color-mix(in oklch, var(--bg-color), white var(--border-strength-2));
     border-radius: var(--border-radiuses-md);
   }
 
   .button__resume {
-    --bg-color: color-mix(in oklab, var(--colors-secondary), white 20%);
+    --bg-color: oklch(from oklch(0.73 0.12 68.69) 0.68 c 70);
   }
 
   .button__linkedin {
-    --bg-color: #0a66c2;
+    --bg-color: var(--colors-primary);
   }
 
   .button__github {
@@ -653,8 +652,8 @@
     border-radius: var(--border-radiuses-lg);
     overflow: hidden;
     transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
+      transform var(--anim-speed-medium) var(--anim-easing-circ),
+      box-shadow var(--anim-speed-medium) var(--anim-easing-circ);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -667,6 +666,11 @@
       );
     color: var(--colors-text);
     min-height: 5rem;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadows-sm);
+    }
   }
 
   .recommendation {

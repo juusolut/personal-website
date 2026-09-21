@@ -13,6 +13,4 @@ date: "2026"
 
 ## Oma portfolio
 
-Halusin portfolion toteutukseen jonkin kevyen frameworkin, joka mahdollistaisi sivuston staattisen buildaamisen ja helpon hostaamisen. Olin lukenut aiemmin Sveltestä, jonka oli kuvailtu olevan kevyt, suorituskykyinen ja kehittäjäystävällinen. Testailun perusteella Svelte vaikutti oikein loistavalta 
-
-Portfolioni eli tämä sivu on toteutettu Sveltellä. Valitsin tämän frameworkin, koska se on kevyt ja mahdollistaa sivuston staattisen buildaamisen, jolloin sen voi hostia helposti.
+Halusin portfolioni toteutukseen kevyen kehyksen, joka mahdollistaisi sivuston staattisen generoinnin (SSG), helpon hostaamisen ja sujuvan kehityskokemuksen. Olin lukenut aiemmin Sveltestä, jota oli kehuttu keveydestä, suorituskyvystä ja kehittäjäystävällisyydestä. Lyhyen kokeilun perusteella Svelte osoittautui juuri oikeaksi valinnaksi.

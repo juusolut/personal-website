@@ -4,6 +4,7 @@
   import { resolve } from "$app/paths";
   import DatePill from "$lib/components/DatePill.svelte";
   import Icon from "$lib/components/Icon.svelte";
+  import Summary from "$lib/components/Summary.svelte";
   import Tags from "$lib/components/Tags.svelte";
   let { data } = $props();
   let Content = $derived(data.content);
@@ -88,12 +89,32 @@
           <Tags tags={data.meta.tags} />
         </div>
       </div>
-      <Content />
+      <div class="content">
+        <Content />
+      </div>
     </article>
   </div>
 </div>
 
 <style>
+  .content :global(h2)::before {
+    content: "# ";
+    color: var(--colors-secondary);
+  }
+  .content {
+    :global(h1) {
+      font-weight: var(--font-weights-bolder);
+    }
+    :global(h2) {
+      font-weight: var(--font-weights-bolder);
+    }
+    :global(h3) {
+      font-weight: var(--font-weights-bolder);
+    }
+    :global(h4) {
+      font-weight: var(--font-weights-bolder);
+    }
+  }
   .project-container {
     width: 100%;
     color: var(--colors-text);
@@ -116,26 +137,18 @@
     padding-bottom: 2rem;
     margin-bottom: 5rem;
     position: relative;
-    box-shadow: var(--shadows-sm);
+    box-shadow: var(--shadows-xs);
     z-index: 0;
     background-color: var(--colors-elevation-2);
     /*     padding-top: 1rem; */
-
-    :global(h2)::before {
-      content: "# ";
-      color: var(--colors-secondary);
-    }
-
-    :global(h3)::before {
-      content: "## ";
-      color: var(--colors-secondary);
-    }
 
     .project-title {
       width: fit-content;
       height: fit-content;
       margin: 0;
       padding: 0;
+      font-size: var(--font-sizes-lg);
+      font-weight: var(--font-weights-bolder);
     }
 
     .undertext {
@@ -252,6 +265,7 @@
     gap: 0.5rem;
     margin: 0.5rem 0;
     font-weight: var(--font-weights-bold);
+    user-select: none;
   }
 
   @container (width > 50rem) {

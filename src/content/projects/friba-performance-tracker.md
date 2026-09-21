@@ -10,6 +10,7 @@ date: "2021"
 <script>
   import { asset } from '$app/paths';
   import Gallery from '$lib/components/Gallery.svelte';
+  import Summary from "$lib/components/Summary.svelte";
 
   const path = "/images/friba"
   const rawImages = [
@@ -58,8 +59,26 @@ date: "2021"
       thumbSrc: "",
       description: "Clear-data-näkymä."
     },
-
   ];
+
+   const summaryData = [
+    {
+      title: "Projektin tausta",
+      content: "Yliopiston harjoitustyönä toteutettu mobiilisovellus frisbeegolfaajille kierrostietojen merkitsemiseen ja pelaajana kehittymiseen."
+    },
+    {
+      title: "Kehitys ja työkalut",
+      content: "Sovellus rakennettiin Google Flutterilla (Dart-kielellä) käyttäjälähtöisesti, ja sitä testattiin frisbeegolf-kentällä ja jatkokehitettiin kokemusten perusteella."
+    },
+    {
+      title: "Ominaisuudet ja havainnot",
+      content: "Sovelluksesta tuli toimiva ja selkeä (erityisesti puttausnäkymä), mutta tarkka merkitseminen osoittautui työlääksi ryhmäpelissä ja sopi parhaiten yksin pelaaville. Kaavailtu palautejärjestelmä jäi vielä toteuttamatta."
+    },
+    {
+      title: "Oppimiskokemus",
+      content: "Ensikosketus mobiilikehitykseen oli onnistunut ja osoitti että uuden teknologian sekä kielen sai otettua haltuun melko nopeasti."
+    },
+   ]
 
   const galleryData = rawImages.map((img) => ({
   imageSrc: `${path}/${img.imageSrc}`,
@@ -67,6 +86,8 @@ date: "2021"
   description: img.description
 }));
 </script>
+
+<Summary data={summaryData} />
 
 ## Projektin aloitus
 
@@ -78,8 +99,8 @@ Aloitimme profiloimalla mahdollisia käyttäjiä. Yritimme asettua heidän asema
 
 ## Lopputulos
 
-Lopputuloksesta tuli aivan toimiva ja selkä, mutta ei tietenkään täydellinen. Emme kerenneet totetuttaa sovellukseen kaavailemaamme palautejärjestelmää, mutta se olisi seuraava ominaisuus, joka siihen toteutettaisiin. Huomasimme myös, että sovellus ei välttämättä toimi niin hyvin jos on pelailemassa ryhmässä, koska yksityiskohtainen merkkailu on melko työlästä. Jos pelaajaa on heittelemässä itsekseen, silloin hän jaksaa merkitä sovellukseen tarkat heittokohtaiset tiedot.  <br><br>
-Kyseessä oli molempien ensikosketus mobiilisovelluskehitykseen, ja kurssin aikarajojen puitteissa olimme kuitenkin tyytyväisiä tuotokseen. Erityisesti puttausnäkymä oli toimiva ja jopa sellainen ominaisuus, jota vastaavaa on nähty myöhemmin suosituissa frisbeegolf-sovelluksissa. Parasta projektissa oli se, kun pääsi testaamaan omaa oppimiskykyä: kuinka nopeasti Flutter ja sen uusi kieli (Dart) ja syntaksi taipuivat toimivaksi sovellukseksi. Ja taipuivathan ne!  <br><br>
+Lopputuloksesta tuli aivan toimiva ja selkä, mutta ei tietenkään täydellinen. Emme kerenneet totetuttaa sovellukseen kaavailemaamme palautejärjestelmää, mutta se olisi seuraava ominaisuus, joka siihen toteutettaisiin. Huomasimme myös, että sovellus ei välttämättä toimi niin hyvin jos on pelailemassa ryhmässä, koska yksityiskohtainen merkkailu on melko työlästä. Jos pelaajaa on heittelemässä itsekseen, silloin hän jaksaa merkitä sovellukseen tarkat heittokohtaiset tiedot. <br><br>
+Kyseessä oli molempien ensikosketus mobiilisovelluskehitykseen, ja kurssin aikarajojen puitteissa olimme kuitenkin tyytyväisiä tuotokseen. Erityisesti puttausnäkymä oli toimiva ja jopa sellainen ominaisuus, jota vastaavaa on nähty myöhemmin suosituissa frisbeegolf-sovelluksissa. Parasta projektissa oli se, kun pääsi testaamaan omaa oppimiskykyä: kuinka nopeasti Flutter ja sen uusi kieli (Dart) ja syntaksi taipuivat toimivaksi sovellukseksi. Ja taipuivathan ne! <br><br>
 Tässä vielä kuvia lopputuotteesta:
 
 <Gallery data={galleryData}/>

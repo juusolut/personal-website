@@ -1,4 +1,7 @@
 :root {
+
+    --fonts-ibm-plex-mono: "IBM Plex Mono", monospace;
+
     /* Variables for all themes */
     --border-radiuses-sm: .4rem;
     --border-radiuses-md: .8rem;
@@ -11,15 +14,21 @@
     --font-sizes-sm: 1rem;
     --font-sizes-md: 1.25rem;
     --font-sizes-lg: 1.463rem;
-    --font-sizes-xl: 1.653rem;
+    --font-sizes-xl: 1.73rem;
     --font-sizes-xxl: 2.341rem;
 
     --font-weights-normal: 400;
     --font-weights-semibold: 650;
     --font-weights-bold: 700;
+    --font-weights-bolder: 800;
 
     /* Anims */
     --transitions-fast: 0.1s ease-in-out;
+    --anim-speed-slow: 0.33s;
+    --anim-speed-medium: 0.22s;
+    --anim-speed-fast: 0.13s;
+
+    --anim-easing-circ: cubic-bezier(0.85, 0.09, 0.15, 0.91);
 
     --colors-animation: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 
@@ -28,8 +37,8 @@
     --colors-white: oklch(1 0 0);
 
     /* BRANDING COLORS */
+    --colors-primary: oklch(52.908% 0.18222 265.323);
     --colors-secondary: oklch(0.73 0.12 68.69);
-    --colors-primary: oklch(57.8% 0.16305 266.504);
     --colors-error: oklch(61.53% 0.17487 15.94);
 
     /* SHADING */
@@ -68,7 +77,7 @@
     --colors-text: oklch(from var(--colors-primary) 0.15 0 h);
     --colors-text-light: oklch(from var(--colors-primary) 0.5 0.02 h);
 
-    --shadows-xs: 0px 0px 5px 0px color-mix(in oklch, var(--colors-text) 13%, transparent);
+    --shadows-xs: 0px 0px 5px 0px color-mix(in oklch, black 5%, transparent);
     --shadows-xs-light: 0px 0px 10px 0px color-mix(in oklch, black 15%, transparent);
 
     --shadows-sm: 0px 0px 20px 0px color-mix(in oklch, var(--colors-text) 18%, transparent);
@@ -86,12 +95,13 @@ html[data-theme='dark'] {
     --font-weights-normal: 350;
     --font-weights-semi: 500;
     --font-weights-bold: 700;
+    --font-weights-bolder: 800;
 
     --mix-shading: oklch(1 0 0);
     --border-mix-shading: oklch(1 0 0);
 
     --border-strength-0: 0%;
-    --border-strength-1: 15%;
+    --border-strength-1: 5%;
     --border-strength-2: 20%;
     --border-strength-3: 30%;
     --border-strength-4: 50%;
