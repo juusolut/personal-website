@@ -25,14 +25,13 @@
     }
 
     // { passive: true } improves scrolling performance
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   });
 </script>
-
 
 <div class="menu-container" class:isOpen use:outclick={() => (isOpen = false)}>
   <button
@@ -44,7 +43,8 @@
     class:isOpen
     onanimationend={handleAnimationEnd}
   >
-    <div class="icon-wrapper" class:spin={isAnimating}>
+    <div class="cross"></div>
+    <div class="icon-wrapper" /* class:spin={isAnimating} */>
       <Icon name="Cog" size="1.25rem" />
     </div>
   </button>
@@ -72,13 +72,34 @@
     }
   }
 
-  .spin {
-    animation: slowSpin 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  .cross {
+    pointer-events: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition:
+      transform var(--anim-speed-slow) var(--anim-easing-circ),
+      opacity var(--anim-speed-slow) linear;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 70%;
+      background-color: var(--colors-text);
+      left: 50%;
+      top: 50%;
+    }
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
   }
-
-  .reverse-animation {
-    animation-fill-mode: backwards;
-  }
+  /*
+  cubic-bezier(0.25, 0.1, 0.25, 1) */
 
   .icon-wrapper {
     display: flex;
@@ -86,11 +107,26 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    transition:
+      transform var(--anim-speed-slow) var(--anim-easing-circ),
+      opacity var(--anim-speed-slow) linear;
+    position: relative;
   }
   .menu-container {
     position: relative;
     display: block;
     z-index: 0;
+
+    &.isOpen {
+      .icon-wrapper {
+        transform: rotate(180deg);
+        opacity: 0;
+      }
+      .cross {
+        opacity: 1;
+        transform: rotate(180deg);
+      }
+    }
   }
   button {
     color: var(--colors-text);

@@ -7,6 +7,7 @@
   import { scale, fade } from "svelte/transition";
   import { backOut } from "svelte/easing";
   import Reveal from "$lib/components/Reveal.svelte";
+  import ContactButtons from "$lib/components/ContactButtons.svelte";
 
   let isLoaded = $state(false);
   const heroSrc = asset("/images/me (Small).png");
@@ -86,7 +87,7 @@
           Olen &lt; <span class="mr-dafoe-regular">Juuso</span> /&gt;
         </h1>
       </div>
-      <div class="buttons">
+      <!-- <div class="buttons">
         <a
           href={asset("/resume.pdf")}
           target="_blank"
@@ -115,6 +116,9 @@
           class="button button__github"
           ><span class="offsite-link">GitHub</span></a
         >
+      </div> -->
+      <div class="contact-buttons-container">
+        <ContactButtons onlyRow />
       </div>
       <img
         src={asset("/images/me (Small).png")}
@@ -207,6 +211,17 @@
 <FloatingHead />
 
 <style>
+  .contact-buttons-container {
+    position: absolute;
+    bottom: 0rem;
+    /*     left: 15%; */
+    /*     width: auto; */
+    left: 0;
+    width: 100%;
+    container-type: inline-size;
+    z-index: 1;
+    padding: 0.25rem;
+  }
   .nutshell {
     width: 100%;
     padding-top: 1rem;
@@ -440,6 +455,11 @@
       max-height: 95%;
     }
 
+    .contact-buttons-container {
+      left: 15%;
+      width: 30rem;
+    }
+
     .buttons {
       justify-content: flex-start !important;
       left: 15% !important;
@@ -479,7 +499,7 @@
     text-underline-offset: 3px;
     text-decoration-thickness: 2px;
     text-decoration: none;
-/*     backdrop-filter: blur(5px); */
+    /*     backdrop-filter: blur(5px); */
     background: var(--bg-color);
     border: 2px solid
       color-mix(in oklch, var(--bg-color), white var(--border-strength-2));

@@ -1,9 +1,11 @@
 <script lang="ts">
   import { asset } from "$app/paths";
   import Icon from "./Icon.svelte";
+
+  const { onlyRow }: { onlyRow?: boolean } = $props();
 </script>
 
-<div class="buttons">
+<div class="buttons" class:keep-row={onlyRow}>
   <a
     href={asset("/resume.pdf")}
     target="_blank"
@@ -56,13 +58,10 @@
   }
   .button {
     width: 100%;
-    padding: 0.5rem 0;
-    /*     padding-left: 1.5rem;
-    padding-right: 2rem; */
     text-align: center;
     position: relative;
-    /*     width: fit-content; */
     font-weight: var(--font-weights-bold);
+/*     font-size: var(--font-sizes-xs); */
     color: color-mix(in oklch, var(--bg-color), white 90%);
     text-decoration: none;
     background: var(--bg-color);
@@ -72,9 +71,11 @@
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
+    padding: 0.5rem 0;
     padding-left: 1rem;
     gap: 1rem;
     position: relative;
+    user-select: none;
 
     :global(.icon) {
       display: block;
@@ -102,17 +103,42 @@
     gap: 0.5rem;
     z-index: 1;
     width: 100%;
-    /*     padding: 0 0.5rem; */
 
-    @container contact-buttons (width > 30rem) {
+    &.keep-row {
       flex-direction: row;
-      justify-content: flex-start;
-      padding: .5rem;
+      /*       padding: 0.5rem; */
 
       .arrow-icon {
         position: absolute;
-        right: 0.25rem;
-        top: 0;
+        right: 0.1rem;
+        top: 0.1rem;
+        transform: rotate(130deg) scale(0.8);
+      }
+
+      .button {
+        width: auto;
+        padding: 0.5rem 0;
+        padding-left: 1.5rem;
+        padding-right: 2rem;
+        padding-left: 0;
+        padding-right: 0;
+        justify-content: center;
+        gap: 0.375em;
+        flex: 1;
+      }
+    }
+
+    /*     padding: 0 0.5rem; */
+
+    @container (width > 28rem) {
+      flex-direction: row;
+      justify-content: flex-start;
+      /*       padding: 0.5rem; */
+
+      .arrow-icon {
+        position: absolute;
+        right: 0.1rem;
+        top: 0.1rem;
         transform: rotate(130deg) scale(0.8);
       }
       .button {
@@ -122,6 +148,7 @@
         padding-right: 2rem;
         justify-content: center;
         gap: 0.375em;
+        flex: 1;
       }
     }
   }

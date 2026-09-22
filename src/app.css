@@ -74,10 +74,15 @@ body::before {
   --color-2: color-mix(in oklch,
       var(--colors-elevation-0),
       var(--colors-secondary) 12%);
+/*
+  --color-1: oklch(from var(--colors-secondary) 0.25 0.015 h);
+  --color-2: oklch(from var(--colors-primary) 0.25 0.015 h); */
 
   background: linear-gradient(to top right,
       var(--color-1) 0%,
       var(--color-2) 100%);
+
+/*   background: oklch(from var(--colors-primary) 0.18 0.015 h); */
 }
 
 ::selection {
@@ -120,31 +125,49 @@ h1,
 h2,
 h3,
 h4,
-h5 h6 {
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   margin: 0;
   margin-top: 0.75em;
   margin-bottom: 0.5em;
   color: var(--colors-text);
+  letter-spacing: -0.02em;
 }
 
-h1 {
-  font-size: var(--font-sizes-xxl);
+/* H1 / XXL: 2.341rem (37.45px) → 3.5rem (56px) */
+h1, .h1 {
+  font-size: clamp(var(--font-sizes-xxl), 1.814rem + 2.25vw, 3.5rem);
+  line-height: 1.1;
 }
 
-h2 {
-  font-size: var(--font-sizes-xl);
+/* H2 / XL: 1.73rem (27.68px) → 2.2rem (35.2px) */
+h2, .h2 {
+  font-size: clamp(var(--font-sizes-xl), 1.516rem + 0.912vw, 2.2rem);
+  line-height: 1.15;
 }
 
-h3 {
-  font-size: var(--font-sizes-lg);
+/* H3 / LG: 1.463rem (23.41px) → 1.9rem (30.4px) */
+h3, .h3 {
+  font-size: clamp(var(--font-sizes-lg), 1.264rem + 0.848vw, 1.9rem);
+  line-height: 1.2;
 }
 
-h4 {
-  font-size: var(--font-sizes-md);
+/* H4 / MD: 1.25rem (20px) → 1.75rem (28px) */
+h4, .h4 {
+  font-size: clamp(var(--font-sizes-md), 1.023rem + 0.97vw, 1.75rem);
+  line-height: 1.25;
 }
 
-h5 {
-  font-size: var(--font-sizes-sm);
+/* H5 / SM: 1rem (16px) → 1.375rem (22px) */
+h5, .h5 {
+  font-size: clamp(var(--font-sizes-sm), 0.83rem + 0.728vw, 1.375rem);
+  line-height: 1.3;
 }
 
 button {

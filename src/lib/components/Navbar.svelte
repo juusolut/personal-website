@@ -213,7 +213,7 @@
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   /* Mobile Toggle Button */
@@ -221,13 +221,31 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 1.75rem;
-    height: 1.5rem;
+    width: 2.25rem;
+    aspect-ratio: 1 / 1;
     background: transparent;
+/*     background-color: red; */
     border: none;
     cursor: pointer;
     padding: 0;
     position: relative;
+    border-radius: var(--border-radiuses-full);
+    background: var(--colors-elevation-2);
+    border: 2px solid
+      color-mix(
+        in oklab,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+  }
+
+  .hamburger.isOpen {
+    border: 2px solid
+      color-mix(
+        in oklab,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-5)
+      );
   }
 
   .hamburger.isOpen .bar:nth-child(1) {
@@ -243,12 +261,14 @@
   }
 
   .hamburger.isOpen .bar {
-    width: 80%;
+    width: 60%;
   }
 
   .bar {
-    width: 100%;
-    height: 2px;
+    --offset: 6px;
+
+    width: 60%;
+    height: 3px;
     background-color: var(--colors-text);
     transition: all var(--anim-speed-medium) var(--anim-easing-circ);
     position: absolute;
@@ -257,17 +277,17 @@
   }
 
   .bar:first-of-type {
-    transform: translateY(-0.5rem) translateX(-50%);
+    transform: translateY(calc(-1 * var(--offset))) translateX(-50%);
   }
 
   .bar:last-of-type {
-    transform: translateY(0.5rem) translateX(-50%);
+    transform: translateY(var(--offset)) translateX(-50%);
   }
 
   .buttons {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   /* Responsive Mobile Menu */

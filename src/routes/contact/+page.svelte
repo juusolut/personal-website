@@ -13,7 +13,7 @@
     </div>
     <ProfileCircle imageSrc={"/images/me (Small).png"} outlined />
     <div class="title-buttons-container">
-      <span class="find-me-text ibm-plex-mono">Löydät minut täältä:</span>
+      <span class="find-me-text ibm-plex-mono h5">Löydät minut täältä:</span>
       <div class="contact-buttons">
         <ContactButtons />
       </div>
@@ -46,14 +46,21 @@
     width: 100%;
     background-color: var(--colors-elevation-2);
     padding: 1rem 0.5rem;
+    padding-top: 2rem;
     border-radius: var(--border-radiuses-md);
     box-shadow: var(--shadows-xs);
+
+    @container (width > 41rem) {
+      padding: 1rem 2rem;
+      padding-top: 4rem;
+      padding-bottom: 1.5rem;
+    }
   }
 
   .contact-buttons {
     container-type: inline-size;
-    container-name: contact-buttons;
     width: 100%;
+    padding: 0 .5rem;
   }
 
   .find-me-text {
@@ -63,10 +70,10 @@
   .title-buttons-container {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: 0.5rem;
     width: 100%;
     > span {
-/*       background-color: green; */
+      /*       background-color: green; */
       width: 100%;
     }
   }

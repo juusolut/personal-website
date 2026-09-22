@@ -147,7 +147,7 @@
       height: fit-content;
       margin: 0;
       padding: 0;
-      font-size: var(--font-sizes-lg);
+/*       font-size: var(--font-sizes-lg); */
       font-weight: var(--font-weights-bolder);
     }
 
