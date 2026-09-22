@@ -8,7 +8,9 @@
 
 <div class="info-container h-padding">
   <div class="info">
-    <div style="width: 100%; margin-left: 1rem;"><h2 class="view-title no-bg">Yhteystiedot</h2></div>
+    <div style="width: 100%; margin-left: 1rem;">
+      <h2 class="view-title no-bg">Yhteystiedot</h2>
+    </div>
     <ProfileCircle imageSrc={"/images/me (Small).png"} outlined />
     <div class="title-buttons-container">
       <span class="find-me-text ibm-plex-mono">Löydät minut täältä:</span>
@@ -40,17 +42,17 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    /*     background-color: red; */
     height: min-content;
     width: 100%;
     background-color: var(--colors-elevation-2);
-    padding: 1rem 1rem;
+    padding: 1rem 0.5rem;
     border-radius: var(--border-radiuses-md);
     box-shadow: var(--shadows-xs);
   }
 
   .contact-buttons {
     container-type: inline-size;
+    container-name: contact-buttons;
     width: 100%;
   }
 
@@ -59,9 +61,13 @@
     padding: 0 1rem;
   }
   .title-buttons-container {
-    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: .5rem;
+    width: 100%;
+    > span {
+/*       background-color: green; */
+      width: 100%;
+    }
   }
 </style>

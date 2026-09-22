@@ -9,43 +9,61 @@
     target="_blank"
     rel="noopener noreferrer"
     class="button button__resume to-light-cv"
-    ><Icon name="FileCv" /><span class="offsite-link">CV</span></a
   >
+    <Icon name="FileCv" size="1.25em" />
+    <span class="">CV</span>
+    <div class="arrow-icon"><Icon name="ArrowNarrowLeft" size="1.25rem" /></div>
+  </a>
   <a
     href={asset("/resume-dark.pdf")}
     target="_blank"
     rel="noopener noreferrer"
     class="button button__resume to-dark-cv"
-    ><Icon name="FileCv" /><span class="offsite-link">CV</span></a
   >
+    <Icon name="FileCv" size="1.25em" />
+    <span class="">CV</span>
+    <div class="arrow-icon"><Icon name="ArrowNarrowLeft" size="1.25rem" /></div>
+  </a>
   <a
     href="https://www.linkedin.com/in/juusolut/"
     target="_blank"
     rel="noopener noreferrer"
     class="button button__linkedin"
-    ><Icon name="BrandLinkedin (1)" /><span class="offsite-link">LinkedIn</span
-    ></a
+  >
+    <Icon name="BrandLinkedin (1)" size="1.25em" />
+    <span class="">LinkedIn</span>
+    <div class="arrow-icon">
+      <Icon name="ArrowNarrowLeft" size="1.25rem" />
+    </div></a
   >
   <a
     href="https://github.com/juusolut"
     target="_blank"
     rel="noopener noreferrer"
     class="button button__github"
-    ><Icon name="BrandGithub" /><span class="offsite-link">GitHub</span></a
   >
+    <Icon name="BrandGithub" size="1.25em" />
+    <span class="">GitHub</span>
+    <div class="arrow-icon"><Icon name="ArrowNarrowLeft" size="1.25rem" /></div>
+  </a>
 </div>
 
 <style>
+  .arrow-icon {
+    position: absolute;
+    right: 1rem;
+    transform: rotate(180deg);
+  }
   .button {
-    flex: 1;
+    width: 100%;
     padding: 0.5rem 0;
+    /*     padding-left: 1.5rem;
+    padding-right: 2rem; */
     text-align: center;
     position: relative;
-    width: fit-content;
+    /*     width: fit-content; */
     font-weight: var(--font-weights-bold);
     color: color-mix(in oklch, var(--bg-color), white 90%);
-    text-underline-offset: 3px;
-    text-decoration-thickness: 2px;
     text-decoration: none;
     background: var(--bg-color);
     border: 2px solid
@@ -54,7 +72,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
+    padding-left: 1rem;
     gap: 1rem;
+    position: relative;
+
+    :global(.icon) {
+      display: block;
+      flex-shrink: 0;
+    }
   }
 
   .button__resume {
@@ -71,16 +96,32 @@
 
   .buttons {
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     gap: 0.5rem;
     z-index: 1;
-    padding: 0 0.5rem;
+    width: 100%;
+    /*     padding: 0 0.5rem; */
 
-    @container (width > 30rem) {
+    @container contact-buttons (width > 30rem) {
+      flex-direction: row;
+      justify-content: flex-start;
+      padding: .5rem;
+
+      .arrow-icon {
+        position: absolute;
+        right: 0.25rem;
+        top: 0;
+        transform: rotate(130deg) scale(0.8);
+      }
       .button {
-        padding: 0.5rem 2rem;
-        /*         flex: unset; */
+        width: auto;
+        padding: 0.5rem 0;
+        padding-left: 1.5rem;
+        padding-right: 2rem;
+        justify-content: center;
+        gap: 0.375em;
       }
     }
   }

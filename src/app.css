@@ -309,9 +309,9 @@ button:hover {
   &::after {
     content: "↗";
     position: absolute;
-    right: -1em;
-    top: -0.3em;
-    font-size: inherit;
+    right: -1.25em;
+    top: -0.4em;
+    font-size: .75em;
     color: currentColor;
     /*     font-weight: var(--font-weights-bold); */
   }
