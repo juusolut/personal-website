@@ -117,7 +117,9 @@
       aria-label={showMore ? "Pienennä työhistoria" : "Näytä koko työhistoria"}
     >
       {showMore ? "Näytä vähemmän" : "Näytä lisää"}
-      <div class:flipped={showMore}><Icon name="CaretDown" size="1rem" /></div>
+      <div class:flipped={showMore}>
+        <Icon name="ChevronDown" size="1rem" />
+      </div>
     </button>
   </div>
 </div>
@@ -195,7 +197,7 @@
     padding: 1rem 2rem;
     flex-direction: row;
     line-height: 1.5em;
-/*     overflow: hidden; */
+    /*     overflow: hidden; */
 
     &.with-button {
       justify-content: space-between;
@@ -205,7 +207,7 @@
     }
   }
 
-/*   .achievement:nth-child(even) {
+  /*   .achievement:nth-child(even) {
     background-color: var(--colors-elevation-2);
     border-radius: var(--border-radiuses-md);
     &.gradient-bg::before {
@@ -355,14 +357,19 @@
 
   #work-history__container {
     position: relative;
-    max-height: 50rem;
+    height: 50rem;
     overflow: hidden;
+    interpolate-size: allow-keywords;
+    transition:
+      content-visibility var(--anim-speed-slow) allow-discrete,
+      height var(--anim-speed-slow) linear;
 
     &.expanded {
-      max-height: unset;
+      height: auto;
       padding-bottom: 8rem;
       #gradient-box {
         height: auto;
+        background: none;
       }
     }
   }
@@ -390,11 +397,15 @@
     border-radius: var(--border-radiuses-md);
     color: var(--colors-text);
     background-color: var(--colors-secondary);
-    border: 1px solid
+    font-weight: var(--font-weights-bold);
+    font-size: var(--font-sizes-xs);
+    text-transform: uppercase;
+    color: color-mix(in oklch, var(--colors-secondary), white 90%);
+    border: 2px solid
       color-mix(
         in oklab,
         var(--colors-secondary),
-        var(--border-mix-shading) var(--border-strength-1)
+        white var(--border-strength-1)
       );
     display: flex;
     justify-content: center;
@@ -474,6 +485,9 @@
   #studies__inner {
     padding-top: 4rem;
     padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   @container (width > 40rem) {

@@ -8,6 +8,7 @@
   import { backOut } from "svelte/easing";
   import Reveal from "$lib/components/Reveal.svelte";
   import ContactButtons from "$lib/components/ContactButtons.svelte";
+  import Icon from "$lib/components/Icon.svelte";
 
   let isLoaded = $state(false);
   const heroSrc = asset("/images/me (Small).png");
@@ -198,9 +199,10 @@
     <Reveal>
       <div class="center-horizontally">
         <div class="comments__own-words">
-          <a href={resolve("/about")} class="button"
-            ><span class="offsite-link no-arrow">Tutustu minuun tarkemmin</span
-            ></a
+          <a href={resolve("/about")} class="button">
+            <span class="offsite-link no-arrow">Tutustu minuun tarkemmin</span>
+            <Icon name="ArrowNarrowLeft" style="transform: rotate(180deg)" size="1.25rem" />
+          </a
           >
         </div>
       </div>
@@ -489,6 +491,10 @@
   }
 
   .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     flex: 1;
     padding: 0.5rem 0;
     text-align: center;
