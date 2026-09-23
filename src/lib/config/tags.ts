@@ -68,6 +68,11 @@ export const TAG_CONFIG: Record<string, TagConfig> = {
     label: 'MongoDB',
     bg: '#00ed64',
     icon: "Mongodb"
+  },
+  blender: {
+    label: 'Blender',
+    bg: '#ea7600',
+    icon: "Blender"
   }
 };
 

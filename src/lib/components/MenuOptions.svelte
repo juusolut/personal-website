@@ -19,7 +19,7 @@
       </label>
     </div>
   </li>
-  <li class="menu-item">
+<!--   <li class="menu-item">
     <div class="menu-option">
       <label for="animations-checkbox">
         <span>Käytä ääniä</span>
@@ -32,7 +32,7 @@
         <div class="checkbox"></div>
       </label>
     </div>
-  </li>
+  </li> -->
 </ul>
 
 <style>

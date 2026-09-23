@@ -8,7 +8,7 @@
 
 <div class="info-container h-padding">
   <div class="info">
-    <div style="width: 100%; margin-left: 1rem;">
+    <div>
       <h2 class="view-title no-bg">Yhteystiedot</h2>
     </div>
     <ProfileCircle imageSrc={"/images/me (Small).png"} outlined />
@@ -60,21 +60,23 @@
   .contact-buttons {
     container-type: inline-size;
     width: 100%;
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
   }
 
   .find-me-text {
-    width: 100%;
+    /*     width: 100%; */
+    width: max-content;
     padding: 0 1rem;
   }
   .title-buttons-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
     width: 100%;
     > span {
       /*       background-color: green; */
-      width: 100%;
+/*       width: 100%; */
     }
   }
 </style>

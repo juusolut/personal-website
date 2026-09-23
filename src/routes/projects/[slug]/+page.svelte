@@ -196,6 +196,7 @@
     padding: 1rem;
     border-radius: var(--border-radiuses-lg);
     margin-top: 1rem;
+    margin-bottom: 1rem;
 
     grid-template-columns: 1fr;
     column-gap: 1rem;

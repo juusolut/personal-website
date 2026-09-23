@@ -2,6 +2,7 @@
 
 export const iconNames = [
   "ArrowNarrowLeft",
+  "Blender",
   "BrandGithub",
   "BrandLinkedin (1)",
   "CaretDown",

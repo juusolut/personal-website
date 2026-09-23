@@ -50,13 +50,13 @@ Minulla oli päävastuu sivuston visuaalisesta ilmeestä, käyttöliittymäsuunn
 
 ## Keskeiset toiminnallisuudet
 
-### Places-näkymä
+### 1. Places-näkymä
 
 Käyttäjät voivat hakea ja suodattaa sijainteja hakukentällä tai kategoriapainikkeilla (esim. <i>Attractions, Restaurants, Campuses</i>). Sijainnit näkyvät listana näkymässä. <i>View</i>-painike avaa <i>popover</i>-ikkunan, joka tarjoaa lisätietoa kohteesta ja mahdollistaa siirtymisen suoraan karttanäkymään.
 
 <VideoPlayer videoSrc="/videos/ouluni/ouluni-places.webm" posterSrc="/images/ouluni/thumb.png" description="Places-näkymä."  />
 
-### Karttanäkymä
+### 2. Karttanäkymä
 
 Kartta kokoaa yhteen opiskelijalle olennaiset sijainnit. Oikean alakulman <i>My location</i> -painikkeella voi paikantaa oman sijainnin. Samasta kulmasta löytyvällä <i>Show filters</i> -painikkeella karttaa voi suodattaa tarpeen mukaan, ja karttamerkkejä klikkaamalla avautuvat kohteen tarkemmat tiedot näytön vasempaan reunaan. Avautuneen sivunäkymän <i>Navigate to</i> -painikkeella käyttäjä voi myös siirtyä varsinaiselle Google Maps -sivustolle ja aloittaa navigoinnin kohteeseen välittömästi.
 

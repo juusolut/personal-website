@@ -165,8 +165,8 @@
 
   .menu {
     display: none;
-    width: 100vw;
-    max-width: 20rem;
+/*     width: 100vw; */
+    width: clamp(15rem, 30vw + 5rem, 25rem);
     background-color: var(--colors-elevation-2);
     border: 2px solid
       color-mix(
