@@ -5,7 +5,7 @@ description: "Alusta, jolla yksityishenkilöt voivat myydä ja ostaa kulkuneuvoj
 thumbnail: "/images/processed/kuluku-thumb.webp"
 tags: ["React", "Dotnet", "Mailhog", "Docker", "MicrosoftSQLServer"]
 isShowcased: true
-date: "2026"
+date: "2026-1-1"
 ---
 
 ## Mistä projekti sai alkunsa?

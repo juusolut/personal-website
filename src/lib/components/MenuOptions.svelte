@@ -126,6 +126,7 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+    gap: 1rem;
   }
 
   label > span {

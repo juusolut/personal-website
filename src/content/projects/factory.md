@@ -5,7 +5,7 @@ description: "P2P-verkkoräiskintäpeli, johon haettu inspiraatiota Source-pelei
 thumbnail: "/images/factory/factory-thumb.webp"
 tags: ["Godot", "Blender", "FL Studio"]
 isShowcased: true
-date: "2025"
+date: "2025-1-1"
 ---
 
 <script lang="ts">

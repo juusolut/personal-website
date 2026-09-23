@@ -61,7 +61,7 @@
     text-align: center;
     position: relative;
     font-weight: var(--font-weights-bold);
-/*     font-size: var(--font-sizes-xs); */
+    /*     font-size: var(--font-sizes-xs); */
     color: color-mix(in oklch, var(--bg-color), white 90%);
     text-decoration: none;
     background: var(--bg-color);
@@ -149,6 +149,11 @@
         justify-content: center;
         gap: 0.375em;
         flex: 1;
+      }
+    }
+    @container button (width > 9rem) {
+      .arrow-icon {
+        display: block !important;
       }
     }
   }

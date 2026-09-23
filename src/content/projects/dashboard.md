@@ -5,7 +5,7 @@ description: "Ruudukkopohjainen, responsiivinen ja mukautettava dashboard, joka 
 thumbnail: "/images/dashboard/dashboard-thumb.webp"
 tags: ["React", "RubyOnRails"]
 isShowcased: true
-date: "2022"
+date: "2022-1-1"
 ---
 
 <script lang="ts">

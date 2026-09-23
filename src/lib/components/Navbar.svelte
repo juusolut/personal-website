@@ -37,7 +37,7 @@
         class="logo-image"
         style="height: 2.5rem; width: auto;"
       />
-      <span id="logo-text">Juuso<br />Luttinen</span>
+      <div class="logo-text"><span>Juuso</span><span>Luttinen</span></div>
     </a>
 
     <!-- Navigation Links -->
@@ -145,15 +145,21 @@
     text-transform: uppercase;
     display: inline-flex;
     align-items: center;
-    gap: 1rem;
+    gap: .5rem;
 
     img {
       height: 2rem !important;
     }
   }
 
-  #logo-text {
+  .logo-text {
     color: var(--colors-text);
+    line-height: 1;
+    font-weight: var(--font-weights-bolder);
+    font-size: var(--font-sizes-xs);
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .nav-links {
@@ -224,7 +230,7 @@
     width: 2.25rem;
     aspect-ratio: 1 / 1;
     background: transparent;
-/*     background-color: red; */
+    /*     background-color: red; */
     border: none;
     cursor: pointer;
     padding: 0;
@@ -292,7 +298,11 @@
 
   /* Responsive Mobile Menu */
   @media (width > 768px) {
+    .logo-text {
+      font-size: var(--font-sizes-sm);
+    }
     .brand {
+      gap: 1rem;
       img {
         height: 2.5rem !important;
       }

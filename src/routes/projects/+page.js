@@ -1,6 +1,8 @@
 export async function load() {
   // Fetch all markdown files in the content/projects directory
-  const modules = import.meta.glob('/src/content/projects/*.md', { eager: true });
+  const modules = import.meta.glob("/src/content/projects/*.md", {
+    eager: true,
+  });
 
   const projects = Object.entries(modules).map(([path, file]) => {
     return {
@@ -12,10 +14,12 @@ export async function load() {
       date: file.metadata.date,
     };
   });
-/*
+  /*
   let sortedProjects = projects.sort((a, b) => {
 
   }) */
+
+  projects.sort((a, b) => (a.date < b.date ? 1 : -1));
 
   return { projects };
 }

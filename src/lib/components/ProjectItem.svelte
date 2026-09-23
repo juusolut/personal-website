@@ -27,6 +27,20 @@
     onselect?.(id);
     goto(resolve(href));
   }
+
+  function formatDate(input: string, onlyYear = false) {
+    if (!input) return "";
+
+    const [year, month, day] = input.split("-");
+
+    if (year && onlyYear) return `${year}`;
+
+    if (year && month && day) {
+      return `${day}.${month}.${year}`; // Output: 15.08.2023
+    }
+
+    return input;
+  }
 </script>
 
 <a
@@ -44,12 +58,13 @@
   </div>
   <div class="grid-item__content">
     <div class="title-row">
-      <span class="title"
+      <span
+        class="title"
         style="view-transition-name: project-title-{id}; view-transition-class: project-morph project-title"
       >
         {title}
-    </span>
-      <DatePill {date} identifier={id} />
+      </span>
+      <DatePill date={formatDate(date, true)} identifier={id} />
     </div>
     <p
       style="view-transition-name: project-desc-{id}; view-transition-class: project-morph project-desc"

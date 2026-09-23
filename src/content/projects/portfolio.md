@@ -4,7 +4,7 @@ slug: "portfolio"
 description: "Responsiivinen portfolio, joka on rakennettu Sveltellä."
 thumbnail: "/images/portfolio/portfolio-thumb.webp"
 tags: ["Svelte"]
-date: "2026"
+date: "2026-1-1"
 ---
 
 <script lang="ts">

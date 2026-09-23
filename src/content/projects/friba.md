@@ -4,7 +4,7 @@ slug: "friba"
 description: "Frisbeegolf-tulosapplikaatio, jossa voit seurata kehittymistäsi."
 thumbnail: "/images/friba/friba-thumb.webp"
 tags: ["Flutter"]
-date: "2021"
+date: "2021-1-1"
 ---
 
 <script>
