@@ -6,6 +6,7 @@
   import Icon from "$lib/components/Icon.svelte";
   import Tags from "./Tags.svelte";
   import DatePill from "./DatePill.svelte";
+  import formatDate from "$lib/util/dates";
 
   // Destructure properties from the $props rune
   let {
@@ -28,19 +29,6 @@
     goto(resolve(href));
   }
 
-  function formatDate(input: string, onlyYear = false) {
-    if (!input) return "";
-
-    const [year, month, day] = input.split("-");
-
-    if (year && onlyYear) return `${year}`;
-
-    if (year && month && day) {
-      return `${day}.${month}.${year}`; // Output: 15.08.2023
-    }
-
-    return input;
-  }
 </script>
 
 <a

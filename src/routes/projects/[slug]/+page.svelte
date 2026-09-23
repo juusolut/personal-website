@@ -6,6 +6,7 @@
   import Icon from "$lib/components/Icon.svelte";
   import Summary from "$lib/components/Summary.svelte";
   import Tags from "$lib/components/Tags.svelte";
+  import formatDate from "$lib/util/dates.js";
   let { data } = $props();
   let Content = $derived(data.content);
 
@@ -71,7 +72,7 @@
           </h3>
 
           <div class="date">
-            <DatePill date={data.meta.date} identifier={data.meta.slug} />
+            <DatePill date={formatDate(data.meta.date, true)}  identifier={data.meta.slug} />
           </div>
         </div>
         <p
