@@ -1,7 +1,7 @@
 ---
 title: "friba-performance-tracker"
 slug: "friba-performance-tracker"
-description: "Frisbeegolf-tulosapplikaatio, jossa voit myös seurata kehittymistäsi."
+description: "Frisbeegolf-tulosapplikaatio, jossa voit seurata kehittymistäsi."
 thumbnail: "/images/processed/friba-thumb.webp"
 tags: ["Flutter"]
 date: "2021"

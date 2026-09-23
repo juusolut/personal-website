@@ -1,22 +1,35 @@
 <script lang="ts">
-  import { settings, toggleTransitions } from '$lib/stores/settings.svelte';
-  import Icon from './Icon.svelte';
-
+  import { settings, toggleTransitions } from "$lib/stores/settings.svelte";
+  import Icon from "./Icon.svelte";
 </script>
 
 <ul class="menu-list">
+  <strong class="menu-item-title">Asetukset</strong>
   <li class="menu-item">
-    <strong class="menu-item-title">Animaatiot</strong>
     <div class="menu-option">
       <label for="animations-checkbox">
-        <span>{settings.transitionsEnabled ? "Päällä" : "Pois Päältä"}</span>
+        <span>Käytä siirtymäanimaatioita</span>
         <input
           id="animations-checkbox"
           type="checkbox"
           bind:checked={settings.transitionsEnabled}
-          onchange={(e) => (toggleTransitions(e.currentTarget.checked))}
+          onchange={(e) => toggleTransitions(e.currentTarget.checked)}
         />
-        <div class="checkbox"><Icon name="Check"/></div>
+        <div class="checkbox"></div>
+      </label>
+    </div>
+  </li>
+  <li class="menu-item">
+    <div class="menu-option">
+      <label for="animations-checkbox">
+        <span>Käytä ääniä</span>
+        <input
+          id="animations-checkbox"
+          type="checkbox"
+          bind:checked={settings.transitionsEnabled}
+          onchange={(e) => toggleTransitions(e.currentTarget.checked)}
+        />
+        <div class="checkbox"></div>
       </label>
     </div>
   </li>
@@ -37,6 +50,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    /*     background-color: red; */
   }
 
   .menu-item-title {
@@ -59,7 +73,7 @@
     outline-offset: 2px;
   }
 
-  .checkbox {
+  /*   .checkbox {
     --bg: var(--colors-elevation-2);
     display: inline-block;
     width: 1.2rem;
@@ -72,15 +86,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 0.75rem;
-    margin-left: 0.25rem;
     user-select: none;
+  } */
+  .checkbox {
+    display: inline-block;
+    width: 2.5rem;
+    height: 1.25rem;
+    background: grey;
+    background: oklch(from var(--colors-primary) 0.7 0.015 h);
+    /*     border: 2px solid color-mix(in oklab, var(--bg), var(--colors-text) 50%); */
+    border-radius: var(--border-radiuses-lg);
+    position: relative;
+    user-select: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      height: 1rem;
+      aspect-ratio: 1 / 1;
+      background-color: white;
+      border-radius: 100%;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%) translateX(calc(0% + 0.15rem));
+      transition: transform var(--anim-speed-medium) var(--anim-easing-circ);
+    }
   }
 
   input:checked + .checkbox {
     background-color: var(--colors-primary);
-    border-color: var(--colors-primary);
-    color: color-mix(in oklab, var(--colors-primary), white 90%);
+    &::after {
+      transform: translateY(-50%) translateX(calc(100% + 0.35rem));
+    }
   }
 
   label {

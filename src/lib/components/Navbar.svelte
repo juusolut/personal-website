@@ -192,7 +192,7 @@
     color: inherit;
     text-decoration: none;
     font-weight: var(--font-weights-bold);
-    transition: color var(--anim-speed-fast) var(--anim-easing-circ);
+    transition: color var(--anim-speed-fast) linear;
     display: inline-block;
     padding: 1rem 0rem;
     min-width: 10rem;

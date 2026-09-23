@@ -166,7 +166,7 @@
   .menu {
     display: none;
     width: 100vw;
-    max-width: 15rem;
+    max-width: 20rem;
     background-color: var(--colors-elevation-2);
     border: 2px solid
       color-mix(
@@ -184,6 +184,10 @@
     padding: 1rem;
     padding-bottom: 2rem;
     box-shadow: var(--shadows-sm);
+
+    @media screen and (width > 20rem) {
+     max-width: 20rem;
+    }
   }
 
   .menu.isOpen {
