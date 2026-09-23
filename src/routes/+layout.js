@@ -24,6 +24,8 @@ export async function load() {
     }
   }
 
+  showcasedProjects.sort((a, b) => (a.date < b.date ? 1 : -1));
+
   return {
     projects: showcasedProjects,
     projectCount: Object.keys(modules).length
