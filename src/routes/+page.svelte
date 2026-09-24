@@ -130,9 +130,10 @@
           href="/projects/{item.slug}"
         />
       {/each}
-      <a href={resolve("/projects")} class="all-projects-link"
-        >Näytä kaikki projektit ({data.projectCount})</a
-      >
+      <a href={resolve("/projects")} class="all-projects-link">
+      <Icon name="ListDetails" size="4rem"/>
+        <span>Näytä kaikki projektit ({data.projectCount})</span>
+      </a>
     </div>
   </div>
 </section>
@@ -645,6 +646,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: .5rem;
     border: 1px solid
       color-mix(
         in oklch,
@@ -653,6 +655,7 @@
       );
     color: var(--colors-text);
     min-height: 5rem;
+    padding: 1rem;
 
     &:hover {
       transform: translateY(-4px);

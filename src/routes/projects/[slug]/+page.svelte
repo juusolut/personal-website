@@ -72,7 +72,7 @@
           </h3>
 
           <div class="date">
-            <DatePill date={formatDate(data.meta.date, true)}  identifier={data.meta.slug} />
+            <DatePill date={formatDate(data.meta.date, true)}  identifier={data.meta.slug} usePrimaryColor />
           </div>
         </div>
         <p
