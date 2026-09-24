@@ -1,18 +1,18 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200..800&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap'); */
-/* @import url("https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap"); */
-/* @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"); */
-/* @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
-
 .mr-dafoe-regular {
   font-family: "Mr Dafoe", cursive;
   font-weight: 400;
   font-style: normal;
 }
 
+.ibm-plex-mono {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 800;
+  font-style: normal;
+}
+
 code {
-  font-family:
-    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--font-sizes-sm);
 }
 
 *,
@@ -34,7 +34,6 @@ html {
   scrollbar-gutter: stable;
   overflow-x: hidden;
   color: var(--colors-text);
-  /*   background: linear-gradient(to bottom, white, red); */
 }
 
 body {
@@ -231,12 +230,6 @@ button:hover {
   padding-left: 0.5rem !important;
   padding-right: 0.5rem !important;
 } */
-
-.ibm-plex-mono {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 800;
-  font-style: normal;
-}
 
 .view-title {
   color: var(--colors-text);

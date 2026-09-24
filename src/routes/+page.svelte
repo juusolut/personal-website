@@ -82,42 +82,13 @@
   <div class="nutshell__info section-content">
     <div class="nutshell__gradient-border"></div>
     <div class="nutshell_content" class:is-visible={isLoaded}>
-      <div class="nutshell__title reveal">
+      <div class="nutshell__title reveal ibm-plex-mono">
         <h1 class="nutshell__hey">Hei!</h1>
         <h1 class="nutshell__im">
           Olen &lt; <span class="mr-dafoe-regular">Juuso</span> /&gt;
         </h1>
       </div>
-      <!-- <div class="buttons">
-        <a
-          href={asset("/resume.pdf")}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button button__resume to-light-cv"
-          ><span class="offsite-link">CV</span></a
-        >
-        <a
-          href={asset("/resume-dark.pdf")}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button button__resume to-dark-cv"
-          ><span class="offsite-link">CV</span></a
-        >
-        <a
-          href="https://www.linkedin.com/in/juusolut/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button button__linkedin"
-          ><span class="offsite-link">LinkedIn</span></a
-        >
-        <a
-          href="https://github.com/juusolut"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button button__github"
-          ><span class="offsite-link">GitHub</span></a
-        >
-      </div> -->
+
       <div class="contact-buttons-container">
         <ContactButtons onlyRow />
       </div>
@@ -126,11 +97,6 @@
         alt="Juuso Luttinen"
         class="nutshell__image reveal"
       />
-      <!--       <img
-        src={asset("/images/me.png")}
-        alt="Juuso Luttinen"
-        class="nutshell__image styled reveal"
-      /> -->
       <div class="nutshell__bg-image-container reveal"></div>
       <div class="nutshell__bg-blueprint reveal"></div>
     </div>
@@ -140,12 +106,12 @@
       <button
         class="nutshell__scroll-button"
         onclick={() => scrollToElement(".projects")}
-        out:fade={{ duration: 200 }}
+        out:fade={{ duration: 300 }}
       >
-        <span class="scroll-arrow" aria-hidden="true"></span><span
-          >Vieritä alas</span
-        ><span class="scroll-arrow" aria-hidden="true"></span></button
-      >
+        <span class="scroll-arrow" aria-hidden="true"></span>
+        <span class="ibm-plex-mono">Vieritä alas</span>
+        <span class="scroll-arrow" aria-hidden="true"></span>
+      </button>
     {/if}
   </div>
 </section>
@@ -201,9 +167,12 @@
         <div class="comments__own-words">
           <a href={resolve("/about")} class="button">
             <span class="offsite-link no-arrow">Tutustu minuun tarkemmin</span>
-            <Icon name="ArrowNarrowLeft" style="transform: rotate(180deg)" size="1.25rem" />
-          </a
-          >
+            <Icon
+              name="ArrowNarrowLeft"
+              style="transform: rotate(180deg)"
+              size="1.25rem"
+            />
+          </a>
         </div>
       </div>
     </Reveal>
@@ -348,9 +317,6 @@
   }
 
   .nutshell__hey {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 800;
-    font-style: normal;
     margin: 0;
     font-size: clamp(var(--font-sizes-xxl), 2cqw + 5cqh, 5rem);
   }
@@ -384,12 +350,6 @@
     position: absolute;
     z-index: 1;
     color: color-mix(in oklab, var(--colors-secondary) 20%, var(--colors-text));
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 800;
-    font-style: normal;
-    /*     transform: translate3d(var(--offset-x), var(--offset-y), 0) !important;
-    transition: transform 30ms ease-out !important;
-    will-change: transform; */
   }
 
   .nutshell__image-mask {
@@ -596,12 +556,12 @@
     gap: 2rem;
     justify-content: center;
     align-items: center;
+    position: relative;
   }
 
   .scroll-arrow {
     position: relative;
     display: inline-block;
-    transform: translateY(-0.8rem) rotate(45deg);
   }
 
   /* Base shape for both arrows */
@@ -610,25 +570,23 @@
     content: "";
     position: absolute;
     left: 50%;
-    width: 12px;
-    height: 12px;
-    border-right: 2.5px solid var(--colors-text);
-    border-bottom: 2.5px solid var(--colors-text);
-    animation: arrowPulse 2s infinite ease-in-out;
+    width: 0.5rem;
+    aspect-ratio: 1 / 1;
+    border-right: 3px solid var(--colors-secondary);
+    border-bottom: 3px solid var(--colors-secondary);
+    animation: arrowPulse 3s infinite ease-in-out;
   }
 
   /* Top Arrow */
   .scroll-arrow::before {
-    top: -0.2rem;
-    left: -0.2rem;
     animation-delay: 0s;
+    transform: translateY(-0.75em) rotate(45deg);
   }
 
   /* Bottom Arrow (Layered below with delay) */
   .scroll-arrow::after {
-    top: 0.2rem;
-    left: 0.2rem;
-    animation-delay: 0.1s;
+    animation-delay: 0.5s;
+    transform: translateY(0em) rotate(45deg);
   }
 
   /* Downward bounce & fade animation */
@@ -638,6 +596,9 @@
     }
     50% {
       opacity: 1;
+    }
+    80% {
+      opacity: 0;
     }
     100% {
       opacity: 0;
