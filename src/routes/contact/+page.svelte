@@ -9,7 +9,7 @@
 <div class="info-container h-padding">
   <div class="info">
     <div>
-      <h2 class="view-title no-bg">Yhteystiedot</h2>
+      <h2 class="view-title no-bg" style="margin-bottom: 2rem;">Yhteystiedot</h2>
     </div>
     <ProfileCircle imageSrc={"/images/me (Small).png"} outlined />
     <div class="title-buttons-container">
@@ -32,7 +32,7 @@
     /*
     transform: translateY(-3rem); */
     /*     border: 1px solid red; */
-    margin-top: 3rem;
+    margin-top: .5rem;
   }
 
   .info {
@@ -41,7 +41,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     height: min-content;
     width: 100%;
     background-color: var(--colors-elevation-2);
@@ -52,7 +52,7 @@
 
     @container (width > 41rem) {
       padding: 1rem 2rem;
-      padding-top: 4rem;
+      padding-top: 3rem;
       padding-bottom: 1.5rem;
     }
   }
