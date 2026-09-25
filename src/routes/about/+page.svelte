@@ -183,6 +183,7 @@
 </div>
 
 <style>
+
   .achievements {
     display: flex;
     flex-direction: column;

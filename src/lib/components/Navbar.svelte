@@ -115,7 +115,7 @@
     );
     /*     backdrop-filter: blur(10px); */
     view-transition-name: navbar;
-    view-transition-class: project-morph2 navbar;
+    view-transition-class: navbar;
     border-bottom: 1px solid transparent;
     transition: border-bottom-color var(--anim-speed-slow) linear;
     &.show-border {
@@ -125,6 +125,18 @@
         var(--border-mix-shading) var(--border-strength-2)
       );
     }
+  }
+
+  :global(::view-transition-group(.navbar)) {
+    animation-duration: 250ms !important;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: 9999;
+  }
+
+  :global(::view-transition-old(.navbar)),
+  :global(::view-transition-new(.navbar)) {
+    /*   mix-blend-mode: normal; */
+    z-index: 9999;
   }
 
   .nav-container {
@@ -145,7 +157,7 @@
     text-transform: uppercase;
     display: inline-flex;
     align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
 
     img {
       height: 2rem !important;
@@ -183,6 +195,20 @@
         var(--colors-elevation-2),
         var(--border-mix-shading) var(--border-strength-2)
       );
+
+    &::before {
+      content: "";
+      height: 3px;
+      background-color: var(--colors-primary);
+      position: absolute;
+      z-index: -1;
+      position-anchor: --link;
+      bottom: 0.2rem;
+      left: calc(anchor(left) + 0.4em);
+      right: calc(anchor(right) + 0.4em);
+      border-radius: var(--border-radiuses-md);
+      transition: inset var(--anim-speed-medium);
+    }
   }
 
   .nav-links.open {
@@ -210,9 +236,10 @@
   }
 
   .nav-links a.active {
-    text-decoration: underline;
+    /*     text-decoration: underline;
     text-underline-offset: 5px;
-    text-decoration-thickness: 3px;
+    text-decoration-thickness: 3px; */
+    anchor-name: --link;
   }
 
   #links-and-buttons {
@@ -324,13 +351,14 @@
       gap: 1.5rem;
       margin: 0;
       padding: 0;
-      position: unset;
+      position: relative;
       height: auto;
       width: auto;
       flex-direction: row;
       background-color: transparent;
       border: none;
       gap: 0.5rem;
+      inset: 0;
 
       a {
         display: inline-block;

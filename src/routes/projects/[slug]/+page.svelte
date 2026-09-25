@@ -72,7 +72,11 @@
           </h3>
 
           <div class="date">
-            <DatePill date={formatDate(data.meta.date, true)}  identifier={data.meta.slug} usePrimaryColor />
+            <DatePill
+              date={formatDate(data.meta.date, true)}
+              identifier={data.meta.slug}
+              usePrimaryColor
+            />
           </div>
         </div>
         <p
@@ -148,7 +152,7 @@
       height: fit-content;
       margin: 0;
       padding: 0;
-/*       font-size: var(--font-sizes-lg); */
+      /*       font-size: var(--font-sizes-lg); */
       font-weight: var(--font-weights-bolder);
     }
 
@@ -168,6 +172,7 @@
       object-fit: cover;
       transition: transform 0.3s ease;
       aspect-ratio: 16 / 9;
+      overflow: hidden;
     }
   }
 
@@ -212,8 +217,6 @@
   .grid-item__image-wrapper {
     width: 100%;
     aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background-color: #f3f4f6;
     border-radius: var(--border-radiuses-lg);
     overflow: hidden;
     grid-area: image;

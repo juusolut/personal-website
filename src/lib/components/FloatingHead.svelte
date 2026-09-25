@@ -28,11 +28,12 @@
       src={asset("/images/favicons/favicon-96x96.png")}
       alt="Juuso Luttinen"
     />
-    <div class="floating-head__bubble">
-      <span>
-        Psst! Löydät yhteystietoni <a href={resolve("/contact")}>täältä</a
-        >.</span
-      >
+    <div class="anchor">
+      <div class="floating-head__bubble">
+        <span>
+          Psst! Löydät yhteystietoni <a href={resolve("/contact")}>täältä</a>.
+        </span>
+      </div>
     </div>
     <button class="close-button" onclick={() => (isClosed = true)}
       ><Icon name="X" /></button
@@ -41,6 +42,26 @@
 {/if}
 
 <style>
+  /*   @keyframes type {
+    from {
+      width: 0;
+    }
+  }
+  .test {
+    display: inline-block;
+    width: 24ch;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: type 1s steps(24) forwards;
+  } */
+
+  .anchor {
+    position: absolute;
+/*     background-color: red; */
+    left: 50%;
+    transform: translateX(-50%);
+    top: -.25rem;
+  }
   .close-button {
     position: absolute;
     top: -0.5rem;
@@ -55,18 +76,18 @@
     color: var(--colors-text);
     box-shadow: var(--shadows-xs);
     border: 2px solid
-        color-mix(
-          in oklch,
-          var(--colors-elevation-2),
-          var(--border-mix-shading) var(--border-strength-1)
-        );
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
   }
   .floating-head {
     position: fixed;
     bottom: 1rem;
     right: 1rem;
-    width: 4rem;
-    height: 4rem;
+    height: clamp(3.5rem, 10vw, 5rem);
+    aspect-ratio: 1 / 1;
     border: none;
     z-index: 1;
 
@@ -78,9 +99,6 @@
 
   .floating-head__bubble {
     position: absolute;
-    bottom: 100%;
-    right: -15%;
-    margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     color: var(--colors-text);
     border-radius: var(--border-radiuses-md);
@@ -88,7 +106,10 @@
     font-weight: var(--font-weights-medium);
     white-space: nowrap;
     opacity: 1;
-    transform: translate(-1rem, 0rem);
+    left: 50%;
+    transform: translateX(-50%);
+    top: -2.5rem;
+    left: -5.25rem;
     box-shadow: var(--shadows-xs);
     z-index: 1;
     isolation: isolate;
@@ -120,10 +141,10 @@
     &::before {
       content: "";
       position: absolute;
-      bottom: -0.45rem;
+      bottom: -0.35rem;
       right: 1rem;
-      height: 1rem;
-      width: 1rem;
+      height: .75rem;
+      width: .75rem;
       transform: rotate(45deg);
       background-color: var(--colors-elevation-2);
       border-bottom: 2px solid
@@ -138,7 +159,7 @@
           var(--colors-elevation-2),
           var(--border-mix-shading) var(--border-strength-1)
         );
-/*       box-shadow: var(--shadows-xs); */
+      /*       box-shadow: var(--shadows-xs); */
       z-index: 2;
     }
   }
