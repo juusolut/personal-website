@@ -10,7 +10,7 @@
   let scrollY = $state(0);
 
   // 2. Derive visibility automatically using the $derived rune
-  let isVisible = $derived(scrollY > 400);
+  let isVisible = $derived(scrollY > 100);
 
   let isClosed = $state(false);
 </script>

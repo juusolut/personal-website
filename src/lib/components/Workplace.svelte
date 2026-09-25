@@ -142,7 +142,7 @@
     font-weight: var(--font-weights-bold);
     font-size: var(--font-sizes-sm);
     text-align: center;
-    color: color-mix(in oklab, var(--colors-text) 97%, var(--colors-secondary));
+    color: color-mix(in oklch, var(--colors-secondary), white 90%);
   }
 
   .left {

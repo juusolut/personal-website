@@ -293,8 +293,7 @@
     --opacity-to: 0.1;
     --y-from: 2rem;
     --speed: 4s;
-
-    --line-color: oklch(from var(--colors-text) 0.1 c h / 0.2);
+    --line-color: oklch(from var(--colors-text) 0.1 c h / 0.3);
 
     content: "";
     position: absolute;
