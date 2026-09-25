@@ -125,7 +125,7 @@ Käynnistimme projektin huolellisella vaatimusmäärittelyllä ja kilpailija-ana
 
 ## Ohjelmistokehitys
 
-Emme halunneet keksiä pyörää uudelleen, joten valitsimme projektin pohjaksi avoimen lähdekoodin <a href="https://github.com/react-grid-layout/react-grid-layout">react-grid-layout</a> -kirjaston (MIT), joka on suosittu ja testattu. Tuo kirjasto siis mahdollisti elementtien ruudukkosijoittelun ja säästi siten rutkasti kehitysaikaa. Kehitystyön sujuvoittamiseksi loimme myös dummy-server-skriptin, joka simuloi radio-ohjelmiston backendia. Tämä helpotti merkittävästi ruudukossa sijaitsevien dynaamisten widgetien suunnittelua, toteutusta ja testausta ennen integrointimista oikeaan järjestelmään.
+Emme halunneet keksiä pyörää uudelleen, joten valitsimme projektin pohjaksi avoimen lähdekoodin <a href="https://github.com/react-grid-layout/react-grid-layout">react-grid-layout</a> -kirjaston (MIT), joka oli jo tuolloin suosittu ja toimintavarma. Kirjasto siis mahdollisti elementtien ruudukkosijoittelun ja säästi siten rutkasti kehitysaikaa. Kehitystyön sujuvoittamiseksi loimme myös dummy-server-skriptin, joka simuloi radio-ohjelmiston backendia. Tämä helpotti merkittävästi ruudukossa sijaitsevien dynaamisten widgetien suunnittelua, toteutusta ja testausta ennen integrointimista oikeaan järjestelmään.
 
 <VideoPlayer videoSrc="/videos/dashboard/dashboard-dummy-server.webm" posterSrc={thumbSrc} description="Dummy-serverin hyödyntäminen kehityksessä."  />
 

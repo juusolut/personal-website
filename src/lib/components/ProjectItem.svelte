@@ -28,7 +28,6 @@
     onselect?.(id);
     goto(resolve(href));
   }
-
 </script>
 
 <a
@@ -89,9 +88,11 @@
     text-decoration: none;
   }
 
-  .link:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadows-sm);
+  @media (hover: hover) and (pointer: fine) {
+    .link:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadows-sm);
+    }
   }
 
   .grid-item__image-wrapper {

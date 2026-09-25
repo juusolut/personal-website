@@ -82,7 +82,7 @@
       Osaamiseni on painottunut frontend-kehitykseen ja UI-suunnitteluun, mutta
       minulta löytyy myös vahva kiinnostus backend-kehitystä kohtaan. Olen
       utelias oppija ja pyrin jatkuvasti laajentamaan teknistä osaamistani.
-      Tässä teknologioita, joita olen käyttänyt opinnoissani ja omissa
+      Tässä teknologioita ja ohjelmistoja, joita olen käyttänyt opinnoissani ja
       <a href={resolve("/projects")}>projekteissani</a>:
     </p>
     <div class="tags"><Tags tags={newTags} /></div>

@@ -203,7 +203,7 @@
       position: absolute;
       z-index: -1;
       position-anchor: --link;
-      bottom: 0.2rem;
+      bottom: 0.3em;
       left: calc(anchor(left) + 0.4em);
       right: calc(anchor(right) + 0.4em);
       border-radius: var(--border-radiuses-md);
@@ -230,13 +230,20 @@
     min-width: 10rem;
   }
 
-  .nav-links a:hover,
+  .nav-links a:hover {
+    color: color-mix(
+      in oklch,
+      var(--colors-text),
+      var(--colors-primary) 75%
+    ); /* Highlight color */
+  }
+
   .nav-links a.active {
     color: var(--colors-primary); /* Highlight color */
   }
 
   .nav-links a.active {
-    /*     text-decoration: underline;
+/*     text-decoration: underline;
     text-underline-offset: 5px;
     text-decoration-thickness: 3px; */
     anchor-name: --link;

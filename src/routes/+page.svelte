@@ -131,7 +131,7 @@
         />
       {/each}
       <a href={resolve("/projects")} class="all-projects-link">
-      <Icon name="ListDetails" size="4rem"/>
+        <Icon name="ListDetails" size="4rem" />
         <span>Näytä kaikki projektit ({data.projectCount})</span>
       </a>
     </div>
@@ -290,9 +290,11 @@
   }
 
   .nutshell__bg-blueprint {
-    --opacity-to: 0.2;
+    --opacity-to: 0.1;
     --y-from: 2rem;
     --speed: 4s;
+
+    --line-color: oklch(from var(--colors-text) 0.1 c h / 0.2);
 
     content: "";
     position: absolute;
@@ -301,20 +303,27 @@
     width: 100%;
     height: 200%;
     background-repeat: repeat;
-    background-size: 8rem auto;
-    /* GPU-optimized execution */
     will-change: transform;
-
-    /* Adjust duration (20s) to control scrolling speed */
-    /*       animation: scrollPattern 200s linear infinite; */
     background-color: var(--colors-secondary);
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    /*     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     mask-repeat: repeat;
-    mask-size: 10rem auto;
-    opacity: 0.2;
-    z-index: -1;
-    /*     transform: skew(15deg, -15deg) !important; */
+    mask-size: 10rem auto; */
+    background-image: repeating-linear-gradient(
+        90deg,
+        var(--line-color) 0px,
+        var(--line-color) 1px,
+        transparent 1px,
+        transparent 1rem
+      ),
+      repeating-linear-gradient(
+        0deg,
+        var(--line-color) 0px,
+        var(--line-color) 1px,
+        transparent 1px,
+        transparent 1rem
+      );
+    z-index: -2;
   }
 
   .nutshell__hey {
@@ -506,7 +515,7 @@
     width: 100%;
     left: 0;
     bottom: 0;
-    z-index: -2;
+    z-index: -1;
     overflow: hidden;
     clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%, 0 80%);
     /*     clip-path: polygon(0% 0%, 100% 0%, 100% 53.25%, 0% 88.75%, 0% 100%, 100% 100%, 100% 75.76%, 100% 0%, 36.25% 0%, 0% 12.75%); */
@@ -646,7 +655,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
     border: 1px solid
       color-mix(
         in oklch,
@@ -657,9 +666,11 @@
     min-height: 5rem;
     padding: 1rem;
 
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadows-sm);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadows-sm);
+      }
     }
   }
 

@@ -25,15 +25,15 @@ date: "2026-1-1"
 const summaryData = [
   {
     title: "Tausta",
-    content: "Peruskouluaikoina syntynyt haave omasta julkisesta kotisivusta toteutui vihdoin."
+    content: "Peruskouluaikoina syntynyt haave omasta kotisivusta toteutui vihdoin."
   },
   {
     title: "Teknologia",
-    content: "Kehykseksi valikoitui Svelte (SSG) sen keveyden, suorituskyvyn, komponenttikohtaisten tyylien (scoped CSS) ja selkeän tiedostopohjaisen reitityksen ansiosta."
+    content: "Kehykseksi valikoitui Svelte(Kit) sen keveyden, suorituskyvyn, komponenttikohtaisten tyylien ja selkeän tiedostopohjaisen reitityksen ansiosta."
   },
   {
     title: "Hostaus",
-    content: "Toteutettu GitHub Pagesin kautta julkisesta repositoriosta automaattisella GitHub Actions -CI/CD-putkella."
+    content: "Hostattu GitHub Pagesin kautta julkisesta repositoriosta automaattisella GitHub Actions -CI/CD-putkella."
   },
   {
     title: "Domain & Sähköposti",
@@ -41,7 +41,7 @@ const summaryData = [
   },
   {
     title: "Lopputulos",
-    content: "Valmis, jatkuvasti kehittyvä henkilökohtainen verkkosivu ja saavutettu pitkän ajan tavoite."
+    content: "Valmis, jatkuvasti kehittyvä henkilökohtainen verkkosivu, jossa esittelen osaamistani."
   }
 ];
 
@@ -51,29 +51,35 @@ const summaryData = [
 
 ## Oma portfolio
 
-Kiinnostus nettisivujen tekemiseen alkoi minulla jo peruskouluikäisenä. Vapaa-ajalla ja atk-tunneilla oli kiehtovaa nähdä miten erikoiselta näyttävä HTML-merkintäkieli kääntyi nettisivuksi, ja niin jossain vaiheessa syntyi haave omasta julkisesta kotisivusta. Ajatus oli jostain syystä sivussa tovin, mutta nyt vihdoin oli toteutuksen aika.
+Kiinnostus nettisivujen tekemiseen alkoi minulla jo peruskouluikäisenä; vapaa-ajalla ja atk-tunneilla oli kiehtovaa nähdä miten erikoiselta näyttävä HTML-merkintäkieli kääntyy nettisivuksi. Haaveilin tuolloin omasta kotisivusta. Ajatus oli sivussa tovin, mutta tuntui vihdoin siltä että oli toteutuksen aika.
 
 ## Kehyksenä Svelte
 
-Halusin toteuttaa portfolioni jollain kevyellä, sujuvan kehityskokemuksen tarjoavalla ohjelmistokehyksellä, joka tukisi sivuston staattista generointia (SSG) ja mahdollistaisi siten helpon hostaamisen. Valitsin tehtävään Svelten. Olin kuullut siitä paljon hyvää ja lukenut sen keveydestä, suorituskyvystä ja kehittäjäystävällisyydestä.<br><br> Lyhyen kokeilun perusteella Svelte osoittautui juuri oikeaksi valinnaksi. Kehittäminen tuntui luonnolliselta, koska Svelte-komponenttien rakenne muistuttaa hyvin pitkälti perinteistä HTML/JS/CSS-koodausta:
+Halusin toteuttaa portfolioni jollain kevyellä, sujuvan kehityskokemuksen tarjoavalla ohjelmistokehyksellä, joka tukisi sivuston staattista generointia (SSG) ja mahdollistaisi siten helpon hostaamisen. Valitsin tehtävään Svelten. Olin kuullut siitä paljon hyvää ja lukenut sen keveydestä, suorituskyvystä ja kehittäjäystävällisyydestä.
+
+Lyhyen kokeilun perusteella Svelte osoittautui juuri oikeaksi valinnaksi. Kehittäminen tuntui luonnolliselta, koska Svelte-komponenttien rakenne muistuttaa hyvin pitkälti perinteistä HTML/JS/CSS-koodia:
 
 <pre><code bind:this={codeElement} class="language-xml">
 {rawCode}
 </code></pre>
 
-Sveltessä CSS-luokat ovat komponenttikohtaisia (scoped); komponenteissa määritetyt samannimiset luokat eivät siis sekoitu keskenään, koska buildaamisen yhteydessä niille annetaan uniikit tunnisteet. Eri reittien – esim. /projects ja /contact – toteutus on myös suoraviivaista. Ei turhia abstraktioita, providereita ja importteja vaan polut syntyvät suoraan kansiorankenteen perusteella. Lähestymistavat moniin asioihin tuntuivat virkistävältä Reactin kanssa työskentelyn jälkeen!
+Sveltessä CSS-luokat ovat komponenttikohtaisia (scoped); komponenteissa määritetyt samannimiset luokat eivät siis sekoitu keskenään, koska buildaamisen yhteydessä niille annetaan uniikit tunnisteet.
+
+Eri reittien – esim. /projects ja /contact – toteutus on myös suoraviivaista. Ei turhia abstraktioita, providereita ja importteja vaan polut syntyvät suoraan kansiorankenteen perusteella. Lähestymistavat moniin asioihin tuntuivat virkistävältä verrattuna tutumpaan Reactiin.
 
 ## Hostaaminen
 
-Hyödynsin Github Pagesia portfolion hostaamiseen. Tätä varten sen repositotoriosta täytyi tehä julkinen Githubissa. Määritin repoon Github-actionin, joka buildaa sivuston uudelleen jokaisen pushin yhteydessä, mikä on muutosten tekemisen kannalta erittäin kätevää.
+Hyödynsin Github Pagesia portfolion hostaamiseen. Tätä varten sen repositotoriosta täytyi tehä julkinen Githubissa. Määritin repoon Github-actionin, joka buildaa sivuston uudelleen jokaisen pushin yhteydessä, mikä on muutosten tekemisen kannalta hyvin kätevää.
 
 ## Domain ja sähköposti
 
-Portfolion tekeminen oli oiva tilaisuus perehtyä domainien maailmaan. Valittuani domaintarjoajan ja vapaana olevan domainin, pienten mutkien ja konfiguroinnon kautta sivusto avautui lopulta julu.fi osoitteen takaa. Se oli hieno fiilis! Oma domain mahdollisti tietysti myös oman @julu.fi sähköpostipäätteen käytön. Tätä varten otin käyttöön Zoho Mailin, ja pian sähköpostit lähtivät maailmalle omalle uniikilla osoittellani ja saapuivat ongelmitta myös omaan postilaatikkoon.
+Portfolion tekeminen oli oiva tilaisuus perehtyä domainien maailmaan. Valittuani domaintarjoajan ja vapaana olevan domainin, pienten mutkien ja konfiguroinnon kautta sivusto avautui lopulta julu.fi osoitteen takaa. Se oli hieno fiilis! Domainia voisi nyt käyttää myös sivuprojektien kanssa (esim. sivuprojekti.julu.fi).
+
+Oma domain mahdollisti tietysti myös oman @julu.fi sähköpostipäätteen käytön. Tätä varten otin käyttöön Zoho Mailin, ja pian sähköpostit lähtivät maailmalle omalle uniikilla osoittellani ja saapuivat ongelmitta myös omaan postilaatikkooni.
 
 ## Loppumietteet
 
-Tässä se nyt on. Oma piskuinen nettisivu, jota kehittäisin pikkuhiljaa, ja jonka olisi tarkoitus pyöriä internetissä hamaan tulevaisuuten asti. Peruskouluajoilta alkanut haave oli nyt täytetty. Nyt ei muuta kuin seuraavien haaveiden ja tavoitteiden kimppuun!
+Tässä se nyt on. Oma piskuinen nettisivu, jota kehittelen ja täydennän pikkuhiljaa. Tarkoituksena olisi että se pyörisi internetissä hamaan tulevaisuuten asti. Peruskouluaikona syntynyt haave oli nyt saavutettu. Sitten ei muuta kuin seuraavien haaveiden ja tavoitteiden kimppuun!
 
 <style>
   .language-xml {

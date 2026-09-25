@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { settings, toggleTransitions } from "$lib/stores/settings.svelte";
+  import { settings, toggleSounds, toggleTransitions } from "$lib/stores/settings.svelte";
   import Icon from "./Icon.svelte";
 </script>
 
@@ -19,20 +19,20 @@
       </label>
     </div>
   </li>
-<!--   <li class="menu-item">
+  <li class="menu-item">
     <div class="menu-option">
-      <label for="animations-checkbox">
-        <span>Käytä ääniä</span>
+      <label for="sounds-checkbox">
+        <span>Käyttöliittymä-äänet</span>
         <input
-          id="animations-checkbox"
+          id="sounds-checkbox"
           type="checkbox"
-          bind:checked={settings.transitionsEnabled}
-          onchange={(e) => toggleTransitions(e.currentTarget.checked)}
+          bind:checked={settings.soundsEnabled}
+          onchange={(e) => toggleSounds(e.currentTarget.checked)}
         />
         <div class="checkbox"></div>
       </label>
     </div>
-  </li> -->
+  </li>
 </ul>
 
 <style>
@@ -72,29 +72,13 @@
     outline: 3px solid var(--colors-primary);
     outline-offset: 2px;
   }
-
-  /*   .checkbox {
-    --bg: var(--colors-elevation-2);
-    display: inline-block;
-    width: 1.2rem;
-    height: 1.2rem;
-    background: var(--bg);
-    color: transparent;
-    border: 2px solid color-mix(in oklab, var(--bg), var(--colors-text) 50%);
-    border-radius: var(--border-radiuses-sm);
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-  } */
   .checkbox {
     display: inline-block;
+    flex-shrink: 0;
     width: 2.5rem;
     height: 1.25rem;
     background: grey;
     background: oklch(from var(--colors-primary) 0.7 0.015 h);
-    /*     border: 2px solid color-mix(in oklab, var(--bg), var(--colors-text) 50%); */
     border-radius: var(--border-radiuses-lg);
     position: relative;
     user-select: none;
@@ -105,6 +89,7 @@
       height: 1rem;
       aspect-ratio: 1 / 1;
       background-color: white;
+      background-color: oklch(from var(--colors-primary) 0.95 0.015 h);
       border-radius: 100%;
       top: 50%;
       left: 0;
