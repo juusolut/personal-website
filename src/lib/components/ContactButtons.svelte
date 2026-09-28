@@ -52,9 +52,23 @@
 
 <style>
   .arrow-icon {
-    position: absolute;
-    right: 1rem;
-    transform: rotate(180deg);
+    display: none;
+
+    @container button (width > 8rem) {
+      display: block;
+      position: absolute;
+      right: 0.1rem;
+      top: -0.2rem;
+      transform: rotate(130deg) scale(0.8);
+    }
+
+    @container button (width > 14rem) {
+      display: block;
+      position: absolute;
+      top: unset;
+      right: 1rem;
+      transform: rotate(180deg) scale(1);
+    }
   }
   .button {
     width: 100%;
@@ -76,11 +90,18 @@
     gap: 1rem;
     position: relative;
     user-select: none;
+    container-type: inline-size;
+    container-name: button;
 
-    :global(.icon) {
+    & > span {
+      line-height: 1em;
+      display: inline;
+    }
+
+    /*     :global(.icon) {
       display: block;
       flex-shrink: 0;
-    }
+    } */
   }
 
   .button__resume {
@@ -108,12 +129,12 @@
       flex-direction: row;
       /*       padding: 0.5rem; */
 
-      .arrow-icon {
+      /*       .arrow-icon {
         position: absolute;
         right: 0.1rem;
         top: 0.1rem;
         transform: rotate(130deg) scale(0.8);
-      }
+      } */
 
       .button {
         width: auto;
@@ -135,12 +156,12 @@
       justify-content: flex-start;
       /*       padding: 0.5rem; */
 
-      .arrow-icon {
+      /*       .arrow-icon {
         position: absolute;
         right: 0.1rem;
         top: 0.1rem;
         transform: rotate(130deg) scale(0.8);
-      }
+      } */
       .button {
         width: auto;
         padding: 0.5rem 0;
@@ -149,11 +170,6 @@
         justify-content: center;
         gap: 0.375em;
         flex: 1;
-      }
-    }
-    @container button (width > 9rem) {
-      .arrow-icon {
-        display: block !important;
       }
     }
   }

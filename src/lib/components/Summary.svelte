@@ -17,7 +17,7 @@
     <div class="content">
       {#each data as item}
         <div class="content-item">
-          <b>{item.title}</b>
+          <strong>{item.title}</strong>
           <span>{@html item.content}</span>
         </div>
       {/each}
@@ -31,7 +31,7 @@
     flex-direction: column;
     gap: 0.5rem;
 
-    > b {
+    > strong   {
       min-width: 8rem;
       font-family: var(--fonts-ibm-plex-mono);
       &::before {

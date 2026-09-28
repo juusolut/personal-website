@@ -5,6 +5,7 @@
   import ThemeSwitcher from "./ThemeSwitcher.svelte";
   import DropdownButton from "./DropdownButton.svelte";
   import MenuOptions from "./MenuOptions.svelte";
+  import Icon from "./Icon.svelte";
 
   // Svelte 5 rune for mobile menu state
   let isOpen = $state(false);
@@ -230,6 +231,12 @@
     min-width: 10rem;
   }
 
+  .nav-links li:first-child {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
   .nav-links a:hover {
     color: color-mix(
       in oklch,
@@ -243,7 +250,7 @@
   }
 
   .nav-links a.active {
-/*     text-decoration: underline;
+    /*     text-decoration: underline;
     text-underline-offset: 5px;
     text-decoration-thickness: 3px; */
     anchor-name: --link;

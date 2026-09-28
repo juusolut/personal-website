@@ -76,7 +76,7 @@
 </div>
 
 <div class="skills-container h-padding" id="skills">
-  <div class="skills section-content">
+  <div class="skills section-content bold-highlight">
     <h2 class="view-title no-bg">Osaamiseni</h2>
     <p>
       Osaamiseni on painottunut frontend-kehitykseen ja UI-suunnitteluun, mutta

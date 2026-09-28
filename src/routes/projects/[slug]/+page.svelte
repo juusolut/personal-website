@@ -94,7 +94,7 @@
           <Tags tags={data.meta.tags} />
         </div>
       </div>
-      <div class="content">
+      <div class="content bold-highlight">
         <Content />
       </div>
     </article>

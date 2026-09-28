@@ -25,7 +25,7 @@ date: "2022-1-1"
   {
     imageSrc: "dashboard_all_compact.webp",
     thumbSrc: "dashboard_all_compact.webp",
-    description: "Dashboard-näkymä. Kaikki widgetin minimaalisessa tilassa."
+    description: "Dashboard-näkymä. Kaikki widgetit minimaalisessa tilassa."
   },
   {
     imageSrc: "dashboard_arrivals_playing_recorders_large.webp",

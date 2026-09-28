@@ -75,21 +75,21 @@ Koska pelisessio pyörii serverillä ja siihen yhdistetyillä clienteillä, siit
 
 Lähdin toteuttamaan peliin <b>server authoritative</b> -rakennetta. Tämä tarkoittaa sitä että serverillä on ehdoton päätösvalta pelin tapahtumiin ja se ei luota clienttiin juurikaan. Serveriin yhdistänyt clientti ei siis lähetä omia sijaintitietojaan serverille vaan se lähettää sille näppäimistö- ja hiirisyötteensä, joiden perusteella serveri laskee sitten lopputuloksen ja palauttaa sen clientille.
 
-### 2. Client Side Prediction
+### 2. Client-side Prediction
 
-Clientit eivät kuitenkaan odota vastauksia, koska niiden odottelu johtaisi todella katkonaiseen ja siten epämiellyttävään pelikokemukseen viiveen takia. <b>Client side predictionin</b> mukaisesti pelaajan liikkumiseen liittyvä koodi – joka on sama kuin serverillä – ajetaan lokaalisti peliclientissä ja pelaaja liikkuu näytöllä sen laskelmien mukaan.
+Clientit eivät kuitenkaan odota vastauksia, koska niiden odottelu johtaisi todella katkonaiseen ja siten epämiellyttävään pelikokemukseen viiveen takia. <b>Client-side Predictionin</b> mukaisesti pelaajan liikkumiseen liittyvä koodi – joka on sama kuin serverillä – ajetaan lokaalisti peliclientissä ja pelaaja liikkuu näytöllä sen laskelmien mukaan.
 
 Jos pelaajan sijainti sitten ylittää tietyn thresholdin eli sijainti poikkeaa serverin laskemasta sijainnista riittävän paljon, sijainti korjataan mahdollisimman huomaamattomasti. Korjaus tapahtuu <b>Server Reconciliation</b> -menetelmällä: yhden ruudunpäivityksen aikana pelaaja teleportataan korjattuun sijaintiin, jonka jälkeen pelaajan aikaisemmat syötteet ajetaan nykyhetkeen asti. Tämä minimoi korjauksesta aiheutuvaa visuaalista häiriötä pelaajalle.
 
 ### 3. Lag Compensation
 
-Kun pelaaja ampuu liikkuvaa vastustajaa, todellisuudessa hän saattaa ampua hänestä ohi, sillä viiveen takia pelaaja näkee toisen pelaajan vanhassa sijainnissa. Vastustaja voi siis oikeasti olla liikkunut ruudulla jo 50 pikseliä aseen lauetessa. Kun pelaaja ei sitten osu vastustajaan – joka oli varmasti nalkissa – hän turhautuu. Tämän takia tarvitaan <b>Lag Compensaatiota</b>.
+Kun pelaaja ampuu liikkuvaa vastustajaa, todellisuudessa hän saattaa ampua hänestä ohi, sillä viiveen takia pelaaja näkee toisen pelaajan vanhassa sijainnissa. Vastustaja voi siis oikeasti olla liikkunut ruudulla jo 50 pikseliä aseen lauetessa. Kun pelaaja ei sitten osu vastustajaan – joka oli varmasti nalkissa hänen perspektiivistään – hän turhautuu. Tämän takia tarvitaan <b>Lag Compensaatiota</b>.
 
-Lag Compensaatio toimii niin että serveri pitää kirjaa clienttien viiveistä ja puskuroi pelaajien sijainnit. Kun jokin pelaaja tekee operaation, jolla voi olla vaikutusta toiseen pelaajaan (esimerkiksi ampuu), serveri menee historiassa taaksepäin ampuneen pelaajan viiveen verran ja suorittaa ampumisen. Näin pelaaja osuu kohteeseensa viiveestä huolimatta.
+Lag Compensaatiota en ole vielä implementoinut peliin. Se toimii niin että serveri pitää kirjaa clienttien viiveistä ja puskuroi pelaajien sijainnit. Kun jokin pelaaja tekee operaation, jolla voi olla vaikutusta toiseen pelaajaan (esimerkiksi ampuu), serveri menee historiassa taaksepäin ampuneen pelaajan viiveen verran ja suorittaa ampumisen. Näin pelaaja osuu kohteeseensa viiveestä huolimatta.
 
 ### 4. Entity Interpolation
 
-Serverin päivitysnopeudesta johtuen pelaaja näkee ruudullaan liikkuvat viholliset katkonaisesti. Jos pelaajan ruutu päivittyy esim. 144 kertaa sekunnissa ja serveri lähettää tietoa esim. 32 kertaa sekunnissa, pelaajat liikkuvat ikään kuin teleportaten pieniä matkoja. Tämän takia toisten pelaajien sijainnit ja rotaatio täytyy interpoloida eli vanha sijainti saattaa uuteen sijaintiin vähitellen. Interpolointi lisää viivettä entisestään, mutta sen hyödyntäminen on väistämäntöntä pelikokemuksen kannalta.
+Serverin päivitysnopeudesta johtuen pelaaja näkee ruudullaan liikkuvat viholliset katkonaisesti. Jos pelaajan ruutu päivittyy esim. 144 kertaa sekunnissa ja serveri lähettää tietoa esim. 32 kertaa sekunnissa, pelaajat liikkuvat ikään kuin teleportaten pieniä matkoja. Tämän takia toisten pelaajien sijainnit ja rotaatio täytyy interpoloida eli vanha sijainti saattaa uuteen sijaintiin vähitellen. Interpolointi tavallaan lisää latenssia entisestään, mutta sitä on pakko käyttää, jotta pelikokemus olisi "smooooth".
 
 ## Mitä seuraavaksi?
 

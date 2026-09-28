@@ -95,7 +95,7 @@ Yliopiston harjoitustyö antoi vapaat kädet ohjelmiston toteutukseen, joten pä
 
 ## Ohjelmistokehitys
 
-Aloitimme profiloimalla mahdollisia käyttäjiä. Yritimme asettua heidän asemaansa, ja ideoida sovellusta ja käyttöliittymää sitä kautta. Halusimme sovelluksesta mahdollisimman yksinkertaisen, jotta se olisi aidosti kierroksella kenelle tahansa frisbeegolfaajalle. Valitsimme työkaluksi Googlen Flutterin, joka houkutteli kehitysympäristön keveydellä ja kehitystä nopeuttavalla Hot Reload -ominaisuudella. Kun meillä oli jonkinlainen tuotos valmiina, otimme sen mukaan frisbeegolf-kierrokselle, testaisimme sitä ja teimme parannuksia sovellukseen havaintojemme perusteella.
+Aloitimme profiloimalla mahdollisia käyttäjiä. Yritimme asettua heidän asemaansa, ja ideoida sovellusta ja käyttöliittymää sitä kautta. Halusimme sovelluksesta mahdollisimman yksinkertaisen, jotta se olisi aidosti kierroksella kenelle tahansa frisbeegolfaajalle. Valitsimme työkaluksi Googlen Flutterin, joka houkutteli kehitysympäristön keveydellä ja kehitystä nopeuttavalla Hot Reload -ominaisuudella. Kun meillä oli jonkinlainen tuotos valmiina, otimme sen mukaan frisbeegolf-kierrokselle, testasimme sitä ja teimme parannuksia sovellukseen havaintojemme perusteella.
 
 ## Lopputulos
 
