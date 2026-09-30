@@ -51,7 +51,7 @@
     width: 100%;
     height: auto;
     aspect-ratio: 16 / 9;
-    background-color: var(--colors-elevation-3);
+    background-color: black;
     display: block;
   }
 

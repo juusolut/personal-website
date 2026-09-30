@@ -99,7 +99,7 @@ ul {
   margin: 0;
   padding: 0;
   margin-top: 0.25em;
-  margin-bottom: 0.75em;
+  margin-bottom: 0.25em;
   padding-left: 2rem;
 }
 
@@ -176,14 +176,14 @@ h2,
 /* H3 / LG: 1.463rem (23.41px) → 1.9rem (30.4px) */
 h3,
 .h3 {
-  font-size: clamp(var(--font-sizes-lg), 1.264rem + 0.848vw, 1.9rem);
+  font-size: clamp(var(--font-sizes-lg), 1.264rem + 0.848vw, 1.8rem);
   line-height: 1.2;
 }
 
 /* H4 / MD: 1.25rem (20px) → 1.75rem (28px) */
 h4,
 .h4 {
-  font-size: clamp(var(--font-sizes-md), 1.023rem + 0.97vw, 1.75rem);
+  font-size: clamp(var(--font-sizes-md), 1.023rem + 0.97vw, 1.55rem);
   line-height: 1.25;
 }
 
