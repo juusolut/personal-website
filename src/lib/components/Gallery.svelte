@@ -151,7 +151,8 @@
       case "F":
         e.preventDefault();
         isFullscreen = !isFullscreen; // Toggle off via 'F' key
-        break;resetZoom();
+        break;
+        resetZoom();
     }
   }
 
@@ -316,7 +317,11 @@
 
   function handleImagePointerUp(e: PointerEvent) {
     const target = e.currentTarget as HTMLElement;
-    if (target && target.hasPointerCapture && target.hasPointerCapture(e.pointerId)) {
+    if (
+      target &&
+      target.hasPointerCapture &&
+      target.hasPointerCapture(e.pointerId)
+    ) {
       target.releasePointerCapture(e.pointerId);
     }
     activePointers.delete(e.pointerId);
@@ -354,7 +359,9 @@
             >{currentImageIndex + 1} / {data.length}</span
           >
         </div>
-        <button class="fullscreen-button button swiping-hud" onclick={toggleFullscreen}
+        <button
+          class="fullscreen-button button swiping-hud"
+          onclick={toggleFullscreen}
           ><Icon name={isFullscreen ? "FullscreenExit" : "Fullscreen"} />
         </button>
         <button
@@ -552,8 +559,7 @@
   }
 
   .swiping-hud {
-        transition: opacity 200ms linear;
-
+    transition: opacity 200ms linear;
   }
 
   .gallery-inner.disableMoving .swiping-hud {
@@ -561,8 +567,8 @@
     pointer-events: none;
   }
 
-    .gallery-inner.disableMoving .zoom-indicator {
-    opacity: 1.0;
+  .gallery-inner.disableMoving .zoom-indicator {
+    opacity: 1;
     pointer-events: all;
   }
 
@@ -633,12 +639,14 @@
 
   .button {
     --size: 2rem;
+    --bg-color: color-mix(in oklch, var(--colors-elevation-4), transparent 30%);
+    --hover-color: oklch(from var(--bg-color) calc(l + 0.05) c h);
 
     z-index: 2;
     height: var(--size);
     width: var(--size);
     border-radius: 100%;
-    background: var(--colors-elevation-4);
+    background: var(--bg-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -652,6 +660,13 @@
       );
     pointer-events: auto;
     touch-action: none;
+
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .button:hover {
+      background: var(--hover-color);
+    }
   }
 
   .button:disabled {
@@ -659,7 +674,9 @@
     cursor: not-allowed;
   }
 
-  .button:active {
+  .button:focus {
+    outline: 3px solid var(--colors-secondary);
+    outline-offset: 3px;
   }
 
   .change-image-button {
@@ -728,7 +745,7 @@
     --size: 1.5rem !important;
     width: auto;
     height: auto;
-    border-color: var(--colors-error);
+/*     border-color: var(--colors-error); */
     border-radius: var(--border-radiuses-sm);
     padding: 0rem 0.5rem;
     top: 2rem;
@@ -743,7 +760,7 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 200ms linear;
-  } 
+  }
 
   @media (hover: none) and (pointer: coarse) {
     .button {

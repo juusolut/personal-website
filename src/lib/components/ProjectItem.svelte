@@ -99,7 +99,6 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background-color: #f3f4f6;
   }
 
   .grid-item__image-wrapper img {
@@ -140,11 +139,5 @@
       font-size: var(--font-sizes-md);
       font-weight: var(--font-weights-bolder);
     }
-  }
-
-  .date {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
   }
 </style>

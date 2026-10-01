@@ -71,11 +71,13 @@
     }
   }
   .button {
+    --bg-color: var(--colors-primary);
+    --hover-color: oklch(from var(--bg-color) calc(l + 0.05) c h);
+
     width: 100%;
     text-align: center;
     position: relative;
     font-weight: var(--font-weights-bold);
-    /*     font-size: var(--font-sizes-xs); */
     color: color-mix(in oklch, var(--bg-color), white 90%);
     text-decoration: none;
     background: var(--bg-color);
@@ -92,28 +94,49 @@
     user-select: none;
     container-type: inline-size;
     container-name: button;
+    z-index: 0;
+    /*     box-shadow: var(--shadows-sm); */
+
+    &::before {
+      content: "";
+      position: absolute;
+      height: calc(100% + 4px);
+      width: calc(100% + 4px);
+      top: -2px;
+      left: -2px;
+      box-shadow: var(--shadows-sm);
+      pointer-events: none;
+      opacity: 0;
+            border-radius: var(--border-radiuses-md);
+      z-index: -1;
+      transition: opacity var(--anim-speed-medium) linear;
+    }
 
     & > span {
       line-height: 1em;
       display: inline;
     }
+  }
 
-    /*     :global(.icon) {
-      display: block;
-      flex-shrink: 0;
-    } */
+  @media (hover: hover) and (pointer: fine) {
+    .button:hover {
+      background: var(--hover-color);
+
+      &.button::before {
+        opacity: 1;
+      }
+    }
   }
 
   .button__resume {
-    --bg-color: oklch(from oklch(0.73 0.12 68.69) 0.68 c 70);
+    --bg-color: oklch(0.68 0.12 70.07);
   }
-
   .button__linkedin {
-    --bg-color: #0a66c2;
+    --bg-color: oklch(51.56% 0.16327 254.746);
   }
 
   .button__github {
-    --bg-color: rgb(46, 46, 46);
+    --bg-color: oklch(30.118% 0.00003 271.152);
   }
 
   .buttons {

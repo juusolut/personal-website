@@ -2,7 +2,7 @@
 title: "Kuluku"
 slug: "kuluku"
 description: "Alusta, jolla yksityishenkilöt voivat myydä ja ostaa kulkuneuvoja kaksipyöräisistä työkoneisiin."
-thumbnail: "/images/processed/kuluku-thumb.webp"
+thumbnail: "/images/kuluku/kuluku-thumb.webp"
 tags: ["React", "Dotnet", "Mailhog", "Docker", "MicrosoftSQLServer", "GSAP"]
 isShowcased: true
 date: "2026-1-1"
@@ -16,7 +16,7 @@ date: "2026-1-1"
     const summaryData = [
         {
             title: "Tausta ja idea",
-            content: "Kahden kehittäjän yhteisprojekti. Tavoitteena oppia uutta ja tehdä erilaisten kulkupelien (autot, pyörät, moottoripyörät, työkoneet) kauppapaikka."
+            content: "Kahden kehittäjän yhteisprojekti. Tavoitteena oppia uutta tekemällä erilaisten kulkupelien (autot, pyörät, moottoripyörät, työkoneet) kauppapaikka."
         },
         {
             title: "Teknologiat",
@@ -28,7 +28,7 @@ date: "2026-1-1"
         },
         {
             title: "Nykytila ja jatko",
-            content: "Käyttäjätilien perustoiminnot ja suosikit toimivat. Seuraavaksi vuorossa ilmoitusten luonti, suodatuksen toteutus, viestintä ja käyttäjätietojen muokkaus. Kohti MVP:tä pikkuhiljaa."
+            content: "Käyttäjätilien perustoiminnot ja suosikit toimivat. Seuraavaksi vuorossa ilmoitusten luonti, suodatuksen toteutus, viestintä ja käyttäjätietojen muokkaus. Kohti MVP:tä pikkuhiljaa!"
         }
     ];
 
@@ -117,11 +117,15 @@ Jotta sivu olisi toimiva, siihen täytyy toteuttaa...
 
 ## Käyttöliittymästä
 
-Sovellusta on kehitetty mobiililähtöisesti, jotta ilmoitusten selaaminen ja luominen olisi mahdollisimman vaivatonta puhelimella. Käyttöliittymä on siis suunniteltu ensin kapeille näytöille, ja sen elementit laajenevat responsiivisesti näytön koon mukaan. <b>GSAP</b>-animaatiokirjastolla on tarkoitus tuoda ripaus moderniutta ja selkeyttä käyttöliittymän toimintoihin. Tässä joitain kuvia nykyisestä UI:sta:
+Sovellusta on kehitetty mobiililähtöisesti; käyttöliittymä on siis suunniteltu ensin kapeille näytöille, ja sen elementit laajenevat responsiivisesti näytön koon kasvaessa. Tavoitteena on mahdollisimman vaivaton käyttö puhelimella. <b>GSAP</b>-animaatiokirjastolla on tarkoitus tuoda ripaus moderniutta ja luonnollisuutta käyttöliittymän toimintoihin.
+
+Olen tähän mennessä tehnyt input-komponentteja harjoitusmielessä aivan itse, mutta "headless" komponenttikirjastot – kuten <b>shadcn</b>, <b>Radix</b> ja <b>Base UI</b> – kuulostavat houkuttelevilta. Niiden toiminnallisuus on tehty valmiiksi helppokäyttöisyyttä ajattelen ja ne on hyvin testattu. Ne eivät siis ole valmiiksi tyylitettyjä vaan ne tyylitetään itse oman maun mukaan. Tällaisen kirjaston käyttöönotto voisi olla hyvä asia, vaikka diy-meininki onkin opettavaista.
+
+Tässä joitain kuvia nykyisestä UI:sta:
 
 <Gallery data={galleryData}/>
 
-Alla responsiivisuutta esiteltynä. Kapeammassa koossa ylänavigointipalkki muuttuu alanavigointipalkiksi, jolloin navigointi sormilla on helpompaa. Kapealla näytöllä keskeneräinen toiminto peittää koko näkymän, jotta keskittyminen oleelliseen asiaan olisi helpompaa.
+Alla responsiivisuutta esiteltynä. Kapeammassa näyttökoossa ylänavigointipalkki muuttuu alanavigointipalkiksi, jotta siihen yltäisi helpommin sormilla. Kännykkäkoossa avautuneena oleva keskeinen elementti peittää koko näkymän (kuten yleensä natiivisovelluksissa), jotta keskittyminen oleelliseen asiaan olisi helpompaa.
 
 <VideoPlayer videoSrc="/videos/kuluku/kuluku-responsiveness.webm" posterSrc="/images/kuluku/kuluku-thumb.webp" description="Ilmoituksen luomisnäkymän responsiivisuus."  />
 
@@ -131,6 +135,6 @@ Tileihin liittyvät perusominaisuudet ovat ihan hyvällä mallilla. Tilin voi lu
 
 Kirjautuneiden käyttäjien ominaisuudet ovat vielä vaiheessa; suosikkeja pystyy lisäämään ja poistamaan, mutta viestittely ja ilmoitusten luominen puuttuu.
 
-MVP-tuotteeseen on siis vielä matkaa. Tiedostimme jo alussa että kaikki ei tapahdu salamannopeasti, ja se on ok. Projekti alkoi harrastusmielessä, joten ei haittaa, vaikka kehityksessä kestääkin.
+MVP-tuotteeseen on siis vielä matkaa. Tiedostimme jo alussa että kaikki ei tapahdu salamannopeasti, ja se on ok. Projekti alkoi harrastusmielessä, joten ei haittaa, vaikka kehityksessä kestää.
 
-Jos tuotantovaihe joskus koittaa, tuo se mukanaan tietty omat ongelmansa: skaalautuvuus, SEO, median hostaaminen, tietoturva ja lainsäädäntöön liittyvät asiat (evästeet, GDPR jne.). Näitä mietitään tarkemmin sitten, mutta ne on tietenkin hyvä sisäistää jossain määrin jo nyt.
+Jos tuotantovaihe joskus koittaa, tuo se mukanaan tietysti omat haasteensa: skaalautuvuus, SEO, median hostaaminen, tietoturva ja lainsäädäntöön liittyvät asiat (evästeet, GDPR jne.). Näitä mietitään tarkemmin sitten joskus, mutta ne on toki hyvä sisäistää jossain määrin jo nyt.

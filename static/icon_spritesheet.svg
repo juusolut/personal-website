@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0">
 <defs>
+<symbol fill="currentColor" id="Account" viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" ></path></symbol>
 <symbol viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-left" id="ArrowNarrowLeft"><path stroke="none" d="M0 0h24v24H0z" fill="none" ></path><path d="M5 12l14 0" ></path><path d="M5 12l4 4" ></path><path d="M5 12l4 -4" ></path></symbol>
 <symbol style="clip-rule:evenodd;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2" viewBox="0 0 181 148" xml:space="preserve" id="Blender">
     <title>Blender logo (without text)</title>

@@ -113,14 +113,31 @@ b {
   font-weight: var(--font-weights-bold);
 }
 
-.bold-highlight b,
+.bold-highlight :where(b),
 .bold-highlight :where(a) {
   font-weight: var(--font-weights-bold);
   background-color: var(--colors-elevation-4);
-  padding: 0 0.25em;
+  padding: 0 0.3em;
+  margin: 0 0.1em;
   line-height: 1em;
   border-radius: var(--border-radiuses-sm);
-  border: 1px solid color-mix(in oklch, var(--colors-elevation-3), var(--border-mix-shading) var(--border-strength-1));
+  border: 1px solid color-mix(in oklch, var(--colors-elevation-4), var(--border-mix-shading) var(--border-strength-2));
+}
+
+.bold-highlight :where(a) {
+  text-underline-offset: 0.1em;
+  text-decoration-thickness: 1px;
+  position: relative;
+  padding-right: .8em;
+
+  &::after {
+    content: "↗";
+    font-size: var(--font-sizes-xs);
+    position: absolute;
+    right: .1em;
+    top: 0;
+  }
+
 }
 
 :where(a) {
@@ -194,13 +211,20 @@ h5,
   line-height: 1.3;
 }
 
-button {
+button,
+.button {
+  /*   --bg-color: var(--colors-primary);
+  --hover-color: oklch(from var(--bg-color) calc(l + 0.05) c h); */
+
   margin: 0;
   padding: 0;
   border: 0;
+  user-select: none;
 }
 
-button:hover {
+button:hover,
+.button:hover {
+  /*   background: var(--hover-color); */
   cursor: pointer;
 }
 

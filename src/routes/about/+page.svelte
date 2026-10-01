@@ -112,12 +112,12 @@
   <WorkHistory />
   <div id="gradient-box">
     <button
-      id="show-more-button"
+      class="show-more-button"
       onclick={handleShowMoreClick}
       aria-label={showMore ? "Pienennä työhistoria" : "Näytä koko työhistoria"}
     >
       {showMore ? "Näytä vähemmän" : "Näytä lisää"}
-      <div class:flipped={showMore}>
+      <div class:flipped={showMore} style="display: flex; justify-content: center; align-items: center;">
         <Icon name="ChevronDown" size="1rem" />
       </div>
     </button>
@@ -128,7 +128,7 @@
   <div id="studies__inner" class="section-content">
     <h2 class="view-title no-bg">Koulutukset</h2>
     <ul class="achievements section">
-      <li class="achievement gradient-bg">
+      <li class="achievement">
         <strong>Tietojenkäsittelytiede</strong><br />
         <i>Oulun yliopisto, luonnontieteiden kandidaatiksi 2023</i><br />
         <span class="thesis-text"
@@ -144,7 +144,7 @@
         >
       </li>
       <li
-        class="achievement gradient-bg with-button"
+        class="achievement with-button"
         style="
             display: flex;
             flex-direction: row;
@@ -166,11 +166,11 @@
           class="small-link certificate-link">Avaa sertifikaatti</a
         >
       </li>
-      <li class="achievement gradient-bg">
+      <li class="achievement">
         <strong>Viestimies</strong><br />
         <i>Kainuun prikaati, reserviin kesällä 2019</i>
       </li>
-      <li class="achievement gradient-bg">
+      <li class="achievement">
         <strong>Ylioppilas</strong><br />
         <i>Kärsämäen lukio, valmistunut keväällä 2018</i>
       </li>
@@ -183,14 +183,13 @@
 </div>
 
 <style>
-
   .achievements {
     display: flex;
     flex-direction: column;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    gap: 1rem;
+    /*     gap: 1rem; */
     max-width: 50rem;
   }
 
@@ -198,13 +197,20 @@
     padding: 1rem 2rem;
     flex-direction: row;
     line-height: 1.5em;
-    /*     overflow: hidden; */
+
+    &:nth-child(even) {
+      background: var(--colors-elevation-3);
+      border-radius: var(--border-radiuses-lg);
+      border: 1px solid
+        color-mix(
+          in oklch,
+          var(--colors-elevation-2),
+          var(--border-mix-shading) var(--border-strength-1)
+        );
+    }
 
     &.with-button {
       justify-content: space-between;
-    }
-    &.gradient-bg::before {
-      display: block;
     }
   }
 
@@ -215,31 +221,6 @@
       display: block;
     }
   } */
-
-  .gradient-bg {
-    position: relative;
-    z-index: 0;
-    * {
-      z-index: 1;
-    }
-    &::before {
-      content: "";
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      border-radius: var(--border-radiuses-lg);
-      left: 0;
-      top: 0;
-      background: var(--colors-elevation-3);
-      border: 1px solid
-        color-mix(
-          in oklab,
-          var(--colors-elevation-0),
-          var(--border-mix-shading) var(--border-strength-1)
-        );
-      z-index: -1;
-    }
-  }
 
   .small-link {
     text-align: center;
@@ -392,12 +373,16 @@
     bottom: 0;
   }
 
-  #show-more-button {
+  .show-more-button {
+    --bg-color: var(--colors-secondary);
+    --hover-color: oklch(from var(--bg-color) calc(l + 0.05) c h);
+
+    background: var(--bg-color);
     height: min-content;
     padding: 0.5rem 2rem;
     border-radius: var(--border-radiuses-md);
     color: var(--colors-text);
-    background-color: var(--colors-secondary);
+    background: var(--bg-color);
     font-weight: var(--font-weights-bold);
     font-size: var(--font-sizes-xs);
     text-transform: uppercase;
@@ -405,13 +390,23 @@
     border: 2px solid
       color-mix(
         in oklab,
-        var(--colors-secondary),
-        white var(--border-strength-1)
+        var(--bg-color),
+        white var(--border-strength-2)
       );
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+
+    &:hover {
+      background: var(--hover-color);
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .show-more-button:hover {
+      background: var(--hover-color);
+    }
   }
 
   .flipped {

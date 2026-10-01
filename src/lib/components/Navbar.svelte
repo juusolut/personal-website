@@ -196,19 +196,37 @@
         var(--colors-elevation-2),
         var(--border-mix-shading) var(--border-strength-2)
       );
+    z-index: 0;
 
     &::before {
+      --color: oklch(from var(--colors-elevation-4) l c h / 1);
+
       content: "";
-      height: 3px;
-      background-color: var(--colors-primary);
+      background: linear-gradient(to right, var(--color) 50%, transparent);
       position: absolute;
       z-index: -1;
       position-anchor: --link;
-      bottom: 0.3em;
-      left: calc(anchor(left) + 0.4em);
-      right: calc(anchor(right) + 0.4em);
+      top: calc(anchor(top) + 0.5rem);
+      bottom: calc(anchor(bottom) + 0.5rem);
+      left: calc(anchor(left) - 1rem);
+      right: anchor(right);
+      /*       border-radius: var(--border-radiuses-md); */
+      transition: inset var(--anim-speed-medium);
+      pointer-events: none;
+      border-left: 3px solid var(--colors-primary);
+
+      /*       content: "";
+      height: 3px;
+      background-color: var(--colors-primary);
+      position: absolute;
+      z-index: 0;
+      position-anchor: --link;
+      left: anchor(left);
+      right: anchor(right);
+      bottom: calc(anchor(bottom) + 0.5em);
       border-radius: var(--border-radiuses-md);
       transition: inset var(--anim-speed-medium);
+      pointer-events: none; */
     }
   }
 
@@ -229,6 +247,7 @@
     display: inline-block;
     padding: 1rem 0rem;
     min-width: 10rem;
+    z-index: 1;
   }
 
   .nav-links li:first-child {
@@ -378,6 +397,21 @@
         display: inline-block;
         padding: 0.5rem 0.5rem;
         min-width: 0rem;
+      }
+
+      &::before {
+        height: 3px;
+        background: var(--colors-primary);
+        position: absolute;
+        z-index: 0;
+        position-anchor: --link;
+        top: unset;
+        left: calc(anchor(left) + .3rem);
+        right: calc(anchor(right) + .3rem);
+        bottom: calc(anchor(bottom) + 0.4em);
+        border-radius: var(--border-radiuses-md);
+        transition: inset var(--anim-speed-medium);
+        pointer-events: none;
       }
     }
   }

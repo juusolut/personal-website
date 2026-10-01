@@ -129,6 +129,8 @@
     }
   }
   button {
+    --hover-color: oklch(from var(--colors-elevation-2) calc(l + 0.1) c h);
+
     color: var(--colors-text);
     aspect-ratio: 1 / 1;
     height: 1.75rem;
@@ -162,6 +164,13 @@
     border-bottom-right-radius: 0;
     border-bottom-width: 0;
   }
+
+    @media (hover: hover) and (pointer: fine) {
+    button:hover {
+      background: var(--hover-color);
+    }
+  }
+
 
   .menu {
     display: none;

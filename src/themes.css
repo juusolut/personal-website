@@ -30,7 +30,7 @@
 
     --anim-easing-circ: cubic-bezier(0.85, 0.09, 0.15, 0.91);
 
-    --colors-animation: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    --colors-animation: background-color 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 
 
     --colors-black: oklch(0 0 0);

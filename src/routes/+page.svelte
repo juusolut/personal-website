@@ -166,17 +166,59 @@
     <Reveal>
       <div class="center-horizontally">
         <div class="comments__own-words">
-          <a href={resolve("/about")} class="button">
-            <span class="offsite-link no-arrow">Tutustu minuun tarkemmin</span>
+          <a href={resolve("/about")} class="more-info-button button">
+            <span>Tutustu minuun tarkemmin</span>
             <Icon
               name="ArrowNarrowLeft"
               style="transform: rotate(180deg)"
-              size="1.25rem"
+              size="1.5rem"
             />
           </a>
         </div>
       </div>
     </Reveal>
+  </div>
+</section>
+
+<section class="references h-padding">
+  <div class="section-content">
+    <h2 class="view-title no-bg">Suosittelijat</h2>
+    <div class="reference-grid">
+      <Reveal>
+        <div class="reference">
+          <div class="reference-circle-name">
+            <div class="reference-profile-circle"><Icon name="Account" /></div>
+            <strong class="reference-name">Sami Haapala</strong>
+          </div>
+          <i>Tuotantoesihenkilö</i>
+          <span>Posti Group Oyj</span>
+          <a href="mailto:sami.haapala@posti.com">sami.haapala@posti.com</a>
+        </div>
+      </Reveal>
+
+      <Reveal>
+        <div class="reference" style="--hue-offset: 40;">
+          <div class="reference-circle-name">
+            <div class="reference-profile-circle"><Icon name="Account" /></div>
+            <strong class="reference-name">Keijo Huotari</strong>
+          </div>
+          <i>Tuotantoesihenkilö</i>
+          <span>Posti Group Oyj</span>
+          <a href="mailto:keijo.huotari@posti.com">keijo.huotari@posti.com</a>
+        </div>
+      </Reveal>
+      <Reveal>
+        <div class="reference" style="--hue-offset: 80;">
+          <div class="reference-circle-name">
+            <div class="reference-profile-circle"><Icon name="Account" /></div>
+            <strong class="reference-name">Virpi Ruotsalainen</strong>
+          </div>
+          <i>Yrittäjä</i>
+          <span>Luonnon Syli</span>
+          <a href="https://www.linkedin.com/in/virpi-ruotsalainen/">LinkedIn</a>
+        </div>
+      </Reveal>
+    </div>
   </div>
 </section>
 
@@ -431,41 +473,22 @@
       width: 30rem;
     }
 
-    .buttons {
-      justify-content: flex-start !important;
-      left: 15% !important;
-      z-index: 2;
-
-      .button {
-        padding: 0.5rem 2rem !important;
-        flex: unset !important;
-      }
-    }
-
     .nutshell__scroll-button {
       display: none !important;
     }
   }
 
-  .buttons {
-    display: flex;
-    position: absolute;
-    bottom: 2%;
-    width: 100%;
-    left: 0;
-    justify-content: center;
-    gap: 0.5rem;
-    z-index: 1;
-    padding: 0 0.5rem;
-  }
+  .more-info-button {
+    --bg-color: var(--colors-secondary);
+    --hover-color: oklch(from var(--bg-color) calc(l + 0.05) c h);
 
-  .button {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
     flex: 1;
-    padding: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    padding-left: 1.5rem;
     text-align: center;
     position: relative;
     width: fit-content;
@@ -474,23 +497,21 @@
     text-underline-offset: 3px;
     text-decoration-thickness: 2px;
     text-decoration: none;
-    /*     backdrop-filter: blur(5px); */
     background: var(--bg-color);
     border: 2px solid
       color-mix(in oklch, var(--bg-color), white var(--border-strength-2));
     border-radius: var(--border-radiuses-md);
+    text-align: left;
+
+    & > :global(svg) {
+      flex-shrink: 0;
+    }
   }
 
-  .button__resume {
-    --bg-color: oklch(from oklch(0.73 0.12 68.69) 0.68 c 70);
-  }
-
-  .button__linkedin {
-    --bg-color: var(--colors-primary);
-  }
-
-  .button__github {
-    --bg-color: rgb(46, 46, 46);
+  @media (hover: hover) and (pointer: fine) {
+    .more-info-button:hover {
+      background: var(--hover-color);
+    }
   }
 
   @keyframes scrollPattern {
@@ -713,13 +734,66 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
 
-    .button {
-      padding: 0.5rem 2rem;
-    }
+  .references {
+    width: 100%;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
 
-    > a {
-      --bg-color: var(--colors-primary);
+  .reference-grid {
+    width: 100%;
+    max-width: 55rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .reference {
+    --hue-offset: 0;
+    --accent: oklch(from var(--colors-primary) l c calc(h + var(--hue-offset)));
+
+    border-radius: var(--border-radiuses-lg);
+    background-color: var(--colors-elevation-2);
+    border: 1px solid
+      color-mix(
+        in oklch,
+        var(--colors-elevation-2),
+        var(--border-mix-shading) var(--border-strength-1)
+      );
+    display: flex;
+    flex-direction: column;
+    /*     align-items: center; */
+    padding: 1.5rem 2rem;
+    gap: 0.5em;
+/*     color: var(--colors-text-light); */
+
+    & > a {
+      color: var(--accent);
     }
+  }
+
+  .reference-name {
+    color: var(--colors-text);
+  }
+
+  .reference-profile-circle {
+    --circle-size: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--circle-size);
+    width: var(--circle-size);
+    background-color: var(--accent);
+    border-radius: 100%;
+  }
+
+  .reference-circle-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 </style>

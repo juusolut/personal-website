@@ -76,7 +76,13 @@
 
 <style>
   button {
-    /*     padding: 0.25rem 0; */
+    --bg-color: color-mix(
+      in oklab,
+      var(--colors-secondary) 30%,
+      var(--colors-elevation-0)
+    );
+    --hover-color: oklch(from var(--bg-color) calc(l + 0.04) c h);
+
     width: 3.5rem;
     height: 1.75rem;
     display: flex;
@@ -84,11 +90,7 @@
     align-items: center;
     cursor: pointer;
     border-radius: var(--border-radiuses-sm);
-    background: color-mix(
-      in oklab,
-      var(--colors-secondary) 30%,
-      var(--colors-elevation-0)
-    );
+    background: var(--bg-color);
     color: var(--colors-text);
     position: relative;
     z-index: 0;
@@ -137,6 +139,12 @@
 
     &.light > :global(svg):first-child {
       color: color-mix(in oklab, var(--colors-text), transparent 60%);
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    button:hover {
+      background: var(--hover-color);
     }
   }
 </style>

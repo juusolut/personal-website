@@ -31,7 +31,7 @@
     flex-direction: column;
     gap: 0.5rem;
 
-    > strong   {
+    > strong {
       min-width: 8rem;
       font-family: var(--fonts-ibm-plex-mono);
       &::before {
@@ -49,6 +49,10 @@
     container-type: inline-size;
   }
   summary {
+    --bg-color: var(--colors-elevation-4);
+    --hover-color: oklch(from var(--bg-color) calc(l + 0.05) c h);
+
+    background-color: var(--bg-color);
     padding: 1rem;
     user-select: none;
     cursor: pointer;
@@ -58,6 +62,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: var(--border-radiuses-md);
+
+    &:focus {
+      outline: 3px solid var(--colors-secondary);
+      outline-offset: -3px;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    summary:hover {
+      background-color: var(--hover-color);
+    }
   }
 
   :global(.icon) {
