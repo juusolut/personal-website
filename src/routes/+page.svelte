@@ -182,7 +182,7 @@
 
 <section class="references h-padding">
   <div class="section-content">
-    <h2 class="view-title no-bg">Suosittelijat</h2>
+    <h2 class="view-title">Suosittelijat</h2>
     <div class="reference-grid">
       <Reveal>
         <div class="reference">
@@ -723,7 +723,7 @@
     container-type: inline-size;
     gap: 2rem;
     margin-top: 2rem;
-    padding-bottom: 8rem;
+    padding-bottom: 4rem;
     justify-content: center;
   }
 
@@ -748,7 +748,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     gap: 1rem;
-    margin-top: 2rem;
+/*     margin-top: 2rem; */
   }
 
   .reference {
@@ -757,6 +757,7 @@
 
     border-radius: var(--border-radiuses-lg);
     background-color: var(--colors-elevation-2);
+/*     background-color: color-mix(in oklab, var(--colors-elevation-2), var(--accent) 10%); */
     border: 1px solid
       color-mix(
         in oklch,
