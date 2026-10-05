@@ -76,7 +76,7 @@ date: "2021-1-1"
     },
     {
       title: "Oppimiskokemus",
-      content: "Ensikosketus mobiilikehitykseen oli onnistunut ja osoitti että uuden teknologian sekä kielen sai otettua haltuun melko nopeasti."
+      content: "Ensikosketus mobiilikehitykseen oli onnistunut ja osoitti, että uuden teknologian sekä kielen sai otettua haltuun melko nopeasti."
     },
    ]
 

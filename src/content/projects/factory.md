@@ -73,7 +73,7 @@ Koska pelisessio pyörii serverillä ja siihen yhdistetyillä clienteillä, siit
 
 ### 1. Serverin päätösvalta
 
-Lähdin toteuttamaan peliin <b>server authoritative</b> -rakennetta. Tämä tarkoittaa sitä että serverillä on ehdoton päätösvalta pelin tapahtumiin ja se ei luota clienttiin juurikaan. Serveriin yhdistänyt clientti ei siis lähetä omia sijaintitietojaan serverille vaan se lähettää sille näppäimistö- ja hiirisyötteensä, joiden perusteella serveri laskee sitten lopputuloksen ja palauttaa sen clientille.
+Lähdin toteuttamaan peliin <b>server authoritative</b> -rakennetta. Tämä tarkoittaa sitä, että serverillä on ehdoton päätösvalta pelin tapahtumiin ja se ei luota clienttiin juurikaan. Serveriin yhdistänyt clientti ei siis lähetä omia sijaintitietojaan serverille vaan se lähettää sille näppäimistö- ja hiirisyötteensä, joiden perusteella serveri laskee sitten lopputuloksen ja palauttaa sen clientille.
 
 ### 2. Client-side Prediction
 

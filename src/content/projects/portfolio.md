@@ -51,35 +51,35 @@ const summaryData = [
 
 ## Oma portfolio
 
-Kiinnostus nettisivujen tekemiseen alkoi minulla jo peruskouluikäisenä; vapaa-ajalla ja atk-tunneilla oli kiehtovaa nähdä miten erikoiselta näyttävä HTML-merkintäkieli kääntyy nettisivuksi. Haaveilin tuolloin omasta kotisivusta. Ajatus oli sivussa tovin, mutta tuntui vihdoin siltä että oli toteutuksen aika.
+Kiinnostus nettisivujen tekemiseen alkoi minulla jo peruskouluikäisenä, kun tutustuin <b>HTML</b>- ja <b>CSS</b>-merkintäkieliin ATK-tunneilla ja vapaa-ajalla. Oli kiehtovaa nähdä miten erikoiselta näyttävä teksti kääntyi nettisivuksi selaimella. Haaveilin jo tuolloin omasta kotisivusta, mutta eihän sitä vielä silloin tiennyt mitä kaikkea sen perustaminen vaatii. Ajatus oli sivussa tovin, mutta nyt tuntui vihdoin siltä, että oli toteutuksen aika.
 
 ## Kehyksenä Svelte
 
-Halusin toteuttaa portfolioni jollain kevyellä, sujuvan kehityskokemuksen tarjoavalla ohjelmistokehyksellä, joka tukisi sivuston staattista generointia (SSG) ja mahdollistaisi siten helpon hostaamisen. Valitsin tehtävään Svelten. Olin kuullut siitä paljon hyvää ja lukenut sen keveydestä, suorituskyvystä ja kehittäjäystävällisyydestä.
+Halusin toteuttaa portfolioni jollain kevyellä, sujuvan kehityskokemuksen tarjoavalla ohjelmistokehyksellä, joka tukisi <b>sivuston staattista generointia (SSG)</b> ja mahdollistaisi siten helpon hostaamisen. Valitsin tehtävään <b>Svelten</b>. Olin kuullut siitä paljon hyvää ja lukenut sen keveydestä, suorituskyvystä ja kehittäjäystävällisyydestä.
 
-Lyhyen kokeilun perusteella Svelte osoittautui juuri oikeaksi valinnaksi. Kehittäminen tuntui luonnolliselta, koska Svelte-komponenttien rakenne muistuttaa hyvin pitkälti perinteistä HTML/JS/CSS-koodia:
+Lyhyen kokeilun perusteella Svelte osoittautui juuri oikeaksi valinnaksi. Kehittäminen tuntui luonnolliselta, koska Svelte-komponenttien rakenne muistutti hyvin paljon perinteistä HTML/JS/CSS-koodia:
 
 <pre><code bind:this={codeElement} class="language-xml">
 {rawCode}
 </code></pre>
 
-Sveltessä CSS-luokat ovat komponenttikohtaisia (scoped); komponenteissa määritetyt samannimiset luokat eivät siis sekoitu keskenään, koska buildaamisen yhteydessä niille annetaan uniikit tunnisteet.
+Sveltessä CSS-luokat ovat komponenttikohtaisia (scoped); komponenteissa määritetyt samannimiset luokat eivät sekoitu keskenään, koska buildaamisen yhteydessä niille annetaan uniikit tunnisteet.
 
 Eri reittien – esim. /projects ja /contact – toteutus on myös suoraviivaista. Ei turhia abstraktioita, providereita ja importteja vaan polut syntyvät suoraan kansiorankenteen perusteella. Lähestymistavat moniin asioihin tuntuivat virkistävältä verrattuna tutumpaan Reactiin.
 
 ## Hostaaminen
 
-Hyödynsin Github Pagesia portfolion hostaamiseen. Tätä varten sen repositotoriosta täytyi tehä julkinen Githubissa. Määritin repoon Github-actionin, joka buildaa sivuston uudelleen jokaisen pushin yhteydessä, mikä on muutosten tekemisen kannalta hyvin kätevää.
+Hyödynsin <b>Github Pagesia</b> portfolion hostaamiseen. Tätä varten sen repositotoriosta täytyi tehä julkinen Githubissa. Määritin repoon Github-actionin, joka buildaa sivuston uudelleen jokaisen pushin yhteydessä, mikä on muutosten tekemisen kannalta hyvin kätevää.
 
 ## Domain ja sähköposti
 
 Portfolion tekeminen oli oiva tilaisuus perehtyä domainien maailmaan. Valittuani domaintarjoajan ja vapaana olevan domainin, pienten mutkien ja konfiguroinnon kautta sivusto avautui lopulta julu.fi osoitteen takaa. Se oli hieno fiilis! Domainia voisi nyt käyttää myös sivuprojektien kanssa (esim. sivuprojekti.julu.fi).
 
-Oma domain mahdollisti tietysti myös oman @julu.fi sähköpostipäätteen käytön. Tätä varten otin käyttöön Zoho Mailin, ja pian sähköpostit lähtivät maailmalle omalle uniikilla osoittellani ja saapuivat ongelmitta myös omaan postilaatikkooni.
+Oma domain mahdollisti tietysti myös oman @julu.fi sähköpostipäätteen käytön. Tätä varten otin käyttöön <b>Zoho Mailin</b>, ja pian sähköpostit lähtivät maailmalle omalle uniikilla osoittellani ja saapuivat ongelmitta myös omaan postilaatikkooni.
 
 ## Loppumietteet
 
-Tässä se nyt on. Oma piskuinen nettisivu, jota kehittelen ja täydennän pikkuhiljaa. Tarkoituksena olisi että se pyörisi internetissä hamaan tulevaisuuten asti. Peruskouluaikona syntynyt haave oli nyt saavutettu. Sitten ei muuta kuin seuraavien haaveiden ja tavoitteiden kimppuun!
+Tässä se nyt on! Oma piskuinen nettisivu, jota kehittelen ja täydennän pikkuhiljaa. Tarkoituksena olisi, että se pyörisi internetissä hamaan tulevaisuuten asti. Peruskouluaikona syntynyt haave oli nyt saavutettu ja on aika siirtyä seuraavien haaveiden ja tavoitteiden kimppuun!
 
 <style>
   .language-xml {

@@ -2,7 +2,7 @@
 title: "Dashboard"
 slug: "dashboard"
 description: "Ruudukkopohjainen, responsiivinen ja mukautettava dashboard, joka toteutettiin kandiprojektina radio-ohjelmistoa tekevälle yritykselle."
-thumbnail: "/images/dashboard/dashboard-thumb.webp"
+thumbnail: "/images/dashboard/dashboard-endproduct-thumb.webp"
 tags: ["React", "RubyOnRails"]
 isShowcased: true
 date: "2022-1-1"
@@ -15,6 +15,7 @@ date: "2022-1-1"
   import Summary from "$lib/components/Summary.svelte";
 
   const thumbSrc = "/images/dashboard/dashboard-thumb.webp"
+  const thumbSrcEndProduct = "/images/dashboard/dashboard-endproduct-thumb.webp"
   const path = "/images/dashboard/gallery"
   const rawImages = [
   {
@@ -113,7 +114,7 @@ date: "2022-1-1"
 
 ## Johdanto
 
-Osana laajempaa opintokokonaisuutta pääsimme tekemään yhteistyötä oululaisen ohjelmistoyrityksen kanssa. Yritys kehittää web-pohjaista radio-ohjelmistoa, ja tavoitteenamme oli rakentaa heidän ohjelmistoonsa keskitetty näkymä (dashboard). Uusi kojelauta kokoasi yhteen paikkaan aiemmin eri näkymiin hajautetun datan, kuten radiolähetysten, soittolistojen ja sisäisten palveluiden tilan. Dashboardin tuli olla konfiguroitavissa käyttäjän – järjestelmänvalvojan, tuottajan tai radiojuontajan – tarpeiden mukaan.
+Osana laajempaa opintokokonaisuutta pääsimme tekemään yhteistyötä oululaisen ohjelmistoyrityksen kanssa. Yritys kehittää web-pohjaista radio-ohjelmistoa, ja tavoitteenamme oli rakentaa heidän ohjelmistoonsa keskitetty näkymä (dashboard). Uusi kojelauta nitoisi yhteen eri näkymiin hajautetun datan, kuten radiolähetysten, soittolistojen ja sisäisten palveluiden tilan. Dashboardin tuli olla konfiguroitavissa käyttäjän – järjestelmänvalvojan, tuottajan tai radiojuontajan – tarpeiden mukaan.
 
 ## Suunnittelu
 
@@ -125,23 +126,23 @@ Käynnistimme projektin huolellisella vaatimusmäärittelyllä ja kilpailija-ana
 
 ## Ohjelmistokehitys
 
-Emme halunneet keksiä pyörää uudelleen, joten valitsimme projektin pohjaksi avoimen lähdekoodin <a href="https://github.com/react-grid-layout/react-grid-layout">react-grid-layout</a> -kirjaston (MIT), joka oli jo tuolloin suosittu ja toimintavarma. Kirjasto siis mahdollisti elementtien ruudukkosijoittelun ja säästi siten rutkasti kehitysaikaa. Kehitystyön sujuvoittamiseksi loimme myös dummy-server-skriptin, joka simuloi radio-ohjelmiston backendia. Tämä helpotti merkittävästi ruudukossa sijaitsevien dynaamisten widgetien suunnittelua, toteutusta ja testausta ennen integrointimista oikeaan järjestelmään.
+Emme halunneet keksiä pyörää uudelleen, joten valitsimme projektin pohjaksi avoimen lähdekoodin <a href="https://github.com/react-grid-layout/react-grid-layout">react-grid-layout</a> -kirjaston (MIT), joka oli jo tuolloin suosittu ja toimintavarma. Kirjasto siis mahdollisti elementtien ruudukkosijoittelun ja säästi siten rutkasti kehitysaikaa. Kehitystyön sujuvoittamiseksi loimme myös dummy-server-skriptin, joka simuloi radio-ohjelmiston backendia. Tämä helpotti merkittävästi ruudukossa sijaitsevien dynaamisten widgetien suunnittelua, toteutusta ja testausta ennen integrointia oikeaan järjestelmään.
 
-<VideoPlayer videoSrc="/videos/dashboard/dashboard-dummy-server.webm" posterSrc={thumbSrc} description="Dummy-serverin hyödyntäminen kehityksessä."  />
+<VideoPlayer videoSrc="/videos/dashboard/dashboard-dummy-server.webm" posterSrc={thumbSrcEndProduct} description="Dummy-serverin hyödyntäminen kehityksessä."  />
 
 ### Widgetit
 
-Dashboardista haluttiin dynaaminen ja mukautettava, joten widgettien piti reagoida joustavasti omien mittojensa muutoksiin. Tätä varten täytyi olla tapa seurata widgettien kokoa. Vastasin dashboardissa geneerisen "dummy widgetin" toteuttamisesta. Se toimisi jokaisen erilaisen widgetin pohjana. Puntaroin toteutuksessa <a href="https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver">ResizeObserverin</a> ja <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries">Container Queryn</a> välillä. Päädyin ensimmäiseen vaihtoehtoon, koska Container Queryllä ei ollut tuohon aikaan vielä tarpeeksi kattavaa selaintukea.<br><br>Vaikka ResizeObserver vaati hieman monimutkaisemman toteutuksen, se mahdollisti elementtien koon muutosten täsmällisen seurannan ja siten käyttöliittymän dynaamisen mukauttamisen. Käytännössä ”dummy widget” toimi niin että se seurasi DOM-elementin kokoa ja lisäsi siihen CSS-luokkia määriteltyjen breakpointtien mukaan. Näiden luokkien avulla tyylimuutokset voitiin toteuttaa yksilöllisesti jokaiseen custom-widgettiin.
+Dashboardista haluttiin dynaaminen ja mukautettava, joten widgettien piti reagoida joustavasti omien mittojensa muutoksiin. Tätä varten täytyi olla tapa seurata widgettien kokoa. Vastasin dashboardissa geneerisen "dummy widgetin" toteuttamisesta. Se toimisi jokaisen erilaisen widgetin pohjana. Puntaroin toteutuksessa <a href="https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver">ResizeObserverin</a> ja <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries">Container Queryn</a> välillä. Päädyin ensimmäiseen vaihtoehtoon, koska Container Queryllä ei ollut tuohon aikaan vielä tarpeeksi kattavaa selaintukea.<br><br>Vaikka ResizeObserver vaati hieman monimutkaisemman toteutuksen, se mahdollisti elementtien koon muutosten täsmällisen seurannan ja siten käyttöliittymän dynaamisen mukauttamisen. Käytännössä ”dummy widget” toimi niin, että se seurasi DOM-elementin kokoa ja lisäsi siihen CSS-luokkia määriteltyjen breakpointtien mukaan. Näiden luokkien avulla tyylimuutokset voitiin toteuttaa yksilöllisesti jokaiseen custom-widgettiin.
 
-<VideoPlayer videoSrc="/videos/dashboard/dashboard-nowplaying3.webm" posterSrc={thumbSrc} description="Now Playing -widgetin responsiivisuus esiteltynä. Jokaisen widgetin sijainnin voi lukita widgetin omasta valikosta. Widgetin voi myös piilottaa sieltä."  />
+<VideoPlayer videoSrc="/videos/dashboard/dashboard-nowplaying3.webm" posterSrc={thumbSrcEndProduct} description="Now Playing -widgetin responsiivisuus esiteltynä. Jokaisen widgetin sijainnin voi lukita widgetin omasta valikosta. Widgetin voi myös piilottaa sieltä."  />
 
-<VideoPlayer videoSrc="/videos/dashboard/dashboard-all-widgets.webm" posterSrc={thumbSrc} description="Kaikkien widgettien esittely."  />
+<VideoPlayer videoSrc="/videos/dashboard/dashboard-all-widgets.webm" posterSrc={thumbSrcEndProduct} description="Kaikkien widgettien esittely."  />
 
 ### Muu mukautettavuus
 
-Dashboardia hallittiin yläpalkin kautta. Sieltä käsin widgettejä saattoi piilottaa ja palauttaa näkyviin. Dashboardin asettelun (layoutin) – eli widgettien määrän, sijainnin ja koon – pystyi tallentamaan sekä lataamaan uudelleen, ja sivu säilytti viimeisimmän asettelun myös uudelleenlatauksen (refresh) yhteydessä. Lisäksi kojelaudan sai halutessaan kokoruututilaan.
+Dashboardia hallitaan yläpalkin kautta. Sieltä käsin widgettejä pystyy piilottamaan ja palauttamaan näkyviin. Dashboardin asettelun (layoutin) – eli widgettien määrän, sijainnin ja koon – pystyy tallentamaan sekä lataamaan uudelleen, ja sivu säilyttää viimeisimmän asettelun myös uudelleenlatauksen yhteydessä. Lisäksi kojelaudan saa halutessaan kokoruututilaan.
 
-<VideoPlayer videoSrc="/videos/dashboard/dashboard-layouts.webm" posterSrc={thumbSrc} description="Dashboardin yläpalkin ja layout-mukautettavuuden esittely."  />
+<VideoPlayer videoSrc="/videos/dashboard/dashboard-layouts.webm" posterSrc={thumbSrcEndProduct} description="Dashboardin yläpalkin ja layout-mukautettavuuden esittely."  />
 
 ## Integrointi asiakkaan ohjelmistoon
 

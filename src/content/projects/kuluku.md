@@ -82,7 +82,7 @@ Olimme miettineet ystäväni kanssa jo pitkään, että yhdistäisimme voimamme 
 
 ### Idea: Ajoneuvojen markkinapaikka (Kuluku)
 
-Pohtiessamme nettisivun ideaa huomasimme että Suomessa ei ole montaa palvelua, jotka mahdollistaisivat autojen myynnin yksityishenkilöltä toiselle. Lähdimme rakentamaan nettisivua siis siltä pohjalta, että siellä voisi myydä ja ostaa käytettyjä autoja. Myöhemmin laajensimme ideaa niin että muidenkin kulkupelien – kuten pyörien ja työkoneiden – myyminen olisi mahdollista. Tämä toisi mukavasti haastetta frontendin, backendin ja tietokannan suunnitteluun. Haastetta toisi myös käyttäjätilien ja niihin liittyvien perusominaisuuksien luonteva ja tietoturvallinen toteutus.
+Pohtiessamme nettisivun ideaa huomasimme, että Suomessa ei ole montaa palvelua, jotka mahdollistaisivat autojen myynnin yksityishenkilöltä toiselle. Lähdimme rakentamaan nettisivua siis siltä pohjalta, että siellä voisi myydä ja ostaa käytettyjä autoja. Myöhemmin laajensimme ideaa niin, että muidenkin kulkupelien – kuten pyörien ja työkoneiden – myyminen olisi mahdollista. Tämä toisi mukavasti haastetta frontendin, backendin ja tietokannan suunnitteluun. Haastetta toisi myös käyttäjätilien ja niihin liittyvien perusominaisuuksien luonteva ja tietoturvallinen toteutus.
 
 <VideoPlayer videoSrc="/videos/kuluku/kuluku.webm" posterSrc="/images/kuluku/kuluku-thumb.webp" description="Kulukun frontendin esittelyä."  />
 
@@ -135,6 +135,6 @@ Tileihin liittyvät perusominaisuudet ovat ihan hyvällä mallilla. Tilin voi lu
 
 Kirjautuneiden käyttäjien ominaisuudet ovat vielä vaiheessa; suosikkeja pystyy lisäämään ja poistamaan, mutta viestittely ja ilmoitusten luominen puuttuu.
 
-MVP-tuotteeseen on siis vielä matkaa. Tiedostimme jo alussa että kaikki ei tapahdu salamannopeasti, ja se on ok. Projekti alkoi harrastusmielessä, joten ei haittaa, vaikka kehityksessä kestää.
+MVP-tuotteeseen on siis vielä matkaa. Tiedostimme jo alussa, että kaikki ei tapahdu salamannopeasti, ja se on ok. Projekti alkoi harrastusmielessä, joten ei haittaa, vaikka kehityksessä kestää.
 
 Jos tuotantovaihe joskus koittaa, tuo se mukanaan tietysti omat haasteensa: skaalautuvuus, SEO, median hostaaminen, tietoturva ja lainsäädäntöön liittyvät asiat (evästeet, GDPR jne.). Näitä mietitään tarkemmin sitten joskus, mutta ne on toki hyvä sisäistää jossain määrin jo nyt.
