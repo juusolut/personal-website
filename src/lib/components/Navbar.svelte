@@ -208,7 +208,6 @@
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
-    view-transition-name: nav-menu-overlay;
     transform: translateY(-20px) scale(0.95);
     transition:
       opacity var(--anim-speed-fast) ease,
