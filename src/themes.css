@@ -68,11 +68,11 @@
     --base-saturation: 0.01;
 
     --colors-elevation-0: oklch(from var(--colors-primary) var(--base-lightness) var(--base-saturation) h);
-    --colors-elevation-1: color-mix(in oklab, var(--colors-elevation-0), var(--border-mix-shading) var(--elevation-strength-1));
-    --colors-elevation-2: color-mix(in oklab, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-2));
-    --colors-elevation-3: color-mix(in oklab, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-3));
-    --colors-elevation-4: color-mix(in oklab, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-4));
-    --colors-elevation-5: color-mix(in oklch, var(--colors-primary), var(--mix-shading) var(--elevation-strength-5));
+    --colors-elevation-1: color-mix(in oklch, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-1));
+    --colors-elevation-2: color-mix(in oklch, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-2));
+    --colors-elevation-3: color-mix(in oklch, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-3));
+    --colors-elevation-4: color-mix(in oklch, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-4));
+    --colors-elevation-5: color-mix(in oklch, var(--colors-elevation-0), var(--mix-shading) var(--elevation-strength-5));
 
     --colors-text: oklch(from var(--colors-primary) 0.22 0.015 h);
     --colors-text-light: oklch(from var(--colors-primary) 0.38 0.025 h);

@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "./Icon.svelte";
   import type { Snippet } from "svelte";
-  import { fade, slide, fly } from "svelte/transition";
+  import { fade, slide, fly, scale } from "svelte/transition";
   import { outclick } from "$lib/actions/outclick.svelte";
 
   let { children }: { children?: Snippet } = $props();
@@ -49,15 +49,17 @@
     </div>
   </button>
   {#if isOpen}
-    <div
-      class="menu isOpen"
-      /*     class:isOpen */
-      in:fly={{ duration: 200, y: -5 }}
-      out:fly={{ duration: 200, y: -5 }}
-    >
-      {#if children}
-        {@render children()}
-      {/if}
+    <div in:scale={{ duration: 200, start: 0.95}} out:scale={{ duration: 200, start: 0.95}}>
+      <div
+        class="menu isOpen"
+        /*     class:isOpen */
+/*         in:fly={{ duration: 200, y: -5 }}
+        out:fly={{ duration: 200, y: -5 }} */
+      >
+        {#if children}
+          {@render children()}
+        {/if}
+      </div>
     </div>
   {/if}
 </div>
@@ -80,9 +82,10 @@
     opacity: 0;
     transition:
       transform var(--anim-speed-slow) var(--anim-easing-circ),
-      opacity var(--anim-speed-slow) linear/* ,
+      opacity var(--anim-speed-slow) linear
+        /* ,
       filter var(--anim-speed-slow) ease-in */;
-/*     filter: blur(2px); */
+    /*     filter: blur(2px); */
     &::before,
     &::after {
       content: "";
@@ -111,7 +114,8 @@
     align-items: center;
     transition:
       transform var(--anim-speed-slow) var(--anim-easing-circ),
-      opacity var(--anim-speed-slow) linear/* ,
+      opacity var(--anim-speed-slow) linear
+        /* ,
       filter var(--anim-speed-slow) ease-in */;
     position: relative;
   }
@@ -123,13 +127,13 @@
     &.isOpen {
       .icon-wrapper {
         transform: rotate(180deg);
-/*         filter: blur(3px); */
+        /*         filter: blur(3px); */
         opacity: 0;
       }
       .cross {
         opacity: 1;
         transform: rotate(180deg);
-/*         filter: blur(0px); */
+        /*         filter: blur(0px); */
       }
     }
   }

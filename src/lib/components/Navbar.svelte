@@ -45,7 +45,7 @@
 
     <!-- Navigation Links -->
     <div id="links-and-buttons">
-    <!-- Navbar and menu button -->
+      <!-- Navbar and menu button -->
       <div use:outclick={() => (isOpen = false)}>
         <!-- Mobile Menu Button -->
         <button
@@ -61,11 +61,7 @@
           <span class="bar" class:open={isOpen}></span>
           <span class="bar" class:open={isOpen}></span>
         </button>
-        <ul
-          /*         transition:fly={{ duration: 200, y: -5 }} */
-          class="nav-links"
-          class:open={isOpen}
-        >
+        <ul class="nav-links" class:open={isOpen}>
           <li>
             <a
               href={resolve("/")}
@@ -121,21 +117,20 @@
     flex-shrink: 0;
     z-index: 9998;
     position: sticky;
-    background-color: color-mix(
-      in oklch,
-      var(--colors-elevation-0),
-      transparent 0%
-    );
+    background-color: var(--colors-elevation-0);
     /*     backdrop-filter: blur(10px); */
     view-transition-name: navbar;
     view-transition-class: navbar;
     border-bottom: 1px solid transparent;
-    transition: border-bottom-color var(--anim-speed-medium) ease;
+    transition:
+      border-bottom-color var(--anim-speed-medium) ease,
+      background-color var(--anim-speed-medium) ease;
     &.show-border {
+      /*       background-color: var(--colors-elevation-0); */
       border-bottom-color: color-mix(
         in oklab,
         var(--colors-elevation-0),
-        var(--border-mix-shading) var(--border-strength-2)
+        var(--border-mix-shading) var(--border-strength-1)
       );
     }
   }
@@ -198,23 +193,27 @@
     width: calc(100vw - 1rem);
     left: 0.5rem;
     flex-direction: column;
-    background-color: var(--colors-elevation-2);
+    background-color: var(--colors-elevation-1);
     padding: 1.5rem;
     border-radius: var(--border-radiuses-md);
     gap: 0rem;
-    border: 1px solid
+    /*     border: 1px solid
       color-mix(
         in oklch,
         var(--colors-elevation-2),
         var(--border-mix-shading) var(--border-strength-2)
-      );
+      ); */
+    box-shadow: var(--shadows-sm);
     z-index: 0;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-20px);
+    visibility: hidden;
+    view-transition-name: nav-menu-overlay;
+    transform: translateY(-20px) scale(0.95);
     transition:
       opacity var(--anim-speed-fast) ease,
-      transform var(--anim-speed-fast) ease;
+      transform var(--anim-speed-fast) ease,
+      visibility var(--anim-speed-fast) ease;
 
     &::before {
       --color: oklch(from var(--colors-elevation-4) l c h / 1);
@@ -226,7 +225,7 @@
       position-anchor: --link;
       top: calc(anchor(top) + 0.5rem);
       bottom: calc(anchor(bottom) + 0.5rem);
-      left: calc(anchor(left) - 1rem);
+      left: calc(anchor(left) - 0rem);
       width: 50%;
       transition: inset var(--anim-speed-medium);
       pointer-events: none;
@@ -238,6 +237,7 @@
     opacity: 1;
     transform: translateY(0) scale(1);
     pointer-events: auto;
+    visibility: visible;
   }
 
   /* Disable background scroll when menu is open */
@@ -250,8 +250,10 @@
     text-decoration: none;
     font-weight: var(--font-weights-bold);
     transition: color var(--anim-speed-fast) ease;
-    display: inline-block;
-    padding: 1rem 0rem;
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 1rem 1rem;
     /* min-width: 10rem; */
     width: 100%;
     z-index: 1;
@@ -273,6 +275,7 @@
 
   .nav-links a.active {
     color: var(--colors-primary); /* Highlight color */
+    /*     font-weight: var(--font-weights-bolder); */
   }
 
   .nav-links a.active {
@@ -395,12 +398,15 @@
       display: flex;
       gap: 1.5rem;
       margin: 0;
+      /*       padding: 0 1rem; */
       padding: 0;
       position: relative;
       height: auto;
       width: auto;
       flex-direction: row;
+      /*       background-color: var(--colors-elevation-2); */
       background-color: transparent;
+      box-shadow: none;
       border: none;
       gap: 0.5rem;
       inset: 0;
@@ -408,6 +414,7 @@
       opacity: 1 !important;
       transform: none !important;
       pointer-events: auto !important;
+      visibility: visible !important;
 
       a {
         display: inline-block;

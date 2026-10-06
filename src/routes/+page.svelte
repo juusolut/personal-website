@@ -237,7 +237,8 @@
     padding: 0.25rem;
   }
   .nutshell {
-    width: 100%;
+    width: calc(100% - 4px);
+    margin: 0 auto;
     padding-top: 1rem;
     height: calc(100svh - var(--navbar-height));
     display: flex;

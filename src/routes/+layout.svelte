@@ -102,7 +102,7 @@
   }
 
   .overlay {
-/*     background-color: oklch(from var(--colors-primary) l 0.1 h); */
+    /*     background-color: oklch(from var(--colors-primary) l 0.1 h); */
     background-color: black;
     position: fixed;
     height: 100vh;
@@ -116,7 +116,8 @@
 
   :global(html:has(.nav-links.open)) {
     .overlay {
-      opacity: 0.5;
+      opacity: 0.75;
+      pointer-events: all;
       /*       background-color: rgba(0, 0, 0, 0.75); */
       /*       backdrop-filter: blur(20px); */
     }
@@ -125,6 +126,7 @@
   @media (width > 45rem) {
     .overlay {
       display: none;
+      pointer-events: none;
     }
   }
 </style>
