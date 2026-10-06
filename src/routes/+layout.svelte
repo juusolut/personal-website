@@ -66,6 +66,8 @@
     {@render children()}
   </main>
 
+  <div class="overlay"></div>
+
   <footer class="h-padding">
     <span
       >Portfolio rakennettu <a
@@ -80,7 +82,6 @@
 
 <style>
   footer {
-    /*     background-color: var(--colors-elevation-0); */
     display: flex;
     justify-content: center;
     color: var(--colors-text);
@@ -93,6 +94,37 @@
       text-decoration: underline;
       text-underline-offset: 5px;
       text-decoration-thickness: 3px;
+    }
+  }
+
+  .page-content {
+    z-index: 1;
+  }
+
+  .overlay {
+/*     background-color: oklch(from var(--colors-primary) l 0.1 h); */
+    background-color: black;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    pointer-events: none;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity var(--anim-speed-medium) ease;
+  }
+
+  :global(html:has(.nav-links.open)) {
+    .overlay {
+      opacity: 0.5;
+      /*       background-color: rgba(0, 0, 0, 0.75); */
+      /*       backdrop-filter: blur(20px); */
+    }
+  }
+
+  @media (width > 45rem) {
+    .overlay {
+      display: none;
     }
   }
 </style>

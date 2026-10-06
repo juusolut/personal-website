@@ -6,6 +6,8 @@
   import DropdownButton from "./DropdownButton.svelte";
   import MenuOptions from "./MenuOptions.svelte";
   import Icon from "./Icon.svelte";
+  import { fade, slide, fly } from "svelte/transition";
+  import { outclick } from "$lib/actions/outclick.svelte";
 
   // Svelte 5 rune for mobile menu state
   let isOpen = $state(false);
@@ -43,50 +45,57 @@
 
     <!-- Navigation Links -->
     <div id="links-and-buttons">
-      <!-- Mobile Hamburger Button -->
-      <button
-        class="hamburger"
-        class:isOpen
-        onclick={toggleMenu}
-        aria-label={isOpen
-          ? "Sulje navigointivalikko"
-          : "Avaa navigointivalikko"}
-        aria-expanded={isOpen}
-      >
-        <span class="bar" class:open={isOpen}></span>
-        <span class="bar" class:open={isOpen}></span>
-        <span class="bar" class:open={isOpen}></span>
-      </button>
-      <ul class="nav-links" class:open={isOpen}>
-        <li>
-          <a
-            href={resolve("/")}
-            class:active={isActive("/")}
-            onclick={closeMenu}>Etusivu</a
-          >
-        </li>
-        <li>
-          <a
-            href={resolve("/about")}
-            class:active={isActive("/about")}
-            onclick={closeMenu}>Minä</a
-          >
-        </li>
-        <li>
-          <a
-            href={resolve("/projects")}
-            class:active={isActive("/projects")}
-            onclick={closeMenu}>Projektit</a
-          >
-        </li>
-        <li>
-          <a
-            href={resolve("/contact")}
-            class:active={isActive("/contact")}
-            onclick={closeMenu}>Yhteystiedot</a
-          >
-        </li>
-      </ul>
+    <!-- Navbar and menu button -->
+      <div use:outclick={() => (isOpen = false)}>
+        <!-- Mobile Menu Button -->
+        <button
+          class="hamburger"
+          class:isOpen
+          onclick={toggleMenu}
+          aria-label={isOpen
+            ? "Sulje navigointivalikko"
+            : "Avaa navigointivalikko"}
+          aria-expanded={isOpen}
+        >
+          <span class="bar" class:open={isOpen}></span>
+          <span class="bar" class:open={isOpen}></span>
+          <span class="bar" class:open={isOpen}></span>
+        </button>
+        <ul
+          /*         transition:fly={{ duration: 200, y: -5 }} */
+          class="nav-links"
+          class:open={isOpen}
+        >
+          <li>
+            <a
+              href={resolve("/")}
+              class:active={isActive("/")}
+              onclick={closeMenu}>Etusivu</a
+            >
+          </li>
+          <li>
+            <a
+              href={resolve("/about")}
+              class:active={isActive("/about")}
+              onclick={closeMenu}>Minä</a
+            >
+          </li>
+          <li>
+            <a
+              href={resolve("/projects")}
+              class:active={isActive("/projects")}
+              onclick={closeMenu}>Projektit</a
+            >
+          </li>
+          <li>
+            <a
+              href={resolve("/contact")}
+              class:active={isActive("/contact")}
+              onclick={closeMenu}>Yhteystiedot</a
+            >
+          </li>
+        </ul>
+      </div>
       <div class="buttons">
         <ThemeSwitcher />
         <DropdownButton>
@@ -98,6 +107,9 @@
 </nav>
 
 <style>
+  :global(.navbar) {
+    z-index: 9998;
+  }
   nav {
     top: 0;
     color: var(--colors-text);
@@ -118,7 +130,7 @@
     view-transition-name: navbar;
     view-transition-class: navbar;
     border-bottom: 1px solid transparent;
-    transition: border-bottom-color var(--anim-speed-slow) linear;
+    transition: border-bottom-color var(--anim-speed-medium) ease;
     &.show-border {
       border-bottom-color: color-mix(
         in oklab,
@@ -177,26 +189,32 @@
 
   .nav-links {
     list-style: none;
-    display: none;
-    position: absolute;
-    top: var(--navbar-height);
-    bottom: 0;
-    height: calc(100vh - var(--navbar-height));
-    width: 100vw;
     margin: 0;
-    left: 0;
-    right: 0;
+    display: flex;
+    position: absolute;
+    top: calc(var(--navbar-height) + 0.5rem);
+    bottom: 0;
+    height: min-content;
+    width: calc(100vw - 1rem);
+    left: 0.5rem;
     flex-direction: column;
     background-color: var(--colors-elevation-2);
     padding: 1.5rem;
+    border-radius: var(--border-radiuses-md);
     gap: 0rem;
-    border-top: 1px solid
+    border: 1px solid
       color-mix(
         in oklch,
         var(--colors-elevation-2),
         var(--border-mix-shading) var(--border-strength-2)
       );
     z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition:
+      opacity var(--anim-speed-fast) ease,
+      transform var(--anim-speed-fast) ease;
 
     &::before {
       --color: oklch(from var(--colors-elevation-4) l c h / 1);
@@ -209,29 +227,17 @@
       top: calc(anchor(top) + 0.5rem);
       bottom: calc(anchor(bottom) + 0.5rem);
       left: calc(anchor(left) - 1rem);
-      right: anchor(right);
-      /*       border-radius: var(--border-radiuses-md); */
+      width: 50%;
       transition: inset var(--anim-speed-medium);
       pointer-events: none;
       border-left: 3px solid var(--colors-primary);
-
-      /*       content: "";
-      height: 3px;
-      background-color: var(--colors-primary);
-      position: absolute;
-      z-index: 0;
-      position-anchor: --link;
-      left: anchor(left);
-      right: anchor(right);
-      bottom: calc(anchor(bottom) + 0.5em);
-      border-radius: var(--border-radiuses-md);
-      transition: inset var(--anim-speed-medium);
-      pointer-events: none; */
     }
   }
 
   .nav-links.open {
-    display: flex;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
   }
 
   /* Disable background scroll when menu is open */
@@ -243,10 +249,11 @@
     color: inherit;
     text-decoration: none;
     font-weight: var(--font-weights-bold);
-    transition: color var(--anim-speed-fast) linear;
+    transition: color var(--anim-speed-fast) ease;
     display: inline-block;
     padding: 1rem 0rem;
-    min-width: 10rem;
+    /* min-width: 10rem; */
+    width: 100%;
     z-index: 1;
   }
 
@@ -306,12 +313,13 @@
   }
 
   .hamburger.isOpen {
-    border: 2px solid
+    /*     border: 2px solid
       color-mix(
         in oklab,
         var(--colors-elevation-2),
         var(--border-mix-shading) var(--border-strength-5)
-      );
+      ); */
+    border: 2px solid var(--colors-text);
   }
 
   .hamburger.isOpen .bar:nth-child(1) {
@@ -357,7 +365,7 @@
   }
 
   /* Responsive Mobile Menu */
-  @media (width > 768px) {
+  @media (width > 45rem) {
     .logo-text {
       font-size: var(--font-sizes-sm);
     }
@@ -379,6 +387,10 @@
       display: none;
     }
 
+    :global(html:has(.nav-links.open)) {
+      overflow: auto !important;
+    }
+
     .nav-links {
       display: flex;
       gap: 1.5rem;
@@ -393,6 +405,10 @@
       gap: 0.5rem;
       inset: 0;
 
+      opacity: 1 !important;
+      transform: none !important;
+      pointer-events: auto !important;
+
       a {
         display: inline-block;
         padding: 0.5rem 0.5rem;
@@ -406,9 +422,10 @@
         z-index: 0;
         position-anchor: --link;
         top: unset;
-        left: calc(anchor(left) + .3rem);
-        right: calc(anchor(right) + .3rem);
+        left: calc(anchor(left) + 0.3rem);
+        right: calc(anchor(right) + 0.3rem);
         bottom: calc(anchor(bottom) + 0.4em);
+        width: unset;
         border-radius: var(--border-radiuses-md);
         transition: inset var(--anim-speed-medium);
         pointer-events: none;

@@ -17,7 +17,7 @@
   }
 </script>
 
-<div class="space-on-mobile"></div>
+<!-- <div class="space-on-mobile"></div> -->
 
 <div class="info-container h-padding">
   <div class="info">
@@ -243,6 +243,7 @@
     max-width: var(--site-width);
     margin: 0 auto;
     container-type: inline-size;
+    margin-top: 1rem;
   }
 
   .info-box {

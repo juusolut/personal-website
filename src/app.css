@@ -107,6 +107,7 @@ ul {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  z-index: 0;
 }
 
 b {
@@ -322,7 +323,7 @@ button:hover,
 }
 
 :root {
-  --navbar-height: 5rem;
+  --navbar-height: 3rem;
   --text-max-width: 40rem;
 }
 
@@ -393,7 +394,7 @@ button:hover,
 }
 
 .space-on-mobile {
-  height: 0;
+  height: 3rem;
 }
 
 p:lang(fi) {
@@ -412,12 +413,12 @@ html[data-theme="dark"] .to-light-cv {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (width > 45rem) {
   :root {
-    --navbar-height: 3rem;
+    --navbar-height: 5rem;
   }
 
   .space-on-mobile {
-    height: 3rem;
+    height: 0;
   }
 }
